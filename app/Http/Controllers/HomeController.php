@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class HomeController extends Controller
 {
     /**
@@ -27,6 +27,7 @@ class HomeController extends Controller
     }
     public function registration()
     {
+        Alert::success('Bienvenu Dans Notre APPRH');
         return view('auth.registration');
     }
 }

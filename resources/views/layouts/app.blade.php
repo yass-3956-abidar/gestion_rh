@@ -68,10 +68,9 @@
         <main class="py-4">
             @yield('content')
         </main>
+        @include('sweetalert::alert')
     </div>
     <script src="{{asset('js/appJs.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
 </body>
 
 </html>

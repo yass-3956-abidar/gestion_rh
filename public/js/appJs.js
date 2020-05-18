@@ -94,6 +94,7 @@
 /***/ (function(module, exports) {
 
 $(document).ready(function () {
+  nbrEnfant();
   $('#sidebarCollapse').on('click', function () {
     $('#sidebar').toggleClass('active');
   });
@@ -101,13 +102,25 @@ $(document).ready(function () {
     $("#util").toggle();
   });
   $("#situationFami").change(function () {
-    if ($("#situationFami").val() == 'marié') {
-      $("#nbrEnfant").css("display", "inline");
-    } else {
-      $("#nbrEnfant").css("display", "none");
-    }
+    nbrEnfant();
+  });
+  $('.datepicker').datepicker({
+    inline: true
+  });
+  $("#enregistre").click(function () {
+    $("#enregistre").text('Enregistration ...');
+    $("#spinerEnregister").css('display', 'inline');
   });
 });
+
+function nbrEnfant() {
+  if ($("#situationFami").val() == 'célibataire') {
+    $("#nbrEnfant").val(0);
+    $("#nbrEnfant").prop("disabled", true);
+  } else {
+    $("#nbrEnfant").prop("disabled", false);
+  }
+}
 
 /***/ }),
 

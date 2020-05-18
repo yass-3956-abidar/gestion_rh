@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Banque;
+use App\Contrat;
+use App\ContratType;
 use App\Departement;
 use App\Http\Requests\EmployerRequest;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -50,23 +54,45 @@ class EmployerController extends Controller
         $dateDep = $request->only('nom_dep');
         Departement::create($dateDep);
         //save Banque
-        $dataBanque = $request->only('nom_banque', 'rib', 'adresse', 'tele');
+        $dataBanque = $request->only('nom_banque', 'adresse', 'tele');
+        $dataBanque['rib'] = Hash::make($request->rib);
         Banque::create($dataBanque);
         // // save emoloyer
-        $dataEmployer = $request->only('cin', 'nom_employer', 'prenom', 'email', 'date_naissance', 'situationFami', 'sexe', 'Num_cnss', 'nbr_enfant' , 'Num_Icmr', 'salaire', 'image');
+
+        $dataEmployer = $request->only('cin', 'nom_employer', 'prenom', 'email', 'date_naissance','nbr_enfant', 'situationFami', 'sexe', 'Num_cnss', 'Num_Icmr', 'salaire');
+        if ($image = $request->file('image')) {
+            //$destinationPath = 'public/image/'; // upload path
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move('images', $profileImage);
+            //$insert[]['image'] = "$profileImage";
+            $dataEmployer['image']=$profileImage;
+        }else{
+            $dataEmployer['image']='person.png';
+        }
         // dd($dataEmployer);
         $dataEmployer['emploi_id'] = DB::table('emplois')->max('id');
         $dataEmployer['banque_id'] = DB::table('banques')->max('id');
         $dataEmployer['departement_id'] = DB::table('departements')->max('id');
         $dataEmployer['societe_id'] = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        //save contrat type;
+        $contraTypeId = 0;
+        $contraType = DB::table('contrat_types')->where('type', $request->type)->first();
+        if ($contraType == null) {
+            $dataContratType = $request->only('type');
+            ContratType::create($dataContratType);
+            $contraTypeId = DB::table('contrat_types')->max('id');
+        } else if ($contraType != null) {
+            $contraTypeId = $contraType->id;
+        }
         Employer::create($dataEmployer);
-        Swal.fire({
-            title: 'Error!',
-            text: 'Do you want to continue',
-            icon: 'error',
-            confirmButtonText: 'Cool'
-          });
-
+        //save contrat
+        $dataContrat = $request->only('date_embauche');
+        $dataContrat['employer_id'] = DB::table('employers')->max('id');
+        $dataContrat['conget_type_id'] = $contraTypeId;
+        Contrat::create($dataContrat);
+        $request->session()->flash('success', "Nouvelle employer est ajouter avec succes");
+        toast(session('success'), 'success');
+        return redirect(route('employer.index'));
     }
 
     /**

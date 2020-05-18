@@ -37,6 +37,7 @@
             <main>
                 @yield('content')
             </main>
+            @include('sweetalert::alert')
         </div>
     </div>
     <!-- scripts -->
@@ -54,8 +55,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <script src="{{asset('js/jquery.js')}}"></script>
     <script src="{{asset('js/jquery-ui.min.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill"></script>
     <script src="{{asset('js/appJs.js')}}"></script>
 </body>
 

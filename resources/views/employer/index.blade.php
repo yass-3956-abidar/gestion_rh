@@ -14,7 +14,7 @@
             </div>
             @endforelse
             <center>
-                <a href="{{route('employer.create')}}" class="btn btn-primary" data-toggle="modal" data-target="#addemployer">
+                <a href="{{route('employer.create')}}" class="btn btn-primary">
                     <i class="fas fa-plus fa-1x mr-1"></i>Ajouter Un Employer
                 </a>
             </center>

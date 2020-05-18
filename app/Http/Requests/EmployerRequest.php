@@ -31,9 +31,9 @@ class EmployerRequest extends FormRequest
             'date_naissance' => 'required|date',
             'situationFami' => 'required|string',
             'sexe' => 'required|string',
-            'Num_cnss' => 'required|numeric',
-            'nbr_enfant' => 'required|numeric',
-            'Num_Icmr' => 'required|numeric',
+            'Num_cnss' => 'required|numeric|unique:employers',
+            'nbr_enfant' => 'numeric',
+            'Num_Icmr' => 'required|numeric|unique:employers',
             'salaire' => 'required|numeric',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'fonction' => 'required|string',
@@ -45,6 +45,8 @@ class EmployerRequest extends FormRequest
             'rib'=>'numeric|min:24|unique:banques',
             'tele'=>["required","regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"],
             'adresse'=>'string',
+            'date_embauche'=>'required|date|after:tomorrow',
+             'type'=>'required|string',
         ];
     }
 }

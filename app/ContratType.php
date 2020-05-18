@@ -9,4 +9,7 @@ class ContratType extends Model
     public function contrats(){
         return $this->hasMany('App\Contrat');
     }
+    protected $fillable = [
+        'type',
+    ];
 }

@@ -14,4 +14,7 @@ class Contrat extends Model
     {
         return $this->belongsTo('App\ContratType');
     }
+    protected $fillable = [
+        'employer_id', 'date_embauche', 'conget_type_id'
+    ];
 }
