@@ -22,6 +22,7 @@ class CreateSocietesTable extends Migration
             $table->string('pays');
             $table->string('ville');
             $table->integer('code_postall')->default(null);
+            $table->softDeletes();
             $table->bigInteger('user_id');
             $table->string('devise');
             $table->string('site_internet')->default(null);

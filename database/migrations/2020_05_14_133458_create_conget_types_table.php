@@ -16,6 +16,7 @@ class CreateCongetTypesTable extends Migration
         Schema::create('conget_types', function (Blueprint $table) {
             $table->id();
             $table->string('type');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

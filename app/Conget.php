@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Conget extends Model
 {
@@ -14,4 +15,5 @@ class Conget extends Model
     {
         return $this->belongsTo('App\CongetType');
     }
+    use SoftDeletes;
 }

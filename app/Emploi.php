@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Emploi extends Model
 {
@@ -12,5 +13,6 @@ class Emploi extends Model
     protected $fillable = [
         'fonction', 'date_debut', 'date_fin','salaire_base',
     ];
+    use SoftDeletes;
 
 }

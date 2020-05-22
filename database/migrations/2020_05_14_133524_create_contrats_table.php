@@ -17,7 +17,8 @@ class CreateContratsTable extends Migration
             $table->id();
             $table->bigInteger('employer_id');
             $table->date('date_embauche');
-            $table->bigInteger('conget_type_id');
+            $table->softDeletes();
+            $table->bigInteger('contra_type_id');
             $table->timestamps();
         });
     }

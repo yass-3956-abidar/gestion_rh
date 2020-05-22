@@ -17,7 +17,8 @@ class CreateEmploisTable extends Migration
             $table->id();
             $table->string('fonction');
             $table->date('date_debut');
-            $table->date('date_fin');
+            $table->date('date_fin')->default(null);
+            $table->softDeletes();
             $table->double('salaire_base',8,2);
             $table->timestamps();
         });

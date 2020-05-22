@@ -26,7 +26,8 @@ class CreateEmployersTable extends Migration
             $table->integer('nbr_enfant')->default(0);
             $table->bigInteger('Num_Icmr');
             $table->double('salaire',8,2);
-            $table->string('image')->default('person.png');
+            $table->string('image')->default('man.png');
+            $table->softDeletes();
             $table->bigInteger('emploi_id');
             $table->bigInteger('societe_id');
             $table->bigInteger('departement_id');

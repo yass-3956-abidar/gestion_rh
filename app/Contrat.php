@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Contrat extends Model
 {
@@ -15,6 +16,7 @@ class Contrat extends Model
         return $this->belongsTo('App\ContratType');
     }
     protected $fillable = [
-        'employer_id', 'date_embauche', 'conget_type_id'
+        'employer_id', 'date_embauche', 'contra_type_id'
     ];
+    use SoftDeletes;
 }

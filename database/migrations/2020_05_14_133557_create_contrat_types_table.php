@@ -16,6 +16,7 @@ class CreateContratTypesTable extends Migration
         Schema::create('contrat_types', function (Blueprint $table) {
             $table->id();
             $table->enum('type',['CDD','CDI','CTT','CUI','CAE','CIE']);
+            $table->softDeletes();
             $table->timestamps();
         });
     }

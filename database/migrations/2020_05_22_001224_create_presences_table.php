@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDepartementsTable extends Migration
+class CreatePresencesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateDepartementsTable extends Migration
      */
     public function up()
     {
-        Schema::create('departements', function (Blueprint $table) {
+        Schema::create('presences', function (Blueprint $table) {
             $table->id();
-            $table->string('nom_dep');
-            $table->softDeletes();
+            $table->string('heur_entre');
+            $table->string('heur_sortit');
+            $table->string('note')->default(null);
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateDepartementsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('departements');
+        Schema::dropIfExists('presences');
     }
 }

@@ -18,6 +18,7 @@ class CreateCongetsTable extends Migration
             $table->date('date_debut');
             $table->integer('durre');
             $table->bigInteger('employer_id');
+            $table->softDeletes();
             $table->bigInteger('conget_type_id');
             $table->timestamps();
         });

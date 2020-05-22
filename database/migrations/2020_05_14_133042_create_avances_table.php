@@ -18,6 +18,7 @@ class CreateAvancesTable extends Migration
             $table->double('montant',8,2);
             $table->date('date_affectation');
              $table->bigInteger('employer_id');
+             $table->softDeletes();
             $table->timestamps();
         });
     }

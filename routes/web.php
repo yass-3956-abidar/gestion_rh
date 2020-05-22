@@ -23,4 +23,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get("/Registration","HomeController@registration")->name('registration');
 Route::resource('societe', 'SocieteController');
 Route::resource('/admin/employer', 'EmployerController');
+Route::resource('/admin/presence', 'PresenceController');
+Route::get('employer/suppprime/{id}','EmployerController@destroy')->name('employer.delete');
+Route::get('/admin/outil/salire','EmployerController@InfoCalculSalire')->name('admin.salire');
+Route::get('/admin/outil/ir','EmployerController@infoIr')->name('admin.ir');
+Route::get('/admin/presence/pointage/{id}','PresenceController@pointerEmployer')->name('presence.pointer');
+
 

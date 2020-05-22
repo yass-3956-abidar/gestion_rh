@@ -37,16 +37,42 @@ class EmployerRequest extends FormRequest
             'salaire' => 'required|numeric',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'fonction' => 'required|string',
-            'date_debut'=>'required|date|after:tomorrow',
-            'date_fin'=>'required|date|after:date_debut',
-            'salaire_base'=>'required|numeric',
-            'nom_dep'=>'required|string',
-            'nom_banque'=>'required|string',
-            'rib'=>'numeric|min:24|unique:banques',
-            'tele'=>["required","regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"],
-            'adresse'=>'string',
-            'date_embauche'=>'required|date|after:tomorrow',
-             'type'=>'required|string',
+            'date_debut' => 'required|date|after:tomorrow',
+            'date_fin' => 'date|after:date_debut',
+            'salaire_base' => 'required|numeric',
+            'nom_dep' => 'required|string',
+            'nom_banque' => 'required|string',
+            'rib' => 'numeric|min:16|unique:banques',
+            'tele' => ["required", "regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"],
+            'adresse' => 'string',
+            'date_embauche' => 'required|date|after:tomorrow',
+            'type' => 'required|string',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'cin.required' => 'Le CIN/Matricule est obligatoire',
+            'cin.unique' => 'Le CIN/Matricule doit être unique',
+            'cin.string' => 'Le CIN/Matricule doit être un string',
+            'nom_employer.required' => 'le nom est obligaatoire',
+            'date_naissance.required' => 'la date de naissance est obligatoire',
+            'Num_cnss.required'=>'le numero CNSS est obligatoire',
+            'Num_cnss.unique'=>'le numero CNSS est deja existe',
+            'Num_cnss.numeric'=>'le  CNSS est un numero',
+            'Num_Icmr.required'=>'le numero ICMR est obligatoire',
+            'Num_Icmr.unique'=>'le numero ICMR est deja existe',
+            'Num_Icmr.numeric'=>'le  ICMR est un numero',
+            'rib.numeric' => 'Le RIB doit être un numéro',
+            'rib.min' => 'Le RIB doit être au minimun 16 nombre',
+            'rib.unique' => 'Le RIB est deja existe',
+            'nom_banque.required' => 'On veut s\'avoir le nom de la  banque ',
+            'date_embauche.required' => 'la date embauche est obligatoire',
+            'date_embauche.after' => 'la date embauche doit etre apres demain',
+            'nom_dep.required' => 'dans quelle departement on va ajouter l\'employer',
+            'salaire_base.required' => 'Salaire de base est obligatoire',
+            'salaire_base.numeric' => ' Le Salaire doit être un numéro',
+
         ];
     }
 }

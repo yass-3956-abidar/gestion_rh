@@ -81,85 +81,30 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./resources/js/appJs.js":
-/*!*******************************!*\
-  !*** ./resources/js/appJs.js ***!
-  \*******************************/
+/***/ "./resources/js/presence/index.js":
+/*!****************************************!*\
+  !*** ./resources/js/presence/index.js ***!
+  \****************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-$(document).ready(function () {
-  nbrEnfant();
-  $('#sidebarCollapse').on('click', function () {
-    $('#sidebar').toggleClass('active');
-  });
-  $("#dropdownMenu1").click(function () {
-    $("#util").toggle();
-  });
-  $("#situationFami").change(function () {
-    nbrEnfant();
-  });
-  $("#enregistre").click(function () {
-    $("#spinerEnregister").show();
-    $("#enregistre").text('Enregistration  ...');
-  });
-  $('#tableEmployer').DataTable({
-    "order": [[3, "desc"]],
-    "paging": true,
-    "oLanguage": {
-      "sLengthMenu": "Afficher _MENU_ employés par page",
-      "sSearch": "Rechercher",
-      "sLenghtMenu": "Afficher _MENU_",
-      "sZeroRecords": "Aucun employé Trouvez!",
-      "sInfo": "Afficher _START_ à _END_ de _TOTAL_ employés",
-      "sInfoFiltered": "(filtré à partir de _MAX_ employés)",
-      "oPaginate": {
-        "sPrevious": "Précédent",
-        "sNext": "Suivant"
-      }
-    }
-  });
-  $('.dataTables_length').addClass('bs-select');
-  $('.delete-confirm').on('click', function (event) {
-    event.preventDefault();
-    var url = $(this).attr('href');
-    swal({
-      title: 'Vous Voulez Vraiment supprimer l\'employer ?',
-      text: 'La suppression est reversible',
-      icon: 'warning',
-      buttons: ["Annulue", "Supprime!"]
-    }).then(function (value) {
-      if (value) {
-        window.location.href = url;
-      }
-    });
-  });
-});
-
-function nbrEnfant() {
-  if ($("#situationFami").val() == 'célibataire') {
-    $("#nbrEnfant").val(0);
-    $("#nbrEnfant").prop("disabled", true);
-  } else {
-    $("#nbrEnfant").prop("disabled", false);
-  }
-}
+alert('hi is index js');
 
 /***/ }),
 
-/***/ 3:
-/*!*************************************!*\
-  !*** multi ./resources/js/appJs.js ***!
-  \*************************************/
+/***/ 4:
+/*!**********************************************!*\
+  !*** multi ./resources/js/presence/index.js ***!
+  \**********************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\Gestion_RH\resources\js\appJs.js */"./resources/js/appJs.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\Gestion_RH\resources\js\presence\index.js */"./resources/js/presence/index.js");
 
 
 /***/ })

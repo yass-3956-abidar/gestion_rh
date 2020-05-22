@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ContratType extends Model
 {
@@ -12,4 +13,5 @@ class ContratType extends Model
     protected $fillable = [
         'type',
     ];
+    use SoftDeletes;
 }

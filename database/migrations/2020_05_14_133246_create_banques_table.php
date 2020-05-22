@@ -18,6 +18,7 @@ class CreateBanquesTable extends Migration
             $table->string('nom_banque');
             $table->string('rib')->unique();
             $table->string('tele')->default(null);
+            $table->softDeletes();
             $table->string('adresse');
             $table->timestamps();
         });

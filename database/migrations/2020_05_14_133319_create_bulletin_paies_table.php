@@ -17,7 +17,9 @@ class CreateBulletinPaiesTable extends Migration
             $table->id();
             $table->date('date_belletin');
             $table->bigInteger('employer_id');
+            $table->integer('cout_heurSup');
             $table->integer('nbr_heur');
+            $table->softDeletes();
             $table->integer('nbr_heur_sup');
             $table->integer('nbr_jour_ferier');
             $table->integer('nbr_conget_pay');

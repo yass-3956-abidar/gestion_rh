@@ -9,14 +9,49 @@ $(document).ready(function() {
     $("#situationFami").change(function() {
         nbrEnfant();
     });
-    $('.datepicker').datepicker({
-        inline: true
-    });
     $("#enregistre").click(function() {
-        $("#enregistre").text('Enregistration ...');
-        $("#spinerEnregister").css('display', 'inline');
+        $("#spinerEnregister").show();
+        $("#enregistre").text('Enregistration  ...');
 
-    })
+
+    });
+    $('#tableEmployer').DataTable({
+        "order": [
+            [3, "desc"]
+        ],
+        "paging": true,
+        "oLanguage": {
+            "sLengthMenu": "Afficher _MENU_ employés par page",
+            "sSearch": "Rechercher",
+            "sLenghtMenu": "Afficher _MENU_",
+            "sZeroRecords": "Aucun employé Trouvez!",
+            "sInfo": "Afficher _START_ à _END_ de _TOTAL_ employés",
+            "sInfoFiltered": "(filtré à partir de _MAX_ employés)",
+            "oPaginate": {
+                "sPrevious": "Précédent",
+                "sNext": "Suivant"
+            }
+        }
+    });
+    $('.dataTables_length').addClass('bs-select');
+    $('.delete-confirm').on('click', function(event) {
+        event.preventDefault();
+        const url = $(this).attr('href');
+        swal({
+            title: 'Vous Voulez Vraiment supprimer l\'employer ?',
+            text: 'La suppression est reversible',
+            icon: 'warning',
+            buttons: ["Annulue", "Supprime!"],
+        }).then(function(value) {
+            if (value) {
+                window.location.href = url;
+            }
+        });
+    });
+
+
+
+
 
 
 });
