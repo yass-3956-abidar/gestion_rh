@@ -17,6 +17,7 @@ class CreatePresencesTable extends Migration
             $table->id();
             $table->string('heur_entre');
             $table->string('heur_sortit');
+            $table->bigInteger('employer_id');
             $table->string('note')->default(null);
             $table->timestamps();
         });

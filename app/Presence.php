@@ -11,6 +11,6 @@ class Presence extends Model
     ];
     public function employers()
     {
-        return $this->belongsToMany('App\Employer');
+        return $this->belongsTo('App\Employer');
     }
 }

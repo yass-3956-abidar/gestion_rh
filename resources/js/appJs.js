@@ -1,4 +1,5 @@
 $(document).ready(function() {
+
     nbrEnfant();
     $('#sidebarCollapse').on('click', function() {
         $('#sidebar').toggleClass('active');

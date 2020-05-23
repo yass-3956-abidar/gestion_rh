@@ -28,5 +28,8 @@ Route::get('employer/suppprime/{id}','EmployerController@destroy')->name('employ
 Route::get('/admin/outil/salire','EmployerController@InfoCalculSalire')->name('admin.salire');
 Route::get('/admin/outil/ir','EmployerController@infoIr')->name('admin.ir');
 Route::get('/admin/presence/pointage/{id}','PresenceController@pointerEmployer')->name('presence.pointer');
+Route::POST('/admin/presence/employer','PresenceController@getEmployerPresence')->name('presence.employer');
+Route::POST('/admin/presence/employer/{id}','PresenceController@savePresence')->name('presence.save');
+
 
 

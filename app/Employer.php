@@ -46,6 +46,6 @@ class Employer extends Model
           return $this->hasMany('App\BulletinPaie');
     }
     public function presences(){
-        return $this->belongsToMany('App\Presence');
+        return $this->hasMany('App\Presence');
     }
 }
