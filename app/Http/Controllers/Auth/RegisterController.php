@@ -51,11 +51,11 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'rasi_social'=>['required','string'],
-            'tele'=>["required","regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"]
+            'name' => 'required|string|max:20',
+            'email' => 'required|string|email|max:100|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'rais_social' => 'required|string',
+            'tele' => 'required|regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/',
         ]);
     }
 
@@ -71,11 +71,22 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'rais_social'=>$data['rasi_social'],
-            'tele'=>$data['tele']
+            'rais_social' => $data['rais_social'],
+            'tele' => $data['tele'],
         ]);
     }
-    protected function redirectTo(){
-          return '/Registration';
+    protected function redirectTo()
+    {
+        return '/Registration';
+    }
+    public function messages()
+    {
+        return [
+            'name.required' => 'le champ Nom est Obligatoire!!',
+            'name.string' => 'Le Champ Nom est un text',
+            'email.required' => 'le champ email est obligatoire',
+            'rasi_social.required' => 'le champ Raison Social est obligatoire',
+            'tele.required' => 'le champ Telephone est Obligatoire',
+        ];
     }
 }

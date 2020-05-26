@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PresenceRequest;
 use App\Presence;
 use Illuminate\Support\Facades\Auth;
+use PDF;
 
 class PresenceController extends Controller
 {
@@ -20,22 +21,60 @@ class PresenceController extends Controller
      */
     public function index()
     {
-
+        $presence = [];
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
-        foreach($employers as $employer){
-            $presence[$employer->id]=Employer::find($employer->id)->presences;
+        foreach ($employers as $employer) {
+            $presence[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)->where('date_pointe', date('yy-m-d'))->get();
         }
-        return view('employer.presence.index')->with('employers', $employers)->with('tablePresence',$presence);
+        return view('presence.index')->with('employers', $employers)->with('tablePresence', $presence);
     }
     public function getEmployerPresence(Request $request)
     {
-        // dd($request->datePresence);
+
         $idsocietee = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $employers = Societe::find($idsocietee)->employers;
-        dd($employers);
+        if ($request->ajax()) {
+            $data = '';
+            $output = '';
+            $query = $_GET['query'];
+            if ($query != '') {
+                $datepresenceFormat = date("yy-m-d", strtotime($query));
+                foreach ($employers as $employer) {
+                    $presences[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)->where('date_pointe', $datepresenceFormat)->get();
+                }
+                foreach ($employers as $employer) {
+                    foreach ($presences[$employer->id] as $presence) {
+                        $output .= '
+                  <tr>
+                    <td>' . $employer->nom_employer . " " . $employer->prenom . '</td>
+                     <td>
+                        <ul class="list-group list-group-horizontal">
+                        <li class="list-group-item active mr-1">
+                              <button class="text-center"> ' . $presence->heur_entre . " " . $presence->heur_sortit .
+                            '</button>
+                          </li>
+                        </ul>
+                     </td>
+                    </tr>
+                    ';
+                    }
+                }
+                $data = $output;
+                echo json_encode($data);
+            }
+        } else {
+            echo "not found";
+        }
     }
 
+    public function getpdfF()
+    {
+        $data = ['title' => 'Welcome to ItSolutionStuff.com'];
+        $pdf = PDF::loadView('test', $data);
+
+        return $pdf->download('test.pdf');
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -44,6 +83,13 @@ class PresenceController extends Controller
     public function create()
     {
         //
+    }
+    public function deletePresence(Request $request)
+    {
+        $presence = Presence::find($request->input('id'));
+        if ($presence->delete()) {
+            return response()->json(['success' => 'Data Deleted  successfully.']);
+        }
     }
 
     /**
@@ -62,18 +108,27 @@ class PresenceController extends Controller
         $presence->heur_sortit = $request->heur_sortit;
         $presence->note = $request->note;
         $presence->employer_id = $request->id_emp;
+        $presence->date_pointe = $request->date_pointe;
         $presence->save();
-        $request->session()->flash('success', "pointage fait avec succe et presence client");
+        $request->session()->flash('success', "pointage fait avec succe");
         toast(session('success'), 'success');
-        return redirect(route('presence.index'));
-        // $pressenses = Employer::find($request->id_emp)->presences;
-        // dd($pressenses);
+        return redirect(route('presenceEmp.index'));
     }
     public function savePresence(Request $Request, $id)
     {
     }
-    public function pointerEmployer($id)
+    public function pointerEmployer()
     {
+        // return view('employer.presence.historique');
+        $presence = [];
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
+        foreach ($employers as $employer) {
+            $presence[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)->where('date_pointe', date('yy-m-d'))->get();
+        }
+
+        return view('presence.historique')->with('employers', $employers)->with('tablePresence', $presence);
+        // dd('hi');
     }
 
     /**
@@ -95,7 +150,6 @@ class PresenceController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
@@ -108,6 +162,15 @@ class PresenceController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+    public function updatePresence(PresenceRequest $request)
+    {
+        $presence =  Presence::find($request->id_presence);
+        $presence->heur_sortit = $request->heur_sortit;
+        $presence->heur_entre = $request->heur_entre;
+        $presence->note = $request->note;
+        $presence->update();
+        return redirect(route('presenceEmp.index'));
     }
 
     /**

@@ -27,7 +27,7 @@ class HomeController extends Controller
     }
     public function registration()
     {
-        Alert::success('Bienvenu Dans Notre APPRH');
+        Alert::success('Bienvenu Dans Votre APP@RH');
         return view('auth.registration');
     }
 }

@@ -37,13 +37,25 @@ class SocieteController extends Controller
      */
     public function store(SocieteRequest $request)
     {
+        $societe = new Societe();
+        $societe->devise = $request->devise;
+        $societe->nom_societe = $request->nom_societe;
+        $societe->adresse = $request->adresse;
+        $societe->GSM = $request->GSM;
+        $societe->email = $request->email;
+        $societe->pays = $request->pays;
+        $societe->ville = $request->ville;
+        $societe->code_postall = $request->code_postall;
+        $societe->site_internet = $request->site_internet;
+        $societe->user_id = Auth::user()->id;
+        $societe->save();
+        // $data = $request->only('devise', 'nom_societe', 'adresse', 'GSM', 'email', 'pays', 'ville', 'code_postall', 'site_internet');
+        // // $data = $request->all();
 
-        $data = $request->only('devise', 'nom_societe', 'adresse', 'GSM', 'email', 'pays', 'ville', 'code_postall', 'site_internet');
-        // $data = $request->all();
+        // $data['user_id'] =
+        // // dd($data);
+        // Societe::create($data);
 
-        $data['user_id'] = Auth::user()->id;
-        // dd($data);
-        Societe::create($data);
         return  redirect('/home');
     }
 

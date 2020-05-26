@@ -24,15 +24,15 @@ class SocieteRequest extends FormRequest
     public function rules()
     {
         return [
-            'site_internet' => 'string|max:255',
+            // 'site_internet' => 'string|max:255',
             'email' => 'required|string|email|max:255|unique:societes',
             'nom_societe'=>'required|string|min:6',
-            'GSM'=>'numeric',
+            // 'GSM'=>'string',
             'ville'=>'string|required',
             'pays'=>'string|required',
             'adresse'=>'string|required',
-            'code_postall'=>'numeric|min:5',
-            'devise'=>'String|min:3|max:10',
+            // 'code_postall'=>'string|min:5',
+            'devise'=>'required|String|min:3|max:10',
         ];
     }
 }

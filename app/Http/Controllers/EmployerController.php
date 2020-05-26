@@ -133,7 +133,14 @@ class EmployerController extends Controller
 
         $contratType = DB::table('contrat_types')->where('id', $contrat->contra_type_id)->first();
         $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
-        return view('employer.show')->with('contrat', $contrat)->with('departement', $departement)->with('post', $post)->with('banque', $banque)->with('employer', $employer)->with('contratType', $contratType)->with('devise', $devise);
+        return view('employer.show')
+        ->with('contrat', $contrat)
+        ->with('departement', $departement)
+        ->with('post', $post)
+        ->with('banque', $banque)
+        ->with('employer', $employer)
+        ->with('contratType', $contratType)
+        ->with('devise', $devise);
     }
 
     /**

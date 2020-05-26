@@ -18,17 +18,28 @@
                 Employeé
             </a>
         </li>
-        <li>
-            <a href="{{route('presence.index')}}" class="text-white" href="{{route('employer.index')}}">
+        <li class="active">
+            <a href="#presence" class="text-white" data-toggle="collapse" aria-expanded="false">
                 <i class="fas fa-clipboard"></i>
-                présence
+                présence<i class="fas fa-sort-down float-right"></i>
             </a>
+            <ul class="collapse list-unstyled" id="presence">
+                <li>
+                    <a href="{{route('presenceEmp.index')}}"><span>Pointage </span></a>
+                </li>
+                <li>
+                    <a href="{{route('presence.historique')}}"><span>Historique</span></a>
+                </li>
+
+            </ul>
         </li>
         <li>
-            <a class="text-white" href="{{route('employer.index')}}">
+            <a class="text-white" href="{{route('paie.index')}}">
                 <i class="fas fa-paste"></i>
                 paie
             </a>
+
+
         </li>
         <li>
             <a class="text-white" href="#pageSubmenu">
@@ -44,7 +55,7 @@
         </li>
         <li class="active">
             <a href="#outil" data-toggle="collapse" aria-expanded="false">
-                <i  id="appIdIcon" class="fas fa-border-none"></i>Outil <i class="fas fa-sort-down float-right"></i>
+                <i id="appIdIcon" class="fas fa-border-none"></i>Outil <i class="fas fa-sort-down float-right"></i>
             </a>
             <ul class="collapse list-unstyled" id="outil">
                 <li>

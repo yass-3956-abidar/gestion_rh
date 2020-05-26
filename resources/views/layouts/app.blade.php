@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="app">
+
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a style="font-style:italic;font-weight:bold;color:#03A9F4" class="navbar-brand" href="{{ url('/') }}">
@@ -69,7 +69,6 @@
             @yield('content')
         </main>
         @include('sweetalert::alert')
-    </div>
     <script src="{{asset('js/appJs.js')}}"></script>
 </body>
 

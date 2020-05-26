@@ -27,9 +27,9 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="nom_societe" style="box-shadow: none" type="text" class="form-control @error('nom') is-invalid @enderror" name="nom_societe" required value="{{Auth::user()->rais_social}}">
+                                    <input id="nom_societe" style="box-shadow: none" type="text" class="form-control @error('nom_societe') is-invalid @enderror" name="nom_societe" value="{{Auth::user()->rais_social}}">
 
-                                    @error('nom')
+                                    @error('nom_societe')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -42,7 +42,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input id="email" style="box-shadow: none" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+                                    <input id="email" style="box-shadow: none" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" autocomplete="email">
 
                                     @error('email')
                                     <span class="invalid-feedback" role="alert">
@@ -54,7 +54,7 @@
                             <div class="form-group row">
                                 <label for="rais_social" class="col-md-4 col-form-label text-md-right">{{ __('GSM') }}</label>
                                 <div class="col-md-6">
-                                    <input id="GSM" style="box-shadow: none" type="text" class="  form-control @error('gsm') is-invalid @enderror" name="GSM">
+                                    <input id="GSM" style="box-shadow: none" type="text" class="  form-control @error('GSM') is-invalid @enderror" name="GSM" value="{{ old('GSM') }}">
 
                                     @error('GSM')
                                     <span class="invalid-feedback" role="alert">
@@ -68,8 +68,8 @@
                                 <label for="site" class="col-md-4 col-form-label text-md-right">{{ __('Site Internet') }}
                                 </label>
                                 <div class="col-md-6">
-                                    <input style="box-shadow: none" type="text" class="form-control @error('site') is-invalid @enderror" name="site_internet" autocomplete="new-password">
-                                    @error('site')
+                                    <input style="box-shadow: none" type="text" class="form-control @error('site_internet') is-invalid @enderror" name="site_internet" value="{{ old('site_internet') }}">
+                                    @error('site_internet')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -84,7 +84,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input style="box-shadow: none" id="adresse" type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" required>
+                                    <input style="box-shadow: none" id="adresse" type="text" class="form-control @error('adresse') is-invalid @enderror" name="adresse" value="{{ old('adresse') }}">
                                     @error('adresse')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -98,7 +98,7 @@
                                 </label>
 
                                 <div class="col-md-6">
-                                    <input style="box-shadow: none" type="text" class="form-control @error('pays') is-invalid @enderror" name="pays" required>
+                                    <input style="box-shadow: none" type="text" class="form-control @error('pays') is-invalid @enderror" name="pays" value="{{ old('pays') }}">
                                     @error('pays')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -109,7 +109,7 @@
                             <div class="form-group row">
                                 <label for="ville" class="col-md-4 col-form-label text-md-right">{{ __('Ville') }}<span class="text-danger ml-1">*</span></label>
                                 <div class="col-md-6">
-                                    <input style="box-shadow: none" type="text" class="form-control @error('ville') is-invalid @enderror" name="ville" required>
+                                    <input style="box-shadow: none" type="text" class="form-control @error('ville') is-invalid @enderror" name="ville" value="{{ old('ville') }}">
                                     @error('ville')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -122,7 +122,7 @@
 
                                 </label>
                                 <div class="col-md-6">
-                                    <input style="box-shadow: none" type="text" class="form-control @error('code_postal') is-invalid @enderror" name="code_postall">
+                                    <input style="box-shadow: none" type="text" class="form-control @error('code_postall') is-invalid @enderror" name="code_postall" value="{{ old('code_postall') }}">
                                     @error('code_postall')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -139,7 +139,7 @@
                             <span class="text-danger ml-1">*</span></label>
 
                         <div class="col-md-6">
-                            <input style="box-shadow: none;width: 340px" type="text" class="form-control @error('devise') is-invalid @enderror" name="devise" required>
+                            <input style="box-shadow: none;width: 340px" type="text" class="form-control @error('devise') is-invalid @enderror" name="devise" value="{{ old('devise') }}">
                             @error('devise')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -1899,10 +1899,10 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddPaie.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddPaie.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1924,9 +1924,60 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log("Component mounted.");
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaieVue.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PaieVue.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      employers: {}
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get("http://127.0.0.1:8000/admin/paie#/").then(function (response) {
+      return _this.employers = response;
+    })["catch"](function (error) {
+      return console.log(error);
+    });
+  },
+  mounted: function mounted() {
+    console.log("Component mounted.");
   }
 });
 
@@ -6358,2961 +6409,6 @@ __webpack_require__.r(__webpack_exports__);
 
 })));
 //# sourceMappingURL=bootstrap.js.map
-
-
-/***/ }),
-
-/***/ "./node_modules/jquery-ui/ui/keycode.js":
-/*!**********************************************!*\
-  !*** ./node_modules/jquery-ui/ui/keycode.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI Keycode 1.12.1
- * http://jqueryui.com
- *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- */
-
-//>>label: Keycode
-//>>group: Core
-//>>description: Provide keycodes as keynames
-//>>docs: http://api.jqueryui.com/jQuery.ui.keyCode/
-
-( function( factory ) {
-	if ( true ) {
-
-		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-} ( function( $ ) {
-return $.ui.keyCode = {
-	BACKSPACE: 8,
-	COMMA: 188,
-	DELETE: 46,
-	DOWN: 40,
-	END: 35,
-	ENTER: 13,
-	ESCAPE: 27,
-	HOME: 36,
-	LEFT: 37,
-	PAGE_DOWN: 34,
-	PAGE_UP: 33,
-	PERIOD: 190,
-	RIGHT: 39,
-	SPACE: 32,
-	TAB: 9,
-	UP: 38
-};
-
-} ) );
-
-
-/***/ }),
-
-/***/ "./node_modules/jquery-ui/ui/version.js":
-/*!**********************************************!*\
-  !*** ./node_modules/jquery-ui/ui/version.js ***!
-  \**********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;( function( factory ) {
-	if ( true ) {
-
-		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-} ( function( $ ) {
-
-$.ui = $.ui || {};
-
-return $.ui.version = "1.12.1";
-
-} ) );
-
-
-/***/ }),
-
-/***/ "./node_modules/jquery-ui/ui/widget.js":
-/*!*********************************************!*\
-  !*** ./node_modules/jquery-ui/ui/widget.js ***!
-  \*********************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * jQuery UI Widget 1.12.1
- * http://jqueryui.com
- *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- */
-
-//>>label: Widget
-//>>group: Core
-//>>description: Provides a factory for creating stateful widgets with a common API.
-//>>docs: http://api.jqueryui.com/jQuery.widget/
-//>>demos: http://jqueryui.com/widget/
-
-( function( factory ) {
-	if ( true ) {
-
-		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [ __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"), __webpack_require__(/*! ./version */ "./node_modules/jquery-ui/ui/version.js") ], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}( function( $ ) {
-
-var widgetUuid = 0;
-var widgetSlice = Array.prototype.slice;
-
-$.cleanData = ( function( orig ) {
-	return function( elems ) {
-		var events, elem, i;
-		for ( i = 0; ( elem = elems[ i ] ) != null; i++ ) {
-			try {
-
-				// Only trigger remove when necessary to save time
-				events = $._data( elem, "events" );
-				if ( events && events.remove ) {
-					$( elem ).triggerHandler( "remove" );
-				}
-
-			// Http://bugs.jquery.com/ticket/8235
-			} catch ( e ) {}
-		}
-		orig( elems );
-	};
-} )( $.cleanData );
-
-$.widget = function( name, base, prototype ) {
-	var existingConstructor, constructor, basePrototype;
-
-	// ProxiedPrototype allows the provided prototype to remain unmodified
-	// so that it can be used as a mixin for multiple widgets (#8876)
-	var proxiedPrototype = {};
-
-	var namespace = name.split( "." )[ 0 ];
-	name = name.split( "." )[ 1 ];
-	var fullName = namespace + "-" + name;
-
-	if ( !prototype ) {
-		prototype = base;
-		base = $.Widget;
-	}
-
-	if ( $.isArray( prototype ) ) {
-		prototype = $.extend.apply( null, [ {} ].concat( prototype ) );
-	}
-
-	// Create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
-		return !!$.data( elem, fullName );
-	};
-
-	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
-
-		// Allow instantiation without "new" keyword
-		if ( !this._createWidget ) {
-			return new constructor( options, element );
-		}
-
-		// Allow instantiation without initializing for simple inheritance
-		// must use "new" keyword (the code above always passes args)
-		if ( arguments.length ) {
-			this._createWidget( options, element );
-		}
-	};
-
-	// Extend with the existing constructor to carry over any static properties
-	$.extend( constructor, existingConstructor, {
-		version: prototype.version,
-
-		// Copy the object used to create the prototype in case we need to
-		// redefine the widget later
-		_proto: $.extend( {}, prototype ),
-
-		// Track widgets that inherit from this widget in case this widget is
-		// redefined after a widget inherits from it
-		_childConstructors: []
-	} );
-
-	basePrototype = new base();
-
-	// We need to make the options hash a property directly on the new instance
-	// otherwise we'll modify the options hash on the prototype that we're
-	// inheriting from
-	basePrototype.options = $.widget.extend( {}, basePrototype.options );
-	$.each( prototype, function( prop, value ) {
-		if ( !$.isFunction( value ) ) {
-			proxiedPrototype[ prop ] = value;
-			return;
-		}
-		proxiedPrototype[ prop ] = ( function() {
-			function _super() {
-				return base.prototype[ prop ].apply( this, arguments );
-			}
-
-			function _superApply( args ) {
-				return base.prototype[ prop ].apply( this, args );
-			}
-
-			return function() {
-				var __super = this._super;
-				var __superApply = this._superApply;
-				var returnValue;
-
-				this._super = _super;
-				this._superApply = _superApply;
-
-				returnValue = value.apply( this, arguments );
-
-				this._super = __super;
-				this._superApply = __superApply;
-
-				return returnValue;
-			};
-		} )();
-	} );
-	constructor.prototype = $.widget.extend( basePrototype, {
-
-		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
-		// don't prefix for widgets that aren't DOM-based
-		widgetEventPrefix: existingConstructor ? ( basePrototype.widgetEventPrefix || name ) : name
-	}, proxiedPrototype, {
-		constructor: constructor,
-		namespace: namespace,
-		widgetName: name,
-		widgetFullName: fullName
-	} );
-
-	// If this widget is being redefined then we need to find all widgets that
-	// are inheriting from it and redefine all of them so that they inherit from
-	// the new version of this widget. We're essentially trying to replace one
-	// level in the prototype chain.
-	if ( existingConstructor ) {
-		$.each( existingConstructor._childConstructors, function( i, child ) {
-			var childPrototype = child.prototype;
-
-			// Redefine the child widget using the same prototype that was
-			// originally used, but inherit from the new version of the base
-			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor,
-				child._proto );
-		} );
-
-		// Remove the list of existing child constructors from the old constructor
-		// so the old child constructors can be garbage collected
-		delete existingConstructor._childConstructors;
-	} else {
-		base._childConstructors.push( constructor );
-	}
-
-	$.widget.bridge( name, constructor );
-
-	return constructor;
-};
-
-$.widget.extend = function( target ) {
-	var input = widgetSlice.call( arguments, 1 );
-	var inputIndex = 0;
-	var inputLength = input.length;
-	var key;
-	var value;
-
-	for ( ; inputIndex < inputLength; inputIndex++ ) {
-		for ( key in input[ inputIndex ] ) {
-			value = input[ inputIndex ][ key ];
-			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
-
-				// Clone objects
-				if ( $.isPlainObject( value ) ) {
-					target[ key ] = $.isPlainObject( target[ key ] ) ?
-						$.widget.extend( {}, target[ key ], value ) :
-
-						// Don't extend strings, arrays, etc. with objects
-						$.widget.extend( {}, value );
-
-				// Copy everything else by reference
-				} else {
-					target[ key ] = value;
-				}
-			}
-		}
-	}
-	return target;
-};
-
-$.widget.bridge = function( name, object ) {
-	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
-		var isMethodCall = typeof options === "string";
-		var args = widgetSlice.call( arguments, 1 );
-		var returnValue = this;
-
-		if ( isMethodCall ) {
-
-			// If this is an empty collection, we need to have the instance method
-			// return undefined instead of the jQuery instance
-			if ( !this.length && options === "instance" ) {
-				returnValue = undefined;
-			} else {
-				this.each( function() {
-					var methodValue;
-					var instance = $.data( this, fullName );
-
-					if ( options === "instance" ) {
-						returnValue = instance;
-						return false;
-					}
-
-					if ( !instance ) {
-						return $.error( "cannot call methods on " + name +
-							" prior to initialization; " +
-							"attempted to call method '" + options + "'" );
-					}
-
-					if ( !$.isFunction( instance[ options ] ) || options.charAt( 0 ) === "_" ) {
-						return $.error( "no such method '" + options + "' for " + name +
-							" widget instance" );
-					}
-
-					methodValue = instance[ options ].apply( instance, args );
-
-					if ( methodValue !== instance && methodValue !== undefined ) {
-						returnValue = methodValue && methodValue.jquery ?
-							returnValue.pushStack( methodValue.get() ) :
-							methodValue;
-						return false;
-					}
-				} );
-			}
-		} else {
-
-			// Allow multiple hashes to be passed on init
-			if ( args.length ) {
-				options = $.widget.extend.apply( null, [ options ].concat( args ) );
-			}
-
-			this.each( function() {
-				var instance = $.data( this, fullName );
-				if ( instance ) {
-					instance.option( options || {} );
-					if ( instance._init ) {
-						instance._init();
-					}
-				} else {
-					$.data( this, fullName, new object( options, this ) );
-				}
-			} );
-		}
-
-		return returnValue;
-	};
-};
-
-$.Widget = function( /* options, element */ ) {};
-$.Widget._childConstructors = [];
-
-$.Widget.prototype = {
-	widgetName: "widget",
-	widgetEventPrefix: "",
-	defaultElement: "<div>",
-
-	options: {
-		classes: {},
-		disabled: false,
-
-		// Callbacks
-		create: null
-	},
-
-	_createWidget: function( options, element ) {
-		element = $( element || this.defaultElement || this )[ 0 ];
-		this.element = $( element );
-		this.uuid = widgetUuid++;
-		this.eventNamespace = "." + this.widgetName + this.uuid;
-
-		this.bindings = $();
-		this.hoverable = $();
-		this.focusable = $();
-		this.classesElementLookup = {};
-
-		if ( element !== this ) {
-			$.data( element, this.widgetFullName, this );
-			this._on( true, this.element, {
-				remove: function( event ) {
-					if ( event.target === element ) {
-						this.destroy();
-					}
-				}
-			} );
-			this.document = $( element.style ?
-
-				// Element within the document
-				element.ownerDocument :
-
-				// Element is window or document
-				element.document || element );
-			this.window = $( this.document[ 0 ].defaultView || this.document[ 0 ].parentWindow );
-		}
-
-		this.options = $.widget.extend( {},
-			this.options,
-			this._getCreateOptions(),
-			options );
-
-		this._create();
-
-		if ( this.options.disabled ) {
-			this._setOptionDisabled( this.options.disabled );
-		}
-
-		this._trigger( "create", null, this._getCreateEventData() );
-		this._init();
-	},
-
-	_getCreateOptions: function() {
-		return {};
-	},
-
-	_getCreateEventData: $.noop,
-
-	_create: $.noop,
-
-	_init: $.noop,
-
-	destroy: function() {
-		var that = this;
-
-		this._destroy();
-		$.each( this.classesElementLookup, function( key, value ) {
-			that._removeClass( value, key );
-		} );
-
-		// We can probably remove the unbind calls in 2.0
-		// all event bindings should go through this._on()
-		this.element
-			.off( this.eventNamespace )
-			.removeData( this.widgetFullName );
-		this.widget()
-			.off( this.eventNamespace )
-			.removeAttr( "aria-disabled" );
-
-		// Clean up events and states
-		this.bindings.off( this.eventNamespace );
-	},
-
-	_destroy: $.noop,
-
-	widget: function() {
-		return this.element;
-	},
-
-	option: function( key, value ) {
-		var options = key;
-		var parts;
-		var curOption;
-		var i;
-
-		if ( arguments.length === 0 ) {
-
-			// Don't return a reference to the internal hash
-			return $.widget.extend( {}, this.options );
-		}
-
-		if ( typeof key === "string" ) {
-
-			// Handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
-			options = {};
-			parts = key.split( "." );
-			key = parts.shift();
-			if ( parts.length ) {
-				curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
-				for ( i = 0; i < parts.length - 1; i++ ) {
-					curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
-					curOption = curOption[ parts[ i ] ];
-				}
-				key = parts.pop();
-				if ( arguments.length === 1 ) {
-					return curOption[ key ] === undefined ? null : curOption[ key ];
-				}
-				curOption[ key ] = value;
-			} else {
-				if ( arguments.length === 1 ) {
-					return this.options[ key ] === undefined ? null : this.options[ key ];
-				}
-				options[ key ] = value;
-			}
-		}
-
-		this._setOptions( options );
-
-		return this;
-	},
-
-	_setOptions: function( options ) {
-		var key;
-
-		for ( key in options ) {
-			this._setOption( key, options[ key ] );
-		}
-
-		return this;
-	},
-
-	_setOption: function( key, value ) {
-		if ( key === "classes" ) {
-			this._setOptionClasses( value );
-		}
-
-		this.options[ key ] = value;
-
-		if ( key === "disabled" ) {
-			this._setOptionDisabled( value );
-		}
-
-		return this;
-	},
-
-	_setOptionClasses: function( value ) {
-		var classKey, elements, currentElements;
-
-		for ( classKey in value ) {
-			currentElements = this.classesElementLookup[ classKey ];
-			if ( value[ classKey ] === this.options.classes[ classKey ] ||
-					!currentElements ||
-					!currentElements.length ) {
-				continue;
-			}
-
-			// We are doing this to create a new jQuery object because the _removeClass() call
-			// on the next line is going to destroy the reference to the current elements being
-			// tracked. We need to save a copy of this collection so that we can add the new classes
-			// below.
-			elements = $( currentElements.get() );
-			this._removeClass( currentElements, classKey );
-
-			// We don't use _addClass() here, because that uses this.options.classes
-			// for generating the string of classes. We want to use the value passed in from
-			// _setOption(), this is the new value of the classes option which was passed to
-			// _setOption(). We pass this value directly to _classes().
-			elements.addClass( this._classes( {
-				element: elements,
-				keys: classKey,
-				classes: value,
-				add: true
-			} ) );
-		}
-	},
-
-	_setOptionDisabled: function( value ) {
-		this._toggleClass( this.widget(), this.widgetFullName + "-disabled", null, !!value );
-
-		// If the widget is becoming disabled, then nothing is interactive
-		if ( value ) {
-			this._removeClass( this.hoverable, null, "ui-state-hover" );
-			this._removeClass( this.focusable, null, "ui-state-focus" );
-		}
-	},
-
-	enable: function() {
-		return this._setOptions( { disabled: false } );
-	},
-
-	disable: function() {
-		return this._setOptions( { disabled: true } );
-	},
-
-	_classes: function( options ) {
-		var full = [];
-		var that = this;
-
-		options = $.extend( {
-			element: this.element,
-			classes: this.options.classes || {}
-		}, options );
-
-		function processClassString( classes, checkOption ) {
-			var current, i;
-			for ( i = 0; i < classes.length; i++ ) {
-				current = that.classesElementLookup[ classes[ i ] ] || $();
-				if ( options.add ) {
-					current = $( $.unique( current.get().concat( options.element.get() ) ) );
-				} else {
-					current = $( current.not( options.element ).get() );
-				}
-				that.classesElementLookup[ classes[ i ] ] = current;
-				full.push( classes[ i ] );
-				if ( checkOption && options.classes[ classes[ i ] ] ) {
-					full.push( options.classes[ classes[ i ] ] );
-				}
-			}
-		}
-
-		this._on( options.element, {
-			"remove": "_untrackClassesElement"
-		} );
-
-		if ( options.keys ) {
-			processClassString( options.keys.match( /\S+/g ) || [], true );
-		}
-		if ( options.extra ) {
-			processClassString( options.extra.match( /\S+/g ) || [] );
-		}
-
-		return full.join( " " );
-	},
-
-	_untrackClassesElement: function( event ) {
-		var that = this;
-		$.each( that.classesElementLookup, function( key, value ) {
-			if ( $.inArray( event.target, value ) !== -1 ) {
-				that.classesElementLookup[ key ] = $( value.not( event.target ).get() );
-			}
-		} );
-	},
-
-	_removeClass: function( element, keys, extra ) {
-		return this._toggleClass( element, keys, extra, false );
-	},
-
-	_addClass: function( element, keys, extra ) {
-		return this._toggleClass( element, keys, extra, true );
-	},
-
-	_toggleClass: function( element, keys, extra, add ) {
-		add = ( typeof add === "boolean" ) ? add : extra;
-		var shift = ( typeof element === "string" || element === null ),
-			options = {
-				extra: shift ? keys : extra,
-				keys: shift ? element : keys,
-				element: shift ? this.element : element,
-				add: add
-			};
-		options.element.toggleClass( this._classes( options ), add );
-		return this;
-	},
-
-	_on: function( suppressDisabledCheck, element, handlers ) {
-		var delegateElement;
-		var instance = this;
-
-		// No suppressDisabledCheck flag, shuffle arguments
-		if ( typeof suppressDisabledCheck !== "boolean" ) {
-			handlers = element;
-			element = suppressDisabledCheck;
-			suppressDisabledCheck = false;
-		}
-
-		// No element argument, shuffle and use this.element
-		if ( !handlers ) {
-			handlers = element;
-			element = this.element;
-			delegateElement = this.widget();
-		} else {
-			element = delegateElement = $( element );
-			this.bindings = this.bindings.add( element );
-		}
-
-		$.each( handlers, function( event, handler ) {
-			function handlerProxy() {
-
-				// Allow widgets to customize the disabled handling
-				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
-				if ( !suppressDisabledCheck &&
-						( instance.options.disabled === true ||
-						$( this ).hasClass( "ui-state-disabled" ) ) ) {
-					return;
-				}
-				return ( typeof handler === "string" ? instance[ handler ] : handler )
-					.apply( instance, arguments );
-			}
-
-			// Copy the guid so direct unbinding works
-			if ( typeof handler !== "string" ) {
-				handlerProxy.guid = handler.guid =
-					handler.guid || handlerProxy.guid || $.guid++;
-			}
-
-			var match = event.match( /^([\w:-]*)\s*(.*)$/ );
-			var eventName = match[ 1 ] + instance.eventNamespace;
-			var selector = match[ 2 ];
-
-			if ( selector ) {
-				delegateElement.on( eventName, selector, handlerProxy );
-			} else {
-				element.on( eventName, handlerProxy );
-			}
-		} );
-	},
-
-	_off: function( element, eventName ) {
-		eventName = ( eventName || "" ).split( " " ).join( this.eventNamespace + " " ) +
-			this.eventNamespace;
-		element.off( eventName ).off( eventName );
-
-		// Clear the stack to avoid memory leaks (#10056)
-		this.bindings = $( this.bindings.not( element ).get() );
-		this.focusable = $( this.focusable.not( element ).get() );
-		this.hoverable = $( this.hoverable.not( element ).get() );
-	},
-
-	_delay: function( handler, delay ) {
-		function handlerProxy() {
-			return ( typeof handler === "string" ? instance[ handler ] : handler )
-				.apply( instance, arguments );
-		}
-		var instance = this;
-		return setTimeout( handlerProxy, delay || 0 );
-	},
-
-	_hoverable: function( element ) {
-		this.hoverable = this.hoverable.add( element );
-		this._on( element, {
-			mouseenter: function( event ) {
-				this._addClass( $( event.currentTarget ), null, "ui-state-hover" );
-			},
-			mouseleave: function( event ) {
-				this._removeClass( $( event.currentTarget ), null, "ui-state-hover" );
-			}
-		} );
-	},
-
-	_focusable: function( element ) {
-		this.focusable = this.focusable.add( element );
-		this._on( element, {
-			focusin: function( event ) {
-				this._addClass( $( event.currentTarget ), null, "ui-state-focus" );
-			},
-			focusout: function( event ) {
-				this._removeClass( $( event.currentTarget ), null, "ui-state-focus" );
-			}
-		} );
-	},
-
-	_trigger: function( type, event, data ) {
-		var prop, orig;
-		var callback = this.options[ type ];
-
-		data = data || {};
-		event = $.Event( event );
-		event.type = ( type === this.widgetEventPrefix ?
-			type :
-			this.widgetEventPrefix + type ).toLowerCase();
-
-		// The original event may come from any element
-		// so we need to reset the target on the new event
-		event.target = this.element[ 0 ];
-
-		// Copy original event properties over to the new event
-		orig = event.originalEvent;
-		if ( orig ) {
-			for ( prop in orig ) {
-				if ( !( prop in event ) ) {
-					event[ prop ] = orig[ prop ];
-				}
-			}
-		}
-
-		this.element.trigger( event, data );
-		return !( $.isFunction( callback ) &&
-			callback.apply( this.element[ 0 ], [ event ].concat( data ) ) === false ||
-			event.isDefaultPrevented() );
-	}
-};
-
-$.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
-	$.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
-		if ( typeof options === "string" ) {
-			options = { effect: options };
-		}
-
-		var hasOptions;
-		var effectName = !options ?
-			method :
-			options === true || typeof options === "number" ?
-				defaultEffect :
-				options.effect || defaultEffect;
-
-		options = options || {};
-		if ( typeof options === "number" ) {
-			options = { duration: options };
-		}
-
-		hasOptions = !$.isEmptyObject( options );
-		options.complete = callback;
-
-		if ( options.delay ) {
-			element.delay( options.delay );
-		}
-
-		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
-			element[ method ]( options );
-		} else if ( effectName !== method && element[ effectName ] ) {
-			element[ effectName ]( options.duration, options.easing, callback );
-		} else {
-			element.queue( function( next ) {
-				$( this )[ method ]();
-				if ( callback ) {
-					callback.call( element[ 0 ] );
-				}
-				next();
-			} );
-		}
-	};
-} );
-
-return $.widget;
-
-} ) );
-
-
-/***/ }),
-
-/***/ "./node_modules/jquery-ui/ui/widgets/datepicker.js":
-/*!*********************************************************!*\
-  !*** ./node_modules/jquery-ui/ui/widgets/datepicker.js ***!
-  \*********************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;// jscs:disable maximumLineLength
-/* jscs:disable requireCamelCaseOrUpperCaseIdentifiers */
-/*!
- * jQuery UI Datepicker 1.12.1
- * http://jqueryui.com
- *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- */
-
-//>>label: Datepicker
-//>>group: Widgets
-//>>description: Displays a calendar from an input or inline for selecting dates.
-//>>docs: http://api.jqueryui.com/datepicker/
-//>>demos: http://jqueryui.com/datepicker/
-//>>css.structure: ../../themes/base/core.css
-//>>css.structure: ../../themes/base/datepicker.css
-//>>css.theme: ../../themes/base/theme.css
-
-( function( factory ) {
-	if ( true ) {
-
-		// AMD. Register as an anonymous module.
-		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [
-			__webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"),
-			__webpack_require__(/*! ../version */ "./node_modules/jquery-ui/ui/version.js"),
-			__webpack_require__(/*! ../keycode */ "./node_modules/jquery-ui/ui/keycode.js")
-		], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-	} else {}
-}( function( $ ) {
-
-$.extend( $.ui, { datepicker: { version: "1.12.1" } } );
-
-var datepicker_instActive;
-
-function datepicker_getZindex( elem ) {
-	var position, value;
-	while ( elem.length && elem[ 0 ] !== document ) {
-
-		// Ignore z-index if position is set to a value where z-index is ignored by the browser
-		// This makes behavior of this function consistent across browsers
-		// WebKit always returns auto if the element is positioned
-		position = elem.css( "position" );
-		if ( position === "absolute" || position === "relative" || position === "fixed" ) {
-
-			// IE returns 0 when zIndex is not specified
-			// other browsers return a string
-			// we ignore the case of nested elements with an explicit value of 0
-			// <div style="z-index: -10;"><div style="z-index: 0;"></div></div>
-			value = parseInt( elem.css( "zIndex" ), 10 );
-			if ( !isNaN( value ) && value !== 0 ) {
-				return value;
-			}
-		}
-		elem = elem.parent();
-	}
-
-	return 0;
-}
-/* Date picker manager.
-   Use the singleton instance of this class, $.datepicker, to interact with the date picker.
-   Settings for (groups of) date pickers are maintained in an instance object,
-   allowing multiple different settings on the same page. */
-
-function Datepicker() {
-	this._curInst = null; // The current instance in use
-	this._keyEvent = false; // If the last event was a key event
-	this._disabledInputs = []; // List of date picker inputs that have been disabled
-	this._datepickerShowing = false; // True if the popup picker is showing , false if not
-	this._inDialog = false; // True if showing within a "dialog", false if not
-	this._mainDivId = "ui-datepicker-div"; // The ID of the main datepicker division
-	this._inlineClass = "ui-datepicker-inline"; // The name of the inline marker class
-	this._appendClass = "ui-datepicker-append"; // The name of the append marker class
-	this._triggerClass = "ui-datepicker-trigger"; // The name of the trigger marker class
-	this._dialogClass = "ui-datepicker-dialog"; // The name of the dialog marker class
-	this._disableClass = "ui-datepicker-disabled"; // The name of the disabled covering marker class
-	this._unselectableClass = "ui-datepicker-unselectable"; // The name of the unselectable cell marker class
-	this._currentClass = "ui-datepicker-current-day"; // The name of the current day marker class
-	this._dayOverClass = "ui-datepicker-days-cell-over"; // The name of the day hover marker class
-	this.regional = []; // Available regional settings, indexed by language code
-	this.regional[ "" ] = { // Default regional settings
-		closeText: "Done", // Display text for close link
-		prevText: "Prev", // Display text for previous month link
-		nextText: "Next", // Display text for next month link
-		currentText: "Today", // Display text for current month link
-		monthNames: [ "January","February","March","April","May","June",
-			"July","August","September","October","November","December" ], // Names of months for drop-down and formatting
-		monthNamesShort: [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ], // For formatting
-		dayNames: [ "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" ], // For formatting
-		dayNamesShort: [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat" ], // For formatting
-		dayNamesMin: [ "Su","Mo","Tu","We","Th","Fr","Sa" ], // Column headings for days starting at Sunday
-		weekHeader: "Wk", // Column header for week of the year
-		dateFormat: "mm/dd/yy", // See format options on parseDate
-		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
-		isRTL: false, // True if right-to-left language, false if left-to-right
-		showMonthAfterYear: false, // True if the year select precedes month, false for month then year
-		yearSuffix: "" // Additional text to append to the year in the month headers
-	};
-	this._defaults = { // Global defaults for all the date picker instances
-		showOn: "focus", // "focus" for popup on focus,
-			// "button" for trigger button, or "both" for either
-		showAnim: "fadeIn", // Name of jQuery animation for popup
-		showOptions: {}, // Options for enhanced animations
-		defaultDate: null, // Used when field is blank: actual date,
-			// +/-number for offset from today, null for today
-		appendText: "", // Display text following the input box, e.g. showing the format
-		buttonText: "...", // Text for trigger button
-		buttonImage: "", // URL for trigger button image
-		buttonImageOnly: false, // True if the image appears alone, false if it appears on a button
-		hideIfNoPrevNext: false, // True to hide next/previous month links
-			// if not applicable, false to just disable them
-		navigationAsDateFormat: false, // True if date formatting applied to prev/today/next links
-		gotoCurrent: false, // True if today link goes back to current selection instead
-		changeMonth: false, // True if month can be selected directly, false if only prev/next
-		changeYear: false, // True if year can be selected directly, false if only prev/next
-		yearRange: "c-10:c+10", // Range of years to display in drop-down,
-			// either relative to today's year (-nn:+nn), relative to currently displayed year
-			// (c-nn:c+nn), absolute (nnnn:nnnn), or a combination of the above (nnnn:-n)
-		showOtherMonths: false, // True to show dates in other months, false to leave blank
-		selectOtherMonths: false, // True to allow selection of dates in other months, false for unselectable
-		showWeek: false, // True to show week of the year, false to not show it
-		calculateWeek: this.iso8601Week, // How to calculate the week of the year,
-			// takes a Date and returns the number of the week for it
-		shortYearCutoff: "+10", // Short year values < this are in the current century,
-			// > this are in the previous century,
-			// string value starting with "+" for current year + value
-		minDate: null, // The earliest selectable date, or null for no limit
-		maxDate: null, // The latest selectable date, or null for no limit
-		duration: "fast", // Duration of display/closure
-		beforeShowDay: null, // Function that takes a date and returns an array with
-			// [0] = true if selectable, false if not, [1] = custom CSS class name(s) or "",
-			// [2] = cell title (optional), e.g. $.datepicker.noWeekends
-		beforeShow: null, // Function that takes an input field and
-			// returns a set of custom settings for the date picker
-		onSelect: null, // Define a callback function when a date is selected
-		onChangeMonthYear: null, // Define a callback function when the month or year is changed
-		onClose: null, // Define a callback function when the datepicker is closed
-		numberOfMonths: 1, // Number of months to show at a time
-		showCurrentAtPos: 0, // The position in multipe months at which to show the current month (starting at 0)
-		stepMonths: 1, // Number of months to step back/forward
-		stepBigMonths: 12, // Number of months to step back/forward for the big links
-		altField: "", // Selector for an alternate field to store selected dates into
-		altFormat: "", // The date format to use for the alternate field
-		constrainInput: true, // The input is constrained by the current date format
-		showButtonPanel: false, // True to show button panel, false to not show it
-		autoSize: false, // True to size the input for the date format, false to leave as is
-		disabled: false // The initial disabled state
-	};
-	$.extend( this._defaults, this.regional[ "" ] );
-	this.regional.en = $.extend( true, {}, this.regional[ "" ] );
-	this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
-	this.dpDiv = datepicker_bindHover( $( "<div id='" + this._mainDivId + "' class='ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) );
-}
-
-$.extend( Datepicker.prototype, {
-	/* Class name added to elements to indicate already configured with a date picker. */
-	markerClassName: "hasDatepicker",
-
-	//Keep track of the maximum number of rows displayed (see #7043)
-	maxRows: 4,
-
-	// TODO rename to "widget" when switching to widget factory
-	_widgetDatepicker: function() {
-		return this.dpDiv;
-	},
-
-	/* Override the default settings for all instances of the date picker.
-	 * @param  settings  object - the new settings to use as defaults (anonymous object)
-	 * @return the manager object
-	 */
-	setDefaults: function( settings ) {
-		datepicker_extendRemove( this._defaults, settings || {} );
-		return this;
-	},
-
-	/* Attach the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
-	 * @param  settings  object - the new settings to use for this date picker instance (anonymous)
-	 */
-	_attachDatepicker: function( target, settings ) {
-		var nodeName, inline, inst;
-		nodeName = target.nodeName.toLowerCase();
-		inline = ( nodeName === "div" || nodeName === "span" );
-		if ( !target.id ) {
-			this.uuid += 1;
-			target.id = "dp" + this.uuid;
-		}
-		inst = this._newInst( $( target ), inline );
-		inst.settings = $.extend( {}, settings || {} );
-		if ( nodeName === "input" ) {
-			this._connectDatepicker( target, inst );
-		} else if ( inline ) {
-			this._inlineDatepicker( target, inst );
-		}
-	},
-
-	/* Create a new instance object. */
-	_newInst: function( target, inline ) {
-		var id = target[ 0 ].id.replace( /([^A-Za-z0-9_\-])/g, "\\\\$1" ); // escape jQuery meta chars
-		return { id: id, input: target, // associated target
-			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
-			drawMonth: 0, drawYear: 0, // month being drawn
-			inline: inline, // is datepicker inline or not
-			dpDiv: ( !inline ? this.dpDiv : // presentation div
-			datepicker_bindHover( $( "<div class='" + this._inlineClass + " ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) ) ) };
-	},
-
-	/* Attach the date picker to an input field. */
-	_connectDatepicker: function( target, inst ) {
-		var input = $( target );
-		inst.append = $( [] );
-		inst.trigger = $( [] );
-		if ( input.hasClass( this.markerClassName ) ) {
-			return;
-		}
-		this._attachments( input, inst );
-		input.addClass( this.markerClassName ).on( "keydown", this._doKeyDown ).
-			on( "keypress", this._doKeyPress ).on( "keyup", this._doKeyUp );
-		this._autoSize( inst );
-		$.data( target, "datepicker", inst );
-
-		//If disabled option is true, disable the datepicker once it has been attached to the input (see ticket #5665)
-		if ( inst.settings.disabled ) {
-			this._disableDatepicker( target );
-		}
-	},
-
-	/* Make attachments based on settings. */
-	_attachments: function( input, inst ) {
-		var showOn, buttonText, buttonImage,
-			appendText = this._get( inst, "appendText" ),
-			isRTL = this._get( inst, "isRTL" );
-
-		if ( inst.append ) {
-			inst.append.remove();
-		}
-		if ( appendText ) {
-			inst.append = $( "<span class='" + this._appendClass + "'>" + appendText + "</span>" );
-			input[ isRTL ? "before" : "after" ]( inst.append );
-		}
-
-		input.off( "focus", this._showDatepicker );
-
-		if ( inst.trigger ) {
-			inst.trigger.remove();
-		}
-
-		showOn = this._get( inst, "showOn" );
-		if ( showOn === "focus" || showOn === "both" ) { // pop-up date picker when in the marked field
-			input.on( "focus", this._showDatepicker );
-		}
-		if ( showOn === "button" || showOn === "both" ) { // pop-up date picker when button clicked
-			buttonText = this._get( inst, "buttonText" );
-			buttonImage = this._get( inst, "buttonImage" );
-			inst.trigger = $( this._get( inst, "buttonImageOnly" ) ?
-				$( "<img/>" ).addClass( this._triggerClass ).
-					attr( { src: buttonImage, alt: buttonText, title: buttonText } ) :
-				$( "<button type='button'></button>" ).addClass( this._triggerClass ).
-					html( !buttonImage ? buttonText : $( "<img/>" ).attr(
-					{ src:buttonImage, alt:buttonText, title:buttonText } ) ) );
-			input[ isRTL ? "before" : "after" ]( inst.trigger );
-			inst.trigger.on( "click", function() {
-				if ( $.datepicker._datepickerShowing && $.datepicker._lastInput === input[ 0 ] ) {
-					$.datepicker._hideDatepicker();
-				} else if ( $.datepicker._datepickerShowing && $.datepicker._lastInput !== input[ 0 ] ) {
-					$.datepicker._hideDatepicker();
-					$.datepicker._showDatepicker( input[ 0 ] );
-				} else {
-					$.datepicker._showDatepicker( input[ 0 ] );
-				}
-				return false;
-			} );
-		}
-	},
-
-	/* Apply the maximum length for the date format. */
-	_autoSize: function( inst ) {
-		if ( this._get( inst, "autoSize" ) && !inst.inline ) {
-			var findMax, max, maxI, i,
-				date = new Date( 2009, 12 - 1, 20 ), // Ensure double digits
-				dateFormat = this._get( inst, "dateFormat" );
-
-			if ( dateFormat.match( /[DM]/ ) ) {
-				findMax = function( names ) {
-					max = 0;
-					maxI = 0;
-					for ( i = 0; i < names.length; i++ ) {
-						if ( names[ i ].length > max ) {
-							max = names[ i ].length;
-							maxI = i;
-						}
-					}
-					return maxI;
-				};
-				date.setMonth( findMax( this._get( inst, ( dateFormat.match( /MM/ ) ?
-					"monthNames" : "monthNamesShort" ) ) ) );
-				date.setDate( findMax( this._get( inst, ( dateFormat.match( /DD/ ) ?
-					"dayNames" : "dayNamesShort" ) ) ) + 20 - date.getDay() );
-			}
-			inst.input.attr( "size", this._formatDate( inst, date ).length );
-		}
-	},
-
-	/* Attach an inline date picker to a div. */
-	_inlineDatepicker: function( target, inst ) {
-		var divSpan = $( target );
-		if ( divSpan.hasClass( this.markerClassName ) ) {
-			return;
-		}
-		divSpan.addClass( this.markerClassName ).append( inst.dpDiv );
-		$.data( target, "datepicker", inst );
-		this._setDate( inst, this._getDefaultDate( inst ), true );
-		this._updateDatepicker( inst );
-		this._updateAlternate( inst );
-
-		//If disabled option is true, disable the datepicker before showing it (see ticket #5665)
-		if ( inst.settings.disabled ) {
-			this._disableDatepicker( target );
-		}
-
-		// Set display:block in place of inst.dpDiv.show() which won't work on disconnected elements
-		// http://bugs.jqueryui.com/ticket/7552 - A Datepicker created on a detached div has zero height
-		inst.dpDiv.css( "display", "block" );
-	},
-
-	/* Pop-up the date picker in a "dialog" box.
-	 * @param  input element - ignored
-	 * @param  date	string or Date - the initial date to display
-	 * @param  onSelect  function - the function to call when a date is selected
-	 * @param  settings  object - update the dialog date picker instance's settings (anonymous object)
-	 * @param  pos int[2] - coordinates for the dialog's position within the screen or
-	 *					event - with x/y coordinates or
-	 *					leave empty for default (screen centre)
-	 * @return the manager object
-	 */
-	_dialogDatepicker: function( input, date, onSelect, settings, pos ) {
-		var id, browserWidth, browserHeight, scrollX, scrollY,
-			inst = this._dialogInst; // internal instance
-
-		if ( !inst ) {
-			this.uuid += 1;
-			id = "dp" + this.uuid;
-			this._dialogInput = $( "<input type='text' id='" + id +
-				"' style='position: absolute; top: -100px; width: 0px;'/>" );
-			this._dialogInput.on( "keydown", this._doKeyDown );
-			$( "body" ).append( this._dialogInput );
-			inst = this._dialogInst = this._newInst( this._dialogInput, false );
-			inst.settings = {};
-			$.data( this._dialogInput[ 0 ], "datepicker", inst );
-		}
-		datepicker_extendRemove( inst.settings, settings || {} );
-		date = ( date && date.constructor === Date ? this._formatDate( inst, date ) : date );
-		this._dialogInput.val( date );
-
-		this._pos = ( pos ? ( pos.length ? pos : [ pos.pageX, pos.pageY ] ) : null );
-		if ( !this._pos ) {
-			browserWidth = document.documentElement.clientWidth;
-			browserHeight = document.documentElement.clientHeight;
-			scrollX = document.documentElement.scrollLeft || document.body.scrollLeft;
-			scrollY = document.documentElement.scrollTop || document.body.scrollTop;
-			this._pos = // should use actual width/height below
-				[ ( browserWidth / 2 ) - 100 + scrollX, ( browserHeight / 2 ) - 150 + scrollY ];
-		}
-
-		// Move input on screen for focus, but hidden behind dialog
-		this._dialogInput.css( "left", ( this._pos[ 0 ] + 20 ) + "px" ).css( "top", this._pos[ 1 ] + "px" );
-		inst.settings.onSelect = onSelect;
-		this._inDialog = true;
-		this.dpDiv.addClass( this._dialogClass );
-		this._showDatepicker( this._dialogInput[ 0 ] );
-		if ( $.blockUI ) {
-			$.blockUI( this.dpDiv );
-		}
-		$.data( this._dialogInput[ 0 ], "datepicker", inst );
-		return this;
-	},
-
-	/* Detach a datepicker from its control.
-	 * @param  target	element - the target input field or division or span
-	 */
-	_destroyDatepicker: function( target ) {
-		var nodeName,
-			$target = $( target ),
-			inst = $.data( target, "datepicker" );
-
-		if ( !$target.hasClass( this.markerClassName ) ) {
-			return;
-		}
-
-		nodeName = target.nodeName.toLowerCase();
-		$.removeData( target, "datepicker" );
-		if ( nodeName === "input" ) {
-			inst.append.remove();
-			inst.trigger.remove();
-			$target.removeClass( this.markerClassName ).
-				off( "focus", this._showDatepicker ).
-				off( "keydown", this._doKeyDown ).
-				off( "keypress", this._doKeyPress ).
-				off( "keyup", this._doKeyUp );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
-			$target.removeClass( this.markerClassName ).empty();
-		}
-
-		if ( datepicker_instActive === inst ) {
-			datepicker_instActive = null;
-		}
-	},
-
-	/* Enable the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
-	 */
-	_enableDatepicker: function( target ) {
-		var nodeName, inline,
-			$target = $( target ),
-			inst = $.data( target, "datepicker" );
-
-		if ( !$target.hasClass( this.markerClassName ) ) {
-			return;
-		}
-
-		nodeName = target.nodeName.toLowerCase();
-		if ( nodeName === "input" ) {
-			target.disabled = false;
-			inst.trigger.filter( "button" ).
-				each( function() { this.disabled = false; } ).end().
-				filter( "img" ).css( { opacity: "1.0", cursor: "" } );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
-			inline = $target.children( "." + this._inlineClass );
-			inline.children().removeClass( "ui-state-disabled" );
-			inline.find( "select.ui-datepicker-month, select.ui-datepicker-year" ).
-				prop( "disabled", false );
-		}
-		this._disabledInputs = $.map( this._disabledInputs,
-			function( value ) { return ( value === target ? null : value ); } ); // delete entry
-	},
-
-	/* Disable the date picker to a jQuery selection.
-	 * @param  target	element - the target input field or division or span
-	 */
-	_disableDatepicker: function( target ) {
-		var nodeName, inline,
-			$target = $( target ),
-			inst = $.data( target, "datepicker" );
-
-		if ( !$target.hasClass( this.markerClassName ) ) {
-			return;
-		}
-
-		nodeName = target.nodeName.toLowerCase();
-		if ( nodeName === "input" ) {
-			target.disabled = true;
-			inst.trigger.filter( "button" ).
-				each( function() { this.disabled = true; } ).end().
-				filter( "img" ).css( { opacity: "0.5", cursor: "default" } );
-		} else if ( nodeName === "div" || nodeName === "span" ) {
-			inline = $target.children( "." + this._inlineClass );
-			inline.children().addClass( "ui-state-disabled" );
-			inline.find( "select.ui-datepicker-month, select.ui-datepicker-year" ).
-				prop( "disabled", true );
-		}
-		this._disabledInputs = $.map( this._disabledInputs,
-			function( value ) { return ( value === target ? null : value ); } ); // delete entry
-		this._disabledInputs[ this._disabledInputs.length ] = target;
-	},
-
-	/* Is the first field in a jQuery collection disabled as a datepicker?
-	 * @param  target	element - the target input field or division or span
-	 * @return boolean - true if disabled, false if enabled
-	 */
-	_isDisabledDatepicker: function( target ) {
-		if ( !target ) {
-			return false;
-		}
-		for ( var i = 0; i < this._disabledInputs.length; i++ ) {
-			if ( this._disabledInputs[ i ] === target ) {
-				return true;
-			}
-		}
-		return false;
-	},
-
-	/* Retrieve the instance data for the target control.
-	 * @param  target  element - the target input field or division or span
-	 * @return  object - the associated instance data
-	 * @throws  error if a jQuery problem getting data
-	 */
-	_getInst: function( target ) {
-		try {
-			return $.data( target, "datepicker" );
-		}
-		catch ( err ) {
-			throw "Missing instance data for this datepicker";
-		}
-	},
-
-	/* Update or retrieve the settings for a date picker attached to an input field or division.
-	 * @param  target  element - the target input field or division or span
-	 * @param  name	object - the new settings to update or
-	 *				string - the name of the setting to change or retrieve,
-	 *				when retrieving also "all" for all instance settings or
-	 *				"defaults" for all global defaults
-	 * @param  value   any - the new value for the setting
-	 *				(omit if above is an object or to retrieve a value)
-	 */
-	_optionDatepicker: function( target, name, value ) {
-		var settings, date, minDate, maxDate,
-			inst = this._getInst( target );
-
-		if ( arguments.length === 2 && typeof name === "string" ) {
-			return ( name === "defaults" ? $.extend( {}, $.datepicker._defaults ) :
-				( inst ? ( name === "all" ? $.extend( {}, inst.settings ) :
-				this._get( inst, name ) ) : null ) );
-		}
-
-		settings = name || {};
-		if ( typeof name === "string" ) {
-			settings = {};
-			settings[ name ] = value;
-		}
-
-		if ( inst ) {
-			if ( this._curInst === inst ) {
-				this._hideDatepicker();
-			}
-
-			date = this._getDateDatepicker( target, true );
-			minDate = this._getMinMaxDate( inst, "min" );
-			maxDate = this._getMinMaxDate( inst, "max" );
-			datepicker_extendRemove( inst.settings, settings );
-
-			// reformat the old minDate/maxDate values if dateFormat changes and a new minDate/maxDate isn't provided
-			if ( minDate !== null && settings.dateFormat !== undefined && settings.minDate === undefined ) {
-				inst.settings.minDate = this._formatDate( inst, minDate );
-			}
-			if ( maxDate !== null && settings.dateFormat !== undefined && settings.maxDate === undefined ) {
-				inst.settings.maxDate = this._formatDate( inst, maxDate );
-			}
-			if ( "disabled" in settings ) {
-				if ( settings.disabled ) {
-					this._disableDatepicker( target );
-				} else {
-					this._enableDatepicker( target );
-				}
-			}
-			this._attachments( $( target ), inst );
-			this._autoSize( inst );
-			this._setDate( inst, date );
-			this._updateAlternate( inst );
-			this._updateDatepicker( inst );
-		}
-	},
-
-	// Change method deprecated
-	_changeDatepicker: function( target, name, value ) {
-		this._optionDatepicker( target, name, value );
-	},
-
-	/* Redraw the date picker attached to an input field or division.
-	 * @param  target  element - the target input field or division or span
-	 */
-	_refreshDatepicker: function( target ) {
-		var inst = this._getInst( target );
-		if ( inst ) {
-			this._updateDatepicker( inst );
-		}
-	},
-
-	/* Set the dates for a jQuery selection.
-	 * @param  target element - the target input field or division or span
-	 * @param  date	Date - the new date
-	 */
-	_setDateDatepicker: function( target, date ) {
-		var inst = this._getInst( target );
-		if ( inst ) {
-			this._setDate( inst, date );
-			this._updateDatepicker( inst );
-			this._updateAlternate( inst );
-		}
-	},
-
-	/* Get the date(s) for the first entry in a jQuery selection.
-	 * @param  target element - the target input field or division or span
-	 * @param  noDefault boolean - true if no default date is to be used
-	 * @return Date - the current date
-	 */
-	_getDateDatepicker: function( target, noDefault ) {
-		var inst = this._getInst( target );
-		if ( inst && !inst.inline ) {
-			this._setDateFromField( inst, noDefault );
-		}
-		return ( inst ? this._getDate( inst ) : null );
-	},
-
-	/* Handle keystrokes. */
-	_doKeyDown: function( event ) {
-		var onSelect, dateStr, sel,
-			inst = $.datepicker._getInst( event.target ),
-			handled = true,
-			isRTL = inst.dpDiv.is( ".ui-datepicker-rtl" );
-
-		inst._keyEvent = true;
-		if ( $.datepicker._datepickerShowing ) {
-			switch ( event.keyCode ) {
-				case 9: $.datepicker._hideDatepicker();
-						handled = false;
-						break; // hide on tab out
-				case 13: sel = $( "td." + $.datepicker._dayOverClass + ":not(." +
-									$.datepicker._currentClass + ")", inst.dpDiv );
-						if ( sel[ 0 ] ) {
-							$.datepicker._selectDay( event.target, inst.selectedMonth, inst.selectedYear, sel[ 0 ] );
-						}
-
-						onSelect = $.datepicker._get( inst, "onSelect" );
-						if ( onSelect ) {
-							dateStr = $.datepicker._formatDate( inst );
-
-							// Trigger custom callback
-							onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] );
-						} else {
-							$.datepicker._hideDatepicker();
-						}
-
-						return false; // don't submit the form
-				case 27: $.datepicker._hideDatepicker();
-						break; // hide on escape
-				case 33: $.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-							-$.datepicker._get( inst, "stepBigMonths" ) :
-							-$.datepicker._get( inst, "stepMonths" ) ), "M" );
-						break; // previous month/year on page up/+ ctrl
-				case 34: $.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-							+$.datepicker._get( inst, "stepBigMonths" ) :
-							+$.datepicker._get( inst, "stepMonths" ) ), "M" );
-						break; // next month/year on page down/+ ctrl
-				case 35: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._clearDate( event.target );
-						}
-						handled = event.ctrlKey || event.metaKey;
-						break; // clear on ctrl or command +end
-				case 36: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._gotoToday( event.target );
-						}
-						handled = event.ctrlKey || event.metaKey;
-						break; // current on ctrl or command +home
-				case 37: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, ( isRTL ? +1 : -1 ), "D" );
-						}
-						handled = event.ctrlKey || event.metaKey;
-
-						// -1 day on ctrl or command +left
-						if ( event.originalEvent.altKey ) {
-							$.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-								-$.datepicker._get( inst, "stepBigMonths" ) :
-								-$.datepicker._get( inst, "stepMonths" ) ), "M" );
-						}
-
-						// next month/year on alt +left on Mac
-						break;
-				case 38: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, -7, "D" );
-						}
-						handled = event.ctrlKey || event.metaKey;
-						break; // -1 week on ctrl or command +up
-				case 39: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, ( isRTL ? -1 : +1 ), "D" );
-						}
-						handled = event.ctrlKey || event.metaKey;
-
-						// +1 day on ctrl or command +right
-						if ( event.originalEvent.altKey ) {
-							$.datepicker._adjustDate( event.target, ( event.ctrlKey ?
-								+$.datepicker._get( inst, "stepBigMonths" ) :
-								+$.datepicker._get( inst, "stepMonths" ) ), "M" );
-						}
-
-						// next month/year on alt +right
-						break;
-				case 40: if ( event.ctrlKey || event.metaKey ) {
-							$.datepicker._adjustDate( event.target, +7, "D" );
-						}
-						handled = event.ctrlKey || event.metaKey;
-						break; // +1 week on ctrl or command +down
-				default: handled = false;
-			}
-		} else if ( event.keyCode === 36 && event.ctrlKey ) { // display the date picker on ctrl+home
-			$.datepicker._showDatepicker( this );
-		} else {
-			handled = false;
-		}
-
-		if ( handled ) {
-			event.preventDefault();
-			event.stopPropagation();
-		}
-	},
-
-	/* Filter entered characters - based on date format. */
-	_doKeyPress: function( event ) {
-		var chars, chr,
-			inst = $.datepicker._getInst( event.target );
-
-		if ( $.datepicker._get( inst, "constrainInput" ) ) {
-			chars = $.datepicker._possibleChars( $.datepicker._get( inst, "dateFormat" ) );
-			chr = String.fromCharCode( event.charCode == null ? event.keyCode : event.charCode );
-			return event.ctrlKey || event.metaKey || ( chr < " " || !chars || chars.indexOf( chr ) > -1 );
-		}
-	},
-
-	/* Synchronise manual entry and field/alternate field. */
-	_doKeyUp: function( event ) {
-		var date,
-			inst = $.datepicker._getInst( event.target );
-
-		if ( inst.input.val() !== inst.lastVal ) {
-			try {
-				date = $.datepicker.parseDate( $.datepicker._get( inst, "dateFormat" ),
-					( inst.input ? inst.input.val() : null ),
-					$.datepicker._getFormatConfig( inst ) );
-
-				if ( date ) { // only if valid
-					$.datepicker._setDateFromField( inst );
-					$.datepicker._updateAlternate( inst );
-					$.datepicker._updateDatepicker( inst );
-				}
-			}
-			catch ( err ) {
-			}
-		}
-		return true;
-	},
-
-	/* Pop-up the date picker for a given input field.
-	 * If false returned from beforeShow event handler do not show.
-	 * @param  input  element - the input field attached to the date picker or
-	 *					event - if triggered by focus
-	 */
-	_showDatepicker: function( input ) {
-		input = input.target || input;
-		if ( input.nodeName.toLowerCase() !== "input" ) { // find from button/image trigger
-			input = $( "input", input.parentNode )[ 0 ];
-		}
-
-		if ( $.datepicker._isDisabledDatepicker( input ) || $.datepicker._lastInput === input ) { // already here
-			return;
-		}
-
-		var inst, beforeShow, beforeShowSettings, isFixed,
-			offset, showAnim, duration;
-
-		inst = $.datepicker._getInst( input );
-		if ( $.datepicker._curInst && $.datepicker._curInst !== inst ) {
-			$.datepicker._curInst.dpDiv.stop( true, true );
-			if ( inst && $.datepicker._datepickerShowing ) {
-				$.datepicker._hideDatepicker( $.datepicker._curInst.input[ 0 ] );
-			}
-		}
-
-		beforeShow = $.datepicker._get( inst, "beforeShow" );
-		beforeShowSettings = beforeShow ? beforeShow.apply( input, [ input, inst ] ) : {};
-		if ( beforeShowSettings === false ) {
-			return;
-		}
-		datepicker_extendRemove( inst.settings, beforeShowSettings );
-
-		inst.lastVal = null;
-		$.datepicker._lastInput = input;
-		$.datepicker._setDateFromField( inst );
-
-		if ( $.datepicker._inDialog ) { // hide cursor
-			input.value = "";
-		}
-		if ( !$.datepicker._pos ) { // position below input
-			$.datepicker._pos = $.datepicker._findPos( input );
-			$.datepicker._pos[ 1 ] += input.offsetHeight; // add the height
-		}
-
-		isFixed = false;
-		$( input ).parents().each( function() {
-			isFixed |= $( this ).css( "position" ) === "fixed";
-			return !isFixed;
-		} );
-
-		offset = { left: $.datepicker._pos[ 0 ], top: $.datepicker._pos[ 1 ] };
-		$.datepicker._pos = null;
-
-		//to avoid flashes on Firefox
-		inst.dpDiv.empty();
-
-		// determine sizing offscreen
-		inst.dpDiv.css( { position: "absolute", display: "block", top: "-1000px" } );
-		$.datepicker._updateDatepicker( inst );
-
-		// fix width for dynamic number of date pickers
-		// and adjust position before showing
-		offset = $.datepicker._checkOffset( inst, offset, isFixed );
-		inst.dpDiv.css( { position: ( $.datepicker._inDialog && $.blockUI ?
-			"static" : ( isFixed ? "fixed" : "absolute" ) ), display: "none",
-			left: offset.left + "px", top: offset.top + "px" } );
-
-		if ( !inst.inline ) {
-			showAnim = $.datepicker._get( inst, "showAnim" );
-			duration = $.datepicker._get( inst, "duration" );
-			inst.dpDiv.css( "z-index", datepicker_getZindex( $( input ) ) + 1 );
-			$.datepicker._datepickerShowing = true;
-
-			if ( $.effects && $.effects.effect[ showAnim ] ) {
-				inst.dpDiv.show( showAnim, $.datepicker._get( inst, "showOptions" ), duration );
-			} else {
-				inst.dpDiv[ showAnim || "show" ]( showAnim ? duration : null );
-			}
-
-			if ( $.datepicker._shouldFocusInput( inst ) ) {
-				inst.input.trigger( "focus" );
-			}
-
-			$.datepicker._curInst = inst;
-		}
-	},
-
-	/* Generate the date picker content. */
-	_updateDatepicker: function( inst ) {
-		this.maxRows = 4; //Reset the max number of rows being displayed (see #7043)
-		datepicker_instActive = inst; // for delegate hover events
-		inst.dpDiv.empty().append( this._generateHTML( inst ) );
-		this._attachHandlers( inst );
-
-		var origyearshtml,
-			numMonths = this._getNumberOfMonths( inst ),
-			cols = numMonths[ 1 ],
-			width = 17,
-			activeCell = inst.dpDiv.find( "." + this._dayOverClass + " a" );
-
-		if ( activeCell.length > 0 ) {
-			datepicker_handleMouseover.apply( activeCell.get( 0 ) );
-		}
-
-		inst.dpDiv.removeClass( "ui-datepicker-multi-2 ui-datepicker-multi-3 ui-datepicker-multi-4" ).width( "" );
-		if ( cols > 1 ) {
-			inst.dpDiv.addClass( "ui-datepicker-multi-" + cols ).css( "width", ( width * cols ) + "em" );
-		}
-		inst.dpDiv[ ( numMonths[ 0 ] !== 1 || numMonths[ 1 ] !== 1 ? "add" : "remove" ) +
-			"Class" ]( "ui-datepicker-multi" );
-		inst.dpDiv[ ( this._get( inst, "isRTL" ) ? "add" : "remove" ) +
-			"Class" ]( "ui-datepicker-rtl" );
-
-		if ( inst === $.datepicker._curInst && $.datepicker._datepickerShowing && $.datepicker._shouldFocusInput( inst ) ) {
-			inst.input.trigger( "focus" );
-		}
-
-		// Deffered render of the years select (to avoid flashes on Firefox)
-		if ( inst.yearshtml ) {
-			origyearshtml = inst.yearshtml;
-			setTimeout( function() {
-
-				//assure that inst.yearshtml didn't change.
-				if ( origyearshtml === inst.yearshtml && inst.yearshtml ) {
-					inst.dpDiv.find( "select.ui-datepicker-year:first" ).replaceWith( inst.yearshtml );
-				}
-				origyearshtml = inst.yearshtml = null;
-			}, 0 );
-		}
-	},
-
-	// #6694 - don't focus the input if it's already focused
-	// this breaks the change event in IE
-	// Support: IE and jQuery <1.9
-	_shouldFocusInput: function( inst ) {
-		return inst.input && inst.input.is( ":visible" ) && !inst.input.is( ":disabled" ) && !inst.input.is( ":focus" );
-	},
-
-	/* Check positioning to remain on screen. */
-	_checkOffset: function( inst, offset, isFixed ) {
-		var dpWidth = inst.dpDiv.outerWidth(),
-			dpHeight = inst.dpDiv.outerHeight(),
-			inputWidth = inst.input ? inst.input.outerWidth() : 0,
-			inputHeight = inst.input ? inst.input.outerHeight() : 0,
-			viewWidth = document.documentElement.clientWidth + ( isFixed ? 0 : $( document ).scrollLeft() ),
-			viewHeight = document.documentElement.clientHeight + ( isFixed ? 0 : $( document ).scrollTop() );
-
-		offset.left -= ( this._get( inst, "isRTL" ) ? ( dpWidth - inputWidth ) : 0 );
-		offset.left -= ( isFixed && offset.left === inst.input.offset().left ) ? $( document ).scrollLeft() : 0;
-		offset.top -= ( isFixed && offset.top === ( inst.input.offset().top + inputHeight ) ) ? $( document ).scrollTop() : 0;
-
-		// Now check if datepicker is showing outside window viewport - move to a better place if so.
-		offset.left -= Math.min( offset.left, ( offset.left + dpWidth > viewWidth && viewWidth > dpWidth ) ?
-			Math.abs( offset.left + dpWidth - viewWidth ) : 0 );
-		offset.top -= Math.min( offset.top, ( offset.top + dpHeight > viewHeight && viewHeight > dpHeight ) ?
-			Math.abs( dpHeight + inputHeight ) : 0 );
-
-		return offset;
-	},
-
-	/* Find an object's position on the screen. */
-	_findPos: function( obj ) {
-		var position,
-			inst = this._getInst( obj ),
-			isRTL = this._get( inst, "isRTL" );
-
-		while ( obj && ( obj.type === "hidden" || obj.nodeType !== 1 || $.expr.filters.hidden( obj ) ) ) {
-			obj = obj[ isRTL ? "previousSibling" : "nextSibling" ];
-		}
-
-		position = $( obj ).offset();
-		return [ position.left, position.top ];
-	},
-
-	/* Hide the date picker from view.
-	 * @param  input  element - the input field attached to the date picker
-	 */
-	_hideDatepicker: function( input ) {
-		var showAnim, duration, postProcess, onClose,
-			inst = this._curInst;
-
-		if ( !inst || ( input && inst !== $.data( input, "datepicker" ) ) ) {
-			return;
-		}
-
-		if ( this._datepickerShowing ) {
-			showAnim = this._get( inst, "showAnim" );
-			duration = this._get( inst, "duration" );
-			postProcess = function() {
-				$.datepicker._tidyDialog( inst );
-			};
-
-			// DEPRECATED: after BC for 1.8.x $.effects[ showAnim ] is not needed
-			if ( $.effects && ( $.effects.effect[ showAnim ] || $.effects[ showAnim ] ) ) {
-				inst.dpDiv.hide( showAnim, $.datepicker._get( inst, "showOptions" ), duration, postProcess );
-			} else {
-				inst.dpDiv[ ( showAnim === "slideDown" ? "slideUp" :
-					( showAnim === "fadeIn" ? "fadeOut" : "hide" ) ) ]( ( showAnim ? duration : null ), postProcess );
-			}
-
-			if ( !showAnim ) {
-				postProcess();
-			}
-			this._datepickerShowing = false;
-
-			onClose = this._get( inst, "onClose" );
-			if ( onClose ) {
-				onClose.apply( ( inst.input ? inst.input[ 0 ] : null ), [ ( inst.input ? inst.input.val() : "" ), inst ] );
-			}
-
-			this._lastInput = null;
-			if ( this._inDialog ) {
-				this._dialogInput.css( { position: "absolute", left: "0", top: "-100px" } );
-				if ( $.blockUI ) {
-					$.unblockUI();
-					$( "body" ).append( this.dpDiv );
-				}
-			}
-			this._inDialog = false;
-		}
-	},
-
-	/* Tidy up after a dialog display. */
-	_tidyDialog: function( inst ) {
-		inst.dpDiv.removeClass( this._dialogClass ).off( ".ui-datepicker-calendar" );
-	},
-
-	/* Close date picker if clicked elsewhere. */
-	_checkExternalClick: function( event ) {
-		if ( !$.datepicker._curInst ) {
-			return;
-		}
-
-		var $target = $( event.target ),
-			inst = $.datepicker._getInst( $target[ 0 ] );
-
-		if ( ( ( $target[ 0 ].id !== $.datepicker._mainDivId &&
-				$target.parents( "#" + $.datepicker._mainDivId ).length === 0 &&
-				!$target.hasClass( $.datepicker.markerClassName ) &&
-				!$target.closest( "." + $.datepicker._triggerClass ).length &&
-				$.datepicker._datepickerShowing && !( $.datepicker._inDialog && $.blockUI ) ) ) ||
-			( $target.hasClass( $.datepicker.markerClassName ) && $.datepicker._curInst !== inst ) ) {
-				$.datepicker._hideDatepicker();
-		}
-	},
-
-	/* Adjust one of the date sub-fields. */
-	_adjustDate: function( id, offset, period ) {
-		var target = $( id ),
-			inst = this._getInst( target[ 0 ] );
-
-		if ( this._isDisabledDatepicker( target[ 0 ] ) ) {
-			return;
-		}
-		this._adjustInstDate( inst, offset +
-			( period === "M" ? this._get( inst, "showCurrentAtPos" ) : 0 ), // undo positioning
-			period );
-		this._updateDatepicker( inst );
-	},
-
-	/* Action for current link. */
-	_gotoToday: function( id ) {
-		var date,
-			target = $( id ),
-			inst = this._getInst( target[ 0 ] );
-
-		if ( this._get( inst, "gotoCurrent" ) && inst.currentDay ) {
-			inst.selectedDay = inst.currentDay;
-			inst.drawMonth = inst.selectedMonth = inst.currentMonth;
-			inst.drawYear = inst.selectedYear = inst.currentYear;
-		} else {
-			date = new Date();
-			inst.selectedDay = date.getDate();
-			inst.drawMonth = inst.selectedMonth = date.getMonth();
-			inst.drawYear = inst.selectedYear = date.getFullYear();
-		}
-		this._notifyChange( inst );
-		this._adjustDate( target );
-	},
-
-	/* Action for selecting a new month/year. */
-	_selectMonthYear: function( id, select, period ) {
-		var target = $( id ),
-			inst = this._getInst( target[ 0 ] );
-
-		inst[ "selected" + ( period === "M" ? "Month" : "Year" ) ] =
-		inst[ "draw" + ( period === "M" ? "Month" : "Year" ) ] =
-			parseInt( select.options[ select.selectedIndex ].value, 10 );
-
-		this._notifyChange( inst );
-		this._adjustDate( target );
-	},
-
-	/* Action for selecting a day. */
-	_selectDay: function( id, month, year, td ) {
-		var inst,
-			target = $( id );
-
-		if ( $( td ).hasClass( this._unselectableClass ) || this._isDisabledDatepicker( target[ 0 ] ) ) {
-			return;
-		}
-
-		inst = this._getInst( target[ 0 ] );
-		inst.selectedDay = inst.currentDay = $( "a", td ).html();
-		inst.selectedMonth = inst.currentMonth = month;
-		inst.selectedYear = inst.currentYear = year;
-		this._selectDate( id, this._formatDate( inst,
-			inst.currentDay, inst.currentMonth, inst.currentYear ) );
-	},
-
-	/* Erase the input field and hide the date picker. */
-	_clearDate: function( id ) {
-		var target = $( id );
-		this._selectDate( target, "" );
-	},
-
-	/* Update the input field with the selected date. */
-	_selectDate: function( id, dateStr ) {
-		var onSelect,
-			target = $( id ),
-			inst = this._getInst( target[ 0 ] );
-
-		dateStr = ( dateStr != null ? dateStr : this._formatDate( inst ) );
-		if ( inst.input ) {
-			inst.input.val( dateStr );
-		}
-		this._updateAlternate( inst );
-
-		onSelect = this._get( inst, "onSelect" );
-		if ( onSelect ) {
-			onSelect.apply( ( inst.input ? inst.input[ 0 ] : null ), [ dateStr, inst ] );  // trigger custom callback
-		} else if ( inst.input ) {
-			inst.input.trigger( "change" ); // fire the change event
-		}
-
-		if ( inst.inline ) {
-			this._updateDatepicker( inst );
-		} else {
-			this._hideDatepicker();
-			this._lastInput = inst.input[ 0 ];
-			if ( typeof( inst.input[ 0 ] ) !== "object" ) {
-				inst.input.trigger( "focus" ); // restore focus
-			}
-			this._lastInput = null;
-		}
-	},
-
-	/* Update any alternate field to synchronise with the main field. */
-	_updateAlternate: function( inst ) {
-		var altFormat, date, dateStr,
-			altField = this._get( inst, "altField" );
-
-		if ( altField ) { // update alternate field too
-			altFormat = this._get( inst, "altFormat" ) || this._get( inst, "dateFormat" );
-			date = this._getDate( inst );
-			dateStr = this.formatDate( altFormat, date, this._getFormatConfig( inst ) );
-			$( altField ).val( dateStr );
-		}
-	},
-
-	/* Set as beforeShowDay function to prevent selection of weekends.
-	 * @param  date  Date - the date to customise
-	 * @return [boolean, string] - is this date selectable?, what is its CSS class?
-	 */
-	noWeekends: function( date ) {
-		var day = date.getDay();
-		return [ ( day > 0 && day < 6 ), "" ];
-	},
-
-	/* Set as calculateWeek to determine the week of the year based on the ISO 8601 definition.
-	 * @param  date  Date - the date to get the week for
-	 * @return  number - the number of the week within the year that contains this date
-	 */
-	iso8601Week: function( date ) {
-		var time,
-			checkDate = new Date( date.getTime() );
-
-		// Find Thursday of this week starting on Monday
-		checkDate.setDate( checkDate.getDate() + 4 - ( checkDate.getDay() || 7 ) );
-
-		time = checkDate.getTime();
-		checkDate.setMonth( 0 ); // Compare with Jan 1
-		checkDate.setDate( 1 );
-		return Math.floor( Math.round( ( time - checkDate ) / 86400000 ) / 7 ) + 1;
-	},
-
-	/* Parse a string value into a date object.
-	 * See formatDate below for the possible formats.
-	 *
-	 * @param  format string - the expected format of the date
-	 * @param  value string - the date in the above format
-	 * @param  settings Object - attributes include:
-	 *					shortYearCutoff  number - the cutoff year for determining the century (optional)
-	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
-	 *					dayNames		string[7] - names of the days from Sunday (optional)
-	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
-	 *					monthNames		string[12] - names of the months (optional)
-	 * @return  Date - the extracted date value or null if value is blank
-	 */
-	parseDate: function( format, value, settings ) {
-		if ( format == null || value == null ) {
-			throw "Invalid arguments";
-		}
-
-		value = ( typeof value === "object" ? value.toString() : value + "" );
-		if ( value === "" ) {
-			return null;
-		}
-
-		var iFormat, dim, extra,
-			iValue = 0,
-			shortYearCutoffTemp = ( settings ? settings.shortYearCutoff : null ) || this._defaults.shortYearCutoff,
-			shortYearCutoff = ( typeof shortYearCutoffTemp !== "string" ? shortYearCutoffTemp :
-				new Date().getFullYear() % 100 + parseInt( shortYearCutoffTemp, 10 ) ),
-			dayNamesShort = ( settings ? settings.dayNamesShort : null ) || this._defaults.dayNamesShort,
-			dayNames = ( settings ? settings.dayNames : null ) || this._defaults.dayNames,
-			monthNamesShort = ( settings ? settings.monthNamesShort : null ) || this._defaults.monthNamesShort,
-			monthNames = ( settings ? settings.monthNames : null ) || this._defaults.monthNames,
-			year = -1,
-			month = -1,
-			day = -1,
-			doy = -1,
-			literal = false,
-			date,
-
-			// Check whether a format character is doubled
-			lookAhead = function( match ) {
-				var matches = ( iFormat + 1 < format.length && format.charAt( iFormat + 1 ) === match );
-				if ( matches ) {
-					iFormat++;
-				}
-				return matches;
-			},
-
-			// Extract a number from the string value
-			getNumber = function( match ) {
-				var isDoubled = lookAhead( match ),
-					size = ( match === "@" ? 14 : ( match === "!" ? 20 :
-					( match === "y" && isDoubled ? 4 : ( match === "o" ? 3 : 2 ) ) ) ),
-					minSize = ( match === "y" ? size : 1 ),
-					digits = new RegExp( "^\\d{" + minSize + "," + size + "}" ),
-					num = value.substring( iValue ).match( digits );
-				if ( !num ) {
-					throw "Missing number at position " + iValue;
-				}
-				iValue += num[ 0 ].length;
-				return parseInt( num[ 0 ], 10 );
-			},
-
-			// Extract a name from the string value and convert to an index
-			getName = function( match, shortNames, longNames ) {
-				var index = -1,
-					names = $.map( lookAhead( match ) ? longNames : shortNames, function( v, k ) {
-						return [ [ k, v ] ];
-					} ).sort( function( a, b ) {
-						return -( a[ 1 ].length - b[ 1 ].length );
-					} );
-
-				$.each( names, function( i, pair ) {
-					var name = pair[ 1 ];
-					if ( value.substr( iValue, name.length ).toLowerCase() === name.toLowerCase() ) {
-						index = pair[ 0 ];
-						iValue += name.length;
-						return false;
-					}
-				} );
-				if ( index !== -1 ) {
-					return index + 1;
-				} else {
-					throw "Unknown name at position " + iValue;
-				}
-			},
-
-			// Confirm that a literal character matches the string value
-			checkLiteral = function() {
-				if ( value.charAt( iValue ) !== format.charAt( iFormat ) ) {
-					throw "Unexpected literal at position " + iValue;
-				}
-				iValue++;
-			};
-
-		for ( iFormat = 0; iFormat < format.length; iFormat++ ) {
-			if ( literal ) {
-				if ( format.charAt( iFormat ) === "'" && !lookAhead( "'" ) ) {
-					literal = false;
-				} else {
-					checkLiteral();
-				}
-			} else {
-				switch ( format.charAt( iFormat ) ) {
-					case "d":
-						day = getNumber( "d" );
-						break;
-					case "D":
-						getName( "D", dayNamesShort, dayNames );
-						break;
-					case "o":
-						doy = getNumber( "o" );
-						break;
-					case "m":
-						month = getNumber( "m" );
-						break;
-					case "M":
-						month = getName( "M", monthNamesShort, monthNames );
-						break;
-					case "y":
-						year = getNumber( "y" );
-						break;
-					case "@":
-						date = new Date( getNumber( "@" ) );
-						year = date.getFullYear();
-						month = date.getMonth() + 1;
-						day = date.getDate();
-						break;
-					case "!":
-						date = new Date( ( getNumber( "!" ) - this._ticksTo1970 ) / 10000 );
-						year = date.getFullYear();
-						month = date.getMonth() + 1;
-						day = date.getDate();
-						break;
-					case "'":
-						if ( lookAhead( "'" ) ) {
-							checkLiteral();
-						} else {
-							literal = true;
-						}
-						break;
-					default:
-						checkLiteral();
-				}
-			}
-		}
-
-		if ( iValue < value.length ) {
-			extra = value.substr( iValue );
-			if ( !/^\s+/.test( extra ) ) {
-				throw "Extra/unparsed characters found in date: " + extra;
-			}
-		}
-
-		if ( year === -1 ) {
-			year = new Date().getFullYear();
-		} else if ( year < 100 ) {
-			year += new Date().getFullYear() - new Date().getFullYear() % 100 +
-				( year <= shortYearCutoff ? 0 : -100 );
-		}
-
-		if ( doy > -1 ) {
-			month = 1;
-			day = doy;
-			do {
-				dim = this._getDaysInMonth( year, month - 1 );
-				if ( day <= dim ) {
-					break;
-				}
-				month++;
-				day -= dim;
-			} while ( true );
-		}
-
-		date = this._daylightSavingAdjust( new Date( year, month - 1, day ) );
-		if ( date.getFullYear() !== year || date.getMonth() + 1 !== month || date.getDate() !== day ) {
-			throw "Invalid date"; // E.g. 31/02/00
-		}
-		return date;
-	},
-
-	/* Standard date formats. */
-	ATOM: "yy-mm-dd", // RFC 3339 (ISO 8601)
-	COOKIE: "D, dd M yy",
-	ISO_8601: "yy-mm-dd",
-	RFC_822: "D, d M y",
-	RFC_850: "DD, dd-M-y",
-	RFC_1036: "D, d M y",
-	RFC_1123: "D, d M yy",
-	RFC_2822: "D, d M yy",
-	RSS: "D, d M y", // RFC 822
-	TICKS: "!",
-	TIMESTAMP: "@",
-	W3C: "yy-mm-dd", // ISO 8601
-
-	_ticksTo1970: ( ( ( 1970 - 1 ) * 365 + Math.floor( 1970 / 4 ) - Math.floor( 1970 / 100 ) +
-		Math.floor( 1970 / 400 ) ) * 24 * 60 * 60 * 10000000 ),
-
-	/* Format a date object into a string value.
-	 * The format can be combinations of the following:
-	 * d  - day of month (no leading zero)
-	 * dd - day of month (two digit)
-	 * o  - day of year (no leading zeros)
-	 * oo - day of year (three digit)
-	 * D  - day name short
-	 * DD - day name long
-	 * m  - month of year (no leading zero)
-	 * mm - month of year (two digit)
-	 * M  - month name short
-	 * MM - month name long
-	 * y  - year (two digit)
-	 * yy - year (four digit)
-	 * @ - Unix timestamp (ms since 01/01/1970)
-	 * ! - Windows ticks (100ns since 01/01/0001)
-	 * "..." - literal text
-	 * '' - single quote
-	 *
-	 * @param  format string - the desired format of the date
-	 * @param  date Date - the date value to format
-	 * @param  settings Object - attributes include:
-	 *					dayNamesShort	string[7] - abbreviated names of the days from Sunday (optional)
-	 *					dayNames		string[7] - names of the days from Sunday (optional)
-	 *					monthNamesShort string[12] - abbreviated names of the months (optional)
-	 *					monthNames		string[12] - names of the months (optional)
-	 * @return  string - the date in the above format
-	 */
-	formatDate: function( format, date, settings ) {
-		if ( !date ) {
-			return "";
-		}
-
-		var iFormat,
-			dayNamesShort = ( settings ? settings.dayNamesShort : null ) || this._defaults.dayNamesShort,
-			dayNames = ( settings ? settings.dayNames : null ) || this._defaults.dayNames,
-			monthNamesShort = ( settings ? settings.monthNamesShort : null ) || this._defaults.monthNamesShort,
-			monthNames = ( settings ? settings.monthNames : null ) || this._defaults.monthNames,
-
-			// Check whether a format character is doubled
-			lookAhead = function( match ) {
-				var matches = ( iFormat + 1 < format.length && format.charAt( iFormat + 1 ) === match );
-				if ( matches ) {
-					iFormat++;
-				}
-				return matches;
-			},
-
-			// Format a number, with leading zero if necessary
-			formatNumber = function( match, value, len ) {
-				var num = "" + value;
-				if ( lookAhead( match ) ) {
-					while ( num.length < len ) {
-						num = "0" + num;
-					}
-				}
-				return num;
-			},
-
-			// Format a name, short or long as requested
-			formatName = function( match, value, shortNames, longNames ) {
-				return ( lookAhead( match ) ? longNames[ value ] : shortNames[ value ] );
-			},
-			output = "",
-			literal = false;
-
-		if ( date ) {
-			for ( iFormat = 0; iFormat < format.length; iFormat++ ) {
-				if ( literal ) {
-					if ( format.charAt( iFormat ) === "'" && !lookAhead( "'" ) ) {
-						literal = false;
-					} else {
-						output += format.charAt( iFormat );
-					}
-				} else {
-					switch ( format.charAt( iFormat ) ) {
-						case "d":
-							output += formatNumber( "d", date.getDate(), 2 );
-							break;
-						case "D":
-							output += formatName( "D", date.getDay(), dayNamesShort, dayNames );
-							break;
-						case "o":
-							output += formatNumber( "o",
-								Math.round( ( new Date( date.getFullYear(), date.getMonth(), date.getDate() ).getTime() - new Date( date.getFullYear(), 0, 0 ).getTime() ) / 86400000 ), 3 );
-							break;
-						case "m":
-							output += formatNumber( "m", date.getMonth() + 1, 2 );
-							break;
-						case "M":
-							output += formatName( "M", date.getMonth(), monthNamesShort, monthNames );
-							break;
-						case "y":
-							output += ( lookAhead( "y" ) ? date.getFullYear() :
-								( date.getFullYear() % 100 < 10 ? "0" : "" ) + date.getFullYear() % 100 );
-							break;
-						case "@":
-							output += date.getTime();
-							break;
-						case "!":
-							output += date.getTime() * 10000 + this._ticksTo1970;
-							break;
-						case "'":
-							if ( lookAhead( "'" ) ) {
-								output += "'";
-							} else {
-								literal = true;
-							}
-							break;
-						default:
-							output += format.charAt( iFormat );
-					}
-				}
-			}
-		}
-		return output;
-	},
-
-	/* Extract all possible characters from the date format. */
-	_possibleChars: function( format ) {
-		var iFormat,
-			chars = "",
-			literal = false,
-
-			// Check whether a format character is doubled
-			lookAhead = function( match ) {
-				var matches = ( iFormat + 1 < format.length && format.charAt( iFormat + 1 ) === match );
-				if ( matches ) {
-					iFormat++;
-				}
-				return matches;
-			};
-
-		for ( iFormat = 0; iFormat < format.length; iFormat++ ) {
-			if ( literal ) {
-				if ( format.charAt( iFormat ) === "'" && !lookAhead( "'" ) ) {
-					literal = false;
-				} else {
-					chars += format.charAt( iFormat );
-				}
-			} else {
-				switch ( format.charAt( iFormat ) ) {
-					case "d": case "m": case "y": case "@":
-						chars += "0123456789";
-						break;
-					case "D": case "M":
-						return null; // Accept anything
-					case "'":
-						if ( lookAhead( "'" ) ) {
-							chars += "'";
-						} else {
-							literal = true;
-						}
-						break;
-					default:
-						chars += format.charAt( iFormat );
-				}
-			}
-		}
-		return chars;
-	},
-
-	/* Get a setting value, defaulting if necessary. */
-	_get: function( inst, name ) {
-		return inst.settings[ name ] !== undefined ?
-			inst.settings[ name ] : this._defaults[ name ];
-	},
-
-	/* Parse existing date and initialise date picker. */
-	_setDateFromField: function( inst, noDefault ) {
-		if ( inst.input.val() === inst.lastVal ) {
-			return;
-		}
-
-		var dateFormat = this._get( inst, "dateFormat" ),
-			dates = inst.lastVal = inst.input ? inst.input.val() : null,
-			defaultDate = this._getDefaultDate( inst ),
-			date = defaultDate,
-			settings = this._getFormatConfig( inst );
-
-		try {
-			date = this.parseDate( dateFormat, dates, settings ) || defaultDate;
-		} catch ( event ) {
-			dates = ( noDefault ? "" : dates );
-		}
-		inst.selectedDay = date.getDate();
-		inst.drawMonth = inst.selectedMonth = date.getMonth();
-		inst.drawYear = inst.selectedYear = date.getFullYear();
-		inst.currentDay = ( dates ? date.getDate() : 0 );
-		inst.currentMonth = ( dates ? date.getMonth() : 0 );
-		inst.currentYear = ( dates ? date.getFullYear() : 0 );
-		this._adjustInstDate( inst );
-	},
-
-	/* Retrieve the default date shown on opening. */
-	_getDefaultDate: function( inst ) {
-		return this._restrictMinMax( inst,
-			this._determineDate( inst, this._get( inst, "defaultDate" ), new Date() ) );
-	},
-
-	/* A date may be specified as an exact value or a relative one. */
-	_determineDate: function( inst, date, defaultDate ) {
-		var offsetNumeric = function( offset ) {
-				var date = new Date();
-				date.setDate( date.getDate() + offset );
-				return date;
-			},
-			offsetString = function( offset ) {
-				try {
-					return $.datepicker.parseDate( $.datepicker._get( inst, "dateFormat" ),
-						offset, $.datepicker._getFormatConfig( inst ) );
-				}
-				catch ( e ) {
-
-					// Ignore
-				}
-
-				var date = ( offset.toLowerCase().match( /^c/ ) ?
-					$.datepicker._getDate( inst ) : null ) || new Date(),
-					year = date.getFullYear(),
-					month = date.getMonth(),
-					day = date.getDate(),
-					pattern = /([+\-]?[0-9]+)\s*(d|D|w|W|m|M|y|Y)?/g,
-					matches = pattern.exec( offset );
-
-				while ( matches ) {
-					switch ( matches[ 2 ] || "d" ) {
-						case "d" : case "D" :
-							day += parseInt( matches[ 1 ], 10 ); break;
-						case "w" : case "W" :
-							day += parseInt( matches[ 1 ], 10 ) * 7; break;
-						case "m" : case "M" :
-							month += parseInt( matches[ 1 ], 10 );
-							day = Math.min( day, $.datepicker._getDaysInMonth( year, month ) );
-							break;
-						case "y": case "Y" :
-							year += parseInt( matches[ 1 ], 10 );
-							day = Math.min( day, $.datepicker._getDaysInMonth( year, month ) );
-							break;
-					}
-					matches = pattern.exec( offset );
-				}
-				return new Date( year, month, day );
-			},
-			newDate = ( date == null || date === "" ? defaultDate : ( typeof date === "string" ? offsetString( date ) :
-				( typeof date === "number" ? ( isNaN( date ) ? defaultDate : offsetNumeric( date ) ) : new Date( date.getTime() ) ) ) );
-
-		newDate = ( newDate && newDate.toString() === "Invalid Date" ? defaultDate : newDate );
-		if ( newDate ) {
-			newDate.setHours( 0 );
-			newDate.setMinutes( 0 );
-			newDate.setSeconds( 0 );
-			newDate.setMilliseconds( 0 );
-		}
-		return this._daylightSavingAdjust( newDate );
-	},
-
-	/* Handle switch to/from daylight saving.
-	 * Hours may be non-zero on daylight saving cut-over:
-	 * > 12 when midnight changeover, but then cannot generate
-	 * midnight datetime, so jump to 1AM, otherwise reset.
-	 * @param  date  (Date) the date to check
-	 * @return  (Date) the corrected date
-	 */
-	_daylightSavingAdjust: function( date ) {
-		if ( !date ) {
-			return null;
-		}
-		date.setHours( date.getHours() > 12 ? date.getHours() + 2 : 0 );
-		return date;
-	},
-
-	/* Set the date(s) directly. */
-	_setDate: function( inst, date, noChange ) {
-		var clear = !date,
-			origMonth = inst.selectedMonth,
-			origYear = inst.selectedYear,
-			newDate = this._restrictMinMax( inst, this._determineDate( inst, date, new Date() ) );
-
-		inst.selectedDay = inst.currentDay = newDate.getDate();
-		inst.drawMonth = inst.selectedMonth = inst.currentMonth = newDate.getMonth();
-		inst.drawYear = inst.selectedYear = inst.currentYear = newDate.getFullYear();
-		if ( ( origMonth !== inst.selectedMonth || origYear !== inst.selectedYear ) && !noChange ) {
-			this._notifyChange( inst );
-		}
-		this._adjustInstDate( inst );
-		if ( inst.input ) {
-			inst.input.val( clear ? "" : this._formatDate( inst ) );
-		}
-	},
-
-	/* Retrieve the date(s) directly. */
-	_getDate: function( inst ) {
-		var startDate = ( !inst.currentYear || ( inst.input && inst.input.val() === "" ) ? null :
-			this._daylightSavingAdjust( new Date(
-			inst.currentYear, inst.currentMonth, inst.currentDay ) ) );
-			return startDate;
-	},
-
-	/* Attach the onxxx handlers.  These are declared statically so
-	 * they work with static code transformers like Caja.
-	 */
-	_attachHandlers: function( inst ) {
-		var stepMonths = this._get( inst, "stepMonths" ),
-			id = "#" + inst.id.replace( /\\\\/g, "\\" );
-		inst.dpDiv.find( "[data-handler]" ).map( function() {
-			var handler = {
-				prev: function() {
-					$.datepicker._adjustDate( id, -stepMonths, "M" );
-				},
-				next: function() {
-					$.datepicker._adjustDate( id, +stepMonths, "M" );
-				},
-				hide: function() {
-					$.datepicker._hideDatepicker();
-				},
-				today: function() {
-					$.datepicker._gotoToday( id );
-				},
-				selectDay: function() {
-					$.datepicker._selectDay( id, +this.getAttribute( "data-month" ), +this.getAttribute( "data-year" ), this );
-					return false;
-				},
-				selectMonth: function() {
-					$.datepicker._selectMonthYear( id, this, "M" );
-					return false;
-				},
-				selectYear: function() {
-					$.datepicker._selectMonthYear( id, this, "Y" );
-					return false;
-				}
-			};
-			$( this ).on( this.getAttribute( "data-event" ), handler[ this.getAttribute( "data-handler" ) ] );
-		} );
-	},
-
-	/* Generate the HTML for the current state of the date picker. */
-	_generateHTML: function( inst ) {
-		var maxDraw, prevText, prev, nextText, next, currentText, gotoDate,
-			controls, buttonPanel, firstDay, showWeek, dayNames, dayNamesMin,
-			monthNames, monthNamesShort, beforeShowDay, showOtherMonths,
-			selectOtherMonths, defaultDate, html, dow, row, group, col, selectedDate,
-			cornerClass, calender, thead, day, daysInMonth, leadDays, curRows, numRows,
-			printDate, dRow, tbody, daySettings, otherMonth, unselectable,
-			tempDate = new Date(),
-			today = this._daylightSavingAdjust(
-				new Date( tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate() ) ), // clear time
-			isRTL = this._get( inst, "isRTL" ),
-			showButtonPanel = this._get( inst, "showButtonPanel" ),
-			hideIfNoPrevNext = this._get( inst, "hideIfNoPrevNext" ),
-			navigationAsDateFormat = this._get( inst, "navigationAsDateFormat" ),
-			numMonths = this._getNumberOfMonths( inst ),
-			showCurrentAtPos = this._get( inst, "showCurrentAtPos" ),
-			stepMonths = this._get( inst, "stepMonths" ),
-			isMultiMonth = ( numMonths[ 0 ] !== 1 || numMonths[ 1 ] !== 1 ),
-			currentDate = this._daylightSavingAdjust( ( !inst.currentDay ? new Date( 9999, 9, 9 ) :
-				new Date( inst.currentYear, inst.currentMonth, inst.currentDay ) ) ),
-			minDate = this._getMinMaxDate( inst, "min" ),
-			maxDate = this._getMinMaxDate( inst, "max" ),
-			drawMonth = inst.drawMonth - showCurrentAtPos,
-			drawYear = inst.drawYear;
-
-		if ( drawMonth < 0 ) {
-			drawMonth += 12;
-			drawYear--;
-		}
-		if ( maxDate ) {
-			maxDraw = this._daylightSavingAdjust( new Date( maxDate.getFullYear(),
-				maxDate.getMonth() - ( numMonths[ 0 ] * numMonths[ 1 ] ) + 1, maxDate.getDate() ) );
-			maxDraw = ( minDate && maxDraw < minDate ? minDate : maxDraw );
-			while ( this._daylightSavingAdjust( new Date( drawYear, drawMonth, 1 ) ) > maxDraw ) {
-				drawMonth--;
-				if ( drawMonth < 0 ) {
-					drawMonth = 11;
-					drawYear--;
-				}
-			}
-		}
-		inst.drawMonth = drawMonth;
-		inst.drawYear = drawYear;
-
-		prevText = this._get( inst, "prevText" );
-		prevText = ( !navigationAsDateFormat ? prevText : this.formatDate( prevText,
-			this._daylightSavingAdjust( new Date( drawYear, drawMonth - stepMonths, 1 ) ),
-			this._getFormatConfig( inst ) ) );
-
-		prev = ( this._canAdjustMonth( inst, -1, drawYear, drawMonth ) ?
-			"<a class='ui-datepicker-prev ui-corner-all' data-handler='prev' data-event='click'" +
-			" title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" :
-			( hideIfNoPrevNext ? "" : "<a class='ui-datepicker-prev ui-corner-all ui-state-disabled' title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" ) );
-
-		nextText = this._get( inst, "nextText" );
-		nextText = ( !navigationAsDateFormat ? nextText : this.formatDate( nextText,
-			this._daylightSavingAdjust( new Date( drawYear, drawMonth + stepMonths, 1 ) ),
-			this._getFormatConfig( inst ) ) );
-
-		next = ( this._canAdjustMonth( inst, +1, drawYear, drawMonth ) ?
-			"<a class='ui-datepicker-next ui-corner-all' data-handler='next' data-event='click'" +
-			" title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" :
-			( hideIfNoPrevNext ? "" : "<a class='ui-datepicker-next ui-corner-all ui-state-disabled' title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" ) );
-
-		currentText = this._get( inst, "currentText" );
-		gotoDate = ( this._get( inst, "gotoCurrent" ) && inst.currentDay ? currentDate : today );
-		currentText = ( !navigationAsDateFormat ? currentText :
-			this.formatDate( currentText, gotoDate, this._getFormatConfig( inst ) ) );
-
-		controls = ( !inst.inline ? "<button type='button' class='ui-datepicker-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
-			this._get( inst, "closeText" ) + "</button>" : "" );
-
-		buttonPanel = ( showButtonPanel ) ? "<div class='ui-datepicker-buttonpane ui-widget-content'>" + ( isRTL ? controls : "" ) +
-			( this._isInRange( inst, gotoDate ) ? "<button type='button' class='ui-datepicker-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
-			">" + currentText + "</button>" : "" ) + ( isRTL ? "" : controls ) + "</div>" : "";
-
-		firstDay = parseInt( this._get( inst, "firstDay" ), 10 );
-		firstDay = ( isNaN( firstDay ) ? 0 : firstDay );
-
-		showWeek = this._get( inst, "showWeek" );
-		dayNames = this._get( inst, "dayNames" );
-		dayNamesMin = this._get( inst, "dayNamesMin" );
-		monthNames = this._get( inst, "monthNames" );
-		monthNamesShort = this._get( inst, "monthNamesShort" );
-		beforeShowDay = this._get( inst, "beforeShowDay" );
-		showOtherMonths = this._get( inst, "showOtherMonths" );
-		selectOtherMonths = this._get( inst, "selectOtherMonths" );
-		defaultDate = this._getDefaultDate( inst );
-		html = "";
-
-		for ( row = 0; row < numMonths[ 0 ]; row++ ) {
-			group = "";
-			this.maxRows = 4;
-			for ( col = 0; col < numMonths[ 1 ]; col++ ) {
-				selectedDate = this._daylightSavingAdjust( new Date( drawYear, drawMonth, inst.selectedDay ) );
-				cornerClass = " ui-corner-all";
-				calender = "";
-				if ( isMultiMonth ) {
-					calender += "<div class='ui-datepicker-group";
-					if ( numMonths[ 1 ] > 1 ) {
-						switch ( col ) {
-							case 0: calender += " ui-datepicker-group-first";
-								cornerClass = " ui-corner-" + ( isRTL ? "right" : "left" ); break;
-							case numMonths[ 1 ] - 1: calender += " ui-datepicker-group-last";
-								cornerClass = " ui-corner-" + ( isRTL ? "left" : "right" ); break;
-							default: calender += " ui-datepicker-group-middle"; cornerClass = ""; break;
-						}
-					}
-					calender += "'>";
-				}
-				calender += "<div class='ui-datepicker-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
-					( /all|left/.test( cornerClass ) && row === 0 ? ( isRTL ? next : prev ) : "" ) +
-					( /all|right/.test( cornerClass ) && row === 0 ? ( isRTL ? prev : next ) : "" ) +
-					this._generateMonthYearHeader( inst, drawMonth, drawYear, minDate, maxDate,
-					row > 0 || col > 0, monthNames, monthNamesShort ) + // draw month headers
-					"</div><table class='ui-datepicker-calendar'><thead>" +
-					"<tr>";
-				thead = ( showWeek ? "<th class='ui-datepicker-week-col'>" + this._get( inst, "weekHeader" ) + "</th>" : "" );
-				for ( dow = 0; dow < 7; dow++ ) { // days of the week
-					day = ( dow + firstDay ) % 7;
-					thead += "<th scope='col'" + ( ( dow + firstDay + 6 ) % 7 >= 5 ? " class='ui-datepicker-week-end'" : "" ) + ">" +
-						"<span title='" + dayNames[ day ] + "'>" + dayNamesMin[ day ] + "</span></th>";
-				}
-				calender += thead + "</tr></thead><tbody>";
-				daysInMonth = this._getDaysInMonth( drawYear, drawMonth );
-				if ( drawYear === inst.selectedYear && drawMonth === inst.selectedMonth ) {
-					inst.selectedDay = Math.min( inst.selectedDay, daysInMonth );
-				}
-				leadDays = ( this._getFirstDayOfMonth( drawYear, drawMonth ) - firstDay + 7 ) % 7;
-				curRows = Math.ceil( ( leadDays + daysInMonth ) / 7 ); // calculate the number of rows to generate
-				numRows = ( isMultiMonth ? this.maxRows > curRows ? this.maxRows : curRows : curRows ); //If multiple months, use the higher number of rows (see #7043)
-				this.maxRows = numRows;
-				printDate = this._daylightSavingAdjust( new Date( drawYear, drawMonth, 1 - leadDays ) );
-				for ( dRow = 0; dRow < numRows; dRow++ ) { // create date picker rows
-					calender += "<tr>";
-					tbody = ( !showWeek ? "" : "<td class='ui-datepicker-week-col'>" +
-						this._get( inst, "calculateWeek" )( printDate ) + "</td>" );
-					for ( dow = 0; dow < 7; dow++ ) { // create date picker days
-						daySettings = ( beforeShowDay ?
-							beforeShowDay.apply( ( inst.input ? inst.input[ 0 ] : null ), [ printDate ] ) : [ true, "" ] );
-						otherMonth = ( printDate.getMonth() !== drawMonth );
-						unselectable = ( otherMonth && !selectOtherMonths ) || !daySettings[ 0 ] ||
-							( minDate && printDate < minDate ) || ( maxDate && printDate > maxDate );
-						tbody += "<td class='" +
-							( ( dow + firstDay + 6 ) % 7 >= 5 ? " ui-datepicker-week-end" : "" ) + // highlight weekends
-							( otherMonth ? " ui-datepicker-other-month" : "" ) + // highlight days from other months
-							( ( printDate.getTime() === selectedDate.getTime() && drawMonth === inst.selectedMonth && inst._keyEvent ) || // user pressed key
-							( defaultDate.getTime() === printDate.getTime() && defaultDate.getTime() === selectedDate.getTime() ) ?
-
-							// or defaultDate is current printedDate and defaultDate is selectedDate
-							" " + this._dayOverClass : "" ) + // highlight selected day
-							( unselectable ? " " + this._unselectableClass + " ui-state-disabled" : "" ) +  // highlight unselectable days
-							( otherMonth && !showOtherMonths ? "" : " " + daySettings[ 1 ] + // highlight custom dates
-							( printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "" ) + // highlight selected day
-							( printDate.getTime() === today.getTime() ? " ui-datepicker-today" : "" ) ) + "'" + // highlight today (if different)
-							( ( !otherMonth || showOtherMonths ) && daySettings[ 2 ] ? " title='" + daySettings[ 2 ].replace( /'/g, "&#39;" ) + "'" : "" ) + // cell title
-							( unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'" ) + ">" + // actions
-							( otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
-							( unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
-							( printDate.getTime() === today.getTime() ? " ui-state-highlight" : "" ) +
-							( printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "" ) + // highlight selected day
-							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish dates from other months
-							"' href='#'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable date
-						printDate.setDate( printDate.getDate() + 1 );
-						printDate = this._daylightSavingAdjust( printDate );
-					}
-					calender += tbody + "</tr>";
-				}
-				drawMonth++;
-				if ( drawMonth > 11 ) {
-					drawMonth = 0;
-					drawYear++;
-				}
-				calender += "</tbody></table>" + ( isMultiMonth ? "</div>" +
-							( ( numMonths[ 0 ] > 0 && col === numMonths[ 1 ] - 1 ) ? "<div class='ui-datepicker-row-break'></div>" : "" ) : "" );
-				group += calender;
-			}
-			html += group;
-		}
-		html += buttonPanel;
-		inst._keyEvent = false;
-		return html;
-	},
-
-	/* Generate the month and year header. */
-	_generateMonthYearHeader: function( inst, drawMonth, drawYear, minDate, maxDate,
-			secondary, monthNames, monthNamesShort ) {
-
-		var inMinYear, inMaxYear, month, years, thisYear, determineYear, year, endYear,
-			changeMonth = this._get( inst, "changeMonth" ),
-			changeYear = this._get( inst, "changeYear" ),
-			showMonthAfterYear = this._get( inst, "showMonthAfterYear" ),
-			html = "<div class='ui-datepicker-title'>",
-			monthHtml = "";
-
-		// Month selection
-		if ( secondary || !changeMonth ) {
-			monthHtml += "<span class='ui-datepicker-month'>" + monthNames[ drawMonth ] + "</span>";
-		} else {
-			inMinYear = ( minDate && minDate.getFullYear() === drawYear );
-			inMaxYear = ( maxDate && maxDate.getFullYear() === drawYear );
-			monthHtml += "<select class='ui-datepicker-month' data-handler='selectMonth' data-event='change'>";
-			for ( month = 0; month < 12; month++ ) {
-				if ( ( !inMinYear || month >= minDate.getMonth() ) && ( !inMaxYear || month <= maxDate.getMonth() ) ) {
-					monthHtml += "<option value='" + month + "'" +
-						( month === drawMonth ? " selected='selected'" : "" ) +
-						">" + monthNamesShort[ month ] + "</option>";
-				}
-			}
-			monthHtml += "</select>";
-		}
-
-		if ( !showMonthAfterYear ) {
-			html += monthHtml + ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" );
-		}
-
-		// Year selection
-		if ( !inst.yearshtml ) {
-			inst.yearshtml = "";
-			if ( secondary || !changeYear ) {
-				html += "<span class='ui-datepicker-year'>" + drawYear + "</span>";
-			} else {
-
-				// determine range of years to display
-				years = this._get( inst, "yearRange" ).split( ":" );
-				thisYear = new Date().getFullYear();
-				determineYear = function( value ) {
-					var year = ( value.match( /c[+\-].*/ ) ? drawYear + parseInt( value.substring( 1 ), 10 ) :
-						( value.match( /[+\-].*/ ) ? thisYear + parseInt( value, 10 ) :
-						parseInt( value, 10 ) ) );
-					return ( isNaN( year ) ? thisYear : year );
-				};
-				year = determineYear( years[ 0 ] );
-				endYear = Math.max( year, determineYear( years[ 1 ] || "" ) );
-				year = ( minDate ? Math.max( year, minDate.getFullYear() ) : year );
-				endYear = ( maxDate ? Math.min( endYear, maxDate.getFullYear() ) : endYear );
-				inst.yearshtml += "<select class='ui-datepicker-year' data-handler='selectYear' data-event='change'>";
-				for ( ; year <= endYear; year++ ) {
-					inst.yearshtml += "<option value='" + year + "'" +
-						( year === drawYear ? " selected='selected'" : "" ) +
-						">" + year + "</option>";
-				}
-				inst.yearshtml += "</select>";
-
-				html += inst.yearshtml;
-				inst.yearshtml = null;
-			}
-		}
-
-		html += this._get( inst, "yearSuffix" );
-		if ( showMonthAfterYear ) {
-			html += ( secondary || !( changeMonth && changeYear ) ? "&#xa0;" : "" ) + monthHtml;
-		}
-		html += "</div>"; // Close datepicker_header
-		return html;
-	},
-
-	/* Adjust one of the date sub-fields. */
-	_adjustInstDate: function( inst, offset, period ) {
-		var year = inst.selectedYear + ( period === "Y" ? offset : 0 ),
-			month = inst.selectedMonth + ( period === "M" ? offset : 0 ),
-			day = Math.min( inst.selectedDay, this._getDaysInMonth( year, month ) ) + ( period === "D" ? offset : 0 ),
-			date = this._restrictMinMax( inst, this._daylightSavingAdjust( new Date( year, month, day ) ) );
-
-		inst.selectedDay = date.getDate();
-		inst.drawMonth = inst.selectedMonth = date.getMonth();
-		inst.drawYear = inst.selectedYear = date.getFullYear();
-		if ( period === "M" || period === "Y" ) {
-			this._notifyChange( inst );
-		}
-	},
-
-	/* Ensure a date is within any min/max bounds. */
-	_restrictMinMax: function( inst, date ) {
-		var minDate = this._getMinMaxDate( inst, "min" ),
-			maxDate = this._getMinMaxDate( inst, "max" ),
-			newDate = ( minDate && date < minDate ? minDate : date );
-		return ( maxDate && newDate > maxDate ? maxDate : newDate );
-	},
-
-	/* Notify change of month/year. */
-	_notifyChange: function( inst ) {
-		var onChange = this._get( inst, "onChangeMonthYear" );
-		if ( onChange ) {
-			onChange.apply( ( inst.input ? inst.input[ 0 ] : null ),
-				[ inst.selectedYear, inst.selectedMonth + 1, inst ] );
-		}
-	},
-
-	/* Determine the number of months to show. */
-	_getNumberOfMonths: function( inst ) {
-		var numMonths = this._get( inst, "numberOfMonths" );
-		return ( numMonths == null ? [ 1, 1 ] : ( typeof numMonths === "number" ? [ 1, numMonths ] : numMonths ) );
-	},
-
-	/* Determine the current maximum date - ensure no time components are set. */
-	_getMinMaxDate: function( inst, minMax ) {
-		return this._determineDate( inst, this._get( inst, minMax + "Date" ), null );
-	},
-
-	/* Find the number of days in a given month. */
-	_getDaysInMonth: function( year, month ) {
-		return 32 - this._daylightSavingAdjust( new Date( year, month, 32 ) ).getDate();
-	},
-
-	/* Find the day of the week of the first of a month. */
-	_getFirstDayOfMonth: function( year, month ) {
-		return new Date( year, month, 1 ).getDay();
-	},
-
-	/* Determines if we should allow a "next/prev" month display change. */
-	_canAdjustMonth: function( inst, offset, curYear, curMonth ) {
-		var numMonths = this._getNumberOfMonths( inst ),
-			date = this._daylightSavingAdjust( new Date( curYear,
-			curMonth + ( offset < 0 ? offset : numMonths[ 0 ] * numMonths[ 1 ] ), 1 ) );
-
-		if ( offset < 0 ) {
-			date.setDate( this._getDaysInMonth( date.getFullYear(), date.getMonth() ) );
-		}
-		return this._isInRange( inst, date );
-	},
-
-	/* Is the given date in the accepted range? */
-	_isInRange: function( inst, date ) {
-		var yearSplit, currentYear,
-			minDate = this._getMinMaxDate( inst, "min" ),
-			maxDate = this._getMinMaxDate( inst, "max" ),
-			minYear = null,
-			maxYear = null,
-			years = this._get( inst, "yearRange" );
-			if ( years ) {
-				yearSplit = years.split( ":" );
-				currentYear = new Date().getFullYear();
-				minYear = parseInt( yearSplit[ 0 ], 10 );
-				maxYear = parseInt( yearSplit[ 1 ], 10 );
-				if ( yearSplit[ 0 ].match( /[+\-].*/ ) ) {
-					minYear += currentYear;
-				}
-				if ( yearSplit[ 1 ].match( /[+\-].*/ ) ) {
-					maxYear += currentYear;
-				}
-			}
-
-		return ( ( !minDate || date.getTime() >= minDate.getTime() ) &&
-			( !maxDate || date.getTime() <= maxDate.getTime() ) &&
-			( !minYear || date.getFullYear() >= minYear ) &&
-			( !maxYear || date.getFullYear() <= maxYear ) );
-	},
-
-	/* Provide the configuration settings for formatting/parsing. */
-	_getFormatConfig: function( inst ) {
-		var shortYearCutoff = this._get( inst, "shortYearCutoff" );
-		shortYearCutoff = ( typeof shortYearCutoff !== "string" ? shortYearCutoff :
-			new Date().getFullYear() % 100 + parseInt( shortYearCutoff, 10 ) );
-		return { shortYearCutoff: shortYearCutoff,
-			dayNamesShort: this._get( inst, "dayNamesShort" ), dayNames: this._get( inst, "dayNames" ),
-			monthNamesShort: this._get( inst, "monthNamesShort" ), monthNames: this._get( inst, "monthNames" ) };
-	},
-
-	/* Format the given date for display. */
-	_formatDate: function( inst, day, month, year ) {
-		if ( !day ) {
-			inst.currentDay = inst.selectedDay;
-			inst.currentMonth = inst.selectedMonth;
-			inst.currentYear = inst.selectedYear;
-		}
-		var date = ( day ? ( typeof day === "object" ? day :
-			this._daylightSavingAdjust( new Date( year, month, day ) ) ) :
-			this._daylightSavingAdjust( new Date( inst.currentYear, inst.currentMonth, inst.currentDay ) ) );
-		return this.formatDate( this._get( inst, "dateFormat" ), date, this._getFormatConfig( inst ) );
-	}
-} );
-
-/*
- * Bind hover events for datepicker elements.
- * Done via delegate so the binding only occurs once in the lifetime of the parent div.
- * Global datepicker_instActive, set by _updateDatepicker allows the handlers to find their way back to the active picker.
- */
-function datepicker_bindHover( dpDiv ) {
-	var selector = "button, .ui-datepicker-prev, .ui-datepicker-next, .ui-datepicker-calendar td a";
-	return dpDiv.on( "mouseout", selector, function() {
-			$( this ).removeClass( "ui-state-hover" );
-			if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
-				$( this ).removeClass( "ui-datepicker-prev-hover" );
-			}
-			if ( this.className.indexOf( "ui-datepicker-next" ) !== -1 ) {
-				$( this ).removeClass( "ui-datepicker-next-hover" );
-			}
-		} )
-		.on( "mouseover", selector, datepicker_handleMouseover );
-}
-
-function datepicker_handleMouseover() {
-	if ( !$.datepicker._isDisabledDatepicker( datepicker_instActive.inline ? datepicker_instActive.dpDiv.parent()[ 0 ] : datepicker_instActive.input[ 0 ] ) ) {
-		$( this ).parents( ".ui-datepicker-calendar" ).find( "a" ).removeClass( "ui-state-hover" );
-		$( this ).addClass( "ui-state-hover" );
-		if ( this.className.indexOf( "ui-datepicker-prev" ) !== -1 ) {
-			$( this ).addClass( "ui-datepicker-prev-hover" );
-		}
-		if ( this.className.indexOf( "ui-datepicker-next" ) !== -1 ) {
-			$( this ).addClass( "ui-datepicker-next-hover" );
-		}
-	}
-}
-
-/* jQuery extend now ignores nulls! */
-function datepicker_extendRemove( target, props ) {
-	$.extend( target, props );
-	for ( var name in props ) {
-		if ( props[ name ] == null ) {
-			target[ name ] = props[ name ];
-		}
-	}
-	return target;
-}
-
-/* Invoke the datepicker functionality.
-   @param  options  string - a command, optionally followed by additional parameters or
-					Object - settings for attaching new datepicker functionality
-   @return  jQuery object */
-$.fn.datepicker = function( options ) {
-
-	/* Verify an empty collection wasn't passed - Fixes #6976 */
-	if ( !this.length ) {
-		return this;
-	}
-
-	/* Initialise the date picker. */
-	if ( !$.datepicker.initialized ) {
-		$( document ).on( "mousedown", $.datepicker._checkExternalClick );
-		$.datepicker.initialized = true;
-	}
-
-	/* Append datepicker main container to body if not exist. */
-	if ( $( "#" + $.datepicker._mainDivId ).length === 0 ) {
-		$( "body" ).append( $.datepicker.dpDiv );
-	}
-
-	var otherArgs = Array.prototype.slice.call( arguments, 1 );
-	if ( typeof options === "string" && ( options === "isDisabled" || options === "getDate" || options === "widget" ) ) {
-		return $.datepicker[ "_" + options + "Datepicker" ].
-			apply( $.datepicker, [ this[ 0 ] ].concat( otherArgs ) );
-	}
-	if ( options === "option" && arguments.length === 2 && typeof arguments[ 1 ] === "string" ) {
-		return $.datepicker[ "_" + options + "Datepicker" ].
-			apply( $.datepicker, [ this[ 0 ] ].concat( otherArgs ) );
-	}
-	return this.each( function() {
-		typeof options === "string" ?
-			$.datepicker[ "_" + options + "Datepicker" ].
-				apply( $.datepicker, [ this ].concat( otherArgs ) ) :
-			$.datepicker._attachDatepicker( this, options );
-	} );
-};
-
-$.datepicker = new Datepicker(); // singleton instance
-$.datepicker.initialized = false;
-$.datepicker.uuid = new Date().getTime();
-$.datepicker.version = "1.12.1";
-
-return $.datepicker;
-
-} ) );
 
 
 /***/ }),
@@ -40415,10 +37511,10 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddPaie.vue?vue&type=template&id=57e1ed1a&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/AddPaie.vue?vue&type=template&id=57e1ed1a& ***!
+  \**********************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -40437,17 +37533,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
+    return _c("div", [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-12" }, [
+          _c("div", { staticClass: "card border-success" }, [
+            _c("div", { staticClass: "card-header text-success" }, [
+              _vm._v("\n                    Nouvelle Fiche\n                ")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "card-body" }, [
               _vm._v(
-                "\n                    I'm an example component.\n                "
+                "\n                     cree nouvelle fichier\n                "
               )
             ])
           ])
@@ -40456,6 +37552,61 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaieVue.vue?vue&type=template&id=2c04b744&":
+/*!**********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/PaieVue.vue?vue&type=template&id=2c04b744& ***!
+  \**********************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "card border-primary " }, [
+          _c("div", { staticClass: "card-header text-primary " }, [
+            _vm._v("Tout Les Fiches")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "ul",
+              { staticClass: "list-group" },
+              _vm._l(_vm.employers, function(employer) {
+                return _c(
+                  "li",
+                  { key: employer.id, staticClass: "list-group-item" },
+                  [
+                    _vm._v(
+                      "\n                            " +
+                        _vm._s(employer.id) +
+                        "\n                        "
+                    )
+                  ]
+                )
+              }),
+              0
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40570,6 +37721,2948 @@ function normalizeComponent (
     options: options
   }
 }
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-router/dist/vue-router.esm.js":
+/*!********************************************************!*\
+  !*** ./node_modules/vue-router/dist/vue-router.esm.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/*!
+  * vue-router v3.2.0
+  * (c) 2020 Evan You
+  * @license MIT
+  */
+/*  */
+
+function assert (condition, message) {
+  if (!condition) {
+    throw new Error(("[vue-router] " + message))
+  }
+}
+
+function warn (condition, message) {
+  if ( true && !condition) {
+    typeof console !== 'undefined' && console.warn(("[vue-router] " + message));
+  }
+}
+
+function isError (err) {
+  return Object.prototype.toString.call(err).indexOf('Error') > -1
+}
+
+function isExtendedError (constructor, err) {
+  return (
+    err instanceof constructor ||
+    // _name is to support IE9 too
+    (err && (err.name === constructor.name || err._name === constructor._name))
+  )
+}
+
+function extend (a, b) {
+  for (var key in b) {
+    a[key] = b[key];
+  }
+  return a
+}
+
+var View = {
+  name: 'RouterView',
+  functional: true,
+  props: {
+    name: {
+      type: String,
+      default: 'default'
+    }
+  },
+  render: function render (_, ref) {
+    var props = ref.props;
+    var children = ref.children;
+    var parent = ref.parent;
+    var data = ref.data;
+
+    // used by devtools to display a router-view badge
+    data.routerView = true;
+
+    // directly use parent context's createElement() function
+    // so that components rendered by router-view can resolve named slots
+    var h = parent.$createElement;
+    var name = props.name;
+    var route = parent.$route;
+    var cache = parent._routerViewCache || (parent._routerViewCache = {});
+
+    // determine current view depth, also check to see if the tree
+    // has been toggled inactive but kept-alive.
+    var depth = 0;
+    var inactive = false;
+    while (parent && parent._routerRoot !== parent) {
+      var vnodeData = parent.$vnode ? parent.$vnode.data : {};
+      if (vnodeData.routerView) {
+        depth++;
+      }
+      if (vnodeData.keepAlive && parent._directInactive && parent._inactive) {
+        inactive = true;
+      }
+      parent = parent.$parent;
+    }
+    data.routerViewDepth = depth;
+
+    // render previous view if the tree is inactive and kept-alive
+    if (inactive) {
+      var cachedData = cache[name];
+      var cachedComponent = cachedData && cachedData.component;
+      if (cachedComponent) {
+        // #2301
+        // pass props
+        if (cachedData.configProps) {
+          fillPropsinData(cachedComponent, data, cachedData.route, cachedData.configProps);
+        }
+        return h(cachedComponent, data, children)
+      } else {
+        // render previous empty view
+        return h()
+      }
+    }
+
+    var matched = route.matched[depth];
+    var component = matched && matched.components[name];
+
+    // render empty node if no matched route or no config component
+    if (!matched || !component) {
+      cache[name] = null;
+      return h()
+    }
+
+    // cache component
+    cache[name] = { component: component };
+
+    // attach instance registration hook
+    // this will be called in the instance's injected lifecycle hooks
+    data.registerRouteInstance = function (vm, val) {
+      // val could be undefined for unregistration
+      var current = matched.instances[name];
+      if (
+        (val && current !== vm) ||
+        (!val && current === vm)
+      ) {
+        matched.instances[name] = val;
+      }
+    }
+
+    // also register instance in prepatch hook
+    // in case the same component instance is reused across different routes
+    ;(data.hook || (data.hook = {})).prepatch = function (_, vnode) {
+      matched.instances[name] = vnode.componentInstance;
+    };
+
+    // register instance in init hook
+    // in case kept-alive component be actived when routes changed
+    data.hook.init = function (vnode) {
+      if (vnode.data.keepAlive &&
+        vnode.componentInstance &&
+        vnode.componentInstance !== matched.instances[name]
+      ) {
+        matched.instances[name] = vnode.componentInstance;
+      }
+    };
+
+    var configProps = matched.props && matched.props[name];
+    // save route and configProps in cachce
+    if (configProps) {
+      extend(cache[name], {
+        route: route,
+        configProps: configProps
+      });
+      fillPropsinData(component, data, route, configProps);
+    }
+
+    return h(component, data, children)
+  }
+};
+
+function fillPropsinData (component, data, route, configProps) {
+  // resolve props
+  var propsToPass = data.props = resolveProps(route, configProps);
+  if (propsToPass) {
+    // clone to prevent mutation
+    propsToPass = data.props = extend({}, propsToPass);
+    // pass non-declared props as attrs
+    var attrs = data.attrs = data.attrs || {};
+    for (var key in propsToPass) {
+      if (!component.props || !(key in component.props)) {
+        attrs[key] = propsToPass[key];
+        delete propsToPass[key];
+      }
+    }
+  }
+}
+
+function resolveProps (route, config) {
+  switch (typeof config) {
+    case 'undefined':
+      return
+    case 'object':
+      return config
+    case 'function':
+      return config(route)
+    case 'boolean':
+      return config ? route.params : undefined
+    default:
+      if (true) {
+        warn(
+          false,
+          "props in \"" + (route.path) + "\" is a " + (typeof config) + ", " +
+          "expecting an object, function or boolean."
+        );
+      }
+  }
+}
+
+/*  */
+
+var encodeReserveRE = /[!'()*]/g;
+var encodeReserveReplacer = function (c) { return '%' + c.charCodeAt(0).toString(16); };
+var commaRE = /%2C/g;
+
+// fixed encodeURIComponent which is more conformant to RFC3986:
+// - escapes [!'()*]
+// - preserve commas
+var encode = function (str) { return encodeURIComponent(str)
+  .replace(encodeReserveRE, encodeReserveReplacer)
+  .replace(commaRE, ','); };
+
+var decode = decodeURIComponent;
+
+function resolveQuery (
+  query,
+  extraQuery,
+  _parseQuery
+) {
+  if ( extraQuery === void 0 ) extraQuery = {};
+
+  var parse = _parseQuery || parseQuery;
+  var parsedQuery;
+  try {
+    parsedQuery = parse(query || '');
+  } catch (e) {
+     true && warn(false, e.message);
+    parsedQuery = {};
+  }
+  for (var key in extraQuery) {
+    parsedQuery[key] = extraQuery[key];
+  }
+  return parsedQuery
+}
+
+function parseQuery (query) {
+  var res = {};
+
+  query = query.trim().replace(/^(\?|#|&)/, '');
+
+  if (!query) {
+    return res
+  }
+
+  query.split('&').forEach(function (param) {
+    var parts = param.replace(/\+/g, ' ').split('=');
+    var key = decode(parts.shift());
+    var val = parts.length > 0
+      ? decode(parts.join('='))
+      : null;
+
+    if (res[key] === undefined) {
+      res[key] = val;
+    } else if (Array.isArray(res[key])) {
+      res[key].push(val);
+    } else {
+      res[key] = [res[key], val];
+    }
+  });
+
+  return res
+}
+
+function stringifyQuery (obj) {
+  var res = obj ? Object.keys(obj).map(function (key) {
+    var val = obj[key];
+
+    if (val === undefined) {
+      return ''
+    }
+
+    if (val === null) {
+      return encode(key)
+    }
+
+    if (Array.isArray(val)) {
+      var result = [];
+      val.forEach(function (val2) {
+        if (val2 === undefined) {
+          return
+        }
+        if (val2 === null) {
+          result.push(encode(key));
+        } else {
+          result.push(encode(key) + '=' + encode(val2));
+        }
+      });
+      return result.join('&')
+    }
+
+    return encode(key) + '=' + encode(val)
+  }).filter(function (x) { return x.length > 0; }).join('&') : null;
+  return res ? ("?" + res) : ''
+}
+
+/*  */
+
+var trailingSlashRE = /\/?$/;
+
+function createRoute (
+  record,
+  location,
+  redirectedFrom,
+  router
+) {
+  var stringifyQuery = router && router.options.stringifyQuery;
+
+  var query = location.query || {};
+  try {
+    query = clone(query);
+  } catch (e) {}
+
+  var route = {
+    name: location.name || (record && record.name),
+    meta: (record && record.meta) || {},
+    path: location.path || '/',
+    hash: location.hash || '',
+    query: query,
+    params: location.params || {},
+    fullPath: getFullPath(location, stringifyQuery),
+    matched: record ? formatMatch(record) : []
+  };
+  if (redirectedFrom) {
+    route.redirectedFrom = getFullPath(redirectedFrom, stringifyQuery);
+  }
+  return Object.freeze(route)
+}
+
+function clone (value) {
+  if (Array.isArray(value)) {
+    return value.map(clone)
+  } else if (value && typeof value === 'object') {
+    var res = {};
+    for (var key in value) {
+      res[key] = clone(value[key]);
+    }
+    return res
+  } else {
+    return value
+  }
+}
+
+// the starting route that represents the initial state
+var START = createRoute(null, {
+  path: '/'
+});
+
+function formatMatch (record) {
+  var res = [];
+  while (record) {
+    res.unshift(record);
+    record = record.parent;
+  }
+  return res
+}
+
+function getFullPath (
+  ref,
+  _stringifyQuery
+) {
+  var path = ref.path;
+  var query = ref.query; if ( query === void 0 ) query = {};
+  var hash = ref.hash; if ( hash === void 0 ) hash = '';
+
+  var stringify = _stringifyQuery || stringifyQuery;
+  return (path || '/') + stringify(query) + hash
+}
+
+function isSameRoute (a, b) {
+  if (b === START) {
+    return a === b
+  } else if (!b) {
+    return false
+  } else if (a.path && b.path) {
+    return (
+      a.path.replace(trailingSlashRE, '') === b.path.replace(trailingSlashRE, '') &&
+      a.hash === b.hash &&
+      isObjectEqual(a.query, b.query)
+    )
+  } else if (a.name && b.name) {
+    return (
+      a.name === b.name &&
+      a.hash === b.hash &&
+      isObjectEqual(a.query, b.query) &&
+      isObjectEqual(a.params, b.params)
+    )
+  } else {
+    return false
+  }
+}
+
+function isObjectEqual (a, b) {
+  if ( a === void 0 ) a = {};
+  if ( b === void 0 ) b = {};
+
+  // handle null value #1566
+  if (!a || !b) { return a === b }
+  var aKeys = Object.keys(a);
+  var bKeys = Object.keys(b);
+  if (aKeys.length !== bKeys.length) {
+    return false
+  }
+  return aKeys.every(function (key) {
+    var aVal = a[key];
+    var bVal = b[key];
+    // check nested equality
+    if (typeof aVal === 'object' && typeof bVal === 'object') {
+      return isObjectEqual(aVal, bVal)
+    }
+    return String(aVal) === String(bVal)
+  })
+}
+
+function isIncludedRoute (current, target) {
+  return (
+    current.path.replace(trailingSlashRE, '/').indexOf(
+      target.path.replace(trailingSlashRE, '/')
+    ) === 0 &&
+    (!target.hash || current.hash === target.hash) &&
+    queryIncludes(current.query, target.query)
+  )
+}
+
+function queryIncludes (current, target) {
+  for (var key in target) {
+    if (!(key in current)) {
+      return false
+    }
+  }
+  return true
+}
+
+/*  */
+
+function resolvePath (
+  relative,
+  base,
+  append
+) {
+  var firstChar = relative.charAt(0);
+  if (firstChar === '/') {
+    return relative
+  }
+
+  if (firstChar === '?' || firstChar === '#') {
+    return base + relative
+  }
+
+  var stack = base.split('/');
+
+  // remove trailing segment if:
+  // - not appending
+  // - appending to trailing slash (last segment is empty)
+  if (!append || !stack[stack.length - 1]) {
+    stack.pop();
+  }
+
+  // resolve relative path
+  var segments = relative.replace(/^\//, '').split('/');
+  for (var i = 0; i < segments.length; i++) {
+    var segment = segments[i];
+    if (segment === '..') {
+      stack.pop();
+    } else if (segment !== '.') {
+      stack.push(segment);
+    }
+  }
+
+  // ensure leading slash
+  if (stack[0] !== '') {
+    stack.unshift('');
+  }
+
+  return stack.join('/')
+}
+
+function parsePath (path) {
+  var hash = '';
+  var query = '';
+
+  var hashIndex = path.indexOf('#');
+  if (hashIndex >= 0) {
+    hash = path.slice(hashIndex);
+    path = path.slice(0, hashIndex);
+  }
+
+  var queryIndex = path.indexOf('?');
+  if (queryIndex >= 0) {
+    query = path.slice(queryIndex + 1);
+    path = path.slice(0, queryIndex);
+  }
+
+  return {
+    path: path,
+    query: query,
+    hash: hash
+  }
+}
+
+function cleanPath (path) {
+  return path.replace(/\/\//g, '/')
+}
+
+var isarray = Array.isArray || function (arr) {
+  return Object.prototype.toString.call(arr) == '[object Array]';
+};
+
+/**
+ * Expose `pathToRegexp`.
+ */
+var pathToRegexp_1 = pathToRegexp;
+var parse_1 = parse;
+var compile_1 = compile;
+var tokensToFunction_1 = tokensToFunction;
+var tokensToRegExp_1 = tokensToRegExp;
+
+/**
+ * The main path matching regexp utility.
+ *
+ * @type {RegExp}
+ */
+var PATH_REGEXP = new RegExp([
+  // Match escaped characters that would otherwise appear in future matches.
+  // This allows the user to escape special characters that won't transform.
+  '(\\\\.)',
+  // Match Express-style parameters and un-named parameters with a prefix
+  // and optional suffixes. Matches appear as:
+  //
+  // "/:test(\\d+)?" => ["/", "test", "\d+", undefined, "?", undefined]
+  // "/route(\\d+)"  => [undefined, undefined, undefined, "\d+", undefined, undefined]
+  // "/*"            => ["/", undefined, undefined, undefined, undefined, "*"]
+  '([\\/.])?(?:(?:\\:(\\w+)(?:\\(((?:\\\\.|[^\\\\()])+)\\))?|\\(((?:\\\\.|[^\\\\()])+)\\))([+*?])?|(\\*))'
+].join('|'), 'g');
+
+/**
+ * Parse a string for the raw tokens.
+ *
+ * @param  {string}  str
+ * @param  {Object=} options
+ * @return {!Array}
+ */
+function parse (str, options) {
+  var tokens = [];
+  var key = 0;
+  var index = 0;
+  var path = '';
+  var defaultDelimiter = options && options.delimiter || '/';
+  var res;
+
+  while ((res = PATH_REGEXP.exec(str)) != null) {
+    var m = res[0];
+    var escaped = res[1];
+    var offset = res.index;
+    path += str.slice(index, offset);
+    index = offset + m.length;
+
+    // Ignore already escaped sequences.
+    if (escaped) {
+      path += escaped[1];
+      continue
+    }
+
+    var next = str[index];
+    var prefix = res[2];
+    var name = res[3];
+    var capture = res[4];
+    var group = res[5];
+    var modifier = res[6];
+    var asterisk = res[7];
+
+    // Push the current path onto the tokens.
+    if (path) {
+      tokens.push(path);
+      path = '';
+    }
+
+    var partial = prefix != null && next != null && next !== prefix;
+    var repeat = modifier === '+' || modifier === '*';
+    var optional = modifier === '?' || modifier === '*';
+    var delimiter = res[2] || defaultDelimiter;
+    var pattern = capture || group;
+
+    tokens.push({
+      name: name || key++,
+      prefix: prefix || '',
+      delimiter: delimiter,
+      optional: optional,
+      repeat: repeat,
+      partial: partial,
+      asterisk: !!asterisk,
+      pattern: pattern ? escapeGroup(pattern) : (asterisk ? '.*' : '[^' + escapeString(delimiter) + ']+?')
+    });
+  }
+
+  // Match any characters still remaining.
+  if (index < str.length) {
+    path += str.substr(index);
+  }
+
+  // If the path exists, push it onto the end.
+  if (path) {
+    tokens.push(path);
+  }
+
+  return tokens
+}
+
+/**
+ * Compile a string to a template function for the path.
+ *
+ * @param  {string}             str
+ * @param  {Object=}            options
+ * @return {!function(Object=, Object=)}
+ */
+function compile (str, options) {
+  return tokensToFunction(parse(str, options), options)
+}
+
+/**
+ * Prettier encoding of URI path segments.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeURIComponentPretty (str) {
+  return encodeURI(str).replace(/[\/?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Encode the asterisk parameter. Similar to `pretty`, but allows slashes.
+ *
+ * @param  {string}
+ * @return {string}
+ */
+function encodeAsterisk (str) {
+  return encodeURI(str).replace(/[?#]/g, function (c) {
+    return '%' + c.charCodeAt(0).toString(16).toUpperCase()
+  })
+}
+
+/**
+ * Expose a method for transforming tokens into the path function.
+ */
+function tokensToFunction (tokens, options) {
+  // Compile all the tokens into regexps.
+  var matches = new Array(tokens.length);
+
+  // Compile all the patterns before compilation.
+  for (var i = 0; i < tokens.length; i++) {
+    if (typeof tokens[i] === 'object') {
+      matches[i] = new RegExp('^(?:' + tokens[i].pattern + ')$', flags(options));
+    }
+  }
+
+  return function (obj, opts) {
+    var path = '';
+    var data = obj || {};
+    var options = opts || {};
+    var encode = options.pretty ? encodeURIComponentPretty : encodeURIComponent;
+
+    for (var i = 0; i < tokens.length; i++) {
+      var token = tokens[i];
+
+      if (typeof token === 'string') {
+        path += token;
+
+        continue
+      }
+
+      var value = data[token.name];
+      var segment;
+
+      if (value == null) {
+        if (token.optional) {
+          // Prepend partial segment prefixes.
+          if (token.partial) {
+            path += token.prefix;
+          }
+
+          continue
+        } else {
+          throw new TypeError('Expected "' + token.name + '" to be defined')
+        }
+      }
+
+      if (isarray(value)) {
+        if (!token.repeat) {
+          throw new TypeError('Expected "' + token.name + '" to not repeat, but received `' + JSON.stringify(value) + '`')
+        }
+
+        if (value.length === 0) {
+          if (token.optional) {
+            continue
+          } else {
+            throw new TypeError('Expected "' + token.name + '" to not be empty')
+          }
+        }
+
+        for (var j = 0; j < value.length; j++) {
+          segment = encode(value[j]);
+
+          if (!matches[i].test(segment)) {
+            throw new TypeError('Expected all "' + token.name + '" to match "' + token.pattern + '", but received `' + JSON.stringify(segment) + '`')
+          }
+
+          path += (j === 0 ? token.prefix : token.delimiter) + segment;
+        }
+
+        continue
+      }
+
+      segment = token.asterisk ? encodeAsterisk(value) : encode(value);
+
+      if (!matches[i].test(segment)) {
+        throw new TypeError('Expected "' + token.name + '" to match "' + token.pattern + '", but received "' + segment + '"')
+      }
+
+      path += token.prefix + segment;
+    }
+
+    return path
+  }
+}
+
+/**
+ * Escape a regular expression string.
+ *
+ * @param  {string} str
+ * @return {string}
+ */
+function escapeString (str) {
+  return str.replace(/([.+*?=^!:${}()[\]|\/\\])/g, '\\$1')
+}
+
+/**
+ * Escape the capturing group by escaping special characters and meaning.
+ *
+ * @param  {string} group
+ * @return {string}
+ */
+function escapeGroup (group) {
+  return group.replace(/([=!:$\/()])/g, '\\$1')
+}
+
+/**
+ * Attach the keys as a property of the regexp.
+ *
+ * @param  {!RegExp} re
+ * @param  {Array}   keys
+ * @return {!RegExp}
+ */
+function attachKeys (re, keys) {
+  re.keys = keys;
+  return re
+}
+
+/**
+ * Get the flags for a regexp from the options.
+ *
+ * @param  {Object} options
+ * @return {string}
+ */
+function flags (options) {
+  return options && options.sensitive ? '' : 'i'
+}
+
+/**
+ * Pull out keys from a regexp.
+ *
+ * @param  {!RegExp} path
+ * @param  {!Array}  keys
+ * @return {!RegExp}
+ */
+function regexpToRegexp (path, keys) {
+  // Use a negative lookahead to match only capturing groups.
+  var groups = path.source.match(/\((?!\?)/g);
+
+  if (groups) {
+    for (var i = 0; i < groups.length; i++) {
+      keys.push({
+        name: i,
+        prefix: null,
+        delimiter: null,
+        optional: false,
+        repeat: false,
+        partial: false,
+        asterisk: false,
+        pattern: null
+      });
+    }
+  }
+
+  return attachKeys(path, keys)
+}
+
+/**
+ * Transform an array into a regexp.
+ *
+ * @param  {!Array}  path
+ * @param  {Array}   keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function arrayToRegexp (path, keys, options) {
+  var parts = [];
+
+  for (var i = 0; i < path.length; i++) {
+    parts.push(pathToRegexp(path[i], keys, options).source);
+  }
+
+  var regexp = new RegExp('(?:' + parts.join('|') + ')', flags(options));
+
+  return attachKeys(regexp, keys)
+}
+
+/**
+ * Create a path regexp from string input.
+ *
+ * @param  {string}  path
+ * @param  {!Array}  keys
+ * @param  {!Object} options
+ * @return {!RegExp}
+ */
+function stringToRegexp (path, keys, options) {
+  return tokensToRegExp(parse(path, options), keys, options)
+}
+
+/**
+ * Expose a function for taking tokens and returning a RegExp.
+ *
+ * @param  {!Array}          tokens
+ * @param  {(Array|Object)=} keys
+ * @param  {Object=}         options
+ * @return {!RegExp}
+ */
+function tokensToRegExp (tokens, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options);
+    keys = [];
+  }
+
+  options = options || {};
+
+  var strict = options.strict;
+  var end = options.end !== false;
+  var route = '';
+
+  // Iterate over the tokens and create our regexp string.
+  for (var i = 0; i < tokens.length; i++) {
+    var token = tokens[i];
+
+    if (typeof token === 'string') {
+      route += escapeString(token);
+    } else {
+      var prefix = escapeString(token.prefix);
+      var capture = '(?:' + token.pattern + ')';
+
+      keys.push(token);
+
+      if (token.repeat) {
+        capture += '(?:' + prefix + capture + ')*';
+      }
+
+      if (token.optional) {
+        if (!token.partial) {
+          capture = '(?:' + prefix + '(' + capture + '))?';
+        } else {
+          capture = prefix + '(' + capture + ')?';
+        }
+      } else {
+        capture = prefix + '(' + capture + ')';
+      }
+
+      route += capture;
+    }
+  }
+
+  var delimiter = escapeString(options.delimiter || '/');
+  var endsWithDelimiter = route.slice(-delimiter.length) === delimiter;
+
+  // In non-strict mode we allow a slash at the end of match. If the path to
+  // match already ends with a slash, we remove it for consistency. The slash
+  // is valid at the end of a path match, not in the middle. This is important
+  // in non-ending mode, where "/test/" shouldn't match "/test//route".
+  if (!strict) {
+    route = (endsWithDelimiter ? route.slice(0, -delimiter.length) : route) + '(?:' + delimiter + '(?=$))?';
+  }
+
+  if (end) {
+    route += '$';
+  } else {
+    // In non-ending mode, we need the capturing groups to match as much as
+    // possible by using a positive lookahead to the end or next path segment.
+    route += strict && endsWithDelimiter ? '' : '(?=' + delimiter + '|$)';
+  }
+
+  return attachKeys(new RegExp('^' + route, flags(options)), keys)
+}
+
+/**
+ * Normalize the given path string, returning a regular expression.
+ *
+ * An empty array can be passed in for the keys, which will hold the
+ * placeholder key descriptions. For example, using `/user/:id`, `keys` will
+ * contain `[{ name: 'id', delimiter: '/', optional: false, repeat: false }]`.
+ *
+ * @param  {(string|RegExp|Array)} path
+ * @param  {(Array|Object)=}       keys
+ * @param  {Object=}               options
+ * @return {!RegExp}
+ */
+function pathToRegexp (path, keys, options) {
+  if (!isarray(keys)) {
+    options = /** @type {!Object} */ (keys || options);
+    keys = [];
+  }
+
+  options = options || {};
+
+  if (path instanceof RegExp) {
+    return regexpToRegexp(path, /** @type {!Array} */ (keys))
+  }
+
+  if (isarray(path)) {
+    return arrayToRegexp(/** @type {!Array} */ (path), /** @type {!Array} */ (keys), options)
+  }
+
+  return stringToRegexp(/** @type {string} */ (path), /** @type {!Array} */ (keys), options)
+}
+pathToRegexp_1.parse = parse_1;
+pathToRegexp_1.compile = compile_1;
+pathToRegexp_1.tokensToFunction = tokensToFunction_1;
+pathToRegexp_1.tokensToRegExp = tokensToRegExp_1;
+
+/*  */
+
+// $flow-disable-line
+var regexpCompileCache = Object.create(null);
+
+function fillParams (
+  path,
+  params,
+  routeMsg
+) {
+  params = params || {};
+  try {
+    var filler =
+      regexpCompileCache[path] ||
+      (regexpCompileCache[path] = pathToRegexp_1.compile(path));
+
+    // Fix #2505 resolving asterisk routes { name: 'not-found', params: { pathMatch: '/not-found' }}
+    // and fix #3106 so that you can work with location descriptor object having params.pathMatch equal to empty string
+    if (typeof params.pathMatch === 'string') { params[0] = params.pathMatch; }
+
+    return filler(params, { pretty: true })
+  } catch (e) {
+    if (true) {
+      // Fix #3072 no warn if `pathMatch` is string
+      warn(typeof params.pathMatch === 'string', ("missing param for " + routeMsg + ": " + (e.message)));
+    }
+    return ''
+  } finally {
+    // delete the 0 if it was added
+    delete params[0];
+  }
+}
+
+/*  */
+
+function normalizeLocation (
+  raw,
+  current,
+  append,
+  router
+) {
+  var next = typeof raw === 'string' ? { path: raw } : raw;
+  // named target
+  if (next._normalized) {
+    return next
+  } else if (next.name) {
+    next = extend({}, raw);
+    var params = next.params;
+    if (params && typeof params === 'object') {
+      next.params = extend({}, params);
+    }
+    return next
+  }
+
+  // relative params
+  if (!next.path && next.params && current) {
+    next = extend({}, next);
+    next._normalized = true;
+    var params$1 = extend(extend({}, current.params), next.params);
+    if (current.name) {
+      next.name = current.name;
+      next.params = params$1;
+    } else if (current.matched.length) {
+      var rawPath = current.matched[current.matched.length - 1].path;
+      next.path = fillParams(rawPath, params$1, ("path " + (current.path)));
+    } else if (true) {
+      warn(false, "relative params navigation requires a current route.");
+    }
+    return next
+  }
+
+  var parsedPath = parsePath(next.path || '');
+  var basePath = (current && current.path) || '/';
+  var path = parsedPath.path
+    ? resolvePath(parsedPath.path, basePath, append || next.append)
+    : basePath;
+
+  var query = resolveQuery(
+    parsedPath.query,
+    next.query,
+    router && router.options.parseQuery
+  );
+
+  var hash = next.hash || parsedPath.hash;
+  if (hash && hash.charAt(0) !== '#') {
+    hash = "#" + hash;
+  }
+
+  return {
+    _normalized: true,
+    path: path,
+    query: query,
+    hash: hash
+  }
+}
+
+/*  */
+
+// work around weird flow bug
+var toTypes = [String, Object];
+var eventTypes = [String, Array];
+
+var noop = function () {};
+
+var Link = {
+  name: 'RouterLink',
+  props: {
+    to: {
+      type: toTypes,
+      required: true
+    },
+    tag: {
+      type: String,
+      default: 'a'
+    },
+    exact: Boolean,
+    append: Boolean,
+    replace: Boolean,
+    activeClass: String,
+    exactActiveClass: String,
+    ariaCurrentValue: {
+      type: String,
+      default: 'page'
+    },
+    event: {
+      type: eventTypes,
+      default: 'click'
+    }
+  },
+  render: function render (h) {
+    var this$1 = this;
+
+    var router = this.$router;
+    var current = this.$route;
+    var ref = router.resolve(
+      this.to,
+      current,
+      this.append
+    );
+    var location = ref.location;
+    var route = ref.route;
+    var href = ref.href;
+
+    var classes = {};
+    var globalActiveClass = router.options.linkActiveClass;
+    var globalExactActiveClass = router.options.linkExactActiveClass;
+    // Support global empty active class
+    var activeClassFallback =
+      globalActiveClass == null ? 'router-link-active' : globalActiveClass;
+    var exactActiveClassFallback =
+      globalExactActiveClass == null
+        ? 'router-link-exact-active'
+        : globalExactActiveClass;
+    var activeClass =
+      this.activeClass == null ? activeClassFallback : this.activeClass;
+    var exactActiveClass =
+      this.exactActiveClass == null
+        ? exactActiveClassFallback
+        : this.exactActiveClass;
+
+    var compareTarget = route.redirectedFrom
+      ? createRoute(null, normalizeLocation(route.redirectedFrom), null, router)
+      : route;
+
+    classes[exactActiveClass] = isSameRoute(current, compareTarget);
+    classes[activeClass] = this.exact
+      ? classes[exactActiveClass]
+      : isIncludedRoute(current, compareTarget);
+
+    var ariaCurrentValue = classes[exactActiveClass] ? this.ariaCurrentValue : null;
+
+    var handler = function (e) {
+      if (guardEvent(e)) {
+        if (this$1.replace) {
+          router.replace(location, noop);
+        } else {
+          router.push(location, noop);
+        }
+      }
+    };
+
+    var on = { click: guardEvent };
+    if (Array.isArray(this.event)) {
+      this.event.forEach(function (e) {
+        on[e] = handler;
+      });
+    } else {
+      on[this.event] = handler;
+    }
+
+    var data = { class: classes };
+
+    var scopedSlot =
+      !this.$scopedSlots.$hasNormal &&
+      this.$scopedSlots.default &&
+      this.$scopedSlots.default({
+        href: href,
+        route: route,
+        navigate: handler,
+        isActive: classes[activeClass],
+        isExactActive: classes[exactActiveClass]
+      });
+
+    if (scopedSlot) {
+      if (scopedSlot.length === 1) {
+        return scopedSlot[0]
+      } else if (scopedSlot.length > 1 || !scopedSlot.length) {
+        if (true) {
+          warn(
+            false,
+            ("RouterLink with to=\"" + (this.to) + "\" is trying to use a scoped slot but it didn't provide exactly one child. Wrapping the content with a span element.")
+          );
+        }
+        return scopedSlot.length === 0 ? h() : h('span', {}, scopedSlot)
+      }
+    }
+
+    if (this.tag === 'a') {
+      data.on = on;
+      data.attrs = { href: href, 'aria-current': ariaCurrentValue };
+    } else {
+      // find the first <a> child and apply listener and href
+      var a = findAnchor(this.$slots.default);
+      if (a) {
+        // in case the <a> is a static node
+        a.isStatic = false;
+        var aData = (a.data = extend({}, a.data));
+        aData.on = aData.on || {};
+        // transform existing events in both objects into arrays so we can push later
+        for (var event in aData.on) {
+          var handler$1 = aData.on[event];
+          if (event in on) {
+            aData.on[event] = Array.isArray(handler$1) ? handler$1 : [handler$1];
+          }
+        }
+        // append new listeners for router-link
+        for (var event$1 in on) {
+          if (event$1 in aData.on) {
+            // on[event] is always a function
+            aData.on[event$1].push(on[event$1]);
+          } else {
+            aData.on[event$1] = handler;
+          }
+        }
+
+        var aAttrs = (a.data.attrs = extend({}, a.data.attrs));
+        aAttrs.href = href;
+        aAttrs['aria-current'] = ariaCurrentValue;
+      } else {
+        // doesn't have <a> child, apply listener to self
+        data.on = on;
+      }
+    }
+
+    return h(this.tag, data, this.$slots.default)
+  }
+};
+
+function guardEvent (e) {
+  // don't redirect with control keys
+  if (e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) { return }
+  // don't redirect when preventDefault called
+  if (e.defaultPrevented) { return }
+  // don't redirect on right click
+  if (e.button !== undefined && e.button !== 0) { return }
+  // don't redirect if `target="_blank"`
+  if (e.currentTarget && e.currentTarget.getAttribute) {
+    var target = e.currentTarget.getAttribute('target');
+    if (/\b_blank\b/i.test(target)) { return }
+  }
+  // this may be a Weex event which doesn't have this method
+  if (e.preventDefault) {
+    e.preventDefault();
+  }
+  return true
+}
+
+function findAnchor (children) {
+  if (children) {
+    var child;
+    for (var i = 0; i < children.length; i++) {
+      child = children[i];
+      if (child.tag === 'a') {
+        return child
+      }
+      if (child.children && (child = findAnchor(child.children))) {
+        return child
+      }
+    }
+  }
+}
+
+var _Vue;
+
+function install (Vue) {
+  if (install.installed && _Vue === Vue) { return }
+  install.installed = true;
+
+  _Vue = Vue;
+
+  var isDef = function (v) { return v !== undefined; };
+
+  var registerInstance = function (vm, callVal) {
+    var i = vm.$options._parentVnode;
+    if (isDef(i) && isDef(i = i.data) && isDef(i = i.registerRouteInstance)) {
+      i(vm, callVal);
+    }
+  };
+
+  Vue.mixin({
+    beforeCreate: function beforeCreate () {
+      if (isDef(this.$options.router)) {
+        this._routerRoot = this;
+        this._router = this.$options.router;
+        this._router.init(this);
+        Vue.util.defineReactive(this, '_route', this._router.history.current);
+      } else {
+        this._routerRoot = (this.$parent && this.$parent._routerRoot) || this;
+      }
+      registerInstance(this, this);
+    },
+    destroyed: function destroyed () {
+      registerInstance(this);
+    }
+  });
+
+  Object.defineProperty(Vue.prototype, '$router', {
+    get: function get () { return this._routerRoot._router }
+  });
+
+  Object.defineProperty(Vue.prototype, '$route', {
+    get: function get () { return this._routerRoot._route }
+  });
+
+  Vue.component('RouterView', View);
+  Vue.component('RouterLink', Link);
+
+  var strats = Vue.config.optionMergeStrategies;
+  // use the same hook merging strategy for route hooks
+  strats.beforeRouteEnter = strats.beforeRouteLeave = strats.beforeRouteUpdate = strats.created;
+}
+
+/*  */
+
+var inBrowser = typeof window !== 'undefined';
+
+/*  */
+
+function createRouteMap (
+  routes,
+  oldPathList,
+  oldPathMap,
+  oldNameMap
+) {
+  // the path list is used to control path matching priority
+  var pathList = oldPathList || [];
+  // $flow-disable-line
+  var pathMap = oldPathMap || Object.create(null);
+  // $flow-disable-line
+  var nameMap = oldNameMap || Object.create(null);
+
+  routes.forEach(function (route) {
+    addRouteRecord(pathList, pathMap, nameMap, route);
+  });
+
+  // ensure wildcard routes are always at the end
+  for (var i = 0, l = pathList.length; i < l; i++) {
+    if (pathList[i] === '*') {
+      pathList.push(pathList.splice(i, 1)[0]);
+      l--;
+      i--;
+    }
+  }
+
+  if (true) {
+    // warn if routes do not include leading slashes
+    var found = pathList
+    // check for missing leading slash
+      .filter(function (path) { return path && path.charAt(0) !== '*' && path.charAt(0) !== '/'; });
+
+    if (found.length > 0) {
+      var pathNames = found.map(function (path) { return ("- " + path); }).join('\n');
+      warn(false, ("Non-nested routes must include a leading slash character. Fix the following routes: \n" + pathNames));
+    }
+  }
+
+  return {
+    pathList: pathList,
+    pathMap: pathMap,
+    nameMap: nameMap
+  }
+}
+
+function addRouteRecord (
+  pathList,
+  pathMap,
+  nameMap,
+  route,
+  parent,
+  matchAs
+) {
+  var path = route.path;
+  var name = route.name;
+  if (true) {
+    assert(path != null, "\"path\" is required in a route configuration.");
+    assert(
+      typeof route.component !== 'string',
+      "route config \"component\" for path: " + (String(
+        path || name
+      )) + " cannot be a " + "string id. Use an actual component instead."
+    );
+  }
+
+  var pathToRegexpOptions =
+    route.pathToRegexpOptions || {};
+  var normalizedPath = normalizePath(path, parent, pathToRegexpOptions.strict);
+
+  if (typeof route.caseSensitive === 'boolean') {
+    pathToRegexpOptions.sensitive = route.caseSensitive;
+  }
+
+  var record = {
+    path: normalizedPath,
+    regex: compileRouteRegex(normalizedPath, pathToRegexpOptions),
+    components: route.components || { default: route.component },
+    instances: {},
+    name: name,
+    parent: parent,
+    matchAs: matchAs,
+    redirect: route.redirect,
+    beforeEnter: route.beforeEnter,
+    meta: route.meta || {},
+    props:
+      route.props == null
+        ? {}
+        : route.components
+          ? route.props
+          : { default: route.props }
+  };
+
+  if (route.children) {
+    // Warn if route is named, does not redirect and has a default child route.
+    // If users navigate to this route by name, the default child will
+    // not be rendered (GH Issue #629)
+    if (true) {
+      if (
+        route.name &&
+        !route.redirect &&
+        route.children.some(function (child) { return /^\/?$/.test(child.path); })
+      ) {
+        warn(
+          false,
+          "Named Route '" + (route.name) + "' has a default child route. " +
+            "When navigating to this named route (:to=\"{name: '" + (route.name) + "'\"), " +
+            "the default child route will not be rendered. Remove the name from " +
+            "this route and use the name of the default child route for named " +
+            "links instead."
+        );
+      }
+    }
+    route.children.forEach(function (child) {
+      var childMatchAs = matchAs
+        ? cleanPath((matchAs + "/" + (child.path)))
+        : undefined;
+      addRouteRecord(pathList, pathMap, nameMap, child, record, childMatchAs);
+    });
+  }
+
+  if (!pathMap[record.path]) {
+    pathList.push(record.path);
+    pathMap[record.path] = record;
+  }
+
+  if (route.alias !== undefined) {
+    var aliases = Array.isArray(route.alias) ? route.alias : [route.alias];
+    for (var i = 0; i < aliases.length; ++i) {
+      var alias = aliases[i];
+      if ( true && alias === path) {
+        warn(
+          false,
+          ("Found an alias with the same value as the path: \"" + path + "\". You have to remove that alias. It will be ignored in development.")
+        );
+        // skip in dev to make it work
+        continue
+      }
+
+      var aliasRoute = {
+        path: alias,
+        children: route.children
+      };
+      addRouteRecord(
+        pathList,
+        pathMap,
+        nameMap,
+        aliasRoute,
+        parent,
+        record.path || '/' // matchAs
+      );
+    }
+  }
+
+  if (name) {
+    if (!nameMap[name]) {
+      nameMap[name] = record;
+    } else if ( true && !matchAs) {
+      warn(
+        false,
+        "Duplicate named routes definition: " +
+          "{ name: \"" + name + "\", path: \"" + (record.path) + "\" }"
+      );
+    }
+  }
+}
+
+function compileRouteRegex (
+  path,
+  pathToRegexpOptions
+) {
+  var regex = pathToRegexp_1(path, [], pathToRegexpOptions);
+  if (true) {
+    var keys = Object.create(null);
+    regex.keys.forEach(function (key) {
+      warn(
+        !keys[key.name],
+        ("Duplicate param keys in route with path: \"" + path + "\"")
+      );
+      keys[key.name] = true;
+    });
+  }
+  return regex
+}
+
+function normalizePath (
+  path,
+  parent,
+  strict
+) {
+  if (!strict) { path = path.replace(/\/$/, ''); }
+  if (path[0] === '/') { return path }
+  if (parent == null) { return path }
+  return cleanPath(((parent.path) + "/" + path))
+}
+
+/*  */
+
+
+
+function createMatcher (
+  routes,
+  router
+) {
+  var ref = createRouteMap(routes);
+  var pathList = ref.pathList;
+  var pathMap = ref.pathMap;
+  var nameMap = ref.nameMap;
+
+  function addRoutes (routes) {
+    createRouteMap(routes, pathList, pathMap, nameMap);
+  }
+
+  function match (
+    raw,
+    currentRoute,
+    redirectedFrom
+  ) {
+    var location = normalizeLocation(raw, currentRoute, false, router);
+    var name = location.name;
+
+    if (name) {
+      var record = nameMap[name];
+      if (true) {
+        warn(record, ("Route with name '" + name + "' does not exist"));
+      }
+      if (!record) { return _createRoute(null, location) }
+      var paramNames = record.regex.keys
+        .filter(function (key) { return !key.optional; })
+        .map(function (key) { return key.name; });
+
+      if (typeof location.params !== 'object') {
+        location.params = {};
+      }
+
+      if (currentRoute && typeof currentRoute.params === 'object') {
+        for (var key in currentRoute.params) {
+          if (!(key in location.params) && paramNames.indexOf(key) > -1) {
+            location.params[key] = currentRoute.params[key];
+          }
+        }
+      }
+
+      location.path = fillParams(record.path, location.params, ("named route \"" + name + "\""));
+      return _createRoute(record, location, redirectedFrom)
+    } else if (location.path) {
+      location.params = {};
+      for (var i = 0; i < pathList.length; i++) {
+        var path = pathList[i];
+        var record$1 = pathMap[path];
+        if (matchRoute(record$1.regex, location.path, location.params)) {
+          return _createRoute(record$1, location, redirectedFrom)
+        }
+      }
+    }
+    // no match
+    return _createRoute(null, location)
+  }
+
+  function redirect (
+    record,
+    location
+  ) {
+    var originalRedirect = record.redirect;
+    var redirect = typeof originalRedirect === 'function'
+      ? originalRedirect(createRoute(record, location, null, router))
+      : originalRedirect;
+
+    if (typeof redirect === 'string') {
+      redirect = { path: redirect };
+    }
+
+    if (!redirect || typeof redirect !== 'object') {
+      if (true) {
+        warn(
+          false, ("invalid redirect option: " + (JSON.stringify(redirect)))
+        );
+      }
+      return _createRoute(null, location)
+    }
+
+    var re = redirect;
+    var name = re.name;
+    var path = re.path;
+    var query = location.query;
+    var hash = location.hash;
+    var params = location.params;
+    query = re.hasOwnProperty('query') ? re.query : query;
+    hash = re.hasOwnProperty('hash') ? re.hash : hash;
+    params = re.hasOwnProperty('params') ? re.params : params;
+
+    if (name) {
+      // resolved named direct
+      var targetRecord = nameMap[name];
+      if (true) {
+        assert(targetRecord, ("redirect failed: named route \"" + name + "\" not found."));
+      }
+      return match({
+        _normalized: true,
+        name: name,
+        query: query,
+        hash: hash,
+        params: params
+      }, undefined, location)
+    } else if (path) {
+      // 1. resolve relative redirect
+      var rawPath = resolveRecordPath(path, record);
+      // 2. resolve params
+      var resolvedPath = fillParams(rawPath, params, ("redirect route with path \"" + rawPath + "\""));
+      // 3. rematch with existing query and hash
+      return match({
+        _normalized: true,
+        path: resolvedPath,
+        query: query,
+        hash: hash
+      }, undefined, location)
+    } else {
+      if (true) {
+        warn(false, ("invalid redirect option: " + (JSON.stringify(redirect))));
+      }
+      return _createRoute(null, location)
+    }
+  }
+
+  function alias (
+    record,
+    location,
+    matchAs
+  ) {
+    var aliasedPath = fillParams(matchAs, location.params, ("aliased route with path \"" + matchAs + "\""));
+    var aliasedMatch = match({
+      _normalized: true,
+      path: aliasedPath
+    });
+    if (aliasedMatch) {
+      var matched = aliasedMatch.matched;
+      var aliasedRecord = matched[matched.length - 1];
+      location.params = aliasedMatch.params;
+      return _createRoute(aliasedRecord, location)
+    }
+    return _createRoute(null, location)
+  }
+
+  function _createRoute (
+    record,
+    location,
+    redirectedFrom
+  ) {
+    if (record && record.redirect) {
+      return redirect(record, redirectedFrom || location)
+    }
+    if (record && record.matchAs) {
+      return alias(record, location, record.matchAs)
+    }
+    return createRoute(record, location, redirectedFrom, router)
+  }
+
+  return {
+    match: match,
+    addRoutes: addRoutes
+  }
+}
+
+function matchRoute (
+  regex,
+  path,
+  params
+) {
+  var m = path.match(regex);
+
+  if (!m) {
+    return false
+  } else if (!params) {
+    return true
+  }
+
+  for (var i = 1, len = m.length; i < len; ++i) {
+    var key = regex.keys[i - 1];
+    var val = typeof m[i] === 'string' ? decodeURIComponent(m[i]) : m[i];
+    if (key) {
+      // Fix #1994: using * with props: true generates a param named 0
+      params[key.name || 'pathMatch'] = val;
+    }
+  }
+
+  return true
+}
+
+function resolveRecordPath (path, record) {
+  return resolvePath(path, record.parent ? record.parent.path : '/', true)
+}
+
+/*  */
+
+// use User Timing api (if present) for more accurate key precision
+var Time =
+  inBrowser && window.performance && window.performance.now
+    ? window.performance
+    : Date;
+
+function genStateKey () {
+  return Time.now().toFixed(3)
+}
+
+var _key = genStateKey();
+
+function getStateKey () {
+  return _key
+}
+
+function setStateKey (key) {
+  return (_key = key)
+}
+
+/*  */
+
+var positionStore = Object.create(null);
+
+function setupScroll () {
+  // Prevent browser scroll behavior on History popstate
+  if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+  }
+  // Fix for #1585 for Firefox
+  // Fix for #2195 Add optional third attribute to workaround a bug in safari https://bugs.webkit.org/show_bug.cgi?id=182678
+  // Fix for #2774 Support for apps loaded from Windows file shares not mapped to network drives: replaced location.origin with
+  // window.location.protocol + '//' + window.location.host
+  // location.host contains the port and location.hostname doesn't
+  var protocolAndPath = window.location.protocol + '//' + window.location.host;
+  var absolutePath = window.location.href.replace(protocolAndPath, '');
+  // preserve existing history state as it could be overriden by the user
+  var stateCopy = extend({}, window.history.state);
+  stateCopy.key = getStateKey();
+  window.history.replaceState(stateCopy, '', absolutePath);
+  window.addEventListener('popstate', function (e) {
+    saveScrollPosition();
+    if (e.state && e.state.key) {
+      setStateKey(e.state.key);
+    }
+  });
+}
+
+function handleScroll (
+  router,
+  to,
+  from,
+  isPop
+) {
+  if (!router.app) {
+    return
+  }
+
+  var behavior = router.options.scrollBehavior;
+  if (!behavior) {
+    return
+  }
+
+  if (true) {
+    assert(typeof behavior === 'function', "scrollBehavior must be a function");
+  }
+
+  // wait until re-render finishes before scrolling
+  router.app.$nextTick(function () {
+    var position = getScrollPosition();
+    var shouldScroll = behavior.call(
+      router,
+      to,
+      from,
+      isPop ? position : null
+    );
+
+    if (!shouldScroll) {
+      return
+    }
+
+    if (typeof shouldScroll.then === 'function') {
+      shouldScroll
+        .then(function (shouldScroll) {
+          scrollToPosition((shouldScroll), position);
+        })
+        .catch(function (err) {
+          if (true) {
+            assert(false, err.toString());
+          }
+        });
+    } else {
+      scrollToPosition(shouldScroll, position);
+    }
+  });
+}
+
+function saveScrollPosition () {
+  var key = getStateKey();
+  if (key) {
+    positionStore[key] = {
+      x: window.pageXOffset,
+      y: window.pageYOffset
+    };
+  }
+}
+
+function getScrollPosition () {
+  var key = getStateKey();
+  if (key) {
+    return positionStore[key]
+  }
+}
+
+function getElementPosition (el, offset) {
+  var docEl = document.documentElement;
+  var docRect = docEl.getBoundingClientRect();
+  var elRect = el.getBoundingClientRect();
+  return {
+    x: elRect.left - docRect.left - offset.x,
+    y: elRect.top - docRect.top - offset.y
+  }
+}
+
+function isValidPosition (obj) {
+  return isNumber(obj.x) || isNumber(obj.y)
+}
+
+function normalizePosition (obj) {
+  return {
+    x: isNumber(obj.x) ? obj.x : window.pageXOffset,
+    y: isNumber(obj.y) ? obj.y : window.pageYOffset
+  }
+}
+
+function normalizeOffset (obj) {
+  return {
+    x: isNumber(obj.x) ? obj.x : 0,
+    y: isNumber(obj.y) ? obj.y : 0
+  }
+}
+
+function isNumber (v) {
+  return typeof v === 'number'
+}
+
+var hashStartsWithNumberRE = /^#\d/;
+
+function scrollToPosition (shouldScroll, position) {
+  var isObject = typeof shouldScroll === 'object';
+  if (isObject && typeof shouldScroll.selector === 'string') {
+    // getElementById would still fail if the selector contains a more complicated query like #main[data-attr]
+    // but at the same time, it doesn't make much sense to select an element with an id and an extra selector
+    var el = hashStartsWithNumberRE.test(shouldScroll.selector) // $flow-disable-line
+      ? document.getElementById(shouldScroll.selector.slice(1)) // $flow-disable-line
+      : document.querySelector(shouldScroll.selector);
+
+    if (el) {
+      var offset =
+        shouldScroll.offset && typeof shouldScroll.offset === 'object'
+          ? shouldScroll.offset
+          : {};
+      offset = normalizeOffset(offset);
+      position = getElementPosition(el, offset);
+    } else if (isValidPosition(shouldScroll)) {
+      position = normalizePosition(shouldScroll);
+    }
+  } else if (isObject && isValidPosition(shouldScroll)) {
+    position = normalizePosition(shouldScroll);
+  }
+
+  if (position) {
+    window.scrollTo(position.x, position.y);
+  }
+}
+
+/*  */
+
+var supportsPushState =
+  inBrowser &&
+  (function () {
+    var ua = window.navigator.userAgent;
+
+    if (
+      (ua.indexOf('Android 2.') !== -1 || ua.indexOf('Android 4.0') !== -1) &&
+      ua.indexOf('Mobile Safari') !== -1 &&
+      ua.indexOf('Chrome') === -1 &&
+      ua.indexOf('Windows Phone') === -1
+    ) {
+      return false
+    }
+
+    return window.history && typeof window.history.pushState === 'function'
+  })();
+
+function pushState (url, replace) {
+  saveScrollPosition();
+  // try...catch the pushState call to get around Safari
+  // DOM Exception 18 where it limits to 100 pushState calls
+  var history = window.history;
+  try {
+    if (replace) {
+      // preserve existing history state as it could be overriden by the user
+      var stateCopy = extend({}, history.state);
+      stateCopy.key = getStateKey();
+      history.replaceState(stateCopy, '', url);
+    } else {
+      history.pushState({ key: setStateKey(genStateKey()) }, '', url);
+    }
+  } catch (e) {
+    window.location[replace ? 'replace' : 'assign'](url);
+  }
+}
+
+function replaceState (url) {
+  pushState(url, true);
+}
+
+/*  */
+
+function runQueue (queue, fn, cb) {
+  var step = function (index) {
+    if (index >= queue.length) {
+      cb();
+    } else {
+      if (queue[index]) {
+        fn(queue[index], function () {
+          step(index + 1);
+        });
+      } else {
+        step(index + 1);
+      }
+    }
+  };
+  step(0);
+}
+
+/*  */
+
+function resolveAsyncComponents (matched) {
+  return function (to, from, next) {
+    var hasAsync = false;
+    var pending = 0;
+    var error = null;
+
+    flatMapComponents(matched, function (def, _, match, key) {
+      // if it's a function and doesn't have cid attached,
+      // assume it's an async component resolve function.
+      // we are not using Vue's default async resolving mechanism because
+      // we want to halt the navigation until the incoming component has been
+      // resolved.
+      if (typeof def === 'function' && def.cid === undefined) {
+        hasAsync = true;
+        pending++;
+
+        var resolve = once(function (resolvedDef) {
+          if (isESModule(resolvedDef)) {
+            resolvedDef = resolvedDef.default;
+          }
+          // save resolved on async factory in case it's used elsewhere
+          def.resolved = typeof resolvedDef === 'function'
+            ? resolvedDef
+            : _Vue.extend(resolvedDef);
+          match.components[key] = resolvedDef;
+          pending--;
+          if (pending <= 0) {
+            next();
+          }
+        });
+
+        var reject = once(function (reason) {
+          var msg = "Failed to resolve async component " + key + ": " + reason;
+           true && warn(false, msg);
+          if (!error) {
+            error = isError(reason)
+              ? reason
+              : new Error(msg);
+            next(error);
+          }
+        });
+
+        var res;
+        try {
+          res = def(resolve, reject);
+        } catch (e) {
+          reject(e);
+        }
+        if (res) {
+          if (typeof res.then === 'function') {
+            res.then(resolve, reject);
+          } else {
+            // new syntax in Vue 2.3
+            var comp = res.component;
+            if (comp && typeof comp.then === 'function') {
+              comp.then(resolve, reject);
+            }
+          }
+        }
+      }
+    });
+
+    if (!hasAsync) { next(); }
+  }
+}
+
+function flatMapComponents (
+  matched,
+  fn
+) {
+  return flatten(matched.map(function (m) {
+    return Object.keys(m.components).map(function (key) { return fn(
+      m.components[key],
+      m.instances[key],
+      m, key
+    ); })
+  }))
+}
+
+function flatten (arr) {
+  return Array.prototype.concat.apply([], arr)
+}
+
+var hasSymbol =
+  typeof Symbol === 'function' &&
+  typeof Symbol.toStringTag === 'symbol';
+
+function isESModule (obj) {
+  return obj.__esModule || (hasSymbol && obj[Symbol.toStringTag] === 'Module')
+}
+
+// in Webpack 2, require.ensure now also returns a Promise
+// so the resolve/reject functions may get called an extra time
+// if the user uses an arrow function shorthand that happens to
+// return that Promise.
+function once (fn) {
+  var called = false;
+  return function () {
+    var args = [], len = arguments.length;
+    while ( len-- ) args[ len ] = arguments[ len ];
+
+    if (called) { return }
+    called = true;
+    return fn.apply(this, args)
+  }
+}
+
+var NavigationDuplicated = /*@__PURE__*/(function (Error) {
+  function NavigationDuplicated (normalizedLocation) {
+    Error.call(this);
+    this.name = this._name = 'NavigationDuplicated';
+    // passing the message to super() doesn't seem to work in the transpiled version
+    this.message = "Navigating to current location (\"" + (normalizedLocation.fullPath) + "\") is not allowed";
+    // add a stack property so services like Sentry can correctly display it
+    Object.defineProperty(this, 'stack', {
+      value: new Error().stack,
+      writable: true,
+      configurable: true
+    });
+    // we could also have used
+    // Error.captureStackTrace(this, this.constructor)
+    // but it only exists on node and chrome
+  }
+
+  if ( Error ) NavigationDuplicated.__proto__ = Error;
+  NavigationDuplicated.prototype = Object.create( Error && Error.prototype );
+  NavigationDuplicated.prototype.constructor = NavigationDuplicated;
+
+  return NavigationDuplicated;
+}(Error));
+
+// support IE9
+NavigationDuplicated._name = 'NavigationDuplicated';
+
+/*  */
+
+var History = function History (router, base) {
+  this.router = router;
+  this.base = normalizeBase(base);
+  // start with a route object that stands for "nowhere"
+  this.current = START;
+  this.pending = null;
+  this.ready = false;
+  this.readyCbs = [];
+  this.readyErrorCbs = [];
+  this.errorCbs = [];
+};
+
+History.prototype.listen = function listen (cb) {
+  this.cb = cb;
+};
+
+History.prototype.onReady = function onReady (cb, errorCb) {
+  if (this.ready) {
+    cb();
+  } else {
+    this.readyCbs.push(cb);
+    if (errorCb) {
+      this.readyErrorCbs.push(errorCb);
+    }
+  }
+};
+
+History.prototype.onError = function onError (errorCb) {
+  this.errorCbs.push(errorCb);
+};
+
+History.prototype.transitionTo = function transitionTo (
+  location,
+  onComplete,
+  onAbort
+) {
+    var this$1 = this;
+
+  var route = this.router.match(location, this.current);
+  this.confirmTransition(
+    route,
+    function () {
+      this$1.updateRoute(route);
+      onComplete && onComplete(route);
+      this$1.ensureURL();
+
+      // fire ready cbs once
+      if (!this$1.ready) {
+        this$1.ready = true;
+        this$1.readyCbs.forEach(function (cb) {
+          cb(route);
+        });
+      }
+    },
+    function (err) {
+      if (onAbort) {
+        onAbort(err);
+      }
+      if (err && !this$1.ready) {
+        this$1.ready = true;
+        this$1.readyErrorCbs.forEach(function (cb) {
+          cb(err);
+        });
+      }
+    }
+  );
+};
+
+History.prototype.confirmTransition = function confirmTransition (route, onComplete, onAbort) {
+    var this$1 = this;
+
+  var current = this.current;
+  var abort = function (err) {
+    // after merging https://github.com/vuejs/vue-router/pull/2771 we
+    // When the user navigates through history through back/forward buttons
+    // we do not want to throw the error. We only throw it if directly calling
+    // push/replace. That's why it's not included in isError
+    if (!isExtendedError(NavigationDuplicated, err) && isError(err)) {
+      if (this$1.errorCbs.length) {
+        this$1.errorCbs.forEach(function (cb) {
+          cb(err);
+        });
+      } else {
+        warn(false, 'uncaught error during route navigation:');
+        console.error(err);
+      }
+    }
+    onAbort && onAbort(err);
+  };
+  if (
+    isSameRoute(route, current) &&
+    // in the case the route map has been dynamically appended to
+    route.matched.length === current.matched.length
+  ) {
+    this.ensureURL();
+    return abort(new NavigationDuplicated(route))
+  }
+
+  var ref = resolveQueue(
+    this.current.matched,
+    route.matched
+  );
+    var updated = ref.updated;
+    var deactivated = ref.deactivated;
+    var activated = ref.activated;
+
+  var queue = [].concat(
+    // in-component leave guards
+    extractLeaveGuards(deactivated),
+    // global before hooks
+    this.router.beforeHooks,
+    // in-component update hooks
+    extractUpdateHooks(updated),
+    // in-config enter guards
+    activated.map(function (m) { return m.beforeEnter; }),
+    // async components
+    resolveAsyncComponents(activated)
+  );
+
+  this.pending = route;
+  var iterator = function (hook, next) {
+    if (this$1.pending !== route) {
+      return abort()
+    }
+    try {
+      hook(route, current, function (to) {
+        if (to === false || isError(to)) {
+          // next(false) -> abort navigation, ensure current URL
+          this$1.ensureURL(true);
+          abort(to);
+        } else if (
+          typeof to === 'string' ||
+          (typeof to === 'object' &&
+            (typeof to.path === 'string' || typeof to.name === 'string'))
+        ) {
+          // next('/') or next({ path: '/' }) -> redirect
+          abort();
+          if (typeof to === 'object' && to.replace) {
+            this$1.replace(to);
+          } else {
+            this$1.push(to);
+          }
+        } else {
+          // confirm transition and pass on the value
+          next(to);
+        }
+      });
+    } catch (e) {
+      abort(e);
+    }
+  };
+
+  runQueue(queue, iterator, function () {
+    var postEnterCbs = [];
+    var isValid = function () { return this$1.current === route; };
+    // wait until async components are resolved before
+    // extracting in-component enter guards
+    var enterGuards = extractEnterGuards(activated, postEnterCbs, isValid);
+    var queue = enterGuards.concat(this$1.router.resolveHooks);
+    runQueue(queue, iterator, function () {
+      if (this$1.pending !== route) {
+        return abort()
+      }
+      this$1.pending = null;
+      onComplete(route);
+      if (this$1.router.app) {
+        this$1.router.app.$nextTick(function () {
+          postEnterCbs.forEach(function (cb) {
+            cb();
+          });
+        });
+      }
+    });
+  });
+};
+
+History.prototype.updateRoute = function updateRoute (route) {
+  var prev = this.current;
+  this.current = route;
+  this.cb && this.cb(route);
+  this.router.afterHooks.forEach(function (hook) {
+    hook && hook(route, prev);
+  });
+};
+
+function normalizeBase (base) {
+  if (!base) {
+    if (inBrowser) {
+      // respect <base> tag
+      var baseEl = document.querySelector('base');
+      base = (baseEl && baseEl.getAttribute('href')) || '/';
+      // strip full URL origin
+      base = base.replace(/^https?:\/\/[^\/]+/, '');
+    } else {
+      base = '/';
+    }
+  }
+  // make sure there's the starting slash
+  if (base.charAt(0) !== '/') {
+    base = '/' + base;
+  }
+  // remove trailing slash
+  return base.replace(/\/$/, '')
+}
+
+function resolveQueue (
+  current,
+  next
+) {
+  var i;
+  var max = Math.max(current.length, next.length);
+  for (i = 0; i < max; i++) {
+    if (current[i] !== next[i]) {
+      break
+    }
+  }
+  return {
+    updated: next.slice(0, i),
+    activated: next.slice(i),
+    deactivated: current.slice(i)
+  }
+}
+
+function extractGuards (
+  records,
+  name,
+  bind,
+  reverse
+) {
+  var guards = flatMapComponents(records, function (def, instance, match, key) {
+    var guard = extractGuard(def, name);
+    if (guard) {
+      return Array.isArray(guard)
+        ? guard.map(function (guard) { return bind(guard, instance, match, key); })
+        : bind(guard, instance, match, key)
+    }
+  });
+  return flatten(reverse ? guards.reverse() : guards)
+}
+
+function extractGuard (
+  def,
+  key
+) {
+  if (typeof def !== 'function') {
+    // extend now so that global mixins are applied.
+    def = _Vue.extend(def);
+  }
+  return def.options[key]
+}
+
+function extractLeaveGuards (deactivated) {
+  return extractGuards(deactivated, 'beforeRouteLeave', bindGuard, true)
+}
+
+function extractUpdateHooks (updated) {
+  return extractGuards(updated, 'beforeRouteUpdate', bindGuard)
+}
+
+function bindGuard (guard, instance) {
+  if (instance) {
+    return function boundRouteGuard () {
+      return guard.apply(instance, arguments)
+    }
+  }
+}
+
+function extractEnterGuards (
+  activated,
+  cbs,
+  isValid
+) {
+  return extractGuards(
+    activated,
+    'beforeRouteEnter',
+    function (guard, _, match, key) {
+      return bindEnterGuard(guard, match, key, cbs, isValid)
+    }
+  )
+}
+
+function bindEnterGuard (
+  guard,
+  match,
+  key,
+  cbs,
+  isValid
+) {
+  return function routeEnterGuard (to, from, next) {
+    return guard(to, from, function (cb) {
+      if (typeof cb === 'function') {
+        cbs.push(function () {
+          // #750
+          // if a router-view is wrapped with an out-in transition,
+          // the instance may not have been registered at this time.
+          // we will need to poll for registration until current route
+          // is no longer valid.
+          poll(cb, match.instances, key, isValid);
+        });
+      }
+      next(cb);
+    })
+  }
+}
+
+function poll (
+  cb, // somehow flow cannot infer this is a function
+  instances,
+  key,
+  isValid
+) {
+  if (
+    instances[key] &&
+    !instances[key]._isBeingDestroyed // do not reuse being destroyed instance
+  ) {
+    cb(instances[key]);
+  } else if (isValid()) {
+    setTimeout(function () {
+      poll(cb, instances, key, isValid);
+    }, 16);
+  }
+}
+
+/*  */
+
+var HTML5History = /*@__PURE__*/(function (History) {
+  function HTML5History (router, base) {
+    var this$1 = this;
+
+    History.call(this, router, base);
+
+    var expectScroll = router.options.scrollBehavior;
+    var supportsScroll = supportsPushState && expectScroll;
+
+    if (supportsScroll) {
+      setupScroll();
+    }
+
+    var initLocation = getLocation(this.base);
+    window.addEventListener('popstate', function (e) {
+      var current = this$1.current;
+
+      // Avoiding first `popstate` event dispatched in some browsers but first
+      // history route not updated since async guard at the same time.
+      var location = getLocation(this$1.base);
+      if (this$1.current === START && location === initLocation) {
+        return
+      }
+
+      this$1.transitionTo(location, function (route) {
+        if (supportsScroll) {
+          handleScroll(router, route, current, true);
+        }
+      });
+    });
+  }
+
+  if ( History ) HTML5History.__proto__ = History;
+  HTML5History.prototype = Object.create( History && History.prototype );
+  HTML5History.prototype.constructor = HTML5History;
+
+  HTML5History.prototype.go = function go (n) {
+    window.history.go(n);
+  };
+
+  HTML5History.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(location, function (route) {
+      pushState(cleanPath(this$1.base + route.fullPath));
+      handleScroll(this$1.router, route, fromRoute, false);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  HTML5History.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(location, function (route) {
+      replaceState(cleanPath(this$1.base + route.fullPath));
+      handleScroll(this$1.router, route, fromRoute, false);
+      onComplete && onComplete(route);
+    }, onAbort);
+  };
+
+  HTML5History.prototype.ensureURL = function ensureURL (push) {
+    if (getLocation(this.base) !== this.current.fullPath) {
+      var current = cleanPath(this.base + this.current.fullPath);
+      push ? pushState(current) : replaceState(current);
+    }
+  };
+
+  HTML5History.prototype.getCurrentLocation = function getCurrentLocation () {
+    return getLocation(this.base)
+  };
+
+  return HTML5History;
+}(History));
+
+function getLocation (base) {
+  var path = decodeURI(window.location.pathname);
+  if (base && path.toLowerCase().indexOf(base.toLowerCase()) === 0) {
+    path = path.slice(base.length);
+  }
+  return (path || '/') + window.location.search + window.location.hash
+}
+
+/*  */
+
+var HashHistory = /*@__PURE__*/(function (History) {
+  function HashHistory (router, base, fallback) {
+    History.call(this, router, base);
+    // check history fallback deeplinking
+    if (fallback && checkFallback(this.base)) {
+      return
+    }
+    ensureSlash();
+  }
+
+  if ( History ) HashHistory.__proto__ = History;
+  HashHistory.prototype = Object.create( History && History.prototype );
+  HashHistory.prototype.constructor = HashHistory;
+
+  // this is delayed until the app mounts
+  // to avoid the hashchange listener being fired too early
+  HashHistory.prototype.setupListeners = function setupListeners () {
+    var this$1 = this;
+
+    var router = this.router;
+    var expectScroll = router.options.scrollBehavior;
+    var supportsScroll = supportsPushState && expectScroll;
+
+    if (supportsScroll) {
+      setupScroll();
+    }
+
+    window.addEventListener(
+      supportsPushState ? 'popstate' : 'hashchange',
+      function () {
+        var current = this$1.current;
+        if (!ensureSlash()) {
+          return
+        }
+        this$1.transitionTo(getHash(), function (route) {
+          if (supportsScroll) {
+            handleScroll(this$1.router, route, current, true);
+          }
+          if (!supportsPushState) {
+            replaceHash(route.fullPath);
+          }
+        });
+      }
+    );
+  };
+
+  HashHistory.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(
+      location,
+      function (route) {
+        pushHash(route.fullPath);
+        handleScroll(this$1.router, route, fromRoute, false);
+        onComplete && onComplete(route);
+      },
+      onAbort
+    );
+  };
+
+  HashHistory.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    var ref = this;
+    var fromRoute = ref.current;
+    this.transitionTo(
+      location,
+      function (route) {
+        replaceHash(route.fullPath);
+        handleScroll(this$1.router, route, fromRoute, false);
+        onComplete && onComplete(route);
+      },
+      onAbort
+    );
+  };
+
+  HashHistory.prototype.go = function go (n) {
+    window.history.go(n);
+  };
+
+  HashHistory.prototype.ensureURL = function ensureURL (push) {
+    var current = this.current.fullPath;
+    if (getHash() !== current) {
+      push ? pushHash(current) : replaceHash(current);
+    }
+  };
+
+  HashHistory.prototype.getCurrentLocation = function getCurrentLocation () {
+    return getHash()
+  };
+
+  return HashHistory;
+}(History));
+
+function checkFallback (base) {
+  var location = getLocation(base);
+  if (!/^\/#/.test(location)) {
+    window.location.replace(cleanPath(base + '/#' + location));
+    return true
+  }
+}
+
+function ensureSlash () {
+  var path = getHash();
+  if (path.charAt(0) === '/') {
+    return true
+  }
+  replaceHash('/' + path);
+  return false
+}
+
+function getHash () {
+  // We can't use window.location.hash here because it's not
+  // consistent across browsers - Firefox will pre-decode it!
+  var href = window.location.href;
+  var index = href.indexOf('#');
+  // empty path
+  if (index < 0) { return '' }
+
+  href = href.slice(index + 1);
+  // decode the hash but not the search or hash
+  // as search(query) is already decoded
+  // https://github.com/vuejs/vue-router/issues/2708
+  var searchIndex = href.indexOf('?');
+  if (searchIndex < 0) {
+    var hashIndex = href.indexOf('#');
+    if (hashIndex > -1) {
+      href = decodeURI(href.slice(0, hashIndex)) + href.slice(hashIndex);
+    } else { href = decodeURI(href); }
+  } else {
+    href = decodeURI(href.slice(0, searchIndex)) + href.slice(searchIndex);
+  }
+
+  return href
+}
+
+function getUrl (path) {
+  var href = window.location.href;
+  var i = href.indexOf('#');
+  var base = i >= 0 ? href.slice(0, i) : href;
+  return (base + "#" + path)
+}
+
+function pushHash (path) {
+  if (supportsPushState) {
+    pushState(getUrl(path));
+  } else {
+    window.location.hash = path;
+  }
+}
+
+function replaceHash (path) {
+  if (supportsPushState) {
+    replaceState(getUrl(path));
+  } else {
+    window.location.replace(getUrl(path));
+  }
+}
+
+/*  */
+
+var AbstractHistory = /*@__PURE__*/(function (History) {
+  function AbstractHistory (router, base) {
+    History.call(this, router, base);
+    this.stack = [];
+    this.index = -1;
+  }
+
+  if ( History ) AbstractHistory.__proto__ = History;
+  AbstractHistory.prototype = Object.create( History && History.prototype );
+  AbstractHistory.prototype.constructor = AbstractHistory;
+
+  AbstractHistory.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    this.transitionTo(
+      location,
+      function (route) {
+        this$1.stack = this$1.stack.slice(0, this$1.index + 1).concat(route);
+        this$1.index++;
+        onComplete && onComplete(route);
+      },
+      onAbort
+    );
+  };
+
+  AbstractHistory.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+    this.transitionTo(
+      location,
+      function (route) {
+        this$1.stack = this$1.stack.slice(0, this$1.index).concat(route);
+        onComplete && onComplete(route);
+      },
+      onAbort
+    );
+  };
+
+  AbstractHistory.prototype.go = function go (n) {
+    var this$1 = this;
+
+    var targetIndex = this.index + n;
+    if (targetIndex < 0 || targetIndex >= this.stack.length) {
+      return
+    }
+    var route = this.stack[targetIndex];
+    this.confirmTransition(
+      route,
+      function () {
+        this$1.index = targetIndex;
+        this$1.updateRoute(route);
+      },
+      function (err) {
+        if (isExtendedError(NavigationDuplicated, err)) {
+          this$1.index = targetIndex;
+        }
+      }
+    );
+  };
+
+  AbstractHistory.prototype.getCurrentLocation = function getCurrentLocation () {
+    var current = this.stack[this.stack.length - 1];
+    return current ? current.fullPath : '/'
+  };
+
+  AbstractHistory.prototype.ensureURL = function ensureURL () {
+    // noop
+  };
+
+  return AbstractHistory;
+}(History));
+
+/*  */
+
+
+
+var VueRouter = function VueRouter (options) {
+  if ( options === void 0 ) options = {};
+
+  this.app = null;
+  this.apps = [];
+  this.options = options;
+  this.beforeHooks = [];
+  this.resolveHooks = [];
+  this.afterHooks = [];
+  this.matcher = createMatcher(options.routes || [], this);
+
+  var mode = options.mode || 'hash';
+  this.fallback = mode === 'history' && !supportsPushState && options.fallback !== false;
+  if (this.fallback) {
+    mode = 'hash';
+  }
+  if (!inBrowser) {
+    mode = 'abstract';
+  }
+  this.mode = mode;
+
+  switch (mode) {
+    case 'history':
+      this.history = new HTML5History(this, options.base);
+      break
+    case 'hash':
+      this.history = new HashHistory(this, options.base, this.fallback);
+      break
+    case 'abstract':
+      this.history = new AbstractHistory(this, options.base);
+      break
+    default:
+      if (true) {
+        assert(false, ("invalid mode: " + mode));
+      }
+  }
+};
+
+var prototypeAccessors = { currentRoute: { configurable: true } };
+
+VueRouter.prototype.match = function match (
+  raw,
+  current,
+  redirectedFrom
+) {
+  return this.matcher.match(raw, current, redirectedFrom)
+};
+
+prototypeAccessors.currentRoute.get = function () {
+  return this.history && this.history.current
+};
+
+VueRouter.prototype.init = function init (app /* Vue component instance */) {
+    var this$1 = this;
+
+   true && assert(
+    install.installed,
+    "not installed. Make sure to call `Vue.use(VueRouter)` " +
+    "before creating root instance."
+  );
+
+  this.apps.push(app);
+
+  // set up app destroyed handler
+  // https://github.com/vuejs/vue-router/issues/2639
+  app.$once('hook:destroyed', function () {
+    // clean out app from this.apps array once destroyed
+    var index = this$1.apps.indexOf(app);
+    if (index > -1) { this$1.apps.splice(index, 1); }
+    // ensure we still have a main app or null if no apps
+    // we do not release the router so it can be reused
+    if (this$1.app === app) { this$1.app = this$1.apps[0] || null; }
+  });
+
+  // main app previously initialized
+  // return as we don't need to set up new history listener
+  if (this.app) {
+    return
+  }
+
+  this.app = app;
+
+  var history = this.history;
+
+  if (history instanceof HTML5History) {
+    history.transitionTo(history.getCurrentLocation());
+  } else if (history instanceof HashHistory) {
+    var setupHashListener = function () {
+      history.setupListeners();
+    };
+    history.transitionTo(
+      history.getCurrentLocation(),
+      setupHashListener,
+      setupHashListener
+    );
+  }
+
+  history.listen(function (route) {
+    this$1.apps.forEach(function (app) {
+      app._route = route;
+    });
+  });
+};
+
+VueRouter.prototype.beforeEach = function beforeEach (fn) {
+  return registerHook(this.beforeHooks, fn)
+};
+
+VueRouter.prototype.beforeResolve = function beforeResolve (fn) {
+  return registerHook(this.resolveHooks, fn)
+};
+
+VueRouter.prototype.afterEach = function afterEach (fn) {
+  return registerHook(this.afterHooks, fn)
+};
+
+VueRouter.prototype.onReady = function onReady (cb, errorCb) {
+  this.history.onReady(cb, errorCb);
+};
+
+VueRouter.prototype.onError = function onError (errorCb) {
+  this.history.onError(errorCb);
+};
+
+VueRouter.prototype.push = function push (location, onComplete, onAbort) {
+    var this$1 = this;
+
+  // $flow-disable-line
+  if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
+    return new Promise(function (resolve, reject) {
+      this$1.history.push(location, resolve, reject);
+    })
+  } else {
+    this.history.push(location, onComplete, onAbort);
+  }
+};
+
+VueRouter.prototype.replace = function replace (location, onComplete, onAbort) {
+    var this$1 = this;
+
+  // $flow-disable-line
+  if (!onComplete && !onAbort && typeof Promise !== 'undefined') {
+    return new Promise(function (resolve, reject) {
+      this$1.history.replace(location, resolve, reject);
+    })
+  } else {
+    this.history.replace(location, onComplete, onAbort);
+  }
+};
+
+VueRouter.prototype.go = function go (n) {
+  this.history.go(n);
+};
+
+VueRouter.prototype.back = function back () {
+  this.go(-1);
+};
+
+VueRouter.prototype.forward = function forward () {
+  this.go(1);
+};
+
+VueRouter.prototype.getMatchedComponents = function getMatchedComponents (to) {
+  var route = to
+    ? to.matched
+      ? to
+      : this.resolve(to).route
+    : this.currentRoute;
+  if (!route) {
+    return []
+  }
+  return [].concat.apply([], route.matched.map(function (m) {
+    return Object.keys(m.components).map(function (key) {
+      return m.components[key]
+    })
+  }))
+};
+
+VueRouter.prototype.resolve = function resolve (
+  to,
+  current,
+  append
+) {
+  current = current || this.history.current;
+  var location = normalizeLocation(
+    to,
+    current,
+    append,
+    this
+  );
+  var route = this.match(location, current);
+  var fullPath = route.redirectedFrom || route.fullPath;
+  var base = this.history.base;
+  var href = createHref(base, fullPath, this.mode);
+  return {
+    location: location,
+    route: route,
+    href: href,
+    // for backwards compat
+    normalizedTo: location,
+    resolved: route
+  }
+};
+
+VueRouter.prototype.addRoutes = function addRoutes (routes) {
+  this.matcher.addRoutes(routes);
+  if (this.history.current !== START) {
+    this.history.transitionTo(this.history.getCurrentLocation());
+  }
+};
+
+Object.defineProperties( VueRouter.prototype, prototypeAccessors );
+
+function registerHook (list, fn) {
+  list.push(fn);
+  return function () {
+    var i = list.indexOf(fn);
+    if (i > -1) { list.splice(i, 1); }
+  }
+}
+
+function createHref (base, fullPath, mode) {
+  var path = mode === 'hash' ? '#' + fullPath : fullPath;
+  return base ? cleanPath(base + '/' + path) : path
+}
+
+VueRouter.install = install;
+VueRouter.version = '3.2.0';
+
+if (inBrowser && window.Vue) {
+  window.Vue.use(VueRouter);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (VueRouter);
 
 
 /***/ }),
@@ -52633,10 +52726,9 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var jquery_ui_ui_widgets_datepicker_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery-ui/ui/widgets/datepicker.js */ "./node_modules/jquery-ui/ui/widgets/datepicker.js");
-/* harmony import */ var jquery_ui_ui_widgets_datepicker_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery_ui_ui_widgets_datepicker_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var jquery_ui__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! jquery-ui */ "./node_modules/jquery-ui/ui/widget.js");
-/* harmony import */ var jquery_ui__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery_ui__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _components_AddPaie_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/AddPaie.vue */ "./resources/js/components/AddPaie.vue");
+/* harmony import */ var _components_PaieVue_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/PaieVue.vue */ "./resources/js/components/PaieVue.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -52645,27 +52737,25 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
+Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+var routes = [{
+  path: '/paie',
+  component: _components_PaieVue_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+}, {
+  path: '/addPaie',
+  component: _components_AddPaie_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+}];
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
+  routes: routes // short for `routes: routes`
+
+}); // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 var app = new Vue({
-  el: '#app1'
+  el: '#app',
+  router: router
 });
 
 /***/ }),
@@ -52715,17 +52805,17 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
+/***/ "./resources/js/components/AddPaie.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/AddPaie.vue ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
+/* harmony import */ var _AddPaie_vue_vue_type_template_id_57e1ed1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AddPaie.vue?vue&type=template&id=57e1ed1a& */ "./resources/js/components/AddPaie.vue?vue&type=template&id=57e1ed1a&");
+/* harmony import */ var _AddPaie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddPaie.vue?vue&type=script&lang=js& */ "./resources/js/components/AddPaie.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -52735,9 +52825,9 @@ __webpack_require__.r(__webpack_exports__);
 /* normalize component */
 
 var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  _AddPaie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _AddPaie_vue_vue_type_template_id_57e1ed1a___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _AddPaie_vue_vue_type_template_id_57e1ed1a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
   null,
@@ -52747,38 +52837,107 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 
 /* hot reload */
 if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
+component.options.__file = "resources/js/components/AddPaie.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
+/***/ "./resources/js/components/AddPaie.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/AddPaie.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddPaie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./AddPaie.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddPaie.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_AddPaie_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
+/***/ "./resources/js/components/AddPaie.vue?vue&type=template&id=57e1ed1a&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/AddPaie.vue?vue&type=template&id=57e1ed1a& ***!
+  \****************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddPaie_vue_vue_type_template_id_57e1ed1a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./AddPaie.vue?vue&type=template&id=57e1ed1a& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/AddPaie.vue?vue&type=template&id=57e1ed1a&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddPaie_vue_vue_type_template_id_57e1ed1a___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_AddPaie_vue_vue_type_template_id_57e1ed1a___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/PaieVue.vue":
+/*!*********************************************!*\
+  !*** ./resources/js/components/PaieVue.vue ***!
+  \*********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _PaieVue_vue_vue_type_template_id_2c04b744___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./PaieVue.vue?vue&type=template&id=2c04b744& */ "./resources/js/components/PaieVue.vue?vue&type=template&id=2c04b744&");
+/* harmony import */ var _PaieVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PaieVue.vue?vue&type=script&lang=js& */ "./resources/js/components/PaieVue.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _PaieVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _PaieVue_vue_vue_type_template_id_2c04b744___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _PaieVue_vue_vue_type_template_id_2c04b744___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/PaieVue.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/PaieVue.vue?vue&type=script&lang=js&":
+/*!**********************************************************************!*\
+  !*** ./resources/js/components/PaieVue.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaieVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./PaieVue.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaieVue.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_PaieVue_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/PaieVue.vue?vue&type=template&id=2c04b744&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/PaieVue.vue?vue&type=template&id=2c04b744& ***!
+  \****************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaieVue_vue_vue_type_template_id_2c04b744___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./PaieVue.vue?vue&type=template&id=2c04b744& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/PaieVue.vue?vue&type=template&id=2c04b744&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaieVue_vue_vue_type_template_id_2c04b744___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_PaieVue_vue_vue_type_template_id_2c04b744___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
