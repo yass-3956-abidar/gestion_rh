@@ -220,13 +220,21 @@
                     $(document).on('click', '#deleteBtn', function() {
                         let id = $("#deleteBtn").val();
 
-                        swal({
-                            title: 'Vous Voulez Vraiment supprimer l\'apresence',
-                            text: 'La suppression est reversible',
+                        Swal.fire({
+                            title: 'Vous Voulez Vraiment l\'apresence ?',
+                            text: "La suppression est reversible",
                             icon: 'warning',
-                            buttons: ["Annulue", "Supprime!"],
-                        }).then(function(value) {
-                            if (value) {
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'supprimer'
+                        }).then((result) => {
+                            if (result.value) {
+                                Swal.fire(
+                                    'Suppression!',
+                                    'La presence est supprimer',
+                                    'success'
+                                )
                                 $("#editModal").modal("hide");
                                 $.ajax({
                                     url: "{{route('presence.delete')}}",

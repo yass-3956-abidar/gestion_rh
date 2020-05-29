@@ -34,12 +34,16 @@
             </ul>
         </li>
         <li>
+            <a class="text-white" href="{{route('avance.index')}}">
+            <i class="fas fa-comment-dollar"></i>
+                Avances
+            </a>
+        </li>
+        <li>
             <a class="text-white" href="{{route('paie.index')}}">
                 <i class="fas fa-paste"></i>
                 paie
             </a>
-
-
         </li>
         <li>
             <a class="text-white" href="#pageSubmenu">

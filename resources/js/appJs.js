@@ -38,16 +38,24 @@ $(document).ready(function() {
     $('.delete-confirm').on('click', function(event) {
         event.preventDefault();
         const url = $(this).attr('href');
-        swal({
+        Swal.fire({
             title: 'Vous Voulez Vraiment supprimer l\'employer ?',
-            text: 'La suppression est reversible',
+            text: "La suppression est reversible",
             icon: 'warning',
-            buttons: ["Annulue", "Supprime!"],
-        }).then(function(value) {
-            if (value) {
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'supprimer'
+        }).then((result) => {
+            if (result.value) {
                 window.location.href = url;
+                Swal.fire(
+                    'Suppression!',
+                    'L\'employer et supprimer',
+                    'success'
+                )
             }
-        });
+        })
     });
 
 

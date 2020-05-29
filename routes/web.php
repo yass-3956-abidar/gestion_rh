@@ -36,6 +36,8 @@ Route::get('/admin/presence/employer', 'PresenceController@getEmployerPresence')
 Route::get('/admin/presence/getPdf', 'PresenceController@getpdfF')->name('presence.pdf');
 Route::POST('/admin/presence/employer/{id}', 'PresenceController@savePresence')->name('presence.save');
 Route::PUT('/admin/presence/update', 'PresenceController@updatePresence')->name('presence.updateP');
+//Avance
+Route::resource('/admin/avance', 'AvanceController');
 // Route::resource('admin/paie', 'PaieController');
 // Route::get('admin/paie/show/', 'PaieController@showInfo')->name('paie.showInfo');
 Route::get('admin/paie/show/', 'PaieController@show')->name('paie.show');
