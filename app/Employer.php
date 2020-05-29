@@ -42,7 +42,7 @@ class Employer extends Model
     public function primes(){
         return $this->hasMany('App\Prime');
     }
-    public function bulletinPaies(){
+    public function bulletinpaies(){
           return $this->hasMany('App\BulletinPaie');
     }
     public function presences(){
