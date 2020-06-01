@@ -4,5 +4,6 @@
     "/js/appJs.js": "/js/appJs.js",
     "/js/jquery.js": "/js/jquery.js",
     "/js/jquery-ui.min.js": "/js/jquery-ui.min.js",
+    "/paie/paie.js": "/paie/paie.js",
     "/presence/index.js": "/presence/index.js"
 }

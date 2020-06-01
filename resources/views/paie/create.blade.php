@@ -77,7 +77,7 @@
                         <label for="taux_Icmr" class="col-md-5 col-form-label text-md-right">{{ __('Taux ICMR') }}
                             <span class="text-danger ml-1">*</span>
                         </label>
-                        <input id="taux_Icmr" type="text" name="taux_Icmr" class=" col-md-6 form-control @error('taux_Icmr') @enderror" value="{{old('taux_Icmr')}}">
+                        <input id="taux_Icmr" type="text" placeholder="entre 3 et 6 %" name="taux_Icmr" class=" col-md-6 form-control @error('taux_Icmr') @enderror" value="{{old('taux_Icmr')}}" required>
                         @error('taux_Icmr')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -85,11 +85,11 @@
                         @enderror
                     </div>
                     <div class="form-group row">
-                        <label for="taux_maladie" class="col-md-5 col-form-label text-md-right">{{ __('Taux Assurance Maladie') }}
-                            <span class="text-danger ml-1">*</span>
+                        <label for="avantage" class="col-md-5 col-form-label text-md-right">{{ __('Avantage En nature') }}
+                            <span class="text-danger ml-1"></span>
                         </label>
-                        <input id="taux_maladie" type="text" name="taux_maladie" class=" col-md-6 form-control @error('taux_maladie') @enderror" value="{{old('taux_maladie')}}">
-                        @error('taux_maladie')
+                        <input id="avantage" type="number" min="0" value="0" name="avantage" class=" col-md-6 form-control @error('avantage') @enderror">
+                        @error('avantage')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
@@ -163,6 +163,17 @@
                         </span>
                         @enderror
                     </div>
+                    <div class="form-group row">
+                        <label for="exoneretion" class="col-md-5 col-form-label text-md-right">{{ __('EXONERATIONS') }}
+                            <span class="text-danger ml-1"></span>
+                        </label>
+                        <input id="exoneretion" type="number" min="0" value="0" name="exoneretion" class=" col-md-6 form-control @error('exoneretion') @enderror">
+                        @error('exoneretion')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <p class="mt-2">Heur Supplementaire</p>
@@ -199,7 +210,7 @@
                     <div class="form-group">
                         <select type="text" name="interval_ouvrable" id="interval_ouvrable" class="form-control" placeholder="Interval">
                             <option>---</option>
-                            <option value="6-12">Entre 6h--21h</option>
+                            <option value="6-21">Entre 6h--21h</option>
                             <option value="21-6">Entre 21h--6h</option>
                         </select>
                     </div>
@@ -231,108 +242,11 @@
             </div>
             <button type="submit" class="btn btn-primary float-right">Simuler</button>
         </form>
+        @include('util.avance.paie.fichePaie')
     </div>
 </div>
 @endsection
 @section('script')
-<script>
-    $(document).ready(function() {
-        let i = 1;
-        let j = 1;
-        // $("#iconImp").hide();
-        // $("#iconNonImpo").hide();
-        $(document).on('change', '#employer_id', function(e) {
-            e.preventDefault()
-            var id = $("#employer_id").val();
-            if (id > 0) {
-                $.ajax({
-                    url: "{{route('paie.show')}}",
-                    type: "GET",
-                    contentType: 'application/json',
-                    data: {
-                        id
-                    },
-                    success: function(data) {
-                        console.log(data.employer.id);
-                        $("#nbr_enfant").val(data.employer.nbr_enfant);
-                        $("#situationFami").val(data.employer.situationFami);
-                        $("#sexe").val(data.employer.sexe);
-                        $("#date_embauche").val(data.contrat.date_embauche);
-                        $("#salaire_base").val(data.post.salaire_base);
-                        $("#avance").val(data.avance.montant);
-
-                    },
-                })
-            } else {
-                $("#nbr_enfant").val("");
-                $("#situationFami").val("");
-                $("#sexe").val("");
-                $("#date_embauche").val("");
-                $("#salaire_base").val("");
-            }
-        });
-
-        $(document).on('submit', '#fromSimul', function(e) {
-            e.preventDefault()
-            if ($("#employer_id").val() == 0) {
-                Swal.queue([{
-                    title: 'Employer non trouver',
-                    text: 'Choisit un employer',
-                }]);
-            } else {
-                $.ajax({
-                    url: "{{route('paie.salNet')}}",
-                    type: "get",
-                    contentType: 'application/json',
-                    data: $('#fromSimul').serialize(),
-                    success: function(data) {
-                        console.log(data);
-                    },
-                    error: function(one, two, three) {
-                        console.log(one);
-                        console.log(two);
-                        console.log(three);
-                    }
-                });
-            }
-        });
-        $(document).on('click', '#btnImosable', function(e) {
-            e.preventDefault();
-
-            $("#iconImp").show();
-            var e1 = $("<input id='i' class='form-control mt-1' placeholder='Designation' type='text'>");
-            $("#forDesignImposa").append(e1);
-            e1.attr('id', 'designImpo' + j);
-            e1.attr('name', 'designImpo' + j);
-
-            var e2 = $("<input id='i' class='form-control mt-1' placeholder='Montant'  type='number'>");
-            $("#forMontantImposa").append(e2);
-            e2.attr('id', 'MontantImpo' + j);
-            e2.attr('name', 'MontantImpo' + j);
-            $("#nbr_prime_impo").val(j);
-            // alert($("#nbr_prime_impo").val());
-            j++;
-
-
-
-        });
-
-
-
-        $(document).on('click', '#iconImp', function() {
-            let index = j - 1;
-            $("#designImpo" + index).remove();
-            $("#MontantImpo" + index).remove();
-            $("#nbr_prime_impo").val(j - 2);
-            j = j - 1;
-            if (j == 1) {
-                $("#iconImp").hide();
-            }
-
-
-        });
-
-
-    });
+<script src="{{asset('js/paie/paie.js')}}">
 </script>
 @endsection

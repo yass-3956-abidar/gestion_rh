@@ -45,3 +45,4 @@ Route::get('admin/paie/show/', 'PaieController@show')->name('paie.show');
 Route::get('admin/paie/index/', 'PaieController@index')->name('paie.index');
 Route::get('admin/paie/create/', 'PaieController@create')->name('paie.create');
 Route::get('admin/paie/salireNet/', 'PaieController@getsalaireNet')->name('paie.salNet');
+Route::get('admin/paie/apercu','PaieController@apercu')->name('paie.apercu');

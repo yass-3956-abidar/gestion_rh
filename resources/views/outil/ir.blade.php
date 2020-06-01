@@ -10,12 +10,13 @@
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
                         <hr>
-                        <center><strong>Cotisation à la CNSS : Salaire brut imposable SBI * 4,29%</strong></center>
+                        <center><strong>Cotisation à la CNSS : Salaire brut imposable SBI * 4,48%</strong></center>
                         <hr>
                         <p><mark>CNSS</mark> :Un organisme public assurant la protection des employés contre les risques qui peuvent
                             diminuer ou cesser la force de travail. Elle assure des prestations à court
                             terme (Maladie ; Maternité ; Allocations familiales … etc.), et autres à long terme
                             (Invalidité ; Pensions de retraite … etc.). </p>
+                        <p> Le Plafond est 268,80</p>
                         <hr>
                         <center><strong>Cotisation à l’AMO : Salaire brut imposable (Sans plafond) * 2,26%</strong></center>
                         <hr>
