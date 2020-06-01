@@ -134,7 +134,7 @@
                         <label for="avance" class="col-md-5 col-form-label text-md-right">{{ __('Avance') }}
                             <span class="text-danger ml-1"></span>
                         </label>
-                        <input id="avance" type="number" min="0" value="0" name="avance" class=" col-md-6 form-control @error('avance') @enderror">
+                        <input id="avance" type="number" min="1" name="avance" class=" col-md-6 form-control @error('avance') @enderror">
                         @error('avance')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -259,6 +259,7 @@
                         $("#sexe").val(data.employer.sexe);
                         $("#date_embauche").val(data.contrat.date_embauche);
                         $("#salaire_base").val(data.post.salaire_base);
+                        $("#avance").val(data.avance.montant);
 
                     },
                 })

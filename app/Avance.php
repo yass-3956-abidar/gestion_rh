@@ -11,4 +11,7 @@ class Avance extends Model
         return $this->belongsTo('App\Employer');
     }
     use SoftDeletes;
+    protected $fillable = [
+        'date_affectation', 'montant', 'employer_id',
+    ];
 }

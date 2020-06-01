@@ -3,16 +3,17 @@
 <div class="col-md-12">
     <div class="row">
         <div class="col-md-6">
-            <a href="{{route('avance.create')}}" class="btn btn-outline-success">
-                <i class="fas fa-plus fa-1x mr-1"></i>Ajouter Une Avance
-            </a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAddAvance">Ajouter Une Avance</button>
+        </div>
+        <div class="col-md-6">
+            <a href="{{route('avance.create')}}"class="btn btn-info float-right"><i class="fas fa-eye mr-2"></i>Historique des avances</a>
         </div>
     </div>
     <div class="card border-success">
         <div class="card-header">
-            Les avance
+            Les avance {{date('m/yy')}}
         </div>
-        @if(count($employers)==0)
+        @if($avances==null)
         <center>
             <div class="alert alert-warning mt-2" style="width: 50%;">
                 Aucun avance Trouver
@@ -23,44 +24,45 @@
             <table id="tableAvance" class="table text-center" width="100%">
                 <thead>
                     <tr>
-                        <th class="th-sm">Nom Employer
+                        <th class="th-sm">
+                            <span>Nom</span>
                             <i class="fas fa-sort ml-1"></i>
                         </th>
-                        <th class="th-sm">Prenom
+                        <th class="th-sm"><span>Prenom</span>
                             <i class="fas fa-sort ml-0.5"></i>
                         </th>
-                        <th class="th-sm">Matricule
+                        <th class="th-sm"><span>Matricule</span>
                             <i class="fas fa-sort ml-0.5"></i>
                         </th>
-                        <th class="th-sm">Date Afectation
+                        <th class="th-sm"><span class="test-sm">Date Afectation</span>
                             <i class="fas fa-sort ml-1"></i>
                         </th>
-                        <th class="th-sm">Montant
+                        <th class="th-sm"><span>Montant</span>
                             <i class="fas fa-sort ml-1"></i>
                         </th>
-                        <th class="th-sm text-center">Action
+                        <th class="th-sm text-center"><span>Action</span>
                         </th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($employers as $employer)
+                    @if(count($avances[$employer->id])>0)
                     <tr>
                         <td>{{$employer->nom_employer}}</td>
                         <td>{{$employer->prenom}}</td>
                         <td>{{$employer->cin}}</td>
-                        @foreach($avances[0] as $avance)
-                        <td>{{$avance->id}}</td>
-                        <td>{{$avance->id}}</td>
-                        @endforeach
+                        @foreach($avances[$employer->id] as $avance)
+                        <td>{{$avance->date_affectation}}</td>
+                        <td>{{$avance->montant." ".$devise}}</td>
                         <td class="text-center">
-                            <a href="{{route('employer.edit',$employer->id)}}" class="btn btn-warning btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Edit</a>
-
-                            <a href="{{route('employer.delete',$employer->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 delete-confirm"> <i class="fas fa-trash-alt mr-2"></i>Supprimer</a>
+                            <button data-toggle="modal" data-target="#ModaleditAvance" data-date_affectation="{{$avance->date_affectation}}" data-id="{{$avance->id}}" data-employer_id="{{$employer->id}}" data-montant="{{$avance->montant}}" class="btn btn-warning btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Edit</button>
+                            <a href="{{route('avance.destroy',$avance->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 delete-confirm"> <i class="fas fa-trash-alt mr-2"></i>Supprimer</a>
                             <!-- Button trigger modal -->
                             <!-- Modal -->
-                            <a href="{{route('employer.show',$employer->id)}}" class="btn btn-info btn-sm  mr-1"><i class="fas fa-eye mr-2"></i>Detail</a>
                         </td>
                     </tr>
+                    @endforeach
+                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -68,6 +70,15 @@
         @endif
     </div>
 </div>
+
+
+<!--  start add modal -->
+@include('util.avance.add');
+<!-- end add modal  -->
+<!-- start  edit modal -->
+@include('util.avance.edit');
+<!-- end edit model  -->
+
 @endsection
 @section('script')
 <script>
@@ -81,17 +92,98 @@
             ],
             "paging": true,
             "oLanguage": {
-                "sLengthMenu": "Afficher _MENU_ employés par page",
+                "sLengthMenu": "Afficher _MENU_",
                 "sSearch": "Rechercher",
                 "sLenghtMenu": "Afficher _MENU_",
-                "sZeroRecords": "Aucun employé Trouvez!",
+                "sZeroRecords": "Aucun avance effectue ce  mois  Trouvez!",
                 "sInfo": "Afficher _START_ à _END_ de _TOTAL_ employés",
-                "sInfoFiltered": "(filtré à partir de _MAX_ employés)",
+                "sInfoFiltered": "(filtré à partir de _MAX_ avances)",
                 "oPaginate": {
                     "sPrevious": "Précédent",
                     "sNext": "Suivant"
                 }
             }
+        });
+        $(document).on('submit', '#form_add_avance', function(e) {
+            e.preventDefault();
+            let id = $("#employer_id").val();
+            let date_affectation = $("#date_affectation").val();
+            let montant = $("#montant").val();
+
+            if ($("#employer_id").val() == 0) {
+                Swal.queue([{
+                    title: 'Employer non trouver',
+                    text: 'Choisit un employer',
+                }]);
+            } else {
+                $.ajax({
+                    url: "{{route('avance.store')}}",
+                    method: "POST",
+                    data: {
+                        '_token': "{{csrf_token()}}",
+                        "employer_id": id,
+                        'date_affectation': date_affectation,
+                        'montant': montant,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        if (data.status) {
+                            // $('#btnAddAvance').html('<span class="spinner-border spinner-border-sm mr-2" role="status" aria-hidden="true"></span>Loading...').addClass('disabled');
+                            // $("#alertMessage").fadeTo('show',0.5);//oppacity
+                            $("#alertMessage").show();
+                            $("#alertMessage").addClass('alert-success');
+                            $("#alertMessage").text(data.message);
+
+                        } else {
+                            $("#alertMessage").show();
+                            $("#alertMessage").addClass('alert-danger');
+                            $("#alertMessage").text(data.message + " " + data.nom + " " + data.prenom);
+                        }
+
+                    },
+                    error: function(one, two, three) {
+                        console.log(one);
+                        console.log(two);
+                        console.log(three);
+                    }
+                });
+            }
+        })
+        ///edit avance
+        $('#ModaleditAvance').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget);
+            var modal = $("#ModaleditAvance");
+            modal.find('#employer_id_e').val(button.data('employer_id'));
+            modal.find('#date_affectation_e').val(button.data('date_affectation'));
+            modal.find('#montant_e').val(button.data('montant'));
+            modal.find('#id_avance').val(button.data('id'));
+        })
+        $(document).on('submit', '#form_edit_avance', function(e) {
+            let id_avance = $("#id_avance").val();
+            let date_affectation = $("#date_affectation_e").val();
+            let montant = $("#montant_e").val();
+            e.preventDefault();
+            $.ajax({
+                url: "/admin/avance/" + id_avance,
+                method: "PUT",
+                data: {
+                    '_token': "{{csrf_token()}}",
+                    'date_affectation': date_affectation,
+                    'montant': montant,
+                    'id_avance': id_avance,
+                },
+                success: function(data) {
+                    console.log(data);
+                    $("#alertEMessage").show();
+                    $("#alertEMessage").addClass('alert-success');
+                    $("#alertEMessage").text(data.message);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+
+
+            });
         });
     });
 </script>

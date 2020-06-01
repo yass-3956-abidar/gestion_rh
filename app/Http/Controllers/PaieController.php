@@ -71,11 +71,15 @@ class PaieController extends Controller
         $employer = Employer::find($request->id);
         $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
         $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
+        $avance = Db::table('avances')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('yy'))->first();
         // return response()->json($employer);
         return response()->json([
             'employer' => $employer,
             'contrat' => $contrat,
             'post' => $post,
+            'avance' => $avance,
         ]);
     }
 
@@ -116,6 +120,7 @@ class PaieController extends Controller
         $Primeancienter = BulletinService::calculAncienter($request->date_embauche, $request->salaire_base, $totalHeurSup);
         // calcul salaire brute global
         $sbg = $request->salaire_base + $totalHeurSup + $Primeancienter + $totalHeurSup;
+        //  trouver l'avance du mois courant
         return response()->json([
             'employer_id' => $request->employer_id,
             'date_belletin_debut' => $request->date_belletin_debut,
@@ -124,7 +129,6 @@ class PaieController extends Controller
             'salaire_base' => $request->salaire_base,
             'situationFami' => $request->situationFami,
             'nbr_enfant' => $request->nbr_enfant,
-            'avance' => $request->avance,
             'nbr_heur_ferie' => $request->nbr_heur_ferie,
             'interval_Ferier' => $request->interval_Ferier,
             'nbr_heur_ouvrable' => $request->nbr_heur_ouvrable,
@@ -137,7 +141,8 @@ class PaieController extends Controller
             'Primeancienter' => $Primeancienter,
             'durreAnciente' => $durreAnciente,
             'tauxAncienter' => $tauxAncienter . "%",
-            'sbg'=>$sbg,
+            'sbg' => $sbg,
+            'avance' => $request->avance,
         ]);
     }
 
