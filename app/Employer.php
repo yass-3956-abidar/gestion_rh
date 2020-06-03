@@ -12,40 +12,54 @@ class Employer extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'cin', 'nom_employer', 'prenom','email','date_naissance','situationFami','sexe','Num_cnss','nbr_enfant','Num_Icmr','salaire','image','emploi_id','banque_id','departement_id','societe_id',
+        'cin', 'nom_employer', 'prenom', 'email', 'date_naissance', 'situationFami', 'sexe', 'Num_cnss', 'nbr_enfant', 'Num_Icmr', 'salaire', 'image', 'emploi_id', 'banque_id', 'departement_id', 'societe_id',
     ];
-    public function congets(){
+    public function congets()
+    {
         return $this->hasMany('App\Conget');
     }
     //employer has many contrat
-    public function contats(){
+    public function contats()
+    {
         return $this->hasOne('App\Contrat');
     }
-    public function avances(){
+    public function avances()
+    {
         return $this->hasMany('App\Avance');
     }
 
 
-    public function emplois(){
+    public function emplois()
+    {
         return $this->belongsTo('App\Emploi');
     }
-    public function societes(){
+    public function societes()
+    {
         return $this->hasMany('App\Societe');
     }
-    public function departements(){
+    public function departements()
+    {
         return $this->hasMany('App\Departement');
     }
-    public function banques(){
+    public function banques()
+    {
         return $this->hasMany('App\Banque');
     }
 
-    public function primes(){
+    public function primes()
+    {
         return $this->hasMany('App\Prime');
     }
-    public function bulletinpaies(){
-          return $this->hasMany('App\BulletinPaie');
+    public function bulletinpaies()
+    {
+        return $this->hasMany('App\BulletinPaie');
     }
-    public function presences(){
+    public function presences()
+    {
         return $this->hasMany('App\Presence');
+    }
+    public function heursups()
+    {
+        return $this->hasMany('App\HeurSup');
     }
 }

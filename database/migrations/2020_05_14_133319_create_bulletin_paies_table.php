@@ -15,14 +15,18 @@ class CreateBulletinPaiesTable extends Migration
     {
         Schema::create('bulletin_paies', function (Blueprint $table) {
             $table->id();
-            $table->date('date_belletin');
+            $table->date('date_paie_debut');
+            $table->date('date_paie_dfin');
             $table->bigInteger('employer_id');
             $table->integer('cout_heurSup');
-            $table->integer('nbr_heur');
+            $table->integer('avantage');
+            $table->integer('exoneration');
             $table->softDeletes();
-            $table->integer('nbr_heur_sup');
-            $table->integer('nbr_jour_ferier');
-            $table->integer('nbr_conget_pay');
+            $table->double('sbg');
+            $table->double('sbi');
+            $table->integer('nbr_heur_sup')->default(null);
+            $table->integer('nbr_jour_ferier')->default(null);
+            $table->integer('nbr_conget_pay')->default(null);
             $table->timestamps();
         });
     }
