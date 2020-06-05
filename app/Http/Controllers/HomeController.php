@@ -39,7 +39,7 @@ class HomeController extends Controller
         $cmp = 0;
         $cmpPaie = 0;
         $cmpPost = 0;
-        foreach ($employers as $employer) {
+        foreach ($employers as  $employer) {
             $employer = Employer::find($employer->id);
             $bulletinPaie[$employer->id] = $employer->bulletinpaies;
             if (!in_array($employer->emploi_id, $emploi)) {
@@ -49,7 +49,9 @@ class HomeController extends Controller
                 array_push($departemnt, $employer->departement_id);
             }
             $presence[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)
-                ->where('date_pointe', '=', '2020-06-04')->first();
+                ->whereMonth('created_at', date('m'))
+                ->whereDay('created_at', date('d'))
+                ->whereYear('created_at', date('yy'))->first();
             if ($presence[$employer->id] != null) {
                 $cmp++;
             }
@@ -61,10 +63,7 @@ class HomeController extends Controller
             }
         }
 
-
-
         $nbrdep = count($departemnt);
-        $nbrFichePaie = count($bulletinPaie);
         $nbremploi = count($emploi);
         return view('home')->with([
             'nombre_employer' => $nombre_employer,

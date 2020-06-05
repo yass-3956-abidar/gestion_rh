@@ -112,7 +112,7 @@ $(document).ready(function () {
     "order": [[3, "desc"]],
     "paging": true,
     "oLanguage": {
-      "sLengthMenu": "Afficher _MENU_ employés par page",
+      "sLengthMenu": "Afficher _MENU_",
       "sSearch": "Rechercher",
       "sLenghtMenu": "Afficher _MENU_",
       "sZeroRecords": "Aucun employé Trouvez!",
@@ -123,7 +123,8 @@ $(document).ready(function () {
         "sNext": "Suivant"
       }
     }
-  });
+  }); //
+
   $('.dataTables_length').addClass('bs-select');
   $('.delete-confirm').on('click', function (event) {
     event.preventDefault();

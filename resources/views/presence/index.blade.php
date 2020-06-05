@@ -3,12 +3,14 @@
 <div class="card" style="box-shadow: none">
     <div class="row">
         <div class="col-md-6">
-            <div class="card-header mt-1 border-secondary text-white" style="background-color: #9e9e9e ">
+            <div class="card-header bg-primary mt-1 border-secondary text-white">
                 Présence des employes le {{date('yy-m-d')}}
             </div>
         </div>
         <div class="col-md-6">
+            @if(count($employers)>0)
             <button id="pointer_employer_selectioner" data-toggle="modal" data-target="#addALL" class="btn btn-primary float-right">Pointer les employer selectionee</button>
+            @endif
         </div>
     </div>
     <div class="row">
@@ -19,7 +21,7 @@
             </div>
             @else
             <!-- Table  -->
-            <table class="table table-bordered">
+            <table id="table_presence_emp" class="table table-bordered">
                 <!-- Table head -->
                 <thead>
                     <tr>
@@ -43,6 +45,8 @@
                 <tbody>
                     <div class="row">
                         <input type="hidden" id="nbr_employer" value="{{count($employers)}}">
+                        <input type="hidden" id="min" value="{{($min)}}">
+                        <input type="hidden" id="max" value="{{($max)}}">
                         @foreach($employers as $employer)
                         <tr>
                             <th scope="row">
@@ -56,9 +60,9 @@
                             <td>
                                 <ul class="list-group list-group-horizontal">
                                     @foreach($tablePresence[$employer->id] as $presence)
-                                    <li id="valPoi" class="list-group-item active mr-1">
-                                        <button data-toggle="modal" data-id="{{$presence->id}}" data-note="{{$presence->note}}" data-id-emp="{{$employer->id}}" data-heur-entre="{{$presence->heur_entre}}" data-heur-sortit="{{$presence->heur_sortit}}" data-target="#editModal"> {{$presence->heur_entre." "."=>"." ".$presence->heur_sortit}}</button>
-                                    </li>
+
+                                    <button style="border-radius: 20px;" class="btn btn-outline-primary text-white" data-toggle="modal" data-id="{{$presence->id}}" data-note="{{$presence->note}}" data-id-emp="{{$employer->id}}" data-heur-entre="{{$presence->heur_entre}}" data-heur-sortit="{{$presence->heur_sortit}}" data-target="#editModal"> {{$presence->heur_entre." "."=>"." ".$presence->heur_sortit}}
+                                    </button>
                                     @endforeach
                                 </ul>
                             </td>
@@ -92,7 +96,7 @@
         $("#list_breadcrumb").append(item2);
 
 
-        $('#tablePointage').DataTable({
+        $('#table_presence_emp').DataTable({
             "paging": true,
             "oLanguage": {
                 "sLengthMenu": "Afficher _MENU_",
@@ -152,7 +156,8 @@
                             id
                         },
                         success: function(data) {
-                            $("#valPoi").remove();
+                            // $("#valPoi").remove();
+                            location.reload(true);
                         },
                         error: function(one, two, tre) {
                             console.log(one);
@@ -167,12 +172,12 @@
         $(document).on('click', '#tableDefaultCheck1', function() {
             if ($("#tableDefaultCheck1").is(':checked')) {
                 console.log('selection tous');
-                for (let i = 1; i <= $("#nbr_employer").val(); i++) {
+                for (let i = $("#min").val(); i <= $("#max").val(); i++) {
                     $("#chek" + i).prop('checked', true)
                 }
             } else {
                 console.log('deselectionne tous');
-                for (let i = 1; i <= $("#nbr_employer").val(); i++) {
+                for (let i = $("#min").val(); i <= $("#max").val(); i++) {
                     $("#chek" + i).prop('checked', false)
                 }
             }
@@ -180,7 +185,8 @@
         });
         $('#addALL').on('show.bs.modal', function(event) {
             var employer_selectionne = [];
-            for (let i = 1; i <= $("#nbr_employer").val(); i++) {
+            console.log($("#nbr_employer").val());
+            for (let i = $("#min").val(); i <= $("#max").val(); i++) {
                 if ($("#chek" + i).is(':checked')) {
                     let option = '<option selected>' + i + '</option>';
                     employer_selectionne.push(i);
@@ -189,15 +195,37 @@
                 }
             }
         });
+
+        $('.dataTables_length').addClass('bs-select');
         // select_empl
         $(document).on('submit', '#formForAddAll', function(e) {
+            e.preventDefault();
             $.ajax({
                 url: "{{route('presence.saveAll')}}",
-                type: "GET",
-                contentType: 'application/json',
+                type: "POST",
                 data: $('#formForAddAll').serialize(),
+                dataType: 'json',
                 success: function(data) {
                     console.log(data);
+                    if (data.status) {
+                        setInterval('location.reload()', 3000);
+                        // location.reload(true);
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            onOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+                        Toast.fire({
+                            icon: 'success',
+                            title: data.cmp + " " + 'pointe avec succe'
+                        })
+                    }
                 },
                 error: function(one, two, tre) {
                     console.log(one);

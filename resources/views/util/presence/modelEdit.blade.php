@@ -12,6 +12,7 @@
                     @csrf
                     @method('PUT')
                     <input id="id_presence" type="hidden" name="id_presence">
+                    <input id="id_employer" type="hidden" name="id_employer">
                     <input type="hidden" name="date_pointe" class="form-control @error('date_pointe') is-invalid @enderror" value="{{date('yy-m-d')}}">
                     @error('date_pointe')
                     <span class="invalid-feedback" role="alert">

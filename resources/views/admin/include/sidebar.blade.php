@@ -57,6 +57,13 @@
                 Conget
             </a>
         </li>
+        <li>
+            <a class="text-white" href="{{route('para.index')}}">
+                <!-- <i class="fas fa-cogs"></i> -->
+                <i class="fas fa-trash-alt"></i>
+                Corbeille
+            </a>
+        </li>
         <li class="active">
             <a href="#outil" data-toggle="collapse" aria-expanded="false">
                 <i id="appIdIcon" class="fas fa-border-none"></i>Outil <i class="fas fa-sort-down float-right"></i>

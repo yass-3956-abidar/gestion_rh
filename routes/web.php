@@ -31,8 +31,9 @@ Route::get("/Registration", "HomeController@registration")->name('registration')
 Route::resource('societe', 'SocieteController');
 Route::resource('/admin/employer', 'EmployerController');
 Route::resource('/admin/presenceEmp', 'PresenceController');
-Route::get('/admin/presenceEmp/pointerAll','PresenceController@saveAll')->name('presence.saveAll');
+Route::POST('/admin/presenceEmp/pointerAll','PresenceController@saveAll')->name('presence.saveAll');
 Route::get('employer/suppprime/{id}', 'EmployerController@destroy')->name('employer.delete');
+Route::get('employer/suppression/{id}', 'EmployerController@forceDelete')->name('employer.forceDelete');
 Route::get('/admin/outil/salire', 'EmployerController@InfoCalculSalire')->name('admin.salire');
 Route::get('/admin/outil/ir', 'EmployerController@infoIr')->name('admin.ir');
 ///////////////////////////////////////////////////////////////////////////////
@@ -58,3 +59,7 @@ Route::get('admin/paie/edit/{id}', 'PaieController@edit')->name('paie.edit');
 Route::get('admin/paie/showPaie/{id}', 'PaieController@showPaie')->name('paie.showPaie');
 Route::get('admin/paie/destroy/{id}', 'PaieController@destroy')->name('paie.destroy');
 Route::PUT('admin/paie/update/{id}', 'PaieController@update')->name('paie.update');
+
+// parrametre route
+Route::get('/admin/parametre/','ParametreController@index')->name('para.index');
+Route::get('/admin/parametre/employer/{id}','ParametreController@restoref')->name('para.emp.restore');

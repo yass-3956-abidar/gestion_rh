@@ -22,7 +22,7 @@ $(document).ready(function() {
         ],
         "paging": true,
         "oLanguage": {
-            "sLengthMenu": "Afficher _MENU_ employés par page",
+            "sLengthMenu": "Afficher _MENU_",
             "sSearch": "Rechercher",
             "sLenghtMenu": "Afficher _MENU_",
             "sZeroRecords": "Aucun employé Trouvez!",
@@ -34,6 +34,8 @@ $(document).ready(function() {
             }
         }
     });
+
+    //
     $('.dataTables_length').addClass('bs-select');
     $('.delete-confirm').on('click', function(event) {
         event.preventDefault();

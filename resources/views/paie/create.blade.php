@@ -20,7 +20,7 @@
                         <select id="employer_id" name=" employer_id" class="form-control col-md-6 @error('employer_id') is-invalid @enderror">
                             <option value="0">---select---</option>
                             @if(count($employers)==0)
-                            <option value="{{isset($employer)? $employer->id:''}}">{{$employer->nom_employer}}</option>
+                            <option value="{{isset($employer)? $employer->id:''}}">{{isset($employer)?$employer->nom_employer:''}}</option>
                             @endif
                             @foreach($employers as $employer)
                             <option value="{{$employer->id}}">{{$employer->nom_employer}}</option>

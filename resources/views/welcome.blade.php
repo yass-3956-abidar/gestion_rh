@@ -1,4 +1,11 @@
 @extends('layouts.app')
+@section('style')
+<style>
+    #link_employer:hover {
+        color: #18ffff;
+    }
+</style>
+@endsection
 @section('content')
 <div class="container-fluid">
     <div class="row">
@@ -110,7 +117,7 @@
                                     </label>
 
                                     <div class="col-md-6">
-                                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  required autocomplete="email">
+                                        <input id="emaile" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
 
                                         @error('email')
                                         <span class="invalid-feedback" role="alert">
@@ -125,7 +132,7 @@
                                     </label>
 
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control @error('rais_social') is-invalid @enderror"  required name="rais_social" >
+                                        <input type="text" class="form-control @error('rais_social') is-invalid @enderror" required name="rais_social">
 
                                         @error('rais_social')
                                         <span class="invalid-feedback" role="alert">
@@ -156,7 +163,7 @@
                                     </label>
 
                                     <div class="col-md-6">
-                                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                                        <input id="passworde" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                                         @error('password')
                                         <span class="invalid-feedback" role="alert">
@@ -187,9 +194,8 @@
                         </div>
                     </div>
                 </div>
+                <a id="link_employer" href="{{route('espace.login')}}" class=" mt-4 btn btn-outline-primary float-right text-decoration-none">Je suis Un Employer</a>
             </div>
         </div>
     </div>
-
-    </>
     @endsection

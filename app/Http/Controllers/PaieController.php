@@ -43,12 +43,14 @@ class PaieController extends Controller
     public function cherchePaie(Request $request)
     {
         $outout = '';
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $bullpaie = DB::table('bulletin_paies')->whereMonth('created_at', $request->month)
+            ->where('id_societe', $idsociete)
             ->whereYear('created_at', $request->year)->get();
         $BulltnPaie = [];
         foreach ($bullpaie  as $apieB) {
             $BulltnPaie = BulletinPaie::find($apieB->id);
-            $employer = $BulltnPaie->employer;
+            $employer = Employer::find($BulltnPaie->employer_id);
             $outout .= '<tr>
                   <td>' . $employer->nom_employer . '</td>
                   <td>' . $employer->prenom . '</td>
@@ -66,11 +68,13 @@ class PaieController extends Controller
             return response()->json([
                 'data' => $outout,
                 'status' => true,
+                'month' => $request->month,
             ]);
         } else {
             return response()->json([
                 'data' => 'Aucun element trouver!!',
-                'status' => false
+                'status' => false,
+                'month' => $request->month,
             ]);
         }
     }
@@ -273,7 +277,7 @@ class PaieController extends Controller
                 'employer_id' => $request->employer_id
             ]);
 
-
+            $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
             $totalHeurSup = $gainOuv + $gainFer;
             $primes = DB::table('primes')->where('employer_id', $employer->id)
                 ->whereMonth('created_at', date('m'))
@@ -298,6 +302,7 @@ class PaieController extends Controller
                 'nbr_heur_sup' => $request->nbr_heur_ferie + $request->nbr_heur_ouvrable,
                 'sbg' => $sbg,
                 'sbi' => $sbi,
+                'id_societe' => $idsociete,
             ]);
             $idPaie = DB::table('bulletin_paies')->max('id');
             Cotisation::create([

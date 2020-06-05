@@ -244,6 +244,14 @@ class EmployerController extends Controller
 
         return redirect(route('employer.index'));
     }
+    public function forceDelete($id)
+    {
+        $employer = Employer::onlyTrashed()
+            ->where('id', $id)
+            ->first();
+        $employer->forceDelete();
+        return redirect(route('para.index'));
+    }
     public function InfoCalculSalire()
     {
         return view('outil.salaire');

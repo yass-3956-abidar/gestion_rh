@@ -7,14 +7,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class BulletinPaie extends Model
 {
-    public function employer(){
+    public function employer()
+    {
         return $this->belongsTo('App\Employer');
     }
-    public function cotisations(){
+    public function cotisations()
+    {
         return $this->hasMany('App\Cotisation');
     }
     protected $fillable = [
-        'date_paie_debut', 'date_paie_dfin', 'employer_id','cout_heurSup','avantage','exoneration','nbr_heur_sup','sbg','sbi'
+        'date_paie_debut', 'date_paie_dfin', 'id_societe', 'employer_id', 'cout_heurSup', 'avantage', 'exoneration', 'nbr_heur_sup', 'sbg', 'sbi'
     ];
     use SoftDeletes;
 }

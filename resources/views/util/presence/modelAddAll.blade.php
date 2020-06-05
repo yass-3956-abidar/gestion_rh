@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form id="formForAddAll" method="get">
+                <form id="formForAddAll" method="post">
                     @csrf
                     <input type="hidden" name="date_pointe" class="form-control @error('date_pointe') is-invalid @enderror" value="{{date('yy-m-d')}}">
                     @error('date_pointe')

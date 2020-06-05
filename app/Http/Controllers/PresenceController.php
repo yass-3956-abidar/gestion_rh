@@ -22,12 +22,27 @@ class PresenceController extends Controller
     public function index()
     {
         $presence = [];
+        $employer_ids = [];
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
         foreach ($employers as $employer) {
             $presence[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)->where('date_pointe', date('yy-m-d'))->get();
+            $employer_ids[$employer->id] = $employer->id;
         }
-        return view('presence.index')->with('employers', $employers)->with('tablePresence', $presence);
+        // min id;
+        // max id;
+        if (count($employer_ids) > 0) {
+            $min = min($employer_ids);
+            $max = max($employer_ids);
+        } else {
+            $min = 0;
+            $max = 0;
+        }
+
+
+        return view('presence.index')->with('employers', $employers)->with('tablePresence', $presence)
+            ->with('min', $min)
+            ->with('max', $max);
     }
     public function getEmployerPresence(Request $request)
     {
@@ -47,21 +62,31 @@ class PresenceController extends Controller
                     foreach ($presences[$employer->id] as $presence) {
                         $output .= '
                   <tr>
+                  <td>' . $employer->cin . '</td>
                     <td>' . $employer->nom_employer . " " . $employer->prenom . '</td>
                      <td>
                         <ul class="list-group list-group-horizontal">
-                        <li class="list-group-item active mr-1">
-                              <button class="text-center"> ' . $presence->heur_entre . " " . $presence->heur_sortit .
-                            '</button>
-                          </li>
+                              <a data-toggle="modal" data-note="' . $presence->note . '" data-heur-sortit="' . $presence->heur_sortit . '" data-heur-entre="' . $presence->heur_entre . '" data-id_emp="' . $employer->id . '" data-id_presence="' . $presence->id . '"  data-target="#editModal" style="border-radius: 20px;" class="text-center btn btn-outline-primary"> ' . $presence->heur_entre . " " . $presence->heur_sortit .
+                            '</a>
+
                         </ul>
                      </td>
                     </tr>
                     ';
                     }
                 }
-                $data = $output;
-                echo json_encode($data);
+                $sourece = $output;
+                // echo json_encode($data);
+                if ($sourece != null) {
+                    return response()->json([
+                        'status' => true,
+                        'sourece' => $sourece,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                    ]);
+                }
             }
         } else {
             echo "not found";
@@ -116,23 +141,28 @@ class PresenceController extends Controller
     }
     public function saveAll(Request $request)
     {
-        dd($request->heur_entre);
-        foreach ($request->select_empl as $id_emp) {
-            $employer = Employer::find($id_emp);
-            $presence = new Presence();
-            $presence->heur_entre = $request->heur_entre;
-            $presence->heur_sortit = $request->heur_sortit;
-            $presence->note = $request->note;
-            $presence->employer_id = $employer->id;
-            $presence->date_pointe = date('yy-m-d');
-            $presence->save();
+        if ($request->select_empl!=null) {
+            foreach ($request->select_empl as $id_emp) {
+                $employer = Employer::find($id_emp);
+                $presence = new Presence();
+                $presence->heur_entre = $request->heur_entre;
+                $presence->heur_sortit = $request->heur_sortit;
+                $presence->note = $request->note;
+                $presence->employer_id = $employer->id;
+                $presence->date_pointe = date('yy-m-d');
+                $presence->save();
+            }
+            $cmp = count($request->select_empl);
+            return response()->json([
+                'status' => true,
+                'cmp' => $cmp,
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'cmp' => 0,
+            ]);
         }
-        $cmp = count($request->select_empl);
-        $request->session()->flash('success', "$cmp employer sont pointe avec succé");
-        toast(session('success'), 'success');
-        return response()->json([
-            'staus' => true,
-        ]);
     }
     public function savePresence(Request $Request, $id)
     {

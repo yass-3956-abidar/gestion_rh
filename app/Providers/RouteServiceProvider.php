@@ -22,8 +22,8 @@ class RouteServiceProvider extends ServiceProvider
      * @var string
      */
     public const HOME = '/admin/home';
-    public const WELCOM='/';
-    public const CONTINUREGISTER='/Registration';
+    public const WELCOM = '/';
+    public const CONTINUREGISTER = '/Registration';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -47,6 +47,8 @@ class RouteServiceProvider extends ServiceProvider
         $this->mapApiRoutes();
 
         $this->mapWebRoutes();
+        $this->mapEmployerRoutes();
+
 
         //
     }
@@ -63,6 +65,11 @@ class RouteServiceProvider extends ServiceProvider
         Route::middleware('web')
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
+    }
+    protected function mapEmployerRoutes()
+    {
+        Route::namespace($this->namespace)
+            ->group(base_path('routes/employer.php'));
     }
 
     /**
