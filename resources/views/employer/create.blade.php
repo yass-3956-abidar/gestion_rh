@@ -13,7 +13,7 @@
     <div class="card-body">
         <form action="{{isset($employer) ? route('employer.update',$employer->id):route('employer.store')}}" method="POST" enctype="multipart/form-data">
             @if(isset($employer))
-               @method('PUT')
+            @method('PUT')
             @endif
             <h2 style="font-family: italic;color:gray">Information De L'Employer</h2>
             <div class="row">
@@ -86,7 +86,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <input type="email" placeholder="Email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{isset($employer)? $employer->email:old('email')}}">
+                        <input type="email" placeholder="Email" id="email_emp" name="email" class="form-control @error('email') is-invalid @enderror" value="{{isset($employer)? $employer->email:old('email')}}">
                         @error('email')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -263,4 +263,20 @@
         </form>
     </div>
 </div>
+@endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        let item1 = '<li class="breadcrumb-item active">Employer</li>';
+        if ($("#email_emp").val()=='') {
+            var item2 = '<li class="breadcrumb-item active">Create</li>';
+        } else {
+            var item2 = '<li class="breadcrumb-item active">Edit</li>';
+        }
+
+        $("#list_breadcrumb").append(item1);
+        $("#list_breadcrumb").append(item2);
+
+    })
+</script>
 @endsection

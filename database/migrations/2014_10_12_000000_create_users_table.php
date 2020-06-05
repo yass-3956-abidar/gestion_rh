@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('rais_social');
             $table->string('tele');
+            $table->string('image')->default('avatar.png');
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

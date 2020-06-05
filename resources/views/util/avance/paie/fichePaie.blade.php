@@ -115,7 +115,14 @@
                         <td>Avantage</td>
                         <td></td>
                         <td></td>
-                        <td id="avantg"></td>
+                        <td id="avantage_plus"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>Salaire Brute global</td>
+                        <td></td>
+                        <td></td>
+                        <td id="sbrutGlobal"></td>
                         <td></td>
                     </tr>
                     <tr>

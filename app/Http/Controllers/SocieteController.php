@@ -56,7 +56,7 @@ class SocieteController extends Controller
         // // dd($data);
         // Societe::create($data);
 
-        return  redirect('/home');
+        return  redirect('/admin/home');
     }
 
     /**

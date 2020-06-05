@@ -114,6 +114,26 @@ class PresenceController extends Controller
         toast(session('success'), 'success');
         return redirect(route('presenceEmp.index'));
     }
+    public function saveAll(Request $request)
+    {
+        dd($request->heur_entre);
+        foreach ($request->select_empl as $id_emp) {
+            $employer = Employer::find($id_emp);
+            $presence = new Presence();
+            $presence->heur_entre = $request->heur_entre;
+            $presence->heur_sortit = $request->heur_sortit;
+            $presence->note = $request->note;
+            $presence->employer_id = $employer->id;
+            $presence->date_pointe = date('yy-m-d');
+            $presence->save();
+        }
+        $cmp = count($request->select_empl);
+        $request->session()->flash('success', "$cmp employer sont pointe avec succé");
+        toast(session('success'), 'success');
+        return response()->json([
+            'staus' => true,
+        ]);
+    }
     public function savePresence(Request $Request, $id)
     {
     }

@@ -2,7 +2,7 @@
 @section('content')
 <div class="card" style="box-shadow: none;">
     <div class="card-header bg-success text-white">
-        Cree Une fiche de paie de {{date('yy-m')}}
+        {{isset($employer) ? "edit fiche de paie":"Cree Une fiche de paie" }}
     </div>
     <div class="card-body">
         <form id="fromSimul" method="get">
@@ -17,8 +17,11 @@
                         <label for="employer_id" name="employer_id" class="col-md-5 col-form-label text-md-right">{{ __('Employer') }}
                             <span class="text-danger ml-1">*</span>
                         </label>
-                        <select id="employer_id" name="employer_id" class="form-control col-md-6 @error('employer_id') is-invalid @enderror">
+                        <select id="employer_id" name=" employer_id" class="form-control col-md-6 @error('employer_id') is-invalid @enderror">
                             <option value="0">---select---</option>
+                            @if(count($employers)==0)
+                            <option value="{{isset($employer)? $employer->id:''}}">{{$employer->nom_employer}}</option>
+                            @endif
                             @foreach($employers as $employer)
                             <option value="{{$employer->id}}">{{$employer->nom_employer}}</option>
                             @endforeach
@@ -77,7 +80,7 @@
                         <label for="taux_Icmr" class="col-md-5 col-form-label text-md-right">{{ __('Taux ICMR') }}
                             <span class="text-danger ml-1">*</span>
                         </label>
-                        <input id="taux_Icmr" type="text" placeholder="entre 3 et 6 %" name="taux_Icmr" class=" col-md-6 form-control @error('taux_Icmr') @enderror" value="{{old('taux_Icmr')}}" required>
+                        <input id="taux_Icmr" type="text" value="{{isset($icmr)? $icmr['taux']:''}}" placeholder="entre 3 et 6 %" name="taux_Icmr" class=" col-md-6 form-control @error('taux_Icmr') @enderror" value="{{old('taux_Icmr')}}" required>
                         @error('taux_Icmr')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -88,7 +91,7 @@
                         <label for="avantage" class="col-md-5 col-form-label text-md-right">{{ __('Avantage En nature') }}
                             <span class="text-danger ml-1"></span>
                         </label>
-                        <input id="avantage" type="number" min="0" value="0" name="avantage" class=" col-md-6 form-control @error('avantage') @enderror">
+                        <input id="avantage" type="number" min="0" value="{{isset($bulletin)? $bulletin->avantage:'0'}}" name="avantage" class=" col-md-6 form-control @error('avantage') @enderror">
                         @error('avantage')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -145,7 +148,7 @@
                         <label for="cout_heurSup" class="col-md-5 col-form-label text-md-right">{{ __('Cout Par Heur') }}
                             <span class="text-danger ml-1"></span>
                         </label>
-                        <input id="cout_heurSup" type="number" min="0" value="0" name="cout_heurSup" class=" col-md-6 form-control @error('cout_heurSup') @enderror">
+                        <input id="cout_heurSup" type="number" min="0" value="{{isset($bulletin)? $bulletin->cout_heurSup:'0'}}" name="cout_heurSup" class=" col-md-6 form-control @error('cout_heurSup') @enderror">
                         @error('cout_heurSup')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -167,7 +170,7 @@
                         <label for="exoneretion" class="col-md-5 col-form-label text-md-right">{{ __('EXONERATIONS') }}
                             <span class="text-danger ml-1"></span>
                         </label>
-                        <input id="exoneretion" type="number" min="0" value="0" name="exoneretion" class=" col-md-6 form-control @error('exoneretion') @enderror">
+                        <input id="exoneretion" type="number" min="0" value="{{isset($bulletin)? $bulletin->exoneration:'0'}}" name="exoneretion" class=" col-md-6 form-control @error('exoneretion') @enderror">
                         @error('exoneretion')
                         <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
@@ -189,29 +192,39 @@
             <div class="row">
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input type="number" value="0" min="0" name="nbr_heur_ferie" id="nbr_heur_ferie" class="form-control" placeholder="Heur Supplementaire">
+                        <input type="number" value="{{isset($jf)? $jf['nombre_heur']:'0'}}" min="0" name="nbr_heur_ferie" id="nbr_heur_ferie" class="form-control" placeholder="Heur Supplementaire">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <select type="text" name="interval_Ferier" id="interval_Ferier" class="form-control" placeholder="Interval">
+                        <select type="text" value="{{isset($jf)? $jf['interval']:'---'}}" name="interval_Ferier" id="interval_Ferier" class="form-control" placeholder="Interval">
+                            @if(isset($jf))
+                            <option>---</option>
+                            <option selected value="{{$jf['interval']}}">Entre {{$jf['interval']}}</option>
+                            @else
                             <option>---</option>
                             <option value="6-21">Entre 6h--21h</option>
                             <option value="21-6">Entre 21h--6h</option>
+                            @endif
                         </select>
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <input type="number" value="0" min="0" name="nbr_heur_ouvrable" id="nbr_heur_ouvrable" class="form-control" placeholder="Heur Supplementaire">
+                        <input type="number" value="{{isset($jo)? $jo['nombre_heur']:'0'}}" min="0" name="nbr_heur_ouvrable" id="nbr_heur_ouvrable" class="form-control" placeholder="Heur Supplementaire">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div class="form-group">
-                        <select type="text" name="interval_ouvrable" id="interval_ouvrable" class="form-control" placeholder="Interval">
+                        <select type="text" name="interval_ouvrable" value="{{isset($jo)? $jf['interval']:'---'}}" id="interval_ouvrable" class="form-control" placeholder="Interval">
+                            @if(isset($jo))
+                            <option>---</option>
+                            <option selected value="{{$jo['interval']}}">Entre {{$jo['interval']}}</option>
+                            @else
                             <option>---</option>
                             <option value="6-21">Entre 6h--21h</option>
                             <option value="21-6">Entre 21h--6h</option>
+                            @endif
                         </select>
                     </div>
                 </div>
@@ -219,13 +232,30 @@
             <p class="lead mt-2"> Les Primes</p>
             <hr style="width: 9%;">
             <div class="row">
-                <input id="nbr_prime_impo" type="hidden" name="nbr_prime_impo">
+                <input id="nbr_prime_impo" value="{{isset($primes)? count($primes) :''}}" type="hidden" name="nbr_prime_impo">
+                @if(isset($primes))
+                @foreach($primes as $key=>$prime)
                 <div class="col-md-6">
                     Designation
                     <div id="forDesignImposa">
-
+                        <input id="designImpo{{$key+1}}" name="designImpo{{$key+1}}" class="form-control" placeholder="designation" value="{{$prime->designation}}">
                     </div>
 
+                </div>
+                <div class="col-md-6">
+                    Montant
+                    <div id="forMontantImposa">
+                        <div id="forDesignImposa">
+                            <input id="MontantImpo{{$key+1}}" name="MontantImpo{{$key+1}}" class="form-control" placeholder="Montant" value="{{$prime->montant_prim}}">
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @else
+                <div class="col-md-6">
+                    Designation
+                    <div id="forDesignImposa">
+                    </div>
                 </div>
                 <div class="col-md-6">
                     Montant
@@ -233,6 +263,7 @@
 
                     </div>
                 </div>
+                @endif
             </div>
             <div class="row">
                 <div id="addDeleteImpo" class="col-md-6">
@@ -240,16 +271,25 @@
                     <a style="display: none;" id="iconImp" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary float-right">Enregistre <i class="fas ml-2 fa-1x fa-save"></i></button>
+            <button type="submit" class="btn btn-primary float-right">{{isset($employer)?'Edit':'Enregistre'}} <i class="fas ml-2 fa-1x fa-save"></i></button>
         </form>
         @include('util.avance.paie.fichePaie')
-        <a style="display: none;" href="{{route('paie.apercu')}}" id="btnapercu" class="btn btn-primary float-right">Apercu<i class="fas ml-2 fa-1x fa-file-pdf"></i></a>
+        <a style="display: none;" id="btnapercu" class="btn btn-primary float-right">Apercu<i class="fas ml-2 fa-1x fa-file-pdf"></i></a>
     </div>
 </div>
 @endsection
 @section('script')
 <script>
     $(document).ready(function() {
+        let item1 = '<li class="breadcrumb-item active">Paie</li>';
+        if ($("#cout_heurSup").val() == '0') {
+            var item2 = '<li class="breadcrumb-item active">Create</li>';
+        } else {
+            var item2 = '<li class="breadcrumb-item active">Edit</li>';
+        }
+
+        $("#list_breadcrumb").append(item1);
+        $("#list_breadcrumb").append(item2);
         let i = 1;
         let j = 1;
 
@@ -275,7 +315,7 @@
                         $("#date_belletin_fin").val(data.dateFin);
                         $("#date_embauche").val(data.contrat.date_embauche);
                         $("#salaire_base").val(data.post.salaire_base);
-                        $("#avance").val(data.avance.montant);
+                        $("#avance").val(data.montant);
 
                     },
                 })
@@ -341,7 +381,9 @@
                             // autre prime
                             $("#total_prime").text(data.totalPrime);
                             // avaantage
-                            $("#avantage").text(data.avtg);
+                            $("#avantage_plus").text(data.avtg);
+                            //sbglobal
+                            $("#sbrutGlobal").text(data.sbg);
                             //cotisation cnss
                             $("#taux_cnss").text(4.48);
                             $("#retenu_cnss").text(data.coticnss);
@@ -364,6 +406,7 @@
                             $("#sbImpos").text(data.sbi);
                             $("#netImposable").text(data.sni);
                             $("#salire_net").text(data.salaire_net);
+                            $("#btnapercu").attr('href', '/admin/paie/apercu/' + data.idPaie);
                         }
 
                     },

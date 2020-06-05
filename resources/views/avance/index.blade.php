@@ -6,7 +6,7 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAddAvance">Ajouter Une Avance</button>
         </div>
         <div class="col-md-6">
-            <a href="{{route('avance.create')}}"class="btn btn-info float-right"><i class="fas fa-eye mr-2"></i>Historique des avances</a>
+            <a href="{{route('avance.create')}}" class="btn btn-info float-right"><i class="fas fa-eye mr-2"></i>Historique des avances</a>
         </div>
     </div>
     <div class="card border-success">
@@ -83,6 +83,10 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        let item1 = '<li class="breadcrumb-item active">Avance</li>';
+        var item2 = '<li class="breadcrumb-item active">Index</li>';
+        $("#list_breadcrumb").append(item1);
+        $("#list_breadcrumb").append(item2);
         $('body').scrollspy({
             target: '#navbar-example'
         });

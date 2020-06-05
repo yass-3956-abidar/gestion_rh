@@ -44,7 +44,7 @@ class LoginController extends Controller
         if (Auth::user()::find(Auth::user()->id)->societe == null) {
             return '/Registration';
         }else{
-            return 'home';
+            return 'admin/home';
         }
     }
 }

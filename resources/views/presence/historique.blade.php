@@ -37,6 +37,11 @@
 @section('script')
 <script>
     $(document).ready(function() {
+        let item1 = '<li class="breadcrumb-item active">Presence</li>';
+        let item2 = '<li class="breadcrumb-item active">Historique</li>';
+        $("#list_breadcrumb").append(item1);
+        $("#list_breadcrumb").append(item2);
+
         $("#datePresence").datepicker();
 
         function getData(query = '') {

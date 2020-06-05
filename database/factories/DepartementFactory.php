@@ -7,6 +7,6 @@ use Faker\Generator as Faker;
 
 $factory->define(Departement::class, function (Faker $faker) {
     return [
-        //
+        'nom_dep' => $faker->word,
     ];
 });

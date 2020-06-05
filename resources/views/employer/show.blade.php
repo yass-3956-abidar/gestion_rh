@@ -101,3 +101,14 @@
     </div>
 </div>
 @endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        let item1 = '<li class="breadcrumb-item active">Employer</li>';
+        let item2 = '<li class="breadcrumb-item active">Detail</li>';
+        $("#list_breadcrumb").append(item1);
+        $("#list_breadcrumb").append(item2);
+
+    });
+</script>
+@endsection

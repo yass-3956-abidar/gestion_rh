@@ -39,5 +39,11 @@
 @endsection
 @section('script')
 <script>
+    $(document).ready(function() {
+        let item1 = '<li class="breadcrumb-item active">Avance</li>';
+        var item2 = '<li class="breadcrumb-item active">Historique</li>';
+        $("#list_breadcrumb").append(item1);
+        $("#list_breadcrumb").append(item2);
+    })
 </script>
 @endsection

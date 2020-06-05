@@ -20,12 +20,18 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::Post('/', 'UserController@store')->name('user.store');
+Route::GET('/user/profile/{id}', 'UserController@profile')->name('user.profile');
+Route::GeT('/user/parametre/{id}', 'UserController@parametreUser')->name('user.parametre');
+Route::PUT('/user/update', 'UserController@updateUser')->name('user.update');
+Route::PUT('/user/updateImage/', 'UserController@updateImage')->name('user.updateImage');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/admin/home', 'HomeController@index')->name('home');
 Route::get("/Registration", "HomeController@registration")->name('registration');
 Route::resource('societe', 'SocieteController');
 Route::resource('/admin/employer', 'EmployerController');
 Route::resource('/admin/presenceEmp', 'PresenceController');
+Route::get('/admin/presenceEmp/pointerAll','PresenceController@saveAll')->name('presence.saveAll');
 Route::get('employer/suppprime/{id}', 'EmployerController@destroy')->name('employer.delete');
 Route::get('/admin/outil/salire', 'EmployerController@InfoCalculSalire')->name('admin.salire');
 Route::get('/admin/outil/ir', 'EmployerController@infoIr')->name('admin.ir');
@@ -45,5 +51,10 @@ Route::get('admin/paie/show/', 'PaieController@show')->name('paie.show');
 Route::get('admin/paie/index/', 'PaieController@index')->name('paie.index');
 Route::get('admin/paie/create/', 'PaieController@create')->name('paie.create');
 Route::get('admin/paie/salireNet/', 'PaieController@getsalaireNet')->name('paie.salNet');
-Route::get('admin/paie/apercu','PaieController@apercu')->name('paie.apercu');
-Route::get('admin/paie/pdf','PaieController@getPdf')->name('paie.getpdf');
+Route::get('admin/paie/apercu/{id}', 'PaieController@apercu')->name('paie.apercu');
+Route::get('admin/paie/pdf', 'PaieController@getPdf')->name('paie.getpdf');
+Route::get('admin/paie/cherche', 'PaieController@cherchePaie')->name('paie.cherche');
+Route::get('admin/paie/edit/{id}', 'PaieController@edit')->name('paie.edit');
+Route::get('admin/paie/showPaie/{id}', 'PaieController@showPaie')->name('paie.showPaie');
+Route::get('admin/paie/destroy/{id}', 'PaieController@destroy')->name('paie.destroy');
+Route::PUT('admin/paie/update/{id}', 'PaieController@update')->name('paie.update');

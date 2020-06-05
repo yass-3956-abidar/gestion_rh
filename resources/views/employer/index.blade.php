@@ -69,6 +69,15 @@
     </div>
 </div>
 @endsection
+@section('script')
+<script>
+    $(document).ready(function() {
+        let item = '<li class="breadcrumb-item active">Employer</li>';
+        $("#list_breadcrumb").append(item);
+
+    })
+</script>
+@endsection
 
 <!-- information post -->
 <!--

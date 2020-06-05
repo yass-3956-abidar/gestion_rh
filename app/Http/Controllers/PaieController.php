@@ -31,14 +31,112 @@ class PaieController extends Controller
     public function index()
     {
         Carbon::setLocale('fr');
-        $paie = [];
+        $paies = [];
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         // $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
         $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
         foreach ($employers as $employer) {
-            $paie[$employer->id] = Employer::find($employer->id)->bulletinPaies;
+            $paies[$employer->id] = Employer::find($employer->id)->bulletinPaies;
         }
-        return view('paie.index')->with('employers', $employers)->with('paie', $paie);
+        return view('paie.index');
+    }
+    public function cherchePaie(Request $request)
+    {
+        $outout = '';
+        $bullpaie = DB::table('bulletin_paies')->whereMonth('created_at', $request->month)
+            ->whereYear('created_at', $request->year)->get();
+        $BulltnPaie = [];
+        foreach ($bullpaie  as $apieB) {
+            $BulltnPaie = BulletinPaie::find($apieB->id);
+            $employer = $BulltnPaie->employer;
+            $outout .= '<tr>
+                  <td>' . $employer->nom_employer . '</td>
+                  <td>' . $employer->prenom . '</td>
+                  <td>' . $BulltnPaie->date_paie_debut . '</td>
+                  <td>' . $BulltnPaie->date_paie_dfin . '</td>
+                  <td>' . $BulltnPaie->sbg . '</td>
+                  <td>
+                  <a href="/admin/paie/showPaie/' . $BulltnPaie->id . '" class="btn btn-sm btn-info">Show</a>
+                  <a href="/admin/paie/edit/' . $BulltnPaie->id . '" class="btn btn-sm btn-warning">Edit</a>
+                  <a href="/admin/paie/destroy/' . $BulltnPaie->id . '" class="btn btn-sm btn-danger">Supprimer</a>
+              </td>
+        </tr>';
+        }
+        if ($outout != null) {
+            return response()->json([
+                'data' => $outout,
+                'status' => true,
+            ]);
+        } else {
+            return response()->json([
+                'data' => 'Aucun element trouver!!',
+                'status' => false
+            ]);
+        }
+    }
+    public function showPaie($id)
+    {
+
+        $bulletinPaie = BulletinPaie::find($id);
+        // $sni = $sbi - $cnss - $icmr - $fp - $amo;
+        $employer = Employer::find($bulletinPaie->employer_id);
+        $heurSup = Db::table('heur_sups')->where('employer_id', $employer->id)
+            ->where('created_at', $bulletinPaie->created_at)->get();
+        $totalHeurSup = 0;
+        foreach ($heurSup as $heursup) {
+            $totalHeurSup += $heursup->nombre_heur;
+        }
+        $cotisation = $bulletinPaie->cotisations;
+        $avance = Db::table('avances')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', $bulletinPaie->created_at->month)
+            ->whereYear('created_at', $bulletinPaie->created_at->year)->first();
+        $sniteimp = 0;
+        $salireNet = 0;
+        foreach ($cotisation as $coti) {
+            if ($coti->libelle != 'ir') {
+                $sniteimp -= $coti->retenu;
+            }
+            if ($coti->libelle != 'Frais Professionnel') {
+                $salireNet -= $coti->retenu;
+            }
+        }
+        $montant = 0;
+        if (isset($avance)) {
+            $montant = $avance->montant;
+        }
+        $sniteimp = $sniteimp + $bulletinPaie->sbi;
+        $salireNet = $salireNet + $bulletinPaie->sbg - $montant;
+        $avantage = $bulletinPaie->avantage;
+        $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
+        $societe = DB::table('societes')->where('user_id', Auth::user()->id)->first();
+        $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
+        $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
+        $durreAnciente = BulletinService::calculDuree($contrat->date_embauche);
+        $tauxAncienter = BulletinService::getTaux($durreAnciente);
+        $Primeancienter = BulletinService::calculAncienter($contrat->date_embauche, $post->salaire_base, $totalHeurSup);
+        $primes = DB::table('primes')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', $bulletinPaie->created_at->month)
+            ->whereDay('created_at', $bulletinPaie->created_at->day)
+            ->whereYear('created_at', $bulletinPaie->created_at->year)->get();
+
+        return view('paie.apercu')->with([
+            'titre' => 'Fiche de paie',
+            'employer' => $employer,
+            'cotisation' => $cotisation,
+            'heurSup' => $heurSup,
+            'contrat' => $contrat,
+            'societe' => $societe,
+            'departement' => $departement,
+            'post' => $post,
+            'primes' => $primes,
+            'montant' => $montant,
+            'avantage' => $avantage,
+            'tauxAncienter' => $tauxAncienter,
+            'Primeancienter' => $Primeancienter,
+            'salire_net_Impo' => $sniteimp,
+            'bulletinPaie' => $bulletinPaie,
+            'salireNet' => $salireNet,
+        ]);
     }
 
     /**
@@ -78,7 +176,7 @@ class PaieController extends Controller
      */
     public function show(Request $request)
     {
-        Carbon::setLocale('fr');
+
         $employer = Employer::find($request->id);
         $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
         $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
@@ -88,6 +186,10 @@ class PaieController extends Controller
         $month = date('m');
         $dateDeb = date('Y-' . $month . '-01'); // hard-coded '01' for first day
         $dateFin  = date('Y-' . $month . '-t');
+        $montant = 0;
+        if (isset($avance)) {
+            $montant = $avance->montant;
+        }
         // $date = new DateTime();
         // $dateDeb = $date->format('01/m/Y');
         // $dateFin = $date->format('t/m/Y');
@@ -96,7 +198,7 @@ class PaieController extends Controller
             'employer' => $employer,
             'contrat' => $contrat,
             'post' => $post,
-            'avance' => $avance,
+            'montant' => $montant,
             'dateDeb' => $dateDeb,
             'dateFin' => $dateFin,
         ]);
@@ -287,6 +389,7 @@ class PaieController extends Controller
                 'cotiIcmr' => $icmr,
                 'fp' => $fp,
                 'amo' => $amo,
+                'idPaie' => $idPaie,
             ]);
         }
     }
@@ -319,7 +422,11 @@ class PaieController extends Controller
             }
         }
         $sniteimp = $sniteimp + $bulletinPaie->sbi;
-        $salireNet = $salireNet + $bulletinPaie->sbg - $avance->montant;
+        $montant = 0;
+        if ($avance != null) {
+            $montant = $avance->montant;
+        }
+        $salireNet = $salireNet + $bulletinPaie->sbg - $montant;
         $avantage = $bulletinPaie->avantage;
         $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
         $societe = DB::table('societes')->where('user_id', Auth::user()->id)->first();
@@ -343,7 +450,7 @@ class PaieController extends Controller
             'departement' => $departement,
             'post' => $post,
             'primes' => $primes,
-            'avance' => $avance,
+            'montant' => $montant,
             'avantage' => $avantage,
             'tauxAncienter' => $tauxAncienter,
             'Primeancienter' => $Primeancienter,
@@ -363,7 +470,63 @@ class PaieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $bulletin = BulletinPaie::find($id);
+        $employer = Employer::find($bulletin->employer_id);
+        $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
+        $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
+        $avance = Db::table('avances')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('yy'))->first();
+        $month = date('m');
+        $dateDeb = date('Y-' . $month . '-01'); // hard-coded '01' for first day
+        $dateFin  = date('Y-' . $month . '-t');
+        $employers = [];
+        $cotisation = $bulletin->cotisations;
+        $tabCmr = [];
+        foreach ($cotisation as $cotisa) {
+            if ($cotisa->libelle == "ICMR") {
+                $tabCmr["taux"] = $cotisa->taux;
+            }
+        }
+        // get nbrHeurFerier
+        // get nbr heur Ouvrable
+        $heursups = DB::table('heur_sups')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', $bulletin->created_at->month)
+            ->whereDay('created_at', $bulletin->created_at->day)
+            ->whereYear('created_at', $bulletin->created_at->year)->get();
+        $primes = DB::table('primes')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', $bulletin->created_at->month)
+            ->whereDay('created_at', $bulletin->created_at->day)
+            ->whereYear('created_at', $bulletin->created_at->year)->get();
+        $jo = [];
+        $jf = [];
+        foreach ($heursups as $heursup) {
+
+            if ($heursup->type == "JO") {
+                $jo["nombre_heur"] = $heursup->nombre_heur;
+                $jo["interval"] = BulletinService::getIntervalJo($heursup->majoration);
+            }
+            if ($heursup->type == "JF") {
+                $jf["nombre_heur"] = $heursup->nombre_heur;
+                $jf["interval"] = BulletinService::getIntervalJF($heursup->majoration);
+            }
+        }
+
+        return view('paie.create')->with([
+            'employer' => $employer,
+            'bulletin' => $bulletin,
+            'contrat' => $contrat,
+            'post' => $post,
+            'cotisation' => $cotisation,
+            'avance' => $avance,
+            'dateDeb' => $dateDeb,
+            'dateFin' => $dateFin,
+            'employers' => $employers,
+            'icmr' => $tabCmr,
+            'jo' => $jo,
+            'jf' => $jf,
+            'primes' => $primes,
+        ]);
     }
 
     /**
@@ -375,7 +538,6 @@ class PaieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -386,6 +548,7 @@ class PaieController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $bulletin = BulletinPaie::find($id);
+        dd($bulletin);
     }
 }

@@ -7,7 +7,7 @@
 
     <ul class="list-unstyled components">
         <li>
-            <a class="text-white" href="#">
+            <a class="text-white" href="{{route('home')}}">
                 <i class="fas fa-house-user"></i>
                 Tableau de bord
             </a>
@@ -35,7 +35,7 @@
         </li>
         <li>
             <a class="text-white" href="{{route('avance.index')}}">
-            <i class="fas fa-comment-dollar"></i>
+                <i class="fas fa-comment-dollar"></i>
                 Avances
             </a>
         </li>

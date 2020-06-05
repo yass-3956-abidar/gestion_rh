@@ -37,9 +37,9 @@ class Employer extends Model
     {
         return $this->hasMany('App\Societe');
     }
-    public function departements()
+    public function departement()
     {
-        return $this->hasMany('App\Departement');
+        return $this->belongsTo('App\Departement');
     }
     public function banques()
     {

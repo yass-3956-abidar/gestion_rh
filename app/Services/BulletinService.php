@@ -136,4 +136,30 @@ class BulletinService
         }
         return $charge;
     }
+    public static  function getIntervalJo($taux)
+    {
+        $interval = '';
+        switch ($taux) {
+            case 25:
+                $interval = "6-21";
+                break;
+            case 50:
+                $interval = "21-6";
+                break;
+        }
+        return $interval;
+    }
+    public static  function getIntervalJF($taux)
+    {
+        $interval = '';
+        switch ($taux) {
+            case 50:
+                $interval = "6-21";
+                break;
+            case 100:
+                $interval = "21-6";
+                break;
+        }
+        return $interval;
+    }
 }

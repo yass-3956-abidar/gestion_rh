@@ -77,6 +77,7 @@ class EmployerController extends Controller
         $dataBanque['rib'] = encrypt($request->rib);
         Banque::create($dataBanque);
         $dataEmployer = $request->only('cin', 'nom_employer', 'prenom', 'email', 'date_naissance', 'nbr_enfant', 'situationFami', 'sexe', 'Num_cnss', 'Num_Icmr', 'salaire');
+
         if ($image = $request->file('image')) {
             //$destinationPath = 'public/image/'; // upload path
             // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
@@ -84,10 +85,10 @@ class EmployerController extends Controller
             //$insert[]['image'] = "$profileImage";
             $dataEmployer['image'] = $request->image->store('images', 'public');
         } else {
-            if($request->sexe=="femme"){
+            if ($request->sexe == "femme") {
                 $dataEmployer['image'] = 'femme.png';
-            }else if($request->sexe=="homme")
-            $dataEmployer['image'] = 'persons.png';
+            } else if ($request->sexe == "homme")
+                $dataEmployer['image'] = 'persons.png';
         }
         // dd($dataEmployer);
         $dataEmployer['emploi_id'] = DB::table('emplois')->max('id');
@@ -134,13 +135,13 @@ class EmployerController extends Controller
         $contratType = DB::table('contrat_types')->where('id', $contrat->contra_type_id)->first();
         $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
         return view('employer.show')
-        ->with('contrat', $contrat)
-        ->with('departement', $departement)
-        ->with('post', $post)
-        ->with('banque', $banque)
-        ->with('employer', $employer)
-        ->with('contratType', $contratType)
-        ->with('devise', $devise);
+            ->with('contrat', $contrat)
+            ->with('departement', $departement)
+            ->with('post', $post)
+            ->with('banque', $banque)
+            ->with('employer', $employer)
+            ->with('contratType', $contratType)
+            ->with('devise', $devise);
     }
 
     /**
