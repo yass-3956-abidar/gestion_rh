@@ -11,4 +11,7 @@ class CongetType extends Model
         return $this->hasMany('App\Conget');
     }
     use SoftDeletes;
+    protected $fillable = [
+        'type',
+    ];
 }

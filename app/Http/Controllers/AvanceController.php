@@ -113,12 +113,24 @@ class AvanceController extends Controller
     }
     public function historique()
     {
-        // $avances = Avance::all();
+        //
         $employers = Employer::all();
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
+        $employesNonTrahed = [];
+        foreach ($employers as $employer) {
+            if ($employer->deleted_at == null && $employer->societe_id == $idsociete) {
+                array_push($employesNonTrahed, $employer);
+            }
+        }
+        $employers = $employesNonTrahed;
         foreach ($employers as $employer) {
             $employer->setAttribute('avance', $employer->avances);
+            $total = AvanceService::calculTotalAvane($employer->avances);
+            $employer->setAttribute('total', $total);
         }
-        dd($employer);
+        return view('avance.show')->with('employers', $employers)
+            ->with('devise', $devise);
     }
 
     /**

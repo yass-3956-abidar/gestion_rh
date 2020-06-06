@@ -1,5 +1,5 @@
 <!-- Footer -->
-<footer class="page-footer font-small bg-default pt-4">
+<footer class="page-footer font-small bg-default pt-4  footer ">
 
     <!-- Footer Links -->
     <div class="container-fluid text-center text-md-left">
@@ -7,65 +7,53 @@
         <!-- Grid row -->
         <div class="row">
 
-            <!-- Grid column -->
-            <div class="col-md-6 mt-md-0 mt-3">
-
-                <!-- Content -->
-                <h5 class="text-uppercase">Footer Content</h5>
-                <!-- <p>Here you can use rows and columns to organize your footer content.</p> -->
+            <div class="col-md-6">
 
             </div>
-            <!-- Grid column -->
-
-            <hr class="clearfix w-100 d-md-none pb-3">
-
-            <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3">
-
-                <!-- Links -->
-                <h5 class="text-uppercase">Links</h5>
-
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#!">Link 1</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 2</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 3</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 4</a>
-                    </li>
-                </ul>
-
+            <div class="col-md-6">
+                <center>
+                    <h1>Contact</h1>
+                </center>
+                <form action="{{route('contact.store')}}" method="POST">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-6">
+                            @if(session()->has('cin'))
+                            <input type="hidden" value="{{session()->get('cin')}}" name="cin">
+                            @endif
+                            <div class="form-group">
+                                <input type="text" placeholder="Nom" class="form-control @error('nom') is-invalid @enderror" name="nom" id="nom" value="{{old('nom')}}">
+                                @error('nom')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <input type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"value="{{old('email')}}">
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="sujet" resize="false" class="form-control @error('subject') is-invalid @enderror" value="{{old('subject')}}" name="subject" id="subject" cols="30" rows="5"></textarea>
+                        @error('subject')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <button type="submit" id="btn_contact" class="btn btn-white">Envoyer</button>
+                </form>
             </div>
-            <!-- Grid column -->
 
-            <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3">
 
-                <!-- Links -->
-                <h5 class="text-uppercase">Links</h5>
-
-                <ul class="list-unstyled">
-                    <li>
-                        <a href="#!">Link 1</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 2</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 3</a>
-                    </li>
-                    <li>
-                        <a href="#!">Link 4</a>
-                    </li>
-                </ul>
-
-            </div>
-            <!-- Grid column -->
 
         </div>
         <!-- Grid row -->

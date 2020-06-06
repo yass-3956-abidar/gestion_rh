@@ -2,27 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\ContactModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\ContactRequest;
 
-class EspaceContrller extends Controller
+class ContactController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-
     public function index()
     {
-        return view('espaceEmployer.view.index');
-    }
-    public function logout(Request $request)
-    {
-        $request->session()->forget('name');
-        $request->session()->forget('id');
-        return redirect(route('espace.login'));
+        //
     }
 
     /**
@@ -41,19 +35,20 @@ class EspaceContrller extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ContactRequest $request)
     {
-
-        $employer = DB::table('employers')->where('cin', $request->matricule)
-            ->where('nom_employer', $request->nom)->first();
-        if ($employer == null) {
-            $request->session()->flash('error', " Aucun employer avec ce matricule");
-            return redirect(route('espace.login'));
-        } else {
-            $request->session()->put('name', $employer->nom_employer);
-            $request->session()->put('cin', $employer->cin);
-            return redirect(route('espaceEmployer.index'));
-        }
+        $employer = DB::table('employers')->where('cin', $request->cin)->first();
+        $contact = new ContactModel();
+        $contact->id_employer = $employer->id;
+        $contact->nom = $request->nom;
+        $contact->email = $request->email;
+        // 'subject', 'id_societe',
+        $contact->subject = $request->subject;
+        $contact->id_societe = $employer->societe_id;
+        $contact->save();
+        $request->session()->flash('success', 'Votre message Est Envoyer avec succé');
+        toast(session('success'), 'success');
+        return redirect(route('espaceEmployer.index'));
     }
 
     /**

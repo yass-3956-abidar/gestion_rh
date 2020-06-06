@@ -31,7 +31,10 @@
 
     @include('espaceEmployer.include.header')
     @include('espaceEmployer.include.slider')
-    @yield('content')
+    <div class="main">
+        @yield('content')
+    </div>
+    @include('sweetalert::alert')
     @include('espaceEmployer.include.fotter')
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>

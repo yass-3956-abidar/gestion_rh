@@ -69,6 +69,7 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapEmployerRoutes()
     {
         Route::namespace($this->namespace)
+            ->middleware('web') // if you don't use middleware web you will have session store not set on request
             ->group(base_path('routes/employer.php'));
     }
 

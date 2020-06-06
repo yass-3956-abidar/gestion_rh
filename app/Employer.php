@@ -28,7 +28,10 @@ class Employer extends Model
         return $this->hasMany('App\Avance');
     }
 
-
+    public function ContactModels()
+    {
+        return $this->hasMany('App\ContactModel');
+    }
     public function emplois()
     {
         return $this->belongsTo('App\Emploi');

@@ -34,7 +34,7 @@
             </ul>
         </li>
         <li>
-            <a class="text-white" href="{{route('avance.index')}}">
+            <a class="text-white" href="{{route('index.avance')}}">
                 <i class="fas fa-comment-dollar"></i>
                 Avances
             </a>
@@ -46,15 +46,18 @@
             </a>
         </li>
         <li>
-            <a class="text-white" href="#pageSubmenu">
+            <a class="text-white" href="#">
                 <i class="fas fa-briefcase"></i>
                 Emploi
             </a>
         </li>
         <li>
-            <a class="text-white" href="#">
+            <a class="text-white" href="{{route('conget.index')}}">
                 <i class="fas fa-house-user"></i>
-                Conget
+                Conget <span id="" class="badge badge-warning float-right ml-2">
+                    {{(DB::table('congets')->where('id_societe',DB::table('societes')->where('user_id',Auth::user()->id)->value('id'))->where('status','en attend')->count())}}
+                </span>
+                <span class="sr-only">unread messages</span>
             </a>
         </li>
         <li>

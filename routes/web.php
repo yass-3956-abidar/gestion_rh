@@ -31,7 +31,7 @@ Route::get("/Registration", "HomeController@registration")->name('registration')
 Route::resource('societe', 'SocieteController');
 Route::resource('/admin/employer', 'EmployerController');
 Route::resource('/admin/presenceEmp', 'PresenceController');
-Route::POST('/admin/presenceEmp/pointerAll','PresenceController@saveAll')->name('presence.saveAll');
+Route::POST('/admin/presenceEmp/pointerAll', 'PresenceController@saveAll')->name('presence.saveAll');
 Route::get('employer/suppprime/{id}', 'EmployerController@destroy')->name('employer.delete');
 Route::get('employer/suppression/{id}', 'EmployerController@forceDelete')->name('employer.forceDelete');
 Route::get('/admin/outil/salire', 'EmployerController@InfoCalculSalire')->name('admin.salire');
@@ -45,6 +45,7 @@ Route::POST('/admin/presence/employer/{id}', 'PresenceController@savePresence')-
 Route::PUT('/admin/presence/update', 'PresenceController@updatePresence')->name('presence.updateP');
 //Avance
 Route::resource('/admin/avance', 'AvanceController');
+Route::get('/admin/avanceEmp/index', 'AvanceController@index')->name('index.avance');
 Route::get('/admin/avance/historique', 'AvanceController@historique')->name('avance.historique');
 // Route::resource('admin/paie', 'PaieController');
 // Route::get('admin/paie/show/', 'PaieController@showInfo')->name('paie.showInfo');
@@ -61,5 +62,9 @@ Route::get('admin/paie/destroy/{id}', 'PaieController@destroy')->name('paie.dest
 Route::PUT('admin/paie/update/{id}', 'PaieController@update')->name('paie.update');
 
 // parrametre route
-Route::get('/admin/parametre/','ParametreController@index')->name('para.index');
-Route::get('/admin/parametre/employer/{id}','ParametreController@restoref')->name('para.emp.restore');
+Route::get('/admin/parametre/', 'ParametreController@index')->name('para.index');
+Route::get('/admin/parametre/employer/{id}', 'ParametreController@restoref')->name('para.emp.restore');
+
+Route::resource('/admin/conget', 'CongetController');
+Route::get('/admin/conget/update/{id}', 'CongetController@updateStatus')->name('conget.updateStatus');
+Route::get('/admin/conget/status/{id}', 'CongetController@destroyStatus')->name('conget.destroyStatus');

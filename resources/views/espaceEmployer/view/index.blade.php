@@ -5,7 +5,7 @@
 </style>
 @endsection
 @section('content')
-<h1>content</h1>
+<h1>dd</h1>
 @endsection
 @section('script')
 

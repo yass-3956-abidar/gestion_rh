@@ -77,14 +77,13 @@
         </div>
         <ul class="navbar-nav ml-auto nav-flex-icons">
             <li class="nav-item">
-                <a class="nav-link"><i class="fab mt-3 fa-twitter"></i></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"><i class="fab mt-3 fa-google-plus-g"></i></a>
+                <a href="#"><span class="badge badge-pill mt-3  "><i class="far fa-2x  fa-comments" aria-hidden="true"><sup>
+                                {{DB::table('contact_models')->where('id_societe',Auth::user()->id)->count()}}
+                            </sup></i></span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img style="width: 35px;height: 35px" src="{{asset('storage/man.png')}}">
+                    <img style="width: 35px;height: 35px" class="rounded-circle" src="{{asset('images/'.Auth::user()->image)}}">
                     <span>{{Auth::user()->name}}</span>
                 </a>
                 <div class="dropdown-menu " aria-labelledby="test">
