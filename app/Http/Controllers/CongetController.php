@@ -6,8 +6,10 @@ use App\Conget;
 use App\CongetType;
 use Illuminate\Http\Request;
 use App\Http\Requests\CongetRequest;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class CongetController extends Controller
 {
@@ -43,16 +45,16 @@ class CongetController extends Controller
     }
     public function updateStatus($id)
     {
-        $affected = DB::table('congets')
-            ->where('id', $id)
-            ->update(['status' => 'Accepter']);
+        $conget = Conget::find($id);
+        $conget->status = 'Accepter';
+        $conget->update();
         return redirect(route('conget.index'));
     }
     public function destroyStatus($id)
     {
-        $affected = DB::table('congets')
-            ->where('id', $id)
-            ->update(['status' => 'Reféser']);
+        $conget = Conget::find($id);
+        $conget->status = 'Reféser';
+        $conget->update();
         return redirect(route('conget.index'));
     }
 
@@ -125,10 +127,11 @@ class CongetController extends Controller
         $conget = Conget::find($id);
         $conget->date_debut = $request->date_debut;
         $conget->durre = $request->durre;
+        $conget->raison = $request->raison;
         $conget->update();
         return response()->json([
             'status' => true,
-            'message'=>'conget modifier avec succeé'
+            'message' => 'conget modifier avec succeé'
         ]);
     }
 
@@ -141,5 +144,20 @@ class CongetController extends Controller
     public function destroy(Conget $conget)
     {
         //
+    }
+    public function EmpcongetTraiter()
+    {
+        $conget = DB::table('congets')->where('employer_id', session()->get('id'))
+            ->where('status', '!=', 'null')
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('yy'))->first();
+        // dd($conget,session()->get('id'));
+        if ($conget == null) {
+            return redirect(route('espaceEmployer.index'));
+        } else {
+            $time = Carbon::parse($conget->updated_at)->diffForHumans();
+            // dd($conget)
+            return view('espaceEmployer.conget.traiter')->with('conget', $conget)->with('time', $time);
+        }
     }
 }

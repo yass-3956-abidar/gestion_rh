@@ -1,4 +1,9 @@
 @extends('admin.include.default')
+@section('style')
+<style>
+
+</style>
+@endsection
 @section('content')
 <div class="col-md-12">
     <div class="row">
@@ -56,7 +61,8 @@
                         <td>{{$avance->montant." ".$devise}}</td>
                         <td class="text-center">
                             <button data-toggle="modal" data-target="#ModaleditAvance" data-date_affectation="{{$avance->date_affectation}}" data-id="{{$avance->id}}" data-employer_id="{{$employer->id}}" data-montant="{{$avance->montant}}" class="btn btn-warning btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Edit</button>
-                            <a href="{{route('avance.destroy',$avance->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 delete-confirm"> <i class="fas fa-trash-alt mr-2"></i>Supprimer</a>
+                            <a href="{{route('avance.delete',$avance->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 delete-confirm"> <i class="fas fa-trash-alt mr-2"></i>Supprimer</a>
+
                             <!-- Button trigger modal -->
                             <!-- Modal -->
                         </td>
@@ -89,6 +95,28 @@
         $("#list_breadcrumb").append(item2);
         $('body').scrollspy({
             target: '#navbar-example'
+        });
+        $('.delete-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            Swal.fire({
+                title: 'Vous Voulez Vraiment supprimer l\'employer ?',
+                text: "La suppression est reversible",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'supprimer'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = url;
+                    Swal.fire(
+                        'Suppression!',
+                        'L\'employer et supprimer',
+                        'success'
+                    )
+                }
+            })
         });
         $('#tableAvance').DataTable({
             "order": [

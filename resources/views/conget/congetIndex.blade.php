@@ -1,18 +1,11 @@
 @extends('admin.include.default')
 @section('content')
 <div class="col-md-12">
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{{route('employer.create')}}" class="btn btn-success">
-                <i class="fas fa-plus fa-1x mr-1"></i>Ajouter Un Employer
-            </a>
-        </div>
-    </div>
     <div class="card border-primary">
         <div class="card-body">
             @if(count($demande_congets)==0)
             <div class="alert alert-warning" role="alert">
-                Aucun Employer Trouver
+                Aucun Element Trouver
             </div>
             @else
             <table id="tableEmployer" class="table text-center" width="100%">
@@ -91,8 +84,18 @@
                         </div>
                         <div class="form-group">
                             <label for="date_debut" class="col-form-label">Date debut:</label>
-                            <input name="date_debut" type="date" name="durre" id="date_debut" class="form-control @error('durre') is-invalid @enderror">
+                            <input name="date_debut" type="date" name="durre" id="date_debut" class="form-control @error('durre') is-invalid @enderror" required>
                             @error('durre')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="raison" class="col-form-label">Raison:</label>
+                            <textarea rows="8" cols="5" name="raison" type="text" id="raison" class="form-control @error('durre') is-invalid @enderror" required>
+                            </textarea>
+                            @error('raison')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -134,6 +137,7 @@
                 e.preventDefault();
                 let id_conget = $("#id_conget").val();
                 let date_debut = $("#date_debut").val();
+                let raison=$("#raison").val();
                 console.log(date_debut);
                 let durre = $("#durre").val();
                 $.ajax({
@@ -143,6 +147,7 @@
                         '_token': "{{csrf_token()}}",
                         'date_debut': date_debut,
                         'durre': durre,
+                        'raison':raison,
                         'id_conget': id_conget,
                     },
                     success: function(data) {

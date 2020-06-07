@@ -17,6 +17,6 @@ class Conget extends Model
     }
     use SoftDeletes;
     protected $fillable = [
-        'date_debut', 'durre', 'employer_id', 'conget_type_id', 'status','id_societe'
+        'date_debut', 'durre', 'employer_id', 'conget_type_id', 'status','id_societe','raison'
     ];
 }

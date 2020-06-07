@@ -26,7 +26,7 @@ class PresenceController extends Controller
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
         foreach ($employers as $employer) {
-            $presence[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)->where('date_pointe', date('yy-m-d'))->get();
+            $presence[$employer->id] = DB::table('presences')->where('employer_id', $employer->id)->where('deleted_at', null)->where('date_pointe', date('yy-m-d'))->get();
             $employer_ids[$employer->id] = $employer->id;
         }
         // min id;
@@ -111,8 +111,9 @@ class PresenceController extends Controller
     }
     public function deletePresence(Request $request)
     {
-        $presence = Presence::find($request->input('id'));
-        if ($presence->delete()) {
+        $presence = Presence::find($request->id);
+
+        if ($presence->forceDelete()) {
             return response()->json(['success' => 'Data Deleted  successfully.']);
         }
     }
@@ -141,7 +142,7 @@ class PresenceController extends Controller
     }
     public function saveAll(Request $request)
     {
-        if ($request->select_empl!=null) {
+        if ($request->select_empl != null) {
             foreach ($request->select_empl as $id_emp) {
                 $employer = Employer::find($id_emp);
                 $presence = new Presence();

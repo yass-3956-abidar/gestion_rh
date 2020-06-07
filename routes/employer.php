@@ -9,5 +9,7 @@ Route::get('/LoginEmployer', function () {
 Route::POST('/espaceEmployer/login', 'EspaceContrller@store')->name('espaceEmployer.store');
 Route::GET('/espaceEmployer/index', 'EspaceContrller@index')->name('espaceEmployer.index');
 Route::resource('/employer/conget', 'CongetController');
-Route::POST('/Employer/logout','EspaceContrller@logout')->name('espaceemployer.logout');
+Route::POST('/Employer/logout', 'EspaceContrller@logout')->name('espaceemployer.logout');
 Route::resource('/employer/contact', 'ContactController');
+//
+Route::get('/conget/traiter/', 'CongetController@EmpcongetTraiter')->name('congetTraiter.index');

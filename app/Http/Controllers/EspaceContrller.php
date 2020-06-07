@@ -52,6 +52,7 @@ class EspaceContrller extends Controller
         } else {
             $request->session()->put('name', $employer->nom_employer);
             $request->session()->put('cin', $employer->cin);
+            $request->session()->put('id', $employer->id);
             return redirect(route('espaceEmployer.index'));
         }
     }

@@ -14,11 +14,18 @@
 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-433" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Conget
+
+
+
+                        Conget <span class="badge badge-danger ml-2">
+                            @if(session()->has('id'))
+                            <i class="fa fa-bell" aria-hidden="true"></i><sup><span class="font-weight-bold">{{DB::table('congets')->where('employer_id',session()->get('id'))->where('raison','!=','null')->count()}}</span></sup>
+                            @endif
+                        </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-default" aria-labelledby="navbarDropdownMenuLink-433">
                         <a class="dropdown-item" href="{{route('conget.create')}}">Demandé un conget</a>
-                        <a class="dropdown-item" href="{{route('conget.index')}}">Conget accepter</a>
+                        <a class="dropdown-item" href="{{route('congetTraiter.index')}}">Conget Traiter <span class=" float-right badge badge-danger">{{DB::table('congets')->where('employer_id',session()->get('id'))->where('raison','!=','null')->count()}}</span></a>
                     </div>
                 </li>
                 <li class="nav-item">

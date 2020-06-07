@@ -16,6 +16,10 @@
         <table id="tableEmployer" class="table text-center" width="100%">
             <thead>
                 <tr>
+                    <th class="th-sm">Id Employer
+                        <i class="fas fa-sort inline"></i>
+
+                    </th>
                     <th class="th-sm">Matricule
                         <i class="fas fa-sort inline"></i>
 
@@ -39,7 +43,7 @@
             <tbody>
                 @foreach ($employers as $employer)
                 <tr>
-
+                    <td>{{$employer->id}}</td>
                     <td>{{$employer->cin}}</td>
                     <td>{{$employer->nom_employer}}</td>
                     <td>{{$employer->prenom}}</td>
@@ -68,6 +72,10 @@
                         <i class="fas fa-sort inline"></i>
 
                     </th>
+                    <th class="th-sm">Id Employer
+                        <i class="fas fa-sort inline"></i>
+
+                    </th>
                     <th class="th-sm">Nom Employer
                         <i class="fas fa-sort ml-1"></i>
                     </th>
@@ -89,6 +97,7 @@
                 <tr>
 
                     <td>{{$employer->cin}}</td>
+                    <td>{{$employer->id}}</td>
                     <td>{{$employer->nom_employer}}</td>
                     <td>{{$employer->prenom}}</td>
                     <td>{{$employer->Num_cnss}}</td>
@@ -107,7 +116,47 @@
             </tbody>
         </table>
     </div>
-    <div id="avance"> tab 3 content</div>
+    <div id="avance">
+        <table id="tableAvance" class="table text-center" width="100%">
+            <thead>
+                <tr>
+                    <th class="th-sm">
+                        <span>Id Employer</span>
+                        <i class="fas fa-sort ml-1"></i>
+                    </th>
+                    <th class="th-sm"><span class="test-sm">Date Afectation</span>
+                        <i class="fas fa-sort ml-1"></i>
+                    </th>
+                    <th class="th-sm"><span>Montant</span>
+                        <i class="fas fa-sort ml-1"></i>
+                    </th>
+                    <th class="th-sm text-center"><span>Action</span>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @if(count($avances)>0)
+                <tr>
+
+                    @foreach($avances as $avance)
+                    <td>{{$avance->employer_id}}</td>
+                    <td>{{$avance->date_affectation}}</td>
+                    <td>{{$avance->montant." ".$devise}}</td>
+                    <td class="text-center">
+                        <a href="{{route('para.avance.restore',$avance->id)}}" class="btn btn-default btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Restore</a>
+                        <a href="{{route('para.avance.restore',$avance->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 delete-confirm"> <i class="fas fa-trash-alt mr-2"></i>Supprimer</a>
+
+                        <!-- Button trigger modal -->
+                        <!-- Modal -->
+                    </td>
+                </tr>
+                @endforeach
+                @endif
+
+            </tbody>
+        </table>
+    </div>
     <div id="paie"> tab 3 content</div>
 </div>
 @endsection

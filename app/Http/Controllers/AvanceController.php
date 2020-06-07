@@ -27,7 +27,7 @@ class AvanceController extends Controller
         // dd($employers);
         $avances = [];
         foreach ($employers as $employer) {
-            $avances[$employer->id] = DB::table('avances')
+            $avances[$employer->id] = Avance::withoutTrashed()
                 ->where('employer_id', $employer->id)
                 ->whereYear('created_at', date('yy'))
                 ->whereMonth('created_at', date('m'))->get();
@@ -171,6 +171,28 @@ class AvanceController extends Controller
      */
     public function destroy(Avance $avance)
     {
-        dd($avance);
+
+        session()->flash('success', "L'avance est supprimer avec succes");
+        toast(session('success'), 'success');
+        // return redirect(route('avance.index'));
+    }
+    public function deleteAvance($id)
+    {
+        // dd($id);
+        $avance = Avance::find($id);
+        $avance->delete();
+        session()->flash('success', "L'avance est supprimer avec succes");
+        toast(session('success'), 'success');
+        return redirect(route('avance.index'));
+    }
+
+    public function restoreAvance($id)
+    {
+        $avance = Avance::onlyTrashed()
+            ->where('id', $id)->first();
+        $avance->restore();
+        session()->flash('success', "L'avance est Ajouter avec succes");
+        toast(session('success'), 'success');
+        return redirect(route('para.index'));
     }
 }

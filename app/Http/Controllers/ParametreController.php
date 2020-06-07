@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Avance;
 use App\Employer;
 use App\Presence;
 use Illuminate\Support\Facades\DB;
@@ -19,16 +20,30 @@ class ParametreController extends Controller
             ->where('societe_id', $idsociete)
             ->get();
         $employersTab = [];
+        $employersTabNottrashed = [];
+        $employersNotTrashedEmployer = DB::table('employers')
+            ->where('societe_id', $idsociete)
+            ->get();
+        foreach ($employersNotTrashedEmployer as $employer) {
+            $employersTabNottrashed[$employer->id] = $employer->id;
+        }
         foreach ($employers as $employer) {
             $employersTab[$employer->id] = $employer->id;
         }
         $presence = Presence::onlyTrashed()
             ->whereIn('employer_id', $employersTab)
             ->get();
+        // just les employer du meme entreprise
+        $avances = [];
+
+        $avances = Avance::onlyTrashed()
+            ->whereIn('employer_id', $employersTabNottrashed)
+            ->get();
         return view('para.index')->with([
             'employers' => $employers,
             'devise' => $devise,
-            'presence'=>$presence,
+            'presence' => $presence,
+            'avances' => $avances,
         ]);
     }
     public function restoref($id)

@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a id="deleteBtn" type="submit" class="btn btn-danger">Supprimer</a>
+                        <a id="deleteBtn"  class="btn btn-danger">Supprimer</a>
                         <button type="submit" class="btn btn-outline-primary">Update</button>
                     </div>
                 </form>

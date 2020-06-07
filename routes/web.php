@@ -68,3 +68,5 @@ Route::get('/admin/parametre/employer/{id}', 'ParametreController@restoref')->na
 Route::resource('/admin/conget', 'CongetController');
 Route::get('/admin/conget/update/{id}', 'CongetController@updateStatus')->name('conget.updateStatus');
 Route::get('/admin/conget/status/{id}', 'CongetController@destroyStatus')->name('conget.destroyStatus');
+Route::get('employer/avance/suppprime/{id}', 'AvanceController@deleteAvance')->name('avance.delete');
+Route::get('employer/avance/restore/{id}', 'AvanceController@restoreAvance')->name('para.avance.restore');

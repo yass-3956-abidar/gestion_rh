@@ -131,6 +131,7 @@
         });
         $(document).on('click', '#deleteBtn', function() {
             let id = $("#deleteBtn").val();
+            console.log(id);
 
             Swal.fire({
                 title: 'Vous Voulez Vraiment l\'apresence ?',
@@ -158,6 +159,7 @@
                         success: function(data) {
                             // $("#valPoi").remove();
                             location.reload(true);
+                            console.log(data);
                         },
                         error: function(one, two, tre) {
                             console.log(one);
