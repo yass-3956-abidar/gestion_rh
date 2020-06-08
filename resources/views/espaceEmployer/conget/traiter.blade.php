@@ -56,7 +56,6 @@
                                 <div class="col-md-6">Raison</div>
                                 <div class="col-md-6">
                                     <p class="lead"> {{$conget->raison}}
-                                        kbdhvds vdsbvd vbsvmdvb bd bysine yassine abidare yyhelo gahbnbjhd yassine ha abiare anofadrkjnfojdkvbdvyassine abbhjc
                                     </p>
                                 </div>
                             </div>

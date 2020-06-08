@@ -15,7 +15,7 @@ class CreateContactModelsTable extends Migration
     {
         Schema::create('contact_models', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('id_employer');
+            $table->bigInteger('employer_id');
             $table->string('nom');
             $table->string('email');
             $table->string('subject');

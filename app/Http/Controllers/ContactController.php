@@ -6,6 +6,7 @@ use App\ContactModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\ContactRequest;
+use Illuminate\Support\Carbon;
 
 class ContactController extends Controller
 {
@@ -39,7 +40,7 @@ class ContactController extends Controller
     {
         $employer = DB::table('employers')->where('cin', $request->cin)->first();
         $contact = new ContactModel();
-        $contact->id_employer = $employer->id;
+        $contact->employer_id = $employer->id;
         $contact->nom = $request->nom;
         $contact->email = $request->email;
         // 'subject', 'id_societe',
@@ -59,7 +60,12 @@ class ContactController extends Controller
      */
     public function show($id)
     {
-        //
+        $contact = ContactModel::find($id);
+        // dd($contact);
+        $time = Carbon::parse($contact->created_at)->diffForHumans();
+        return view('contact.show')->with('contact', $contact)
+            ->with('employer', $contact->employer)
+            ->with('time', $time);
     }
 
     /**
@@ -93,6 +99,10 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $contact = ContactModel::find($id);
+        $contact->delete();
+        return response()->json([
+            'status' => true,
+        ]);
     }
 }

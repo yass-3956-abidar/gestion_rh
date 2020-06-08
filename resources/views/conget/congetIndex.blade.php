@@ -47,9 +47,11 @@
                         <td>{{$demande_conget[2]->type}}</td>
                         <td id="td_status" style="height: 10px;">{{$demande_conget[0]->status}}</td>
                         <td class="text-center">
-                            <a id="accept_btn" href="{{route('conget.updateStatus',$demande_conget[0]->id)}}" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a>
-                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget[0]->date_debut}}" data-durre="{{$demande_conget[0]->durre}}" data-id_conget="{{$demande_conget[0]->id}}" id="accept_btn" href="{{route('conget.updateStatus',$demande_conget[0]->id)}}" class="btn btn-default btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Modifier</a>
-                            <a href="{{route('conget.destroyStatus',$demande_conget[0]->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 "> <i class="fas fa-trash-alt mr-2"></i>Refuser</a>
+                            <!-- <a id="accept_btn" href="{{route('conget.updateStatus',$demande_conget[0]->id)}}" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a> -->
+                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget[0]->date_debut}}" data-durre="{{$demande_conget[0]->durre}}" data-id_conget="{{$demande_conget[0]->id}}" id="modif_btn" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Modifier</a>
+                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget[0]->date_debut}}" data-durre="{{$demande_conget[0]->durre}}" data-id_conget="{{$demande_conget[0]->id}}" id="accept_btn" class="btn btn-default btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a>
+                            <a data-toggle="modal" data-target="#modalRefuse" data-id_conget="{{$demande_conget[0]->id}}" id="refuse_btn" class="btn btn-danger btn-sm  mr-1 ml-1 ">
+                                <i class="fas fa-trash-alt mr-2"></i>Refuser</a>
                         </td>
                     </tr>
                     @endforeach
@@ -84,7 +86,7 @@
                         </div>
                         <div class="form-group">
                             <label for="date_debut" class="col-form-label">Date debut:</label>
-                            <input name="date_debut" type="date" name="durre" id="date_debut" class="form-control @error('durre') is-invalid @enderror" required>
+                            <input name="date_debut" type="date" id="date_debut" class="form-control @error('durre') is-invalid @enderror" required>
                             @error('durre')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -93,7 +95,7 @@
                         </div>
                         <div class="form-group">
                             <label for="raison" class="col-form-label">Raison:</label>
-                            <textarea rows="8" cols="5" name="raison" type="text" id="raison" class="form-control @error('durre') is-invalid @enderror" required>
+                            <textarea autofocus rows="5" cols="5" name="raison" type="text" id="raison" class="form-control @error('raison') is-invalid @enderror" required>
                             </textarea>
                             @error('raison')
                             <span class="invalid-feedback" role="alert">
@@ -109,6 +111,7 @@
             </div>
         </form>
     </div>
+    @include('conget.refuse')
 
     @endsection
     @section('script')
@@ -123,9 +126,6 @@
             }
             let item = '<li class="breadcrumb-item active">Conget</li>';
             $("#list_breadcrumb").append(item);
-            $("#accept_btn").click(function() {
-                $("#td_status").addClass('bg-default');
-            })
             $('#modalUpdateConget').on('show.bs.modal', function(event) {
                 var button = $(event.relatedTarget);
                 var modal = $("#modalUpdateConget");
@@ -133,11 +133,17 @@
                 modal.find('#date_debut').val(button.data('date_debut'));
                 modal.find('#id_conget').val(button.data('id_conget'));
             })
+            $('#modalRefuse').on('show.bs.modal', function(event) {
+                // modalRefuse
+                var button = $(event.relatedTarget);
+                var modal = $("#modalRefuse");
+                modal.find('#id_congetR').val(button.data('id_conget'));
+            })
             $(document).on('submit', '#form_update_conget', function(e) {
                 e.preventDefault();
                 let id_conget = $("#id_conget").val();
                 let date_debut = $("#date_debut").val();
-                let raison=$("#raison").val();
+                let raison = $("#raison").val();
                 console.log(date_debut);
                 let durre = $("#durre").val();
                 $.ajax({
@@ -147,7 +153,7 @@
                         '_token': "{{csrf_token()}}",
                         'date_debut': date_debut,
                         'durre': durre,
-                        'raison':raison,
+                        'raison': raison,
                         'id_conget': id_conget,
                     },
                     success: function(data) {
@@ -155,9 +161,36 @@
                         $("#alertMessage").show();
                         $("#alertMessage").addClass('alert-success');
                         $("#alertMessage").text(data.message);
-                        setInterval(() => {
-                            location.reload(true);
-                        }, 3000);
+                        // setInterval(() => {
+                        //     location.reload(true);
+                        // }, 3000);
+
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            })
+            $(document).on('submit', '#form_refuse_conget', function(e) {
+                e.preventDefault();
+                let raison = $("#raisonR").val();
+                let id_conget = $("#id_congetR").val();
+                $.ajax({
+                    url: "/admin/conget/status/" + id_conget,
+                    method: "PUT",
+                    data: {
+                        '_token': "{{csrf_token()}}",
+                        'raison': raison,
+                        'id_conget': id_conget,
+                    },
+                    success: function(data) {
+                        console.log(data);
+                        $("#alertMessageR").show();
+                        $("#alertMessageR").addClass('alert-success');
+                        $("#alertMessageR").text(data.message);
+                        // setInterval(() => {
+                        //     location.reload(true);
+                        // }, 1500);
 
                     },
                     error: function(error) {

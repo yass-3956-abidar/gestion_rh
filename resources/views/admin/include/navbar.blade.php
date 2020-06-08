@@ -54,8 +54,7 @@
 <!-- </ul>
     </div>
 </nav> -->
-
-
+<!-- real nav -->
 <div class="col-md-12">
 
     <nav class="navbar navbar-expand-md navbar-dark primary-color mb-5 no-content">
@@ -76,10 +75,23 @@
             </nav>
         </div>
         <ul class="navbar-nav ml-auto nav-flex-icons">
-            <li class="nav-item">
-                <a href="#"><span class="badge badge-pill mt-3  "><i class="far fa-2x  fa-comments" aria-hidden="true"><sup>
-                                {{DB::table('contact_models')->where('id_societe',Auth::user()->id)->count()}}
-                            </sup></i></span></a>
+            <li class="nav-item dropdown" id="dropdown">
+                <div id="notification" class="btn-group dropleft ">
+                    <p class="mt-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="badge badge-danger mt-2"> <i class="fa fa-bell" aria-hidden="true"></i>
+                            <sup>{{DB::table('contact_models')->where('id_societe',Auth::user()->id)->count()}}</sup></span>
+                    </p>
+                    <div class="dropdown-menu  " aria-labelledby="test">
+                        @foreach(DB::table('contact_models')->where('id_societe',Auth::user()->id)->get() as $contact)
+                        <a href="{{route('contact.show',$contact->id)}}" class="dropdown-item">
+                            <p> {{substr($contact->subject,0,20)."..."}}
+                                <span id="nom">{{$contact->nom}}
+                                    {{Carbon\Carbon::parse($contact->updated_at)->diffForHumans()}}</span>
+                            </p>
+                        </a>
+                        @endforeach
+                    </div>
+                </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="test" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -101,5 +113,4 @@
             </li>
         </ul>
     </nav>
-
 </div>

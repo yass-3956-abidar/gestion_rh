@@ -21,7 +21,9 @@ class CongetController extends Controller
     public function index()
     {
 
-        $congetDemandes = DB::table('congets')->where('id_societe', DB::table('societes')->where('user_id', Auth::user()->id)->value('id'))->get();
+        $congetDemandes = DB::table('congets')->where('id_societe', DB::table('societes')->where('user_id', Auth::user()->id)->value('id'))
+            ->where('status', 'en attend')
+            ->get();
         $conget = [];
         foreach ($congetDemandes as $congetDemande) {
             $congetDemande = Conget::find($congetDemande->id);
@@ -50,12 +52,19 @@ class CongetController extends Controller
         $conget->update();
         return redirect(route('conget.index'));
     }
-    public function destroyStatus($id)
+    public function destroyStatus(Request $request, $id)
     {
+        $request->validate([
+            'raison' => 'required|min:10|max:500',
+        ]);
         $conget = Conget::find($id);
         $conget->status = 'Reféser';
+        $conget->raison = $request->raison;
         $conget->update();
-        return redirect(route('conget.index'));
+        return response()->json([
+            'status' => true,
+            'message' => 'conget modifier avec succeé'
+        ]);
     }
 
     /**
@@ -124,10 +133,14 @@ class CongetController extends Controller
         // $affected = DB::table('congets')
         //     ->where('id', $conget->id)
         //     ->update(['date_debut' => $request->request, 'durre' => $request->durre]);
+        $request->validate([
+            'raison' => 'required|min:10|max:500',
+        ]);
         $conget = Conget::find($id);
         $conget->date_debut = $request->date_debut;
         $conget->durre = $request->durre;
         $conget->raison = $request->raison;
+        $conget->status = 'Accepter';
         $conget->update();
         return response()->json([
             'status' => true,
@@ -148,7 +161,7 @@ class CongetController extends Controller
     public function EmpcongetTraiter()
     {
         $conget = DB::table('congets')->where('employer_id', session()->get('id'))
-            ->where('status', '!=', 'null')
+            ->where('raison', '!=', 'null')
             ->whereMonth('created_at', date('m'))
             ->whereYear('created_at', date('yy'))->first();
         // dd($conget,session()->get('id'));

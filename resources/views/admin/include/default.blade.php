@@ -24,6 +24,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.18.0/css/mdb.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{asset('css/nav.css')}}">
     @yield('style')
 </head>
 

@@ -8,7 +8,7 @@ class ContactModel extends Model
 {
 
     protected $fillable = [
-        'id_employer', 'nom', 'email', 'subject', 'id_societe',
+        'employer_id', 'nom', 'email', 'subject', 'id_societe',
     ];
     public function employer()
     {
