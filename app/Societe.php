@@ -15,7 +15,7 @@ class Societe extends Model
     }
 
     protected $fillable = [
-        'nom_societe', 'devise', 'adresse','GSM','email','pays','ville','code_postall','site_internet','user_id'
+        'nom_societe', 'devise', 'adresse','GSM','email','pays','ville','code_postall','site_internet','user_id','description'
     ];
     use SoftDeletes;
 }

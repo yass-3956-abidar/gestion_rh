@@ -11,7 +11,7 @@ class Emploi extends Model
         return $this->hasOne('App\Employer');
     }
     protected $fillable = [
-        'fonction', 'date_debut', 'date_fin','salaire_base',
+        'fonction', 'date_debut', 'date_fin','salaire_base'.'descrip',
     ];
     use SoftDeletes;
 

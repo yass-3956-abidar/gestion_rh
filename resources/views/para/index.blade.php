@@ -95,7 +95,6 @@
             <tbody>
                 @foreach ($employers as $employer)
                 <tr>
-
                     <td>{{$employer->cin}}</td>
                     <td>{{$employer->id}}</td>
                     <td>{{$employer->nom_employer}}</td>
@@ -109,8 +108,6 @@
                         <!-- Modal -->
 
                     </td>
-
-
                 </tr>
                 @endforeach
             </tbody>
@@ -157,7 +154,35 @@
             </tbody>
         </table>
     </div>
-    <div id="paie"> tab 3 content</div>
+    <div id="paie">
+        <!-- bulletinPaie -->
+        <table id="table_paie_trashed" class="table table-bordered mt-2">
+            <thead>
+                <tr>
+                    <th>Nom employer</th>
+                    <th>Prenom</th>
+                    <th>Fiche de paie Du</th>
+                    <th>Fiche de paie Au</th>
+                    <th>Salire Brut global</th>
+                    <th>action</th>
+                </tr>
+            </thead>
+            <tbody id="body_table_paie">
+                @foreach($bulletinPaie as $bulletin)
+                <tr>
+                    <td>{{$bulletin->employer->nom_employer}}</td>
+                    <td>{{$bulletin->employer->prenom}}</td>
+                    <td>{{$bulletin->date_paie_debut}}</td>
+                    <td>{{$bulletin->date_paie_dfin }}</td>
+                    <td>{{$bulletin->sbg}}</td>
+                    <td>
+                        <a href="{{route('paie.restore',$bulletin->id)}}" class="btn btn-sm btn-warning">Restore</a>
+                        <a href="{{route('paie.forceDelete',$bulletin->id)}}" class="btn btn-sm btn-danger delet-confirm">Supprimer</a>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 @endsection
 @section('script')
@@ -182,11 +207,29 @@
                 }
             }
         });
-        $('#forceDelete').on('click', function(event) {
+        $('#table_paie_trashed').DataTable({
+            "order": [
+                [3, "desc"]
+            ],
+            "paging": true,
+            "oLanguage": {
+                "sLengthMenu": "Afficher _MENU_",
+                "sSearch": "Rechercher",
+                "sLenghtMenu": "Afficher _MENU_",
+                "sZeroRecords": "Aucun paie Trouvez!",
+                "sInfo": "Afficher _START_ à _END_ de _TOTAL_ paie",
+                "sInfoFiltered": "(filtré à partir de _MAX_ paie)",
+                "oPaginate": {
+                    "sPrevious": "Précédent",
+                    "sNext": "Suivant"
+                }
+            }
+        });
+        $('.delet-confirm').on('click', function(event) {
             event.preventDefault();
             const url = $(this).attr('href');
             Swal.fire({
-                title: 'Vous Voulez Vraiment supprimer l\'employer ?',
+                title: 'Vous Voulez Vraiment supprimer l\'paie ?',
                 text: "La suppression est ireversible",
                 icon: 'warning',
                 showCancelButton: true,
@@ -198,7 +241,7 @@
                     window.location.href = url;
                     Swal.fire(
                         'Suppression!',
-                        'L\'employer et supprimer',
+                        'L\'apaie et supprimer',
                         'success'
                     )
                 }

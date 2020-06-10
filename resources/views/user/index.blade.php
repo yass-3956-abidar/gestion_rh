@@ -1,4 +1,29 @@
 @extends('admin.include.default')
+@section('style')
+<style>
+    .input-icone {
+        position: relative;
+    }
+
+    .input-icone i {
+        position: absolute;
+        left: 0;
+        top: 5px;
+        padding: 9px 8px;
+        color: #64b5f6;
+        left: 90%;
+        cursor: pointer;
+    }
+
+    input[type=text]:hover {
+        background: #f2f2f2;
+    }
+
+    input:hover {
+        background: #f2f2f2;
+    }
+</style>
+@endsection
 @section('content')
 <div class="col-md-12">
     @if(session()->has('success'))
@@ -22,7 +47,7 @@
                 </div>
             </center>
             <ul class="list-group">
-                <li class="list-group-item btn btn-outline-info">Changer L'image de profil</li>
+                <a data-toggle="modal" data-target="#modalPaswword" class="list-group-item btn btn-outline-info">Changet Le mot de passe</a>
                 <li class="list-group-item btn btn-outline-info">
                     <form action="{{route('user.updateImage')}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -114,10 +139,40 @@
     <div class="row">
 
     </div>
+    @include('util.user.modalPaswword')
 </div>
 @endsection
 @section('script')
 <script>
-    // alert('hi all profile');
+    $(document).ready(function() {
+        $(document).on('click', '#shownvMotpasse', function(e) {
+            e.preventDefault();
+            $("#hidenvMotpasse").show();
+            $("#shownvMotpasse").hide();
+            $("#nvMotpasse").attr('type', 'text');
+
+        });
+        $(document).on('click', '#hidenvMotpasse', function(e) {
+            e.preventDefault();
+            $("#shownvMotpasse").show();
+            $("#hidenvMotpasse").hide();
+            $("#nvMotpasse").attr('type', 'password');
+
+        });
+        $(document).on('click', '#showconfirmMotpasse', function(e) {
+            e.preventDefault();
+            $("#hideconfirmMotpasse").show();
+            $("#showconfirmMotpasse").hide();
+            $("#confirmMotpasse").attr('type', 'text');
+
+        });
+        $(document).on('click', '#hideconfirmMotpasse', function(e) {
+            e.preventDefault();
+            $("#showconfirmMotpasse").show();
+            $("#hideconfirmMotpasse").hide();
+            $("#confirmMotpasse").attr('type', 'password');
+
+        });
+    });
 </script>
 @endsection

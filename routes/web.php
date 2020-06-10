@@ -24,6 +24,7 @@ Route::GET('/user/profile/{id}', 'UserController@profile')->name('user.profile')
 Route::GeT('/user/parametre/{id}', 'UserController@parametreUser')->name('user.parametre');
 Route::PUT('/user/update', 'UserController@updateUser')->name('user.update');
 Route::PUT('/user/updateImage/', 'UserController@updateImage')->name('user.updateImage');
+Route::PUT('/user/modifier_motPasse/', 'UserController@updateMotPasse')->name('user.updatePassword');
 
 
 Route::get('/admin/home', 'HomeController@index')->name('home');
@@ -64,10 +65,13 @@ Route::PUT('admin/paie/update/{id}', 'PaieController@update')->name('paie.update
 // parrametre route
 Route::get('/admin/parametre/', 'ParametreController@index')->name('para.index');
 Route::get('/admin/parametre/employer/{id}', 'ParametreController@restoref')->name('para.emp.restore');
+Route::get('/admin/restore/paie/{id}', 'ParametreController@restorePaie')->name('paie.restore');
+Route::get('/admin/forcedelete/paie/{id}', 'ParametreController@forceDeltePaie')->name('paie.forceDelete');
+
 
 Route::resource('/admin/conget', 'CongetController');
 Route::get('/admin/conget/update/{id}', 'CongetController@updateStatus')->name('conget.updateStatus');
 Route::PUT('/admin/conget/status/{id}', 'CongetController@destroyStatus')->name('conget.destroyStatus');
 Route::get('employer/avance/suppprime/{id}', 'AvanceController@deleteAvance')->name('avance.delete');
 Route::get('employer/avance/restore/{id}', 'AvanceController@restoreAvance')->name('para.avance.restore');
-Route::get('/sendEmail','SendEmail@sendEmailForEmployer')->name('mail.sendEmail');
+Route::get('/sendEmail', 'SendEmail@sendEmailForEmployer')->name('mail.sendEmail');

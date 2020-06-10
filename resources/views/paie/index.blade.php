@@ -102,8 +102,28 @@
                     console.log(tow);
                 }
             });
-
-
+        });
+        $('.delet-confirm').on('click', function(event) {
+            event.preventDefault();
+            const url = $(this).attr('href');
+            Swal.fire({
+                title: 'Vous Voulez Vraiment supprimer l\'apaie ?',
+                text: "La suppression est reversible",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'supprimer'
+            }).then((result) => {
+                if (result.value) {
+                    window.location.href = url;
+                    Swal.fire(
+                        'Suppression!',
+                        'L\'paie et supprimer',
+                        'success'
+                    )
+                }
+            })
         });
     });
 </script>

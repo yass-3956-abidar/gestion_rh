@@ -232,7 +232,7 @@
             <p class="lead mt-2"> Les Primes</p>
             <hr style="width: 9%;">
             <div class="row">
-                <input id="nbr_prime_impo" value="{{isset($primes)? count($primes) :''}}" type="hidden" name="nbr_prime_impo">
+                <input id="nbr_prime_impo" value="{{isset($primes)? count($primes) :'1'}}" type="hidden" name="nbr_prime_impo">
                 @if(isset($primes))
                 @foreach($primes as $key=>$prime)
                 <div class="col-md-6">
@@ -290,7 +290,6 @@
 
         $("#list_breadcrumb").append(item1);
         $("#list_breadcrumb").append(item2);
-        let i = 1;
         let j = 1;
 
         // $("#iconImp").hide();
@@ -422,7 +421,7 @@
             e.preventDefault();
 
             $("#iconImp").show();
-            var e1 = $("<input id='i' class='form-control mt-1' placeholder='Designation' type='text'>");
+            var e1 = $("<input  class='form-control mt-1' placeholder='Designation' type='text'>");
             $("#forDesignImposa").append(e1);
             e1.attr('id', 'designImpo' + j);
             e1.attr('name', 'designImpo' + j);
@@ -432,15 +431,11 @@
             e2.attr('id', 'MontantImpo' + j);
             e2.attr('name', 'MontantImpo' + j);
             $("#nbr_prime_impo").val(j);
-            // alert($("#nbr_prime_impo").val());
             j++;
 
-
+            // alert($("#nbr_prime_impo").val());
 
         });
-
-
-
         $(document).on('click', '#iconImp', function() {
             let index = j - 1;
             $("#designImpo" + index).remove();
@@ -450,8 +445,6 @@
             if (j == 1) {
                 $("#iconImp").hide();
             }
-
-
         });
         // pour  la fiche de paie
 

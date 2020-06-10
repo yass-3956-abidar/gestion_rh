@@ -157,7 +157,12 @@ class EmployerController extends Controller
         $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
         $banque = DB::table('banques')->where('id', $employer->banque_id)->first();
         $contratType = DB::table('contrat_types')->where('id', $contrat->contra_type_id)->first();
-        return view('employer.create')->with('employer', $employer)->with('contratType', $contratType)->with('departement', $departement)->with('post', $post)->with('banque', $banque)->with('contart', $contrat);
+        return view('employer.create')->with('employer', $employer)
+            ->with('contratType', $contratType)
+            ->with('departement', $departement)
+            ->with('post', $post)
+            ->with('banque', $banque)
+            ->with('contart', $contrat);
     }
 
     /**
@@ -167,28 +172,37 @@ class EmployerController extends Controller
      * @param  \App\Employer  $employer
      * @return \Illuminate\Http\Response
      */
-    public function update(EmployerRequest $request, Employer $employer)
+    public function update(Request $request, Employer $employer)
     {
-
-        // App\Flight::where('active', 1)
-        // ->where('destination', 'San Diego')
-        // ->update(['delayed' => 1]);
-        // $departement = DB::table('departements')->where('id', $employer->departement_id)->update([
-        //     'nom_dep' => $request->nom_dep
-        // ]);
+        $request->validate([
+            'cin' => ['required', 'string', \Illuminate\Validation\Rule::unique('employers')->ignore($employer->id)],
+            'nom_employer' => 'required|string|max:20,min:6',
+            'prenom' => 'required|string|max:20',
+            'email' => 'required|email|max:100',
+            'date_naissance' => 'required|date',
+            'situationFami' => 'required|string',
+            'sexe' => 'required|string',
+            'Num_cnss' => ['required', 'numeric', \Illuminate\Validation\Rule::unique('employers')->ignore($employer->id)],
+            'nbr_enfant' => 'numeric',
+            'Num_Icmr' =>  ['required', 'numeric', \Illuminate\Validation\Rule::unique('employers')->ignore($employer->id)],
+            'salaire' => 'required|numeric',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'fonction' => 'required|string',
+            'date_debut' => 'required|date',
+            'date_fin' => 'date|after:date_debut',
+            'salaire_base' => 'required|numeric',
+            'nom_dep' => 'required|string',
+            'nom_banque' => 'required|string',
+            'rib' => ['required', 'numeric', 'min:16', \Illuminate\Validation\Rule::unique('banques')->ignore($employer->banque_id)],
+            'tele' => ["required", "regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"],
+            'adresse' => 'string',
+            'date_embauche' => 'required|date',
+            'type' => 'required|string',
+        ]);
         $departemet = Departement::find($employer->departement_id);
         $departemet->nom_dep = $request->nom_dep;
         $departemet->update();
 
-        // Departement::where('id', $employer->departement_id)->update([
-        //     'nom_dep' => $request->nom_dep
-        // ]);
-        // $post = DB::table('emplois')->where('id', $employer->emploi_id)->update([
-        //     'fonction' => $request->fonction,
-        //     'date_debut' => $request->date_debut,
-        //     'date_fin' => $request->date_fin,
-        //     'salaire_base' => $request->salaire_base,
-        // ]);
         Emploi::where('id', $employer->emploi_id)->update([
             'fonction' => $request->fonction,
             'date_debut' => $request->date_debut,
@@ -211,13 +225,17 @@ class EmployerController extends Controller
         } else {
             $image = 'person.png';
         }
+        $nbrEnfant = 0;
+        if ($request->nbr_enfant != null) {
+            $nbrEnfant = $request->nbr_enfant;
+        }
         $employer->update([
             'cin' => $request->cin,
             'nom_employer' => $request->nom_employer,
             'prenom' => $request->prenom,
             'email' => $request->email,
             'date_naissance' => $request->date_naissance,
-            'nbr_enfant' => $request->nbr_enfant,
+            'nbr_enfant' => $nbrEnfant,
             'situationFami' => $request->situationFami,
             'sexe' => $request->sexe,
             'Num_cnss' => $request->Num_cnss,

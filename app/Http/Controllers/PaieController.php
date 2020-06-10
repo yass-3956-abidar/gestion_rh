@@ -46,6 +46,7 @@ class PaieController extends Controller
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $bullpaie = DB::table('bulletin_paies')->whereMonth('created_at', $request->month)
             ->where('id_societe', $idsociete)
+            ->where('deleted_at', null)
             ->whereYear('created_at', $request->year)->get();
         $BulltnPaie = [];
         foreach ($bullpaie  as $apieB) {
@@ -60,7 +61,7 @@ class PaieController extends Controller
                   <td>
                   <a href="/admin/paie/showPaie/' . $BulltnPaie->id . '" class="btn btn-sm btn-info">Show</a>
                   <a href="/admin/paie/edit/' . $BulltnPaie->id . '" class="btn btn-sm btn-warning">Edit</a>
-                  <a href="/admin/paie/destroy/' . $BulltnPaie->id . '" class="btn btn-sm btn-danger">Supprimer</a>
+                  <a id="delete_btn" href="/admin/paie/destroy/' . $BulltnPaie->id . '" class="btn btn-sm btn-danger delet-confirm">Supprimer</a>
               </td>
         </tr>';
         }
@@ -348,6 +349,9 @@ class PaieController extends Controller
 
             $salaire_net = $sbg - $irNet - BulletinService::CotisCnss($sbi) - BulletinService::getAMO($sbi) - BulletinService::cotisICmr($request->taux_Icmr, $sbi)
                 - $request->avance;
+            $user = DB::table('employers')
+                ->where('id', $employer->id)
+                ->update(['salaire' => $salaire_net]);
             return response()->json([
                 'employer' => $employer,
                 'contrat' => $contrat,
@@ -554,6 +558,7 @@ class PaieController extends Controller
     public function destroy($id)
     {
         $bulletin = BulletinPaie::find($id);
-        dd($bulletin);
+        $bulletin->delete();
+        return redirect(route('paie.index'));
     }
 }

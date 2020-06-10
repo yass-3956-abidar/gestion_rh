@@ -32,7 +32,7 @@ class Employer extends Model
     {
         return $this->hasMany('App\ContactModel');
     }
-    public function emplois()
+    public function emploi()
     {
         return $this->belongsTo('App\Emploi');
     }

@@ -6,6 +6,7 @@ use App\Avance;
 use App\Employer;
 use App\Presence;
 use Illuminate\Support\Facades\DB;
+use App\BulletinPaie;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -39,11 +40,17 @@ class ParametreController extends Controller
         $avances = Avance::onlyTrashed()
             ->whereIn('employer_id', $employersTabNottrashed)
             ->get();
+        $bullpaie = BulletinPaie::onlyTrashed()
+            ->where('id_societe', $idsociete)->get();
+        foreach ($bullpaie  as $apieB) {
+            $apieB->setAttribute('employer', Employer::find($apieB->employer_id));
+        }
         return view('para.index')->with([
             'employers' => $employers,
             'devise' => $devise,
             'presence' => $presence,
             'avances' => $avances,
+            'bulletinPaie' => $bullpaie,
         ]);
     }
     public function restoref($id)
@@ -53,6 +60,26 @@ class ParametreController extends Controller
             ->first();
         $employer->restore();
         session()->flash('success', "l'employer est ajouter avec succes");
+        toast(session('success'), 'success');
+        return redirect(route('para.index'));
+    }
+    public function restorePaie($id)
+    {
+        $paie = BulletinPaie::onlyTrashed()
+            ->where('id', $id)
+            ->first();
+        $paie->restore();
+        session()->flash('success', "l'paie est ajouter avec succes");
+        toast(session('success'), 'success');
+        return redirect(route('para.index'));
+    }
+    public function forceDeltePaie($id)
+    {
+        $paie = BulletinPaie::onlyTrashed()
+            ->where('id', $id)
+            ->first();
+        $paie->forceDelete();
+        session()->flash('success', "l'paie est supprimer avec succes");
         toast(session('success'), 'success');
         return redirect(route('para.index'));
     }

@@ -54,9 +54,12 @@
         <li>
             <a class="text-white" href="{{route('conget.index')}}">
                 <i class="fas fa-house-user"></i>
-                Conget <span id="" class="badge badge-warning float-right ml-2">
+                Conget
+                @if(DB::table('congets')->where('id_societe',DB::table('societes')->where('user_id',Auth::user()->id)->value('id'))->where('status','en attend')->count()>0)
+                <span id="" class="badge badge-warning float-right ml-2">
                     {{(DB::table('congets')->where('id_societe',DB::table('societes')->where('user_id',Auth::user()->id)->value('id'))->where('status','en attend')->count())}}
                 </span>
+                @endif
                 <span class="sr-only">unread messages</span>
             </a>
         </li>

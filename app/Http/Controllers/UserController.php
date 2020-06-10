@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Flash;
 use App\Http\Requests\UserImage;
+use App\Http\Requests\UpdatePassword;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -55,19 +56,21 @@ class UserController extends Controller
     {
         $user = Auth::user();
         $user = User::find($user->id);
+        // dd($user);
         $request->validate([
-            'username' => 'required|unique:users,username,',
-            'email' => Rule::unique('users')->ignore($this->route()->user->id),
+            'name' => ['required', 'string', \Illuminate\Validation\Rule::unique('users')->ignore(Auth::user()->id)],
+            'email' => ['required', 'email', \Illuminate\Validation\Rule::unique('users')->ignore(Auth::user()->id)],
             'rais_social' => "required",
             'tele' => ["required", "regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"],
         ]);
         // $user->update($request->only('username', 'email', 'rais_social', 'tele'));
-        $user->email=$request->email;
-        $user->username=$request->username;
-        $user->rais_social=$request->rais_social;
-        $user->tele=$request->tele;
+        $user->email = $request->email;
+        $user->name = $request->name;
+        $user->rais_social = $request->rais_social;
+        $user->tele = $request->tele;
         $user->update();
         $request->session()->flash('success', " mise à jour faite avec succé");
+        return redirect(route('user.profile', $user->id));
     }
     public function updateImage(UserImage $request)
     {
@@ -86,5 +89,16 @@ class UserController extends Controller
             $request->session()->flash('error', "erreur lors de telechargment");
         }
         return redirect(route('user.profile', $id));
+    }
+    public function updateMotPasse(UpdatePassword $request)
+    {
+        // $user=Auth::user();
+        // dd($request->password,$request->password_confirmation);
+        $password = Hash::make($request->password);
+        $user = DB::table('users')
+            ->where('id', Auth::user()->id)
+            ->update(['password' => $password]);
+        $request->session()->flash('success', "mot de passe modifier  avec succé");
+        return redirect(route('user.profile', $request->user_id));
     }
 }
