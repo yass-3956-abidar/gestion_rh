@@ -48,6 +48,7 @@ class SocieteController extends Controller
         $societe->code_postall = $request->code_postall;
         $societe->site_internet = $request->site_internet;
         $societe->user_id = Auth::user()->id;
+        $societe->description=$request->description;
         $societe->save();
         // $data = $request->only('devise', 'nom_societe', 'adresse', 'GSM', 'email', 'pays', 'ville', 'code_postall', 'site_internet');
         // // $data = $request->all();

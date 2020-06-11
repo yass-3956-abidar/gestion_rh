@@ -60,8 +60,21 @@ class EmployerController extends Controller
     public function store(EmployerRequest $request)
     {         //save Emploi
 
-        $dataEmploi = $request->only('fonction', 'date_debut', 'date_fin', 'salaire_base');
-        Emploi::create($dataEmploi);
+        // $dataEmploi = $request->only('fonction', 'date_debut', 'date_fin', 'salaire_base','descrip');
+        $emploi=new Emploi();
+        $emploi->fonction=$request->fonction;
+        $emploi->date_debut=$request->date_debut;
+        $emploi->date_fin=$request->date_fin;
+        $emploi->salaire_base=$request->salaire_base;
+        $emploi->descrip=$request->descrip;
+        $emploi->save();
+        // Emploi::create([
+        //     'fonction'=>$request->fonction,
+        //     'date_debut'=>$request->date_debut,
+        //     'date_fin'=>$request->date_fin,
+        //     'salaire_base'=>$request->salaire_base,
+        //     'descrip'=>$request->descrip,
+        // ]);
         //save deprtemetn
         $departemetn = DB::table('departements')->where('nom_dep', $request->nom_dep)->first();
         if ($departemetn != null) {
@@ -71,7 +84,6 @@ class EmployerController extends Controller
             Departement::create($dateDep);
             $departemetnid = DB::table('departements')->max('id');
         }
-
         //save Banque
         $dataBanque = $request->only('nom_banque', 'adresse', 'tele');
         $dataBanque['rib'] = encrypt($request->rib);

@@ -37,6 +37,7 @@ class EmployerRequest extends FormRequest
             'salaire' => 'required|numeric',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'fonction' => 'required|string',
+            'descrip'=>'required|string',
             'date_debut' => 'required|date|after:tomorrow',
             'date_fin' => 'date|after:date_debut',
             'salaire_base' => 'required|numeric',
@@ -47,6 +48,7 @@ class EmployerRequest extends FormRequest
             'adresse' => 'string',
             'date_embauche' => 'required|date|after:tomorrow',
             'type' => 'required|string',
+
         ];
     }
     public function messages()
@@ -60,6 +62,8 @@ class EmployerRequest extends FormRequest
             'Num_cnss.required'=>'le numero CNSS est obligatoire',
             'Num_cnss.unique'=>'le numero CNSS est deja existe',
             'Num_cnss.numeric'=>'le  CNSS est un numero',
+            'descrip.required'=>"ce champs est obligatoire",
+            'descrip.string'=>'entre just du text',
             'Num_Icmr.required'=>'le numero ICMR est obligatoire',
             'Num_Icmr.unique'=>'le numero ICMR est deja existe',
             'Num_Icmr.numeric'=>'le  ICMR est un numero',

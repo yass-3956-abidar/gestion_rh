@@ -66,7 +66,7 @@
         </div>
         <div class="col-md-6">
             <div class="card">
-                <div class="card-header">Utilisateur</div>
+                <div class="card-header bg-primary text-white">Utilisateur</div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('user.update') }}">
                         @csrf

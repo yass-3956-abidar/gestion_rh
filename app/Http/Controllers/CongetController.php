@@ -173,4 +173,18 @@ class CongetController extends Controller
             return view('espaceEmployer.conget.traiter')->with('conget', $conget)->with('time', $time);
         }
     }
+
+    public function employerConget()
+    {
+        $id_societe = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        // dd($id_societe);
+        $employer_presen = DB::table('congets')->where('id_societe', $id_societe)
+            ->where('status', 'Accepter')->get();
+        $tabConget = [];
+        foreach ($employer_presen as $employePre) {
+            $conget = Conget::find($employePre->id);
+            $tabConget[] = [$conget, $conget->employer, $conget->congetType];
+        }
+        return view('conget.employerConget')->with('employerEnConget', $tabConget);
+    }
 }

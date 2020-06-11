@@ -76,6 +76,19 @@
                                     @enderror
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <label for="site" class="col-md-4 col-form-label text-md-right">{{ __('Description de votre Societe') }}
+                                <span class="text-danger ml-1">*</span>
+                                </label>
+                                <div class="col-md-6">
+                                    <textarea style="box-shadow: none" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}"></textarea>
+                                    @error('description')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                            </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group row">

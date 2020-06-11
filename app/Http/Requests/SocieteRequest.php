@@ -24,15 +24,32 @@ class SocieteRequest extends FormRequest
     public function rules()
     {
         return [
-            // 'site_internet' => 'string|max:255',
+            'site_internet' => 'string|max:255|nullable',
             'email' => 'required|string|email|max:255|unique:societes',
-            'nom_societe'=>'required|string|min:6',
-            // 'GSM'=>'string',
-            'ville'=>'string|required',
-            'pays'=>'string|required',
-            'adresse'=>'string|required',
-            // 'code_postall'=>'string|min:5',
-            'devise'=>'required|String|min:3|max:10',
+            'nom_societe'=>'required|string|min:3',
+            'GSM'=>'string|nullable',
+            'ville'=>'required|string',
+            'pays'=>'required|string',
+            'adresse'=>'required|string',
+            'code_postall'=>'string|min:5|nullable',
+            'devise'=>'required|String|min:2|max:10',
+            'description'=>'required|string|min:20|max:500',
         ];
     }
+    public function messages(){
+        return [
+            'email.required'=>'email est obligatoire',
+            'email.string'=>'email invalid',
+            'email.email'=>'email invalid',
+            'email.unique'=>'email invalid',
+            'nom_societe.required'=>'ce champs est obligatoire',
+            'nom_societe.min'=>' le nom societe invalid',
+            'ville.required'=>'ville est obligatoire',
+            'pays.required'=>'pays est obligatoire',
+            'devise.required'=>'ce champs est obligatoire',
+            'adresse.required'=>'ce champs est obligatoire',
+            'description.required'=>'ce champs est obligatoire',
+        ];
+    }
+   
 }

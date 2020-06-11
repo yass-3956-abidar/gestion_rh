@@ -275,6 +275,7 @@
         </form>
         @include('util.avance.paie.fichePaie')
         <a style="display: none;" id="btnapercu" class="btn btn-primary float-right">Apercu<i class="fas ml-2 fa-1x fa-file-pdf"></i></a>
+        <input type="hidden" id="user_connect" value="{{Auth::user()->id}}">
     </div>
 </div>
 @endsection
@@ -405,7 +406,8 @@
                             $("#sbImpos").text(data.sbi);
                             $("#netImposable").text(data.sni);
                             $("#salire_net").text(data.salaire_net);
-                            $("#btnapercu").attr('href', '/admin/paie/apercu/' + data.idPaie);
+                            let user = $("#user_connect").val();
+                            $("#btnapercu").attr('href', '/admin/paie/apercu/' + data.idPaie + '/' + user);
                         }
 
                     },

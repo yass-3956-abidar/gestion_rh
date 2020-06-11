@@ -1,6 +1,12 @@
 @extends('admin.include.default')
 @section('content')
 <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-6"></div>
+        <div class="col-md-6">
+            <a href="{{route('employerConget.index')}}" class="btn btn-primary float-right">Les employers en conget</a>
+        </div>
+    </div>
     <div class="card border-primary">
         <div class="card-body">
             @if(count($demande_congets)==0)

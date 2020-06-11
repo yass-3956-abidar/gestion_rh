@@ -402,10 +402,10 @@ class PaieController extends Controller
             ]);
         }
     }
-    public function apercu()
+    public function apercu($id, $id_user)
     {
-        $bultinPiaId = DB::table('bulletin_paies')->max('id');
-        $bulletinPaie = BulletinPaie::find($bultinPiaId);
+        // $bultinPiaId = DB::table('bulletin_paies')->max('id');
+        $bulletinPaie = BulletinPaie::find($id);
         // $sni = $sbi - $cnss - $icmr - $fp - $amo;
         $employer = Employer::find($bulletinPaie->employer_id);
         $heurSup = Db::table('heur_sups')->where('employer_id', $employer->id)
@@ -438,7 +438,7 @@ class PaieController extends Controller
         $salireNet = $salireNet + $bulletinPaie->sbg - $montant;
         $avantage = $bulletinPaie->avantage;
         $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
-        $societe = DB::table('societes')->where('user_id', Auth::user()->id)->first();
+        $societe = DB::table('societes')->where('user_id', $id_user)->first();
         $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
         $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
         $durreAnciente = BulletinService::calculDuree($contrat->date_embauche);

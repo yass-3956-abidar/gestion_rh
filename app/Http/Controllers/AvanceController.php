@@ -53,7 +53,7 @@ class AvanceController extends Controller
         $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
         $employesNonTrahed = [];
         foreach ($employers as $employer) {
-            if ($employer->deleted_at == null && $employer->societe_id == $idsociete) {
+            if ($employer->deleted_at == null && $employer->societe_id == $idsociete && count($employer->avances) > 0) {
                 array_push($employesNonTrahed, $employer);
             }
         }

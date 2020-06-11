@@ -15,7 +15,10 @@ class Societe extends Model
     }
 
     protected $fillable = [
-        'nom_societe', 'devise', 'adresse','GSM','email','pays','ville','code_postall','site_internet','user_id','description'
+        'nom_societe', 'devise','description', 'adresse','GSM','email','pays','ville','code_postall','site_internet','user_id','description'
     ];
+    public function demande_paies(){
+        return $this->hasMany('App\DemandePaie');
+    }
     use SoftDeletes;
 }

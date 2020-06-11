@@ -12,11 +12,14 @@ class Employer extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'cin', 'nom_employer', 'prenom', 'email', 'date_naissance', 'situationFami', 'sexe', 'Num_cnss', 'nbr_enfant', 'Num_Icmr', 'salaire', 'image', 'emploi_id', 'banque_id', 'departement_id', 'societe_id',
+        'cin', 'nom_employer', 'prenom', 'email', 'date_naissance','descrip', 'situationFami', 'sexe', 'Num_cnss', 'nbr_enfant', 'Num_Icmr', 'salaire', 'image', 'emploi_id', 'banque_id', 'departement_id', 'societe_id',
     ];
     public function congets()
     {
         return $this->hasMany('App\Conget');
+    }
+    public function demande_paies(){
+        return $this->hasMany('App\DemandePaie');
     }
     //employer has many contrat
     public function contats()

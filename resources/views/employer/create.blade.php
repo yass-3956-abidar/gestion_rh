@@ -181,6 +181,14 @@
                         </span>
                         @enderror
                     </div>
+                    <div class="form-group">
+                        <textarea type="text" rows="6" cols="6" name="descrip" placeholder="Description de post" class="form-control @error('descrip') is-invalid @enderror" value="{{isset($employer)? $post->descrip:old('descrip')}}"></textarea>
+                        @error('descrip')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
                 </div>
             </div>
             <h2 style="font-family: italic;color:gray">Contrat</h2>
@@ -268,7 +276,7 @@
 <script>
     $(document).ready(function() {
         let item1 = '<li class="breadcrumb-item active">Employer</li>';
-        if ($("#email_emp").val()=='') {
+        if ($("#email_emp").val() == '') {
             var item2 = '<li class="breadcrumb-item active">Create</li>';
         } else {
             var item2 = '<li class="breadcrumb-item active">Edit</li>';

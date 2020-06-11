@@ -46,6 +46,12 @@
             </a>
         </li>
         <li>
+            <a class="text-white" href="{{route('demandepaie.index')}}">
+                <i class="fas fa-paste"></i>
+                Les demande de paie
+            </a>
+        </li>
+        <li>
             <a class="text-white" href="#">
                 <i class="fas fa-briefcase"></i>
                 Emploi
@@ -60,7 +66,7 @@
                     {{(DB::table('congets')->where('id_societe',DB::table('societes')->where('user_id',Auth::user()->id)->value('id'))->where('status','en attend')->count())}}
                 </span>
                 @endif
-                <span class="sr-only">unread messages</span>
+                <!-- <span class="sr-only">unread messages</span> -->
             </a>
         </li>
         <li>

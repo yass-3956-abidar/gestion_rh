@@ -33,6 +33,36 @@
 
     }
 
+    #lien_ficeh_paie {
+        width: 25%;
+        height: 10px;
+        text-shadow: 0 0 3px #00C851, 0 0 5px #33b5e5;
+        animation: masuperanimation 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        /* On utilise "ma super animation" définie plus tôt */
+    }
+
+    @keyframes masuperanimation {
+        0% {
+            transform: scale(1);
+
+        }
+
+        50% {
+            transform: scale(1.5);
+            text-shadow: 0 0 3px #fb8c00 , 0 0 5px #ff4444;
+        }
+
+        100% {
+            transform: scale(1);
+        }
+    }
+
+    #lien_ficeh_paie:hover {
+        -webkit-animation-play-state:paused;
+    }
+
     .fixe {
         background-image: url('https://mdbootstrap.com/img/Photos/Others/architecture.jpg');
         background-attachment: fixed;
@@ -45,6 +75,17 @@
 @endsection
 @section('content')
 <div class="container-fluid">
+    <div class="espace"></div>
+    <div class="container">
+        @if(count($demande)>0)
+        @foreach($demande as $dem)
+        <div id="lien_ficeh_paie" class="text-center mt-3">
+             <a class="link font-weight-bold" href="/admin/paie/apercu/{{$dem->id_bulltein}}/{{$user}}">fiche de paie forma pdf</a>
+         </div>
+        @endforeach
+        @endif
+    </div>
+    <div class="espace"></div>
     <section class="container">
         <center>
             <h1 data-aos="fade-up" class="text-center font-weight-bold">Votre Entreprise
@@ -137,25 +178,25 @@
             <div class="col-md-8 offset-md-2">
                 <div class="card-body text-center">
                     <ul class="list-group">
-                        <li data-aos="fade-right" data-aos-duration="900" class="list-group-item mt-2 z-depth-3 align-items-center">
+                        <li data-aos="fade-right" data-aos-duration="1100" class="list-group-item mt-2 z-depth-3 align-items-center">
                             <div class="row">
                                 <div class="col-md-6 text-success">Fonction</div>
                                 <div class="col-md-6">{{$emploi->fonction}}</div>
                             </div>
                         </li>
-                        <li data-aos="fade-left" data-aos-duration="700" class="list-group-item mt-2 z-depth-3">
+                        <li data-aos="fade-left" data-aos-duration="900" class="list-group-item mt-2 z-depth-3">
                             <div class="row">
                                 <div class="col-md-6  text-success">Date Debut</div>
                                 <div class="col-md-6">{{$emploi->date_debut}}</div>
                             </div>
                         </li>
-                        <li data-aos="fade-right" data-aos-duration="500" class="list-group-item mt-2 z-depth-3">
+                        <li data-aos="fade-right" data-aos-duration="700" class="list-group-item mt-2 z-depth-3">
                             <div class="row">
                                 <div class="col-md-6  text-success">Departement</div>
                                 <div class="col-md-6">{{$departement->nom_dep}}</div>
                             </div>
                         </li>
-                        <li class="list-group-item mt-2">
+                        <li data-aos="fade-left" data-aos-duration="500" class="list-group-item mt-2">
                             <center>
                                 <h1 class="text-default font-weight-bold">Description</h1>
                             </center>

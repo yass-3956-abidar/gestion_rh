@@ -54,7 +54,7 @@ Route::get('admin/paie/show/', 'PaieController@show')->name('paie.show');
 Route::get('admin/paie/index/', 'PaieController@index')->name('paie.index');
 Route::get('admin/paie/create/', 'PaieController@create')->name('paie.create');
 Route::get('admin/paie/salireNet/', 'PaieController@getsalaireNet')->name('paie.salNet');
-Route::get('admin/paie/apercu/{id}', 'PaieController@apercu')->name('paie.apercu');
+Route::get('admin/paie/apercu/{id}/{id_user}', 'PaieController@apercu')->name('paie.apercu');
 Route::get('admin/paie/pdf', 'PaieController@getPdf')->name('paie.getpdf');
 Route::get('admin/paie/cherche', 'PaieController@cherchePaie')->name('paie.cherche');
 Route::get('admin/paie/edit/{id}', 'PaieController@edit')->name('paie.edit');
@@ -75,3 +75,41 @@ Route::PUT('/admin/conget/status/{id}', 'CongetController@destroyStatus')->name(
 Route::get('employer/avance/suppprime/{id}', 'AvanceController@deleteAvance')->name('avance.delete');
 Route::get('employer/avance/restore/{id}', 'AvanceController@restoreAvance')->name('para.avance.restore');
 Route::get('/sendEmail', 'SendEmail@sendEmailForEmployer')->name('mail.sendEmail');
+// demandepaie.index
+Route::resource('/admin/paie/demandepaie', 'DemandePaieController');
+//
+Route::GET('/admin/paie/demandepaie/{id_bulletin}/{id_demande}', 'DemandePaieController@envoyerLienPaie')->name('demandepaie.envoyerLienPaie');
+Route::GET('/admin/paie/deleteDemande/{id}', 'DemandePaieController@deleteDemande')->name('demandepaie.delete');
+//
+Route::GET('/admin/EmployerEnConget/', 'CongetController@employerConget')->name('employerConget.index');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
