@@ -123,7 +123,7 @@ class EmployerController extends Controller
         $dataContrat['employer_id'] = DB::table('employers')->max('id');
         $dataContrat['contra_type_id'] = $contraTypeId;
         Contrat::create($dataContrat);
-        $request->session()->flash('success', "Nouvelle employer est ajouter avec succes");
+        $request->session()->flash('success', "Nouvelle employer est ajouter avec succeé");
         toast(session('success'), 'success');
         return redirect(route('employer.index'));
     }
@@ -255,7 +255,7 @@ class EmployerController extends Controller
             'salaire' => $request->salaire,
             'image' => $image,
         ]);
-        $request->session()->flash('success', "l'employer updated");
+        $request->session()->flash('success', "l'employer modifier avec succeé");
         toast(session('success'), 'success');
         return redirect(route('employer.index'));
     }

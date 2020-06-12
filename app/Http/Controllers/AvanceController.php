@@ -63,8 +63,10 @@ class AvanceController extends Controller
             $total = AvanceService::calculTotalAvane($employer->avances);
             $employer->setAttribute('total', $total);
         }
+        // dd($employers);
         return view('avance.show')->with('employers', $employers)
             ->with('devise', $devise);
+
     }
 
     /**

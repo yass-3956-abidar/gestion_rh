@@ -271,7 +271,11 @@
                     <a style="display: none;" id="iconImp" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i></a>
                 </div>
             </div>
-            <button type="submit" class="btn btn-primary float-right">{{isset($employer)?'Edit':'Enregistre'}} <i class="fas ml-2 fa-1x fa-save"></i></button>
+            <button type="submit" class="btn btn-primary float-right">
+              <i class="fas ml-2 fa-1x fa-save">
+                Enregistre
+                </i>
+            </button>
         </form>
         @include('util.avance.paie.fichePaie')
         <a style="display: none;" id="btnapercu" class="btn btn-primary float-right">Apercu<i class="fas ml-2 fa-1x fa-file-pdf"></i></a>

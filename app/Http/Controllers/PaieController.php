@@ -43,11 +43,22 @@ class PaieController extends Controller
     public function cherchePaie(Request $request)
     {
         $outout = '';
+        $bullpaie = [];
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        $bullpaie = DB::table('bulletin_paies')->whereMonth('created_at', $request->month)
-            ->where('id_societe', $idsociete)
-            ->where('deleted_at', null)
-            ->whereYear('created_at', $request->year)->get();
+        if ($request->year == null) {
+            $bullpaie = DB::table('bulletin_paies')->whereMonth('created_at', $request->month)
+                ->where('id_societe', $idsociete)
+                ->where('deleted_at', null)->get();
+        } elseif ($request->month == null) {
+            $bullpaie = DB::table('bulletin_paies')->whereYear('created_at', $request->year)
+                ->where('id_societe', $idsociete)
+                ->where('deleted_at', null)->get();
+        } else {
+            $bullpaie = DB::table('bulletin_paies')->whereYear('created_at', $request->year)
+                ->whereMonth('created_at', $request->month)
+                ->where('id_societe', $idsociete)
+                ->where('deleted_at', null)->get();
+        }
         $BulltnPaie = [];
         foreach ($bullpaie  as $apieB) {
             $BulltnPaie = BulletinPaie::find($apieB->id);

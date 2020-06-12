@@ -38,8 +38,6 @@ class PresenceController extends Controller
             $min = 0;
             $max = 0;
         }
-
-
         return view('presence.index')->with('employers', $employers)->with('tablePresence', $presence)
             ->with('min', $min)
             ->with('max', $max);
@@ -140,7 +138,7 @@ class PresenceController extends Controller
         toast(session('success'), 'success');
         return redirect(route('presenceEmp.index'));
     }
-    public function saveAll(Request $request)
+    public function saveAll(PresenceRequest $request)
     {
         if ($request->select_empl != null) {
             foreach ($request->select_empl as $id_emp) {
@@ -219,8 +217,10 @@ class PresenceController extends Controller
         $presence =  Presence::find($request->id_presence);
         $presence->heur_sortit = $request->heur_sortit;
         $presence->heur_entre = $request->heur_entre;
-        $presence->note = $request->note;
+        $presence->note = $request->noteS;
         $presence->update();
+        $request->session()->flash('success', "Pointage modifier avec succeé");
+        toast(session('success'), 'success');
         return redirect(route('presenceEmp.index'));
     }
 

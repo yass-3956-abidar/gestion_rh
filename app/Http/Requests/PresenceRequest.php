@@ -31,4 +31,13 @@ class PresenceRequest extends FormRequest
             'id_emp'=>'numeric'
         ];
     }
+    public function messages(){
+        return[
+            'heur_entre.required'=>'ce champs est obligatoire',
+            'heur_entre.regex'=>'entre valid heure',
+            'heur_sortit.required'=>'ce champs est obligatoire',
+            'heur_sortit.regex'=>'entre valid heure'
+        ];
+        
+    }
 }

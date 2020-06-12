@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div id="paie_alert" style="display: none;" class="alert alert-warning mt-2" role="alert"></div>
-            <table style="display: none;" id="table_paie" class="table table-bordered mt-2">
+            <table id="table_paie" style="display: none;" class="table table-hover table-bordered mt-2">
                 <thead>
                     <tr>
                         <th>Nom employer</th>
@@ -69,7 +69,48 @@
             $("#moi_paie").append(optionn);
         }
         $(document).on('change', '#annee_paie', function(e) {
-            $("#moi_paie").trigger('change');
+            let year = $("#annee_paie").val();
+            $.ajax({
+                url: "{{route('paie.cherche')}}",
+                type: "GET",
+                contentType: 'application/json',
+                data: {
+                    'year': year,
+                },
+                success: function(data) {
+                    console.log(data)
+                    if (data.status) {
+                        $("#table_paie").show();
+                        $("#paie_alert").hide();
+                        $("tbody").html(data.data);
+                        $('#table_paie').DataTable({
+                            "order": [
+                                [3, "desc"]
+                            ],
+                            "paging": true,
+                            "oLanguage": {
+                                "sLengthMenu": "Afficher _MENU_",
+                                "sSearch": "Rechercher",
+                                "sLenghtMenu": "Afficher _MENU_",
+                                "sZeroRecords": "Aucun paie Trouvez!",
+                                "sInfo": "Afficher _START_ à _END_ de _TOTAL_ paie",
+                                "sInfoFiltered": "(filtré à partir de _MAX_ paie)",
+                                "oPaginate": {
+                                    "sPrevious": "Précédent",
+                                    "sNext": "Suivant"
+                                }
+                            }
+                        });
+                    } else {
+                        $("#table_paie").hide();
+                        $("#paie_alert").show();
+                        $("#paie_alert").text(data.data);
+                    }
+                },
+                error: function(errr, tow) {
+                    console.log(errr);
+                }
+            });
         });
         $(document).on('change', '#moi_paie', function(e) {
             e.preventDefault();

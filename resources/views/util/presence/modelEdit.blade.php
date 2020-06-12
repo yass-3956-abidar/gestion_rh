@@ -47,11 +47,10 @@
                     </div>
                     <div class="form-group row">
                         <label for="note" class="col-md-4 col-form-label text-md-right">{{ __('Note') }}
-                            <span class="text-danger">*</span>
                         </label>
                         <div class="col-md-6">
-                            <input id="noteS" type="text" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus>
-                            @error('heur_sortit')
+                        <textarea rows="4" id="noteS" type="text" class="form-control @error('noteS') is-invalid @enderror" name="noteS" value="{{ old('noteS') }}" autocomplete="name" autofocus></textarea>
+                            @error('noteS')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>

@@ -41,10 +41,6 @@ class CongetController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        return view('espaceEmployer.conget.create');
-    }
     public function updateStatus($id)
     {
         $conget = Conget::find($id);
