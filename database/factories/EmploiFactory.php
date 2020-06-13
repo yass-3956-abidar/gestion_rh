@@ -15,6 +15,7 @@ $factory->define(Emploi::class, function (Faker $faker) {
         'fonction' => $faker->word,
         'date_debut' => $date->format('Y-m-d H:i:s'),
         'date_fin' =>  $date->format('Y-m-d H:i:s'),
+        'descrip'=>$faker->text(),
         'salaire_base' => $faker->numberBetween(4000, 10000),
     ];
 });
