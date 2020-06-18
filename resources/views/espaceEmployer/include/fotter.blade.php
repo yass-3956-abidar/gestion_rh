@@ -59,8 +59,7 @@
     <!-- Footer Links -->
 
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© {{date('yy')}}Copyright:
-        <a href="https://mdbootstrap.com/"> RhApp.net</a>
+    <div class="footer-copyright text-center py-3">© {{date('yy')}}Copyright:YS-APP
     </div>
     <!-- Copyright -->
 

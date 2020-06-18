@@ -51,7 +51,7 @@
 
         50% {
             transform: scale(1.5);
-            text-shadow: 0 0 3px #fb8c00 , 0 0 5px #ff4444;
+            text-shadow: 0 0 3px #fb8c00, 0 0 5px #ff4444;
         }
 
         100% {
@@ -60,7 +60,7 @@
     }
 
     #lien_ficeh_paie:hover {
-        -webkit-animation-play-state:paused;
+        -webkit-animation-play-state: paused;
     }
 
     .fixe {
@@ -71,6 +71,10 @@
         min-height: auto;
         background-repeat: no-repeat;
     }
+
+    .image_pro:hover{
+
+    }
 </style>
 @endsection
 @section('content')
@@ -80,8 +84,8 @@
         @if(count($demande)>0)
         @foreach($demande as $dem)
         <div id="lien_ficeh_paie" class="text-center mt-3">
-             <a class="link font-weight-bold" href="/admin/paie/apercu/{{$dem->id_bulltein}}/{{$user}}">fiche de paie forma pdf</a>
-         </div>
+            <a class="link font-weight-bold" href="/admin/paie/apercu/{{$dem->id_bulltein}}/{{$user}}">fiche de paie forma pdf</a>
+        </div>
         @endforeach
         @endif
     </div>
@@ -93,20 +97,19 @@
             <hr data-aos="fade-up">
         </center>
         <div class="row">
-            <div class="col-md-6">
-                <div data-aos="fade-right" class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+            <div class="col-md-6 text-center">
+                <div data-aos="fade-right" class="card  card-image text-center" style="background-image: url({{asset('images/societe.png')}});">
                     <div class=" entre_info text-white text-center d-flex align-items-center rgba-black-strong  py-5 px-4">
                         <div>
                             <h3 class="card-title pt-2"><strong>{{$societe->nom_societe }}</strong></h3>
                             <p>
                                 {{$societe->description}}</p>
-                            <!-- </p> <a class="btn btn-pink"><i class="fas fa-clone left"></i> View project</a> -->
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-6">
-                <div data-aos="fade-left" class="card card-image" style="background-image: url(https://mdbootstrap.com/img/Photos/Horizontal/Work/4-col/img%20%2814%29.jpg);">
+                <div data-aos="fade-left" class="card card-image image_pro" style="background-image: url({{asset('images/societe2.jpg')}});">
                     <div class=" entre_info text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
                         <div>
                             <h3 class="card-title pt-2"><strong>Apropos de l'entreprise</strong></h3>

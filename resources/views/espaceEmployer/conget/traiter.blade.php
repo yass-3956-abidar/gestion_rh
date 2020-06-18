@@ -10,7 +10,7 @@
 <div class="espace"></div>
 <div class="espace"></div>
 <div class="container">
-    @foreach($tabCongetTraiter as conget)
+    @foreach($tabCongetTraiter as $conget)
     <div class="row">
         <div class="col-md-12">
             <!--Panel-->
