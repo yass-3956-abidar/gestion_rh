@@ -55,12 +55,13 @@ class EspaceContrller extends Controller
             $request->session()->flash('error', 'La fiche de paie n\'est encore traiter');
             toast(session('error'), 'error');
             return redirect(route('espaceEmployer.index'));
-        } elseif (DB::table('demande_paies')->where('employer_id', $id)->where('date_debut', $request->date_debut)->where('date_fin', $request->date_fin) == null) {
+        } elseif (DB::table('demande_paies')->where('employer_id', $id)->where('date_debut', $request->date_debut)->where('date_fin', $request->date_fin)->first() == null) {
             DemandePaie::create([
                 'date_debut' => $request->date_debut,
                 'date_fin' => $request->date_fin,
                 'employer_id' => $id,
                 'societe_id' => $employer->societe_id,
+                'id_bulltein'=>$paie->id,
             ]);
             $request->session()->flash('success', 'Votre demande est envoyer avec succé');
             toast(session('success'), 'success');

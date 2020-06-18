@@ -28,19 +28,20 @@
 </head>
 
 <body>
-    <div class="container mt-4 justify-content-center col-md-6 offset-md-3 align-items-center">
-        @if(session()->has('success'))
-        <div class="alert alert-success">
-            {{session()->get('success')}}
+    <div class="container">
+        <div class="container mt-4 justify-content-center col-md-6 offset-md-3 align-items-center">
+            @if(session()->has('success'))
+            <div class="alert alert-success">
+                {{session()->get('success')}}
+            </div>
+            @endif
+            @if(session()->has('error'))
+            <div class="alert alert-danger">
+                {{session()->get('error')}}
+            </div>
+            @endif
         </div>
-        @endif
-        @if(session()->has('error'))
-        <div class="alert alert-danger">
-            {{session()->get('error')}}
-        </div>
-        @endif
     </div>
-
     <div class="row mt-5">
         <div style="width: 500px;" class="card mt-5 justify-content-center col-md-6 offset-md-3 align-items-center">
 
@@ -49,13 +50,7 @@
                 <form class="text-center" action="{{route('espaceEmployer.store')}}" method="POST">
                     @csrf
                     <p class="h4 mb-4">Se Connecter</p>
-
-                    <p>Join our mailing list. We write rarely, but only the best content.</p>
-
-                    <p>
-                        <a href="" target="_blank">See the last newsletter</a>
-                    </p>
-
+                    <p>Connectez-vous  est  obtenue votre fiche de paie et plus ...</p>
                     <!-- Name -->
                     <input type="text" id="nom" name="nom" class="form-control mb-4" value="{{old('nom')}}" required placeholder="Nom Employer">
 

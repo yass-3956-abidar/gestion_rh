@@ -85,12 +85,12 @@
     </div>
     <div class="row justify-content-center mt-3">
         <!-- Card -->
-        <div class="col-md-5">
+        <div class="col-md-10">
             <div class="card">
                 <!-- Card image -->
                 <center><i style="color: #ff4444;" class="fas mt-1 fa-5x fa-file-alt"></i></center>
                 <div class="view overlay">
-                    <a href="#!">
+                    <a href="">
                         <div class="mask rgba-white-slight"></div>
                     </a>
                 </div>
@@ -100,26 +100,6 @@
                     <h4 class="card-title" style="font-style: italic;">{{$nbrFichePaie}} fiche cree le {{date('m/yy')}}</h4>
                     <!-- Text -->
                     <a href="{{route('paie.index')}}" class="btn btn-outline-danger float-right">Detail</a>
-                </div>
-            </div>
-        </div>
-        <!-- Card -->
-        <!-- Card -->
-        <div class="col-md-5">
-            <div class="card">
-                <!-- Card image -->
-                <center><i style="color: #ff4444;" class="fas mt-1 fa-5x fa-file-alt"></i></center>
-                <div class="view overlay">
-                    <a href="#!">
-                        <div class="mask rgba-white-slight"></div>
-                    </a>
-                </div>
-                <!-- Card content -->
-                <div class="card-body">
-                    <!-- Title -->
-                    <h4 class="card-title" style="font-style: italic;">{{$nbrFichePaie}} fiche cree le {{date('m/yy')}}</h4>
-                    <!-- Text -->
-                    <a href="#" class="btn btn-outline-danger float-right">Detail</a>
                 </div>
             </div>
         </div>

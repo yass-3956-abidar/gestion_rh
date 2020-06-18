@@ -78,7 +78,8 @@ class HomeController extends Controller
             $employerDepartement[] = [$departement, $departement->employers];
         }
         $nbrdep = count($departemnt);
-        $departement = Departement::find($departemnt[0]);
+        // dd($departemnt);
+        // $departement = Departement::find($departemnt[0]);
         // dd($employerDepartement);
         // dd($emploieEmploye);
         return view('home')->with([

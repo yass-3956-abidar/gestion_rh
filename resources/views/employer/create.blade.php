@@ -55,6 +55,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="date_naissance">Date Naissance</label>
                         <input type="date" placeholder="Date Naissance" name="date_naissance" class="form-control @error('date_naissance') is-invalid @enderror" value="{{isset($employer)? $employer->date_naissance:old('date_naissance')}}">
                         @error('date_naissance')
                         <span class="invalid-feedback" role="alert">
@@ -148,6 +149,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label for="date_naissance">Date Debut</label>
                         <input type="date" name="date_debut" placeholder="Date Debut" class="form-control @error('date_debut') is-invalid @enderror" value="{{isset($employer)? $post->date_debut:old('date_debut')}}">
                         @error('date_debut')
                         <span class="invalid-feedback" role="alert">
@@ -156,6 +158,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+
                         <input type="text" name="nom_dep" placeholder="Departement" class="form-control @error('nom_dep') is-invalid @enderror" value="{{isset($employer)? $departement->nom_dep:old('nom_dep')}}">
                         @error('nom_dep')
                         <span class="invalid-feedback" role="alert">
@@ -166,6 +169,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label for="date_naissance">Date Fin</label>
                         <input type="date" name="date_fin" placeholder="Date Fin" class="form-control @error('date_fin') is-invalid @enderror" value="{{isset($employer)? $post->date_fin:old('date_fin')}}">
                         @error('date_fin')
                         <span class="invalid-feedback" role="alert">
@@ -212,6 +216,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
+                        <label for="date_naissance">Date Embauche</label>
                         <input type="date" name="date_embauche" placeholder="Date Embauche" class="form-control  @error('date_embauche') is-invalid @enderror" value="{{isset($employer)? $contart->date_embauche:old('date_embauche')}}">
                         @error('date_embauche')
                         <span class="invalid-feedback" role="alert">

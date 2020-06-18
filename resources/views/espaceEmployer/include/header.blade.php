@@ -35,7 +35,7 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto nav-flex-icons">
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link waves-effect waves-light">
                         <i class="fab fa-twitter"></i>
                     </a>
@@ -44,7 +44,7 @@
                     <a class="nav-link waves-effect waves-light">
                         <i class="fab fa-google-plus-g"></i>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-333" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fas fa-user"></i>

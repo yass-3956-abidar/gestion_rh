@@ -156,17 +156,21 @@ class CongetController extends Controller
     }
     public function EmpcongetTraiter()
     {
+        $tabCongetTraiter = [];
         $conget = DB::table('congets')->where('employer_id', session()->get('id'))
             ->where('raison', '!=', 'null')
             ->whereMonth('created_at', date('m'))
-            ->whereYear('created_at', date('yy'))->first();
+            ->whereYear('created_at', date('yy'))->get();
         // dd($conget,session()->get('id'));
         if ($conget == null) {
             return redirect(route('espaceEmployer.index'));
         } else {
-            $time = Carbon::parse($conget->updated_at)->diffForHumans();
-            // dd($conget)
-            return view('espaceEmployer.conget.traiter')->with('conget', $conget)->with('time', $time);
+            foreach ($conget as $con) {
+                $time = Carbon::parse($con->updated_at)->diffForHumans();
+                $tabCongetTraiter[] = [$con, $time];
+            }
+            // dd($tabCongetTraiter);
+            return view('espaceEmployer.conget.traiter')->with('tabCongetTraiter', $tabCongetTraiter);
         }
     }
 

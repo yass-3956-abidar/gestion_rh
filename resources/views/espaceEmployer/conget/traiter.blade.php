@@ -10,52 +10,40 @@
 <div class="espace"></div>
 <div class="espace"></div>
 <div class="container">
+    @foreach($tabCongetTraiter as conget)
     <div class="row">
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-header">
-                    text
-                </div>
-                <div class="card-body">
-                    tbhjdnmd ds vbsdv dskjbv msdkbvsd
-                </div>
-            </div>
-        </div>
-        <div class="col-md-8">
+        <div class="col-md-12">
             <!--Panel-->
             <div class="card text-center">
                 <div class=" card-header default-color white-text">
-                    Votre demande est traite {{$time}}
+                    Votre demande est traite {{$conget[1]}}
                 </div>
                 <div class="card-body">
                     <h4 class="card-title">Votre demande</h4>
-                    <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                 -->
-                    <!-- <a class="btn btn-success btn-sm">Go somewhere</a> -->
                     <ul class="list-group">
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-6">Date dubét</div>
-                                <div class="col-md-6">{{$conget->date_debut}}</div>
+                                <div class="col-md-6">{{$conget[0]->date_debut}}</div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-6">Durre</div>
-                                <div class="col-md-6">{{$conget->durre}}</div>
+                                <div class="col-md-6">{{$conget[0]->durre}}</div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-6">Reponse</div>
-                                <div class="col-md-6">{{$conget->status}}</div>
+                                <div class="col-md-6">{{$conget[0]->status}}</div>
                             </div>
                         </li>
                         <li class="list-group-item">
                             <div class="row">
                                 <div class="col-md-6">Raison</div>
                                 <div class="col-md-6">
-                                    <p class="lead"> {{$conget->raison}}
+                                    <p class="lead"> {{$conget[0]->raison}}
                                     </p>
                                 </div>
                             </div>
@@ -64,8 +52,8 @@
                 </div>
             </div>
         </div>
-        <!-- Grid row -->
     </div>
+    @endforeach
 </div>
 <div class="espace"></div>
 <div class="espace"></div>

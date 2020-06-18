@@ -52,7 +52,9 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="rais_social" class="col-md-4 col-form-label text-md-right">{{ __('GSM') }}</label>
+                                <label for="rais_social" class="col-md-4 col-form-label text-md-right">{{ __('GSM') }}
+                                    <span class="text-danger ml-1">*</span>
+                                    </label>
                                 <div class="col-md-6">
                                     <input id="GSM" style="box-shadow: none" type="text" class="  form-control @error('GSM') is-invalid @enderror" name="GSM" value="{{ old('GSM') }}">
 
@@ -78,7 +80,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="site" class="col-md-4 col-form-label text-md-right">{{ __('Description de votre Societe') }}
-                                <span class="text-danger ml-1">*</span>
+                                    <span class="text-danger ml-1">*</span>
                                 </label>
                                 <div class="col-md-6">
                                     <textarea style="box-shadow: none" type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}"></textarea>

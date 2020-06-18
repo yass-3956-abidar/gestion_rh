@@ -27,7 +27,7 @@ class SocieteRequest extends FormRequest
             'site_internet' => 'string|max:255|nullable',
             'email' => 'required|string|email|max:255|unique:societes',
             'nom_societe'=>'required|string|min:3',
-            'GSM'=>'string|nullable',
+            'GSM'=>'required|string',
             'ville'=>'required|string',
             'pays'=>'required|string',
             'adresse'=>'required|string',
@@ -49,7 +49,8 @@ class SocieteRequest extends FormRequest
             'devise.required'=>'ce champs est obligatoire',
             'adresse.required'=>'ce champs est obligatoire',
             'description.required'=>'ce champs est obligatoire',
+            'GSM.required'=>'ce champs est obligatoire',
         ];
     }
-   
+
 }
