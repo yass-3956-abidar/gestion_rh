@@ -39,7 +39,7 @@ class EmployerRequest extends FormRequest
             'fonction' => 'required|string',
             'descrip'=>'required|string',
             'date_debut' => 'required|date|after:tomorrow',
-            'date_fin' => 'date|after:date_debut',
+            'date_fin' => 'date',
             'salaire_base' => 'required|numeric',
             'nom_dep' => 'required|string',
             'nom_banque' => 'required|string',

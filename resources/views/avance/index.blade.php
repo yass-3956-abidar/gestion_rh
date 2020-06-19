@@ -30,6 +30,10 @@
                 <thead>
                     <tr>
                         <th class="th-sm">
+                            <span>Matricule</span>
+                            <i class="fas fa-sort ml-1"></i>
+                        </th>
+                        <th class="th-sm">
                             <span>Nom</span>
                             <i class="fas fa-sort ml-1"></i>
                         </th>
@@ -53,6 +57,7 @@
                     @foreach ($employers as $employer)
                     @if(count($avances[$employer->id])>0)
                     <tr>
+                        <td>{{$employer->cin}}</td>
                         <td>{{$employer->nom_employer}}</td>
                         <td>{{$employer->prenom}}</td>
                         <td>{{$employer->cin}}</td>
