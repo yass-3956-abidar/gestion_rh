@@ -272,8 +272,8 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary float-right">
-              <i class="fas ml-2 fa-1x fa-save">
-                Enregistre
+                <i class="fas ml-2 fa-1x fa-save">
+                    Enregistre
                 </i>
             </button>
         </form>
@@ -296,7 +296,15 @@
         $("#list_breadcrumb").append(item1);
         $("#list_breadcrumb").append(item2);
         let j = 1;
+        $(document).on('keyup', '#taux_Icmr', function(e) {
+            $valIcmr = $("#taux_Icmr").val();
+            if ($("#taux_Icmr").val() < 3 || $("#taux_Icmr").val() > 6 || !($.isNumeric($('#taux_Icmr').val()))) {
+                Swal.queue([{
+                    title: '"Icmr" doit etre un numero entre 3 et 6',
+                }]);
+            }
 
+        });
         // $("#iconImp").hide();
         // $("#iconNonImpo").hide();
         $(document).on('change', '#employer_id', function(e) {
@@ -402,6 +410,8 @@
                             $("#retenu_fp").text(data.fp);
                             // avance
                             $("#retenu_avance").text(data.avance);
+                            //credit
+                            $("#credit_logn").text(data.credit);
                             // ir net
                             $("#taux_ir").text(data.tauxIr);
                             $("#retenu_ir").text(data.irNet);

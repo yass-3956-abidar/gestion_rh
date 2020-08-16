@@ -152,6 +152,7 @@ class PaieController extends Controller
             'salire_net_Impo' => $sniteimp,
             'bulletinPaie' => $bulletinPaie,
             'salireNet' => $salireNet,
+            'credit' => $bulletinPaie->interit,
         ]);
     }
 
@@ -245,11 +246,7 @@ class PaieController extends Controller
             $societe = DB::table('societes')->where('user_id', Auth::user()->id)->first();
             $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
             $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
-
-
             $j = $request->nbr_prime_impo; // designImpo //MontantImpo
-
-
             for ($k = 1; $k <= $j; $k++) {
                 $prime = new Prime();
                 $prime->designation = $request->input('designImpo' . $k);
@@ -257,7 +254,7 @@ class PaieController extends Controller
                 $prime->type = 'inconu';
                 $prime->employer_id = $request->employer_id;
                 $prime->save();
-            };
+            }
 
             // calcul total primes
             $totalPrime = 0;
@@ -315,6 +312,7 @@ class PaieController extends Controller
                 'sbg' => $sbg,
                 'sbi' => $sbi,
                 'id_societe' => $idsociete,
+                'interit' => $request->interit,
             ]);
             $idPaie = DB::table('bulletin_paies')->max('id');
             Cotisation::create([
@@ -344,7 +342,7 @@ class PaieController extends Controller
                 'retenu' => $amo,
                 'bulletin_paie_id' => $idPaie,
             ]);
-            $sni = $sbi - $cnss - $icmr - $fp - $amo;
+            $sni = $sbi - $cnss - $icmr - $fp - $amo - $request->interit;
             $IrBrute = BulletinService::getIrBrute($sni);
             $chargeFamille = BulletinService::getChargeFamille($request->nbr_enfant + 1);
             $irNet = $IrBrute - $chargeFamille;
@@ -410,6 +408,7 @@ class PaieController extends Controller
                 'fp' => $fp,
                 'amo' => $amo,
                 'idPaie' => $idPaie,
+                'credit'=>$request->interit,
             ]);
         }
     }
@@ -441,7 +440,9 @@ class PaieController extends Controller
                 $salireNet -= $coti->retenu;
             }
         }
+        // sni=sbi-element deductible
         $sniteimp = $sniteimp + $bulletinPaie->sbi;
+        $sniteimp = $sniteimp - $bulletinPaie->interit;
         $montant = 0;
         if ($avance != null) {
             $montant = $avance->montant;
@@ -477,10 +478,13 @@ class PaieController extends Controller
             'salire_net_Impo' => $sniteimp,
             'bulletinPaie' => $bulletinPaie,
             'salireNet' => $salireNet,
+            'credit' => $bulletinPaie->interit,
         ];
         $pdf = PDF::loadView('paie.apercu', $data);
-        return $pdf->download('paie.pdf');
+        $nomPren = $employer->nom_employer . "_" . $employer->prenom;
+        return $pdf->download($nomPren . ".pdf");
     }
+
 
     /**
      * Show the form for editing the specified resource.

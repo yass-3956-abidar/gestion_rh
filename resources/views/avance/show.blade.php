@@ -20,7 +20,6 @@
                         <tr>
                             <th scope="col"><strong>Date Creation</strong> </th>
                             <th scope="col"><strong>Montant</strong></th>
-                            <th scope="col"><Strong>Supprimer</Strong></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,11 +27,6 @@
                         <tr>
                             <td>{{$avance->date_affectation}}</td>
                             <td>{{$avance->montant." ".$devise}}</td>
-                            @if(!$avance->trashed())
-                            <td>false</td>
-                            @else
-                            <td>true</td>
-                            @endif
                         </tr>
                         @endforeach
                     </tbody>

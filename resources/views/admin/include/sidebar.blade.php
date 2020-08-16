@@ -52,12 +52,6 @@
             </a>
         </li>
         <li>
-            <a class="text-white" href="#">
-                <i class="fas fa-briefcase"></i>
-                Emploi
-            </a>
-        </li>
-        <li>
             <a class="text-white" href="{{route('conget.index')}}">
                 <i class="fas fa-house-user"></i>
                 Conget
@@ -86,9 +80,6 @@
                 </li>
                 <li>
                     <a href="{{route('admin.ir')}}"><span>Calcul De IR</span></a>
-                </li>
-                <li>
-                    <a href="#"><span>Salaire Net</span></a>
                 </li>
             </ul>
         </li>

@@ -8,7 +8,7 @@
         <div class="row">
 
             <div class="col-md-6">
-
+                <iframe src="https://www.google.com/maps/d/u/0/embed?mid=1sy-7piir8PtXtCZCeD7hRCIIvfz8st4H" width="100%" height="100%"></iframe>
             </div>
             <div class="col-md-6">
                 <center>
@@ -32,7 +32,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <input type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email"value="{{old('email')}}">
+                                <input type="email" placeholder="email" class="form-control @error('email') is-invalid @enderror" name="email" id="email" value="{{old('email')}}">
                                 @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -52,9 +52,6 @@
                     <button type="submit" id="btn_contact" class="btn btn-white">Envoyer</button>
                 </form>
             </div>
-
-
-
         </div>
         <!-- Grid row -->
 

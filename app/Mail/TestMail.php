@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class SendMail extends Mailable
+class TestMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $detail;
@@ -17,9 +17,11 @@ class SendMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($detail)
     {
+        $this->detail = $detail;
     }
+
     /**
      * Build the message.
      *
@@ -27,6 +29,7 @@ class SendMail extends Mailable
      */
     public function build()
     {
-        return $this->view('sendemail');
+        return $this->subject('from RhAPP Yassine')
+            ->view('sendemail');
     }
 }

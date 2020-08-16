@@ -154,6 +154,13 @@
                         <td id="retenu_fp"></td>
                     </tr>
                     <tr>
+                        <td>Credit/Logment</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td id="credit_logn"></td>
+                    </tr>
+                    <tr>
                         <td>Avance</td>
                         <td></td>
                         <td></td>

@@ -46,6 +46,7 @@ class ContactController extends Controller
         // 'subject', 'id_societe',
         $contact->subject = $request->subject;
         $contact->id_societe = $employer->societe_id;
+        $contact->repondre=0;
         $contact->save();
         $request->session()->flash('success', 'Votre message Est Envoyer avec succé');
         toast(session('success'), 'success');

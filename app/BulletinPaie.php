@@ -16,7 +16,7 @@ class BulletinPaie extends Model
         return $this->hasMany('App\Cotisation');
     }
     protected $fillable = [
-        'date_paie_debut', 'date_paie_dfin', 'id_societe', 'employer_id', 'cout_heurSup', 'avantage', 'exoneration', 'nbr_heur_sup', 'sbg', 'sbi'
+        'date_paie_debut', 'date_paie_dfin', 'id_societe','interit', 'employer_id', 'cout_heurSup', 'avantage', 'exoneration', 'nbr_heur_sup', 'sbg', 'sbi'
     ];
     use SoftDeletes;
 }

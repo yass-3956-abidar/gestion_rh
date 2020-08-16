@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Emploi extends Model
 {
     public function employers(){
-        return $this->hasOne('App\Employer');
+        return $this->hasMany('App\Employer');
     }
     protected $fillable = [
         'fonction', 'date_debut', 'date_fin','salaire_base'.'descrip',

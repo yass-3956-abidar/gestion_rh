@@ -36,21 +36,12 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            // 'host' => env('MAIL_HOST', 'smtp.mailgun.org'),
-            // 'port' => env('MAIL_PORT', 587),
-            // 'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            // 'username' => env('MAIL_USERNAME'),
-            // 'password' => env('MAIL_PASSWORD'),
-            // 'timeout' => null,
-            // 'auth_mode' => null,
-            'host' => env('MAIL_HOST', 'smtp.gmail.com'),
-            'port' => env('MAIL_PORT', 587),
-            'from' => ['address' => 'yassinabidar201@gmail.com', 'name' => 'aabidar yassine'],
-            'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => 'yassinabidar201@gmail.com',
-            'password' => 'YASSine1998',
-            'sendmail' => '/usr/sbin/sendmail -bs',
-            'pretend' => false,
+            'host' => env('MAIL_HOST', 'smtp.googleamil.com'),
+            'port' => env('MAIL_PORT', 465),
+            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'username' => env('MAIL_USERNAME'),
+            'password' => env('MAIL_PASSWORD'),
+            'timeout' => null,
         ],
 
         'ses' => [
@@ -91,9 +82,10 @@ return [
     |
     */
 
+
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => 'yassinabidar201@gmail.com',
+        'name' => env('MAIL_FROM_NAME', 'yassine'),
     ],
 
     /*

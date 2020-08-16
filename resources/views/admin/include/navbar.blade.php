@@ -79,13 +79,13 @@
                 <div id="notification" class="btn-group dropleft ">
                     <p class="mt-2 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="badge badge-danger mt-2"> <i class="fa fa-bell" aria-hidden="true"></i>
-                            @if(DB::table('contact_models')->where('id_societe',Auth::user()->id)->count()>0)
-                            <sup>{{DB::table('contact_models')->where('id_societe',Auth::user()->id)->count()}}</sup></span>
+                            @if(DB::table('contact_models')->where('id_societe',Auth::user()->id)->where('repondre',0)->count()>0)
+                            <sup>{{DB::table('contact_models')->where('id_societe',Auth::user()->id)->where('repondre',0)->count()}}</sup></span>
                         @endif
                     </p>
-                    @if(DB::table('contact_models')->where('id_societe',Auth::user()->id)->count()>0)
+                    @if(DB::table('contact_models')->where('id_societe',Auth::user()->id)->where('repondre',0)->count()>0)
                     <div class="dropdown-menu  " aria-labelledby="test">
-                        @foreach(DB::table('contact_models')->where('id_societe',Auth::user()->id)->get() as $contact)
+                        @foreach(DB::table('contact_models')->where('id_societe',Auth::user()->id)->where('repondre',0)->get() as $contact)
                         <a href="{{route('contact.show',$contact->id)}}" class="dropdown-item">
                             <p> {{substr($contact->subject,0,20)."..."}}
                                 <span id="nom">{{$contact->nom}}

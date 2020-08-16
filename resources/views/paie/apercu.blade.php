@@ -128,6 +128,13 @@
             </tr>
             @endforeach
             <tr>
+                <td>Credit/logement</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{$credit}}</td>
+            </tr>
+            <tr>
                 <td>Avance</td>
                 <td></td>
                 <td></td>

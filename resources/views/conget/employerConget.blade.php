@@ -32,10 +32,10 @@
                         <th class="th-sm">Type de conget
                             <i class="fas fa-sort ml-1"></i>
                         </th>
-                        <th class="th-sm">date debut
+                        <th class="th-sm bg-default text-white">date debut
                             <i class="fas fa-sort ml-1"></i>
                         </th>
-                        <th class="th-sm">date Fin
+                        <th class="th-sm text-white bg-danger">date Fin
                             <i class="fas fa-sort ml-1"></i>
                         </th>
                         <th class="th-sm text-center">Durre
@@ -54,8 +54,8 @@
                         <td>{{$employerEnCon[1]->nom_employer}}</td>
                         <td>{{$employerEnCon[1]->prenom}}</td>
                         <td>{{$employerEnCon[2]->type}}</td>
-                        <td>{{$employerEnCon[0]->date_debut}}</td>
-                        <td>{{date('Y-m-d', strtotime($employerEnCon[0]->date_debut.'+'.($employerEnCon[0]->durre).'days'))}}</td>
+                        <td class="bg-default text-white">{{$employerEnCon[0]->date_debut}}</td>
+                        <td class="bg-danger text-white">{{date('Y-m-d', strtotime($employerEnCon[0]->date_debut.'+'.($employerEnCon[0]->durre).'days'))}}</td>
                         <td>{{$employerEnCon[0]->durre}}</td>
                         <td>{{$employerEnCon[0]->status}}</td>
                     </tr>

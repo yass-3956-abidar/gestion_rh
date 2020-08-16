@@ -8,7 +8,6 @@
 <div class="container" id="tabs">
     <ul>
         <li> <a href="#employer"> Employeés</a></li>
-        <li> <a href="#pointage">Pointage </a></li>
         <li> <a href="#avance">Avance </a></li>
         <li> <a href="#paie">Paie </a></li>
     </ul>
@@ -58,56 +57,6 @@
                     </td>
 
 
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <div id="pointage">
-        <!-- presence -->
-        <table id="tablePointage" class="table text-center" width="100%">
-            <thead>
-                <tr>
-                    <th class="th-sm">Matricule
-                        <i class="fas fa-sort inline"></i>
-
-                    </th>
-                    <th class="th-sm">Id Employer
-                        <i class="fas fa-sort inline"></i>
-
-                    </th>
-                    <th class="th-sm">Nom Employer
-                        <i class="fas fa-sort ml-1"></i>
-                    </th>
-                    <th class="th-sm">Prenom
-                        <i class="fas fa-sort ml-0.5"></i>
-                    </th>
-                    <th class="th-sm">Numero CNSS
-                        <i class="fas fa-sort ml-1"></i>
-                    </th>
-                    <th class="th-sm">Salaire
-                        <i class="fas fa-sort ml-1"></i>
-                    </th>
-                    <th class="th-sm text-center">Action
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($employers as $employer)
-                <tr>
-                    <td>{{$employer->cin}}</td>
-                    <td>{{$employer->id}}</td>
-                    <td>{{$employer->nom_employer}}</td>
-                    <td>{{$employer->prenom}}</td>
-                    <td>{{$employer->Num_cnss}}</td>
-                    <td>{{$employer->salaire." ".$devise}}</td>
-                    <td class="text-center">
-                        <a href="{{route('para.emp.restore',$employer->id)}}" class="btn btn-default btn-sm  mr-1"><i class="far fa-edit mr-2"></i>restore</a>
-                        <a id="forceDelete" href="{{route('employer.forceDelete',$employer->id)}}" class="btn btn-danger btn-sm  mr-1 ml-1 delete-confirm"> <i class="fas fa-trash-alt mr-2"></i>Supprimer</a>
-                        <!-- Button trigger modal -->
-                        <!-- Modal -->
-
-                    </td>
                 </tr>
                 @endforeach
             </tbody>

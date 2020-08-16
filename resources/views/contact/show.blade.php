@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="modal fade" id="modelRepondre" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form id="form_refuse_conget" action="{{route('mail.sendEmail')}}" method="GET">
+        <form  action="{{route('mail.sendEmail')}}" method="GET">
             @csrf
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -73,6 +73,7 @@
                     <div class="modal-body">
                         <div style="display:none" id="alertMessageR" class="alert" role="alert">
                         </div>
+                        <input type="hidden" id="id_contact" name="id_contact" value="{{$contact->id}}">
                         <div class="form-group">
                             <input type="text"  name="email" class="form-control" value="{{$contact->email}}">
                         </div>

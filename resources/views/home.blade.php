@@ -58,7 +58,7 @@
                     <!-- Title -->
                     <h4 class="card-title" style="font-style: italic;">Le Nombre de departement est {{$nbrdep}}</h4>
                     <!-- Text -->
-                    <a href="#" class="btn btn-outline-secondary float-right">Detail</a>
+                    <button type="button" class="btn btn-outline-secondary float-right" data-toggle="modal" data-target="#exampleModal">Detail</button>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                     <!-- Title -->
                     <h4 class="card-title" style="font-style: italic;">Les post Ocuper sont {{$nbremploi}}</h4>
                     <!-- Text -->
-                    <a href="#" class="btn btn-outline-default float-right">Detail</a>
+                    <a data-toggle="modal" data-target="#ModalEmploi" class="btn btn-outline-default float-right">Detail</a>
                 </div>
             </div>
         </div>
@@ -125,4 +125,110 @@
         </div>
     </div>
 </div>
+@endsection
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Les Employer par departement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach($employerDepartement as $emploDep)
+                <center>
+                    <h1 class="text-center">{{$emploDep[0]->nom_dep}}
+                        <center>
+                            <hr class="bg-default text-center" style="width: 20%;" />
+                        </center>
+                    </h1><br>
+
+                    <span class="lead text-default">{{count($emploDep[1])}} employers</span>
+                </center>
+
+                <div class="row">
+                    <table class="table table-hover text-center" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Matricule</th>
+                                <th>Nom Employer</th>
+                                <th>Prenom Employer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($emploDep[1] as $employer)
+                            <tr>
+                                <td>{{$employer->cin}}</td>
+                                <td>{{$employer->nom_employer}}</td>
+                                <td>{{$employer->prenom}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                @endforeach
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-default" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="ModalEmploi" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalEmploi">Les Employer par Post</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @foreach($emploieEmploye as $emploiEmp)
+                <center>
+                    <h1 class="text-center">{{$emploiEmp[0]->fonction}}
+                        <center>
+                            <hr class="bg-default text-center" style="width: 20%;" />
+                        </center>
+                    </h1><br>
+
+                    <span class="lead text-default">{{count($emploiEmp[1])}} employers</span>
+                </center>
+
+                <div class="row">
+                    <table class="table table-hover text-center" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Matricule</th>
+                                <th>Nom Employer</th>
+                                <th>Prenom Employer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($emploiEmp[1] as $employer)
+                            <tr>
+                                <td>{{$employer->cin}}</td>
+                                <td>{{$employer->nom_employer}}</td>
+                                <td>{{$employer->prenom}}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                @endforeach
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-default" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section('script')
+<script>
+    $(document).ready(function(e) {
+        // $('.table').DataTable();
+        $('.table').DataTable();
+    });
+</script>
 @endsection

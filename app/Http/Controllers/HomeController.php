@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Employer;
 use App\Charts\EmployerDepartement;
+use App\Departement;
+use App\Emploi;
 
 class HomeController extends Controller
 {
@@ -62,15 +64,31 @@ class HomeController extends Controller
                 $cmpPaie++;
             }
         }
-
-        $nbrdep = count($departemnt);
         $nbremploi = count($emploi);
+        // dd($emploi);
+        $emploieEmploye = [];
+        foreach ($emploi as $emp) {
+            $emploi = Emploi::find($emp);
+            $emploieEmploye[] = [$emploi, $emploi->employers];
+        }
+        // dd($emploieEmploye);
+        $employerDepartement = [];
+        foreach ($departemnt as $depa) {
+            $departement = Departement::find($depa);
+            $employerDepartement[] = [$departement, $departement->employers];
+        }
+        $nbrdep = count($departemnt);
+        $departement = Departement::find($departemnt[0]);
+        // dd($employerDepartement);
+        // dd($emploieEmploye);
         return view('home')->with([
             'nombre_employer' => $nombre_employer,
             'employer_preson' => $cmp,
             'nbrdep' => $nbrdep,
             'nbremploi' => $nbremploi,
             'nbrFichePaie' => $cmpPaie,
+            'employerDepartement' => $employerDepartement,
+            'emploieEmploye' => $emploieEmploye,
         ]);
         // nombre d'employer de cette entreprise;
 
