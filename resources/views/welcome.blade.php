@@ -22,10 +22,10 @@
             <div style="background-color: white" class="card-body shadow-sm p-3 mb-5 bg-white rounded">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#register" role="tab" aria-controls="profile" aria-selected="false">Register</a>
+                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#register" role="tab" aria-controls="profile" aria-selected="false">Se Connecter</a>
                     </li>
                     <li class="nav-item" role="presentation">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#login" role="tab" aria-controls="home" aria-selected="true">Login</a>
+                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#login" role="tab" aria-controls="home" aria-selected="true">Connexion</a>
                     </li>
                 </ul>
                 <div class="tab-content" id="myTabContent">
@@ -62,29 +62,13 @@
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
-                                    <div class="col-md-6 offset-md-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" value="{{old('remember') ? 'checked' : ''}}">
 
-                                            <label class="form-check-label" for="remember">
-                                                {{ __('Remember Me') }}
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-8 offset-md-4">
                                         <button type="submit" class="btn btn-primary">
-                                            {{ __('Login') }}
+                                            {{ __('Connexion') }}
                                         </button>
-
-                                        @if (Route::has('password.request'))
-                                        <a class="btn btn-link" href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
-                                        </a>
-                                        @endif
                                     </div>
                                 </div>
                             </form>

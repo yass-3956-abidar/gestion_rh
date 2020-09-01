@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Tableaux de bord')
 @section('content')
 <div class="col-md-12">
     <div class="row justify-content-center">

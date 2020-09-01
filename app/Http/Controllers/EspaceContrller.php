@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\DemandePaie;
 
+### espace employer #######
 class EspaceContrller extends Controller
 {
     /**
@@ -35,6 +36,7 @@ class EspaceContrller extends Controller
             ->with('demande', $demande)
             ->with('departement', $departement);
     }
+
     public function logout(Request $request)
     {
         $request->session()->forget('name');
@@ -61,7 +63,7 @@ class EspaceContrller extends Controller
                 'date_fin' => $request->date_fin,
                 'employer_id' => $id,
                 'societe_id' => $employer->societe_id,
-                'id_bulltein'=>$paie->id,
+                'id_bulltein' => $paie->id,
             ]);
             $request->session()->flash('success', 'Votre demande est envoyer avec succé');
             toast(session('success'), 'success');
@@ -72,6 +74,7 @@ class EspaceContrller extends Controller
             return redirect(route('espaceEmployer.index'));
         }
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -85,12 +88,12 @@ class EspaceContrller extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
+         ##### login #########
         $employer = DB::table('employers')->where('cin', $request->matricule)
             ->where('nom_employer', $request->nom)->first();
         if ($employer == null) {
@@ -107,7 +110,7 @@ class EspaceContrller extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -118,7 +121,7 @@ class EspaceContrller extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -129,8 +132,8 @@ class EspaceContrller extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -141,7 +144,7 @@ class EspaceContrller extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

@@ -13,26 +13,13 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 class CongetController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-
-        $congetDemandes = DB::table('congets')->where('id_societe', DB::table('societes')->where('user_id', Auth::user()->id)->value('id'))
+        ###### get les demande de conget du societe courant avec status en attend #########
+        $conget = Conget::where('id_societe', DB::table('societes')->where('user_id', Auth::user()->id)->value('id'))
             ->where('status', 'en attend')
             ->get();
-        $conget = [];
-        foreach ($congetDemandes as $congetDemande) {
-            $congetDemande = Conget::find($congetDemande->id);
-            // $congetDemande["employer"]=$congetDemande->employer;
-            // $congetDemande["congetType"]=$congetDemande->congetType;
-            $congetDemande->date_debut = date("d/m/yy", strtotime($congetDemande->date_debut));
-            $conget[$congetDemande->id] = [$congetDemande, $congetDemande->employer, $congetDemande->congetType];
-        }
-        // dd($conget);
         return view('conget.congetIndex')->with('demande_congets', $conget);
     }
 
@@ -48,6 +35,7 @@ class CongetController extends Controller
         $conget->update();
         return redirect(route('conget.index'));
     }
+
     public function destroyStatus(Request $request, $id)
     {
         $request->validate([
@@ -66,7 +54,7 @@ class CongetController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(CongetRequest $request)
@@ -77,10 +65,9 @@ class CongetController extends Controller
         $employer = DB::table('employers')->where('cin', $request->input('employer_id'))->first();
         $idContraType = 0;
         if ($congetType == null) {
-            CongetType::create([
+            $$idContraType = CongetType::insertGetId([
                 'type' => $request->input('type'),
             ]);
-            $idContraType = DB::table('conget_types')->max('id');
         } else {
             $idContraType = $congetType->id;
         }
@@ -95,40 +82,10 @@ class CongetController extends Controller
         return redirect(route('espaceEmployer.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Conget  $conget
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Conget $conget)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Conget  $conget
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Conget $conget)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Conget  $conget
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        // $affected = DB::table('congets')
-        //     ->where('id', $conget->id)
-        //     ->update(['date_debut' => $request->request, 'durre' => $request->durre]);
+
         $request->validate([
             'raison' => 'required|min:10|max:500',
         ]);
@@ -147,13 +104,14 @@ class CongetController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Conget  $conget
+     * @param \App\Conget $conget
      * @return \Illuminate\Http\Response
      */
     public function destroy(Conget $conget)
     {
         //
     }
+
     public function EmpcongetTraiter()
     {
         $tabCongetTraiter = [];
@@ -176,15 +134,10 @@ class CongetController extends Controller
 
     public function employerConget()
     {
+        ###### afficher les employer en conget ########
         $id_societe = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        // dd($id_societe);
-        $employer_presen = DB::table('congets')->where('id_societe', $id_societe)
+        $employer_enconget = Conget::where('id_societe', $id_societe)
             ->where('status', 'Accepter')->get();
-        $tabConget = [];
-        foreach ($employer_presen as $employePre) {
-            $conget = Conget::find($employePre->id);
-            $tabConget[] = [$conget, $conget->employer, $conget->congetType];
-        }
-        return view('conget.employerConget')->with('employerEnConget', $tabConget);
+        return view('conget.employerConget')->with('employerEnConget', $employer_enconget);
     }
 }

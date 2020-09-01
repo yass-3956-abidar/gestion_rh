@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','employer')
 @section('content')
 <div class="col-md-12">
     <div class="card-header bg-info text-white">

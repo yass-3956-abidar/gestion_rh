@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Demande votre fiche de paie')
 @section('style')
 <style>
 </style>

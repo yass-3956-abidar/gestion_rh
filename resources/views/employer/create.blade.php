@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Ajouter un employer')
 @section('content')
 <div class="card">
     @if($employer!= null)

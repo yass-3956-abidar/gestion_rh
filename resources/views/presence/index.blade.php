@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Pointage')
 @section('content')
 <div class="card" style="box-shadow: none">
     <div class="row">

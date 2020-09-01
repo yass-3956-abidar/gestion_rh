@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Tout les avances')
 @section('style')
 <style>
 
@@ -11,7 +12,7 @@
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#ModalAddAvance">Ajouter Une Avance</button>
         </div>
         <div class="col-md-6">
-            <a href="{{route('avance.create')}}" class="btn btn-info float-right"><i class="fas fa-eye mr-2"></i>Historique des avances</a>
+            <a href="{{route('avancee.historique')}}" class="btn btn-info float-right"><i class="fas fa-eye mr-2"></i>Historique des avances</a>
         </div>
     </div>
     <div class="card border-success">

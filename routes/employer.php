@@ -11,7 +11,5 @@ Route::GET('/espaceEmployer/index', 'EspaceContrller@index')->name('espaceEmploy
 Route::resource('/employer/conget', 'CongetController');
 Route::POST('/Employer/logout', 'EspaceContrller@logout')->name('espaceemployer.logout');
 Route::resource('/employer/contact', 'ContactController');
-//
 Route::get('/conget/traiter/', 'CongetController@EmpcongetTraiter')->name('congetTraiter.index');
-//
 Route::POST('/Employer/demandeFichePaie', 'EspaceContrller@demandeFichePaie')->name('employer.demandePaie');

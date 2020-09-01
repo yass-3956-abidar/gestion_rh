@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Voir avance')
 @section('content')
 <div id="accordion">
     <div class="row">

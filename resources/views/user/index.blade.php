@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Profile')
 @section('style')
 <style>
     .input-icone {

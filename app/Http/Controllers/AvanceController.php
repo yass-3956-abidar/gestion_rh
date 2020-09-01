@@ -13,18 +13,14 @@ use App\Employer;
 
 class AvanceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         // $post->created_at->diffForHumans()
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
-        $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
-        // dd($employers);
+        ## get les employers non  supprimer (parce que j'ai fait soft delete)
+        $employers = Employer::withoutTrashed()->where('societe_id', $idsociete)->get();
         $avances = [];
         foreach ($employers as $employer) {
             $avances[$employer->id] = Avance::withoutTrashed()
@@ -33,51 +29,17 @@ class AvanceController extends Controller
                 ->whereMonth('created_at', date('m'))->get();
         }
 
-        // dd(date('m'));
-        // dd($avances);
         return view('avance.index')
             ->with('employers', $employers)
             ->with('devise', $devise)
             ->with('avances', $avances);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $employers = Employer::all();
-        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
-        $employesNonTrahed = [];
-        foreach ($employers as $employer) {
-            if ($employer->deleted_at == null && $employer->societe_id == $idsociete && count($employer->avances) > 0) {
-                array_push($employesNonTrahed, $employer);
-            }
-        }
-        $employers = $employesNonTrahed;
-        foreach ($employers as $employer) {
-            $employer->setAttribute('avance', $employer->avances);
-            $total = AvanceService::calculTotalAvane($employer->avances);
-            $employer->setAttribute('total', $total);
-        }
-        // dd($employers);
-        return view('avance.show')->with('employers', $employers)
-            ->with('devise', $devise);
 
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         // creation de l'avance de mois courant si il n'esxiste pas
+
         $avance = Db::table('avances')->where('employer_id', $request->employer_id)
             ->whereYear('created_at', date('yy'))
             ->whereMonth('created_at', date('m'))->get();
@@ -102,56 +64,29 @@ class AvanceController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Avance  $avance
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Avance $avance)
+    ### historique des avance ##########
+    public function show($id)
     {
-
-        return view('avance.show')->with('avance', $avance);
-    }
-    public function historique()
-    {
-        //
-        $employers = Employer::all();
+        $employersall = Employer::all();
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
-        $employesNonTrahed = [];
-        foreach ($employers as $employer) {
-            if ($employer->deleted_at == null && $employer->societe_id == $idsociete) {
-                array_push($employesNonTrahed, $employer);
+        $employers = [];
+        foreach ($employersall as $employer) {
+            if ($employer->deleted_at == null && $employer->societe_id == $idsociete && count($employer->avances) > 0) {
+                array_push($employers, $employer);
             }
         }
-        $employers = $employesNonTrahed;
         foreach ($employers as $employer) {
             $employer->setAttribute('avance', $employer->avances);
             $total = AvanceService::calculTotalAvane($employer->avances);
             $employer->setAttribute('total', $total);
         }
+        // dd($employers);
         return view('avance.show')->with('employers', $employers)
             ->with('devise', $devise);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Avance  $avance
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Avance $avance)
-    {
-    }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Avance  $avance
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $avance = Avance::find($request->id_avance);
@@ -165,22 +100,9 @@ class AvanceController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Avance  $avance
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Avance $avance)
-    {
 
-        session()->flash('success', "L'avance est supprimer avec succes");
-        toast(session('success'), 'success');
-        // return redirect(route('avance.index'));
-    }
     public function deleteAvance($id)
     {
-        // dd($id);
         $avance = Avance::find($id);
         $avance->delete();
         session()->flash('success', "L'avance est supprimer avec succes");
@@ -188,6 +110,8 @@ class AvanceController extends Controller
         return redirect(route('avance.index'));
     }
 
+
+    #### restore avance supprimer ##########
     public function restoreAvance($id)
     {
         $avance = Avance::onlyTrashed()

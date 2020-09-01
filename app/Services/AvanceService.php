@@ -6,10 +6,10 @@ class AvanceService
 {
 
 
-    public static function calculTotalAvane($avance)
+    public static function calculTotalAvane($avances)
     {
         $total = 0;
-        foreach ($avance as $avance) {
+        foreach ($avances as $avance) {
             $total += $avance->montant;
         }
         return $total;

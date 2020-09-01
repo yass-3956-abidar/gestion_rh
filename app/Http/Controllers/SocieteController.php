@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Parametre;
 use Illuminate\Http\Request;
 use App\Http\Requests\SocieteRequest;
 use App\Societe;
@@ -32,7 +33,7 @@ class SocieteController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(SocieteRequest $request)
@@ -50,6 +51,13 @@ class SocieteController extends Controller
         $societe->user_id = Auth::user()->id;
         $societe->description = $request->description;
         $societe->save();
+        $societe = Societe::where('email', $request->email)->first();
+        Parametre::create([
+            'tauxCnss' => 4.48,
+            'tauxAmo' => 2.80,
+            'chargeFamille' => 30,
+            'societe_id' => $societe->id,
+        ]);
         // $data = $request->only('devise', 'nom_societe', 'adresse', 'GSM', 'email', 'pays', 'ville', 'code_postall', 'site_internet');
         // // $data = $request->all();
 
@@ -57,13 +65,13 @@ class SocieteController extends Controller
         // // dd($data);
         // Societe::create($data);
 
-        return  redirect('/admin/home');
+        return redirect('/admin/home');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -74,7 +82,7 @@ class SocieteController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -85,8 +93,8 @@ class SocieteController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -97,7 +105,7 @@ class SocieteController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

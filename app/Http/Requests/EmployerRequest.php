@@ -55,6 +55,14 @@ class EmployerRequest extends FormRequest
     {
         return [
             'cin.required' => 'Le CIN/Matricule est obligatoire',
+            'prenom.required'=> 'Ce champ est obligatoire',
+            'email.required'=> 'Ce champ est obligatoire',
+            'salaire.required'=> 'Ce champ est obligatoire',
+            'salaire_base.required'=> 'Ce champ est obligatoire',
+            'fonction.required'=> 'Ce champ est obligatoire',
+            'adresse.string'=>'ce champ est obligatoire',
+            'tele.required'=>'ce champ est obligatoire',
+            'date_fin.date'=>'Ce champ est obligatoire',
             'cin.unique' => 'Le CIN/Matricule doit être unique',
             'cin.string' => 'Le CIN/Matricule doit être un string',
             'nom_employer.required' => 'le nom est obligaatoire',

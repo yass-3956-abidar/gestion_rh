@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Contact')
 @section('style')
 <style>
 

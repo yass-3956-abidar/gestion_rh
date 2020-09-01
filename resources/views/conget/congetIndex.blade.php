@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Les employers en conget')
 @section('content')
 <div class="col-md-12">
     <div class="row">
@@ -45,18 +46,18 @@
                 <tbody>
                     @foreach ($demande_congets as $demande_conget)
                     <tr>
-                        <td>{{$demande_conget[1]->nom_employer}}</td>
-                        <td>{{$demande_conget[1]->prenom}}</td>
-                        <td>{{$demande_conget[1]->cin}}</td>
-                        <td>{{$demande_conget[0]->date_debut}}</td>
-                        <td>{{$demande_conget[0]->durre}}</td>
-                        <td>{{$demande_conget[2]->type}}</td>
-                        <td id="td_status" style="height: 10px;">{{$demande_conget[0]->status}}</td>
+                        <td>{{$demande_conget->employer->nom_employer}}</td>
+                        <td>{{$demande_conget->employer->prenom}}</td>
+                        <td>{{$demande_conget->employer->cin}}</td>
+                        <td>{{$demande_conget->date_debut}}</td>
+                        <td>{{$demande_conget->durre}}</td>
+                        <td>{{$demande_conget->congetType->type}}</td>
+                        <td id="td_status" style="height: 10px;">{{$demande_conget->status}}</td>
                         <td class="text-center">
-                            <!-- <a id="accept_btn" href="{{route('conget.updateStatus',$demande_conget[0]->id)}}" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a> -->
-                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget[0]->date_debut}}" data-durre="{{$demande_conget[0]->durre}}" data-id_conget="{{$demande_conget[0]->id}}" id="modif_btn" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Modifier</a>
-                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget[0]->date_debut}}" data-durre="{{$demande_conget[0]->durre}}" data-id_conget="{{$demande_conget[0]->id}}" id="accept_btn" class="btn btn-default btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a>
-                            <a data-toggle="modal" data-target="#modalRefuse" data-id_conget="{{$demande_conget[0]->id}}" id="refuse_btn" class="btn btn-danger btn-sm  mr-1 ml-1 ">
+                            <!-- <a id="accept_btn" href="{{route('conget.updateStatus',$demande_conget->id)}}" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a> -->
+                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget->date_debut}}" data-durre="{{$demande_conget->durre}}" data-id_conget="{{$demande_conget->id}}" id="modif_btn" class="btn btn-info btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Modifier</a>
+                            <a data-toggle="modal" data-target="#modalUpdateConget" data-date_debut="{{$demande_conget->date_debut}}" data-durre="{{$demande_conget->durre}}" data-id_conget="{{$demande_conget->id}}" id="accept_btn" class="btn btn-default btn-sm  mr-1"><i class="far fa-edit mr-2"></i>Accepter</a>
+                            <a data-toggle="modal" data-target="#modalRefuse" data-id_conget="{{$demande_conget->id}}" id="refuse_btn" class="btn btn-danger btn-sm  mr-1 ml-1 ">
                                 <i class="fas fa-trash-alt mr-2"></i>Refuser</a>
                         </td>
                     </tr>

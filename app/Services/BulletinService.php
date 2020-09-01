@@ -2,6 +2,10 @@
 
 namespace App\Services;
 
+use App\Societe;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 class BulletinService
 {
 
@@ -10,12 +14,14 @@ class BulletinService
         $taux = self::getTaucHeurFerier($interv);
         return $nbrHeur * $cout * $taux;
     }
+
     public static function getHeurSuppOuvra($nbrHeur, $interv, $cout)
     {
         $taux = self::getTaucHeurOuv($interv);
 
         return $nbrHeur * $cout * $taux;
     }
+
     public static function getTaucHeurOuv($interv)
     {
         $taux = 0;
@@ -26,6 +32,7 @@ class BulletinService
         }
         return $taux;
     }
+
     public static function getTaucHeurFerier($interv)
     {
         $taux = 0;
@@ -36,6 +43,7 @@ class BulletinService
         }
         return $taux;
     }
+
     public static function calculAncienter($dateEmbauche, $salaire, $heureSup)
     {
         $durre = self::calculDuree($dateEmbauche);
@@ -50,6 +58,7 @@ class BulletinService
         $interval = date_diff($dateNow, $dateEmbauche);
         return $interval->format('%y');
     }
+
     public static function getTaux($durre)
     {
         $taux = 0;
@@ -67,28 +76,40 @@ class BulletinService
         }
         return $taux;
     }
+
     public static function CotisCnss($sbi)
     {
         // plafond 268.80
-        $cotiCnss = $sbi * 4.48 / 100;
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        $societe = Societe::find($idsociete);
+        $parametre = $societe->parametre;
+        $tauxCnss = $parametre->tauxCnss;
+        $cotiCnss = $sbi * $tauxCnss / 100;
         if ($cotiCnss > 268.80) {
             $cotiCnss = 268.80;
         }
         return $cotiCnss;
     }
+
     public static function cotisICmr($tuaxIcmr, $sbi)
     {
         $cotiIcmr = ($sbi) * $tuaxIcmr / 100;
         return $cotiIcmr;
     }
+
     public static function fraisPersonnlle($sbi, $avantage)
     {
         $friaProfesio = ($sbi - $avantage) * 20 / 100;
         return $friaProfesio;
     }
+
     public static function getAMO($sbi)
     {
-        $cotisAmo = $sbi * 2.26 / 100;
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        $societe = Societe::find($idsociete);
+        $parametre = $societe->parametre;
+        $tauxAmo = $parametre->tauxAmo;
+        $cotisAmo = $sbi * $tauxAmo / 100;
         return $cotisAmo;
     }
     //     0-2500	0%	0
@@ -122,21 +143,28 @@ class BulletinService
         $tabVal["sommeAdeduire"] = $sommeAdeduire;
         return $tabVal;
     }
+
     public static function getIrBrute($sni)
     {
         $tabVal = self::gettauxIr($sni);
         $irBurte = ($sni * $tabVal["taux"]) / 100 - $tabVal["sommeAdeduire"];
         return $irBurte;
     }
-    public  static function getChargeFamille($nbr)
+
+    public static function getChargeFamille($nbr)
     {
-        $charge = $nbr * 30;
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        $societe = Societe::find($idsociete);
+        $parametre = $societe->parametre;
+        $chargFamille = $parametre->chargeFamille;
+        $charge = $nbr * $chargFamille;
         if ($charge > 180) {
             $charge = 180;
         }
         return $charge;
     }
-    public static  function getIntervalJo($taux)
+
+    public static function getIntervalJo($taux)
     {
         $interval = '';
         switch ($taux) {
@@ -149,7 +177,8 @@ class BulletinService
         }
         return $interval;
     }
-    public static  function getIntervalJF($taux)
+
+    public static function getIntervalJF($taux)
     {
         $interval = '';
         switch ($taux) {

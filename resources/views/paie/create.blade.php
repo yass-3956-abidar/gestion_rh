@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Cree une paie')
 @section('content')
 <div class="card" style="box-shadow: none;">
     <div class="card-header bg-success text-white">
@@ -425,7 +426,7 @@
                         }
 
                     },
-                    error: function(one, two, three) {
+                    error: function(one, two, three) {l
                         console.log(one);
                         console.log(two);
                         console.log(three);

@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Tout les paie')
 @section('style')
 <style>
 </style>

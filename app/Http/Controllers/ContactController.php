@@ -53,16 +53,9 @@ class ContactController extends Controller
         return redirect(route('espaceEmployer.index'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $contact = ContactModel::find($id);
-        // dd($contact);
         $time = Carbon::parse($contact->created_at)->diffForHumans();
         return view('contact.show')->with('contact', $contact)
             ->with('employer', $contact->employer)
@@ -92,12 +85,7 @@ class ContactController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $contact = ContactModel::find($id);

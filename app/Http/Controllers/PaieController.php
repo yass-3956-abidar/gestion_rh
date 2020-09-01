@@ -8,6 +8,7 @@ use App\Cotisation;
 use App\Employer;
 use App\HeurSup;
 use App\Prime;
+use App\Societe;
 use Illuminate\Http\Client\Response;
 
 use Illuminate\Support\Facades\DB;
@@ -40,6 +41,7 @@ class PaieController extends Controller
         }
         return view('paie.index');
     }
+
     public function cherchePaie(Request $request)
     {
         $outout = '';
@@ -60,7 +62,7 @@ class PaieController extends Controller
                 ->where('deleted_at', null)->get();
         }
         $BulltnPaie = [];
-        foreach ($bullpaie  as $apieB) {
+        foreach ($bullpaie as $apieB) {
             $BulltnPaie = BulletinPaie::find($apieB->id);
             $employer = Employer::find($BulltnPaie->employer_id);
             $outout .= '<tr>
@@ -90,6 +92,7 @@ class PaieController extends Controller
             ]);
         }
     }
+
     public function showPaie($id)
     {
 
@@ -177,7 +180,7 @@ class PaieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -188,7 +191,7 @@ class PaieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show(Request $request)
@@ -202,7 +205,7 @@ class PaieController extends Controller
             ->whereYear('created_at', date('yy'))->first();
         $month = date('m');
         $dateDeb = date('Y-' . $month . '-01'); // hard-coded '01' for first day
-        $dateFin  = date('Y-' . $month . '-t');
+        $dateFin = date('Y-' . $month . '-t');
         $montant = 0;
         if (isset($avance)) {
             $montant = $avance->montant;
@@ -222,15 +225,14 @@ class PaieController extends Controller
     }
 
     /**
-     * @param  int  $nbrHeur
-     *@param  string  $nbrHeur
-     *@param  double  $cout
+     * @param int $nbrHeur
+     * @param string $nbrHeur
+     * @param double $cout
      *
      */
 
     public function getsalaireNet(Request $request)
     {
-
         $employer = Employer::find($request->employer_id);
         // tester si l'employer a deja une fiche d'apaie ce moi
         $buletinPaie = DB::table('bulletin_paies')->where('employer_id', $employer->id)
@@ -287,6 +289,11 @@ class PaieController extends Controller
             ]);
 
             $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+            $societe = Societe::find($idsociete);
+            $parametre = $societe->parametre;
+            $tauxCnss = $parametre->tauxCnss;
+            $tauxAmo = $parametre->tauxAmo;
+            $chargeFamille = $parametre->chargeFamille;
             $totalHeurSup = $gainOuv + $gainFer;
             $primes = DB::table('primes')->where('employer_id', $employer->id)
                 ->whereMonth('created_at', date('m'))
@@ -317,7 +324,7 @@ class PaieController extends Controller
             $idPaie = DB::table('bulletin_paies')->max('id');
             Cotisation::create([
                 'libelle' => 'CNSS',
-                'taux' => 4.84,
+                'taux' => $parametre->tauxCnss,
                 'retenu' => $cnss,
                 'bulletin_paie_id' => $idPaie,
             ]);
@@ -338,7 +345,7 @@ class PaieController extends Controller
             $amo = BulletinService::getAMO($sbi);
             Cotisation::create([
                 'libelle' => 'AMO',
-                'taux' => 2.26,
+                'taux' => $parametre->tauxAmo,
                 'retenu' => $amo,
                 'bulletin_paie_id' => $idPaie,
             ]);
@@ -361,6 +368,9 @@ class PaieController extends Controller
             $user = DB::table('employers')
                 ->where('id', $employer->id)
                 ->update(['salaire' => $salaire_net]);
+            $tauxCnss = $parametre->tauxCnss;
+            $tauxAmo = $parametre->tauxAmo;
+            $chargeFamille = $parametre->chargeFamille;
             return response()->json([
                 'employer' => $employer,
                 'contrat' => $contrat,
@@ -370,6 +380,9 @@ class PaieController extends Controller
                 'tauvOv' => $tauvOv,
                 'tauxFer' => $tauxFer,
                 'gainOuv' => $gainOuv,
+                'tauxCnss' => $tauxCnss,
+                'tauxAmo' => $tauxAmo,
+                'chargeFamille' => $chargeFamille,
                 'gainFer' => $gainFer,
                 'avtg' => $request->avantage,
                 'employer_id' => $request->employer_id,
@@ -408,10 +421,11 @@ class PaieController extends Controller
                 'fp' => $fp,
                 'amo' => $amo,
                 'idPaie' => $idPaie,
-                'credit'=>$request->interit,
+                'credit' => $request->interit,
             ]);
         }
     }
+
     public function apercu($id, $id_user)
     {
         // $bultinPiaId = DB::table('bulletin_paies')->max('id');
@@ -489,7 +503,7 @@ class PaieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -503,7 +517,7 @@ class PaieController extends Controller
             ->whereYear('created_at', date('yy'))->first();
         $month = date('m');
         $dateDeb = date('Y-' . $month . '-01'); // hard-coded '01' for first day
-        $dateFin  = date('Y-' . $month . '-t');
+        $dateFin = date('Y-' . $month . '-t');
         $employers = [];
         $cotisation = $bulletin->cotisations;
         $tabCmr = [];
@@ -556,8 +570,8 @@ class PaieController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -567,7 +581,7 @@ class PaieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

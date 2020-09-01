@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Tout les employers')
 @section('content')
 <div class="col-md-12">
     <div class="row">

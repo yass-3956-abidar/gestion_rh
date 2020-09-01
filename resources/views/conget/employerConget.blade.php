@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Les employers en conget')
 @section('style')
 <style>
 
@@ -50,14 +51,14 @@
                     @foreach ($employerEnConget as $employerEnCon)
                     <tr>
 
-                        <td>{{$employerEnCon[1]->cin}}</td>
-                        <td>{{$employerEnCon[1]->nom_employer}}</td>
-                        <td>{{$employerEnCon[1]->prenom}}</td>
-                        <td>{{$employerEnCon[2]->type}}</td>
-                        <td class="bg-default text-white">{{$employerEnCon[0]->date_debut}}</td>
-                        <td class="bg-danger text-white">{{date('Y-m-d', strtotime($employerEnCon[0]->date_debut.'+'.($employerEnCon[0]->durre).'days'))}}</td>
-                        <td>{{$employerEnCon[0]->durre}}</td>
-                        <td>{{$employerEnCon[0]->status}}</td>
+                        <td>{{$employerEnCon->employer->cin}}</td>
+                        <td>{{$employerEnCon->employer->nom_employer}}</td>
+                        <td>{{$employerEnCon->employer->prenom}}</td>
+                        <td>{{$employerEnCon->congetType->type}}</td>
+                        <td class="bg-default text-white">{{$employerEnCon->date_debut}}</td>
+                        <td class="bg-danger text-white">{{date('Y-m-d', strtotime($employerEnCon->date_debut.'+'.($employerEnCon->durre).'days'))}}</td>
+                        <td>{{$employerEnCon->durre}}</td>
+                        <td>{{$employerEnCon->status}}</td>
                     </tr>
                     @endforeach
                 </tbody>

@@ -7,6 +7,7 @@ use App\Contrat;
 use App\ContratType;
 use App\Departement;
 use App\Http\Requests\EmployerRequest;
+use App\Societe;
 use Illuminate\Contracts\Encryption\DecryptException;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Hash;
@@ -27,14 +28,9 @@ class EmployerController extends Controller
      */
     public function index()
     {
-        // $idsociete=DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        // $employers=DB::table('employers')->where('societe_id',$idsociete)->get();
-        // $contrats=DB::table('contrats')->where('employer_id','=',$employers->id)->get();
-        // $departement=DB::table('departements')->where('id',$employers->departement_id)->first();
-        // $post=DB::table('emplois')->where('id',$employers->emploi_id)->first();
-        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
-        $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
+        $societe = Societe::where('user_id', Auth::user()->id)->first();
+        $devise = $societe->devise;
+        $employers = DB::table('employers')->where('societe_id', $societe->id)->where('deleted_at', null)->get();
         return view('employer.index')->with('employers', $employers)->with('devise', $devise);
     }
 
@@ -45,44 +41,31 @@ class EmployerController extends Controller
      */
     public function create()
     {
-        // example:
-
-
         return view('employer.create')->with('employer', null);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(EmployerRequest $request)
     {         //save Emploi
-
-        // $dataEmploi = $request->only('fonction', 'date_debut', 'date_fin', 'salaire_base','descrip');
-        $emploi=new Emploi();
-        $emploi->fonction=$request->fonction;
-        $emploi->date_debut=$request->date_debut;
-        $emploi->date_fin=$request->date_fin;
-        $emploi->salaire_base=$request->salaire_base;
-        $emploi->descrip=$request->descrip;
+        $emploi = new Emploi();
+        $emploi->fonction = $request->fonction;
+        $emploi->date_debut = $request->date_debut;
+        $emploi->date_fin = $request->date_fin;
+        $emploi->salaire_base = $request->salaire_base;
+        $emploi->descrip = $request->descrip;
         $emploi->save();
-        // Emploi::create([
-        //     'fonction'=>$request->fonction,
-        //     'date_debut'=>$request->date_debut,
-        //     'date_fin'=>$request->date_fin,
-        //     'salaire_base'=>$request->salaire_base,
-        //     'descrip'=>$request->descrip,
-        // ]);
-        //save deprtemetn
+
         $departemetn = DB::table('departements')->where('nom_dep', $request->nom_dep)->first();
         if ($departemetn != null) {
             $departemetnid = $departemetn->id;
         } else {
             $dateDep = $request->only('nom_dep');
-            Departement::create($dateDep);
-            $departemetnid = DB::table('departements')->max('id');
+            $departemetnid=Departement::insertGetId($dateDep);
         }
         //save Banque
         $dataBanque = $request->only('nom_banque', 'adresse', 'tele');
@@ -91,10 +74,6 @@ class EmployerController extends Controller
         $dataEmployer = $request->only('cin', 'nom_employer', 'prenom', 'email', 'date_naissance', 'nbr_enfant', 'situationFami', 'sexe', 'Num_cnss', 'Num_Icmr', 'salaire');
 
         if ($image = $request->file('image')) {
-            //$destinationPath = 'public/image/'; // upload path
-            // $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            // $image->move('images', $profileImage);
-            //$insert[]['image'] = "$profileImage";
             $dataEmployer['image'] = $request->image->store('images', 'public');
         } else {
             if ($request->sexe == "femme") {
@@ -131,7 +110,7 @@ class EmployerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Employer  $employer
+     * @param \App\Employer $employer
      * @return \Illuminate\Http\Response
      */
     public function show(Employer $employer)
@@ -159,7 +138,7 @@ class EmployerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Employer  $employer
+     * @param \App\Employer $employer
      * @return \Illuminate\Http\Response
      */
     public function edit(Employer $employer)
@@ -180,8 +159,8 @@ class EmployerController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Employer  $employer
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Employer $employer
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Employer $employer)
@@ -196,7 +175,7 @@ class EmployerController extends Controller
             'sexe' => 'required|string',
             'Num_cnss' => ['required', 'numeric', \Illuminate\Validation\Rule::unique('employers')->ignore($employer->id)],
             'nbr_enfant' => 'numeric',
-            'Num_Icmr' =>  ['required', 'numeric', \Illuminate\Validation\Rule::unique('employers')->ignore($employer->id)],
+            'Num_Icmr' => ['required', 'numeric', \Illuminate\Validation\Rule::unique('employers')->ignore($employer->id)],
             'salaire' => 'required|numeric',
             'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'fonction' => 'required|string',
@@ -263,7 +242,7 @@ class EmployerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Employer  $employer
+     * @param \App\Employer $employer
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -274,6 +253,7 @@ class EmployerController extends Controller
 
         return redirect(route('employer.index'));
     }
+
     public function forceDelete($id)
     {
         $employer = Employer::onlyTrashed()
@@ -282,10 +262,12 @@ class EmployerController extends Controller
         $employer->forceDelete();
         return redirect(route('para.index'));
     }
+
     public function InfoCalculSalire()
     {
         return view('outil.salaire');
     }
+
     public function infoIr()
     {
         return view('outil.ir');

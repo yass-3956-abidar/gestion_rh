@@ -41,7 +41,7 @@ class SocieteRequest extends FormRequest
             'email.required'=>'email est obligatoire',
             'email.string'=>'email invalid',
             'email.email'=>'email invalid',
-            'email.unique'=>'email invalid',
+            'email.unique'=>'email deja utiliser',
             'nom_societe.required'=>'ce champs est obligatoire',
             'nom_societe.min'=>' le nom societe invalid',
             'ville.required'=>'ville est obligatoire',

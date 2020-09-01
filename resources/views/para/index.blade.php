@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Corbeille')
 @section('style')
 <style>
 

@@ -22,17 +22,16 @@ class DemandePaieController extends Controller
     public function index()
     {
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        $demandePaies = DB::table('demande_paies')->where('societe_id', $idsociete)->get();
-        //   dd($demandePaies);
+        #### get  demandes paie of societe courant ##########
+        $demandePaies = DemandePaie::where('societe_id', $idsociete)->get();
         $demandPaie = [];
         foreach ($demandePaies as $dpaie) {
             $buletinPaie = DB::table('bulletin_paies')->where('employer_id', $dpaie->employer_id)
                 ->where('date_paie_debut', $dpaie->date_debut)
                 ->where('date_paie_dfin', $dpaie->date_fin)->first();
-            $employer = Employer::find($dpaie->employer_id);
+            $employer = $dpaie->employer;
             $demandPaie[] = [$buletinPaie, $employer, $dpaie];
         }
-        // dd($demandPaie);
         return view('demandePaie.index')->with('demandPaie', $demandPaie);
     }
 
@@ -49,7 +48,7 @@ class DemandePaieController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -60,7 +59,7 @@ class DemandePaieController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\DemandePaie  $demandePaie
+     * @param \App\DemandePaie $demandePaie
      * @return \Illuminate\Http\Response
      */
     public function show(DemandePaie $demandePaie)
@@ -71,7 +70,7 @@ class DemandePaieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\DemandePaie  $demandePaie
+     * @param \App\DemandePaie $demandePaie
      * @return \Illuminate\Http\Response
      */
     public function edit(DemandePaie $demandePaie)
@@ -82,8 +81,8 @@ class DemandePaieController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\DemandePaie  $demandePaie
+     * @param \Illuminate\Http\Request $request
+     * @param \App\DemandePaie $demandePaie
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, DemandePaie $demandePaie)
@@ -94,22 +93,24 @@ class DemandePaieController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\DemandePaie  $demandePaie
+     * @param \App\DemandePaie $demandePaie
      * @return \Illuminate\Http\Response
      */
     public function destroy(DemandePaie $demandePaie)
     {
         //
     }
+
     public function deleteDemande($id)
     {
-
         $demande = DemandePaie::find($id);
         $demande->delete();
         return redirect(route('demandepaie.index'));
     }
+
     public function envoyerLienPaie($id_bulletin, $id_demande)
     {
+        ### si la demande contient un id bulletin cad il est envoyer ###
         $affected = DB::table('demande_paies')
             ->where('id', $id_demande)
             ->update(['id_bulltein' => $id_bulletin]);

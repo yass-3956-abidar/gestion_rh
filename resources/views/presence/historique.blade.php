@@ -1,4 +1,5 @@
 @extends('admin.include.default')
+@section('title','Historique de presence')
 @section('content')
 <div class="card" style="box-shadow: none">
     <div class="card-header border-secondary text-white" style="background-color: #9e9e9e ">
