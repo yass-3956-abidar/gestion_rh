@@ -12,11 +12,21 @@
                 Tableau de bord
             </a>
         </li>
-        <li>
-            <a class="text-white" href="{{route('employer.index')}}">
-                <i class="fas fa-address-card"></i>
-                Employeé
+
+        <li class="active">
+            <a href="#employer" class="text-white" data-toggle="collapse" aria-expanded="false">
+                <i class="fas fa-clipboard"></i>
+                Employer <i class="fas fa-sort-down float-right"></i>
             </a>
+            <ul class="collapse list-unstyled" id="employer">
+                <li>
+                    <a href="{{route('employer.index')}}"><span>Employer </span></a>
+                </li>
+                <li>
+                    <a href="{{route('contrat.index')}}"><span>Contart</span></a>
+                </li>
+
+            </ul>
         </li>
         <li class="active">
             <a href="#presence" class="text-white" data-toggle="collapse" aria-expanded="false">
@@ -48,7 +58,7 @@
         <li>
             <a class="text-white" href="{{route('demandepaie.index')}}">
                 <i class="fas fa-paste"></i>
-                 demande de paie
+                demande de paie
             </a>
         </li>
         <li>
@@ -56,11 +66,11 @@
                 <i class="fas fa-house-user"></i>
                 Conget
                 @if(DB::table('congets')->where('id_societe',DB::table('societes')->where('user_id',Auth::user()->id)->value('id'))->where('status','en attend')->count()>0)
-                <span id="" class="badge badge-warning float-right ml-2">
+                    <span id="" class="badge badge-warning float-right ml-2">
                     {{(DB::table('congets')->where('id_societe',DB::table('societes')->where('user_id',Auth::user()->id)->value('id'))->where('status','en attend')->count())}}
                 </span>
-                @endif
-                <!-- <span class="sr-only">unread messages</span> -->
+            @endif
+            <!-- <span class="sr-only">unread messages</span> -->
             </a>
         </li>
         <li>

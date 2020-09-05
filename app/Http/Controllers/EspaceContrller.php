@@ -20,6 +20,7 @@ class EspaceContrller extends Controller
 
     public function index()
     {
+        #### Affiche info employer #########
         $id = session()->get('id');
         $employer = Employer::find($id);
         $societe = Societe::find($employer->societe_id);
@@ -93,7 +94,7 @@ class EspaceContrller extends Controller
      */
     public function store(Request $request)
     {
-         ##### login #########
+        ##### login #########
         $employer = DB::table('employers')->where('cin', $request->matricule)
             ->where('nom_employer', $request->nom)->first();
         if ($employer == null) {

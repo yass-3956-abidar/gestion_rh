@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\HeurSup;
 use Illuminate\Http\Request;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Facades\Auth;
@@ -30,8 +31,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // Afiche des statistique nombre employer departement emploi ....
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
         $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
         $nombre_employer = count($employers);
         $presence = [];
@@ -41,7 +42,7 @@ class HomeController extends Controller
         $cmp = 0;
         $cmpPaie = 0;
         $cmpPost = 0;
-        foreach ($employers as  $employer) {
+        foreach ($employers as $employer) {
             $employer = Employer::find($employer->id);
             $bulletinPaie[$employer->id] = $employer->bulletinpaies;
             if (!in_array($employer->emploi_id, $emploi)) {
@@ -78,10 +79,6 @@ class HomeController extends Controller
             $employerDepartement[] = [$departement, $departement->employers];
         }
         $nbrdep = count($departemnt);
-        // dd($departemnt);
-        // $departement = Departement::find($departemnt[0]);
-        // dd($employerDepartement);
-        // dd($emploieEmploye);
         return view('home')->with([
             'nombre_employer' => $nombre_employer,
             'employer_preson' => $cmp,
@@ -92,11 +89,51 @@ class HomeController extends Controller
             'emploieEmploye' => $emploieEmploye,
         ]);
         // nombre d'employer de cette entreprise;
-
     }
+
+    public function statistique()
+    {
+        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
+        $employers = Employer::where('societe_id', $idsociete)->where('deleted_at', null)->get();
+        // get societe de departemnt courant
+        $departement = [];
+        $sexe = ["Homme", "Femme"];
+        $sexeNombre = [];
+        $emplFemme = Employer::where('societe_id', $idsociete)->where('deleted_at', null)->where('sexe', 'femme')->count();
+        $emplHomme = Employer::where('societe_id', $idsociete)->where('deleted_at', null)->where('sexe', 'homme')->count();
+        array_push($sexeNombre, $emplHomme, $emplFemme);
+        foreach ($employers as $employer) {
+            $dep = $employer->departement;
+            if (!in_array($dep, $departement)) {
+                array_push($departement, $dep);
+            }
+        }
+        $emplNombre = [];
+        $depa = [];
+        foreach ($departement as $dep) {
+            $cmp = Employer::where('societe_id', $idsociete)->where('deleted_at', null)->where('departement_id', $dep->id)->count();
+            if (!in_array($dep->id, $depa)) {
+                array_push($depa, $dep->nom_dep);
+            }
+            array_push($emplNombre, $cmp);
+        }
+
+        $emploEURsup = Employer::select('id')->where('societe_id',$idsociete)->where('deleted_at', null)->get();
+        $heursupEmployer = DB::table('heur_sups')->whereIn('employer_id',$emploEURsup)->distinct()->get();
+        return response()->json([
+            'sexe' => $sexe,
+            'sexeNombre' => $sexeNombre,
+            'emplNombre' => $emplNombre,
+            'depa' => $depa,
+            'emploEURsup' => $emploEURsup,
+            'heursupEmployer'=>$heursupEmployer,
+        ]);
+    }
+
     public function registration()
     {
         Alert::success('Bienvenu Dans Votre APP@RH');
         return view('auth.registration');
     }
+
 }

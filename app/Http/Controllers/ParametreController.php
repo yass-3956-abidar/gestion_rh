@@ -17,6 +17,7 @@ class ParametreController extends Controller
 {
     public function index()
     {
+        ### get avance presence employer onlyTrashed (qui ont supprimer) ###
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
         $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
         $employers = Employer::onlyTrashed()

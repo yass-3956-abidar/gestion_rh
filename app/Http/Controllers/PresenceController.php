@@ -21,6 +21,7 @@ class PresenceController extends Controller
      */
     public function index()
     {
+//        dd('index function Presence controller');
         $presence = [];
         $employer_ids = [];
         $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
@@ -42,6 +43,7 @@ class PresenceController extends Controller
             ->with('min', $min)
             ->with('max', $max);
     }
+
     public function getEmployerPresence(Request $request)
     {
 
@@ -91,13 +93,7 @@ class PresenceController extends Controller
         }
     }
 
-    public function getpdfF()
-    {
-        $data = ['title' => 'Welcome to ItSolutionStuff.com'];
-        $pdf = PDF::loadView('test', $data);
 
-        return $pdf->download('test.pdf');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -107,6 +103,7 @@ class PresenceController extends Controller
     {
         //
     }
+
     public function deletePresence(Request $request)
     {
         $presence = Presence::find($request->id);
@@ -119,7 +116,7 @@ class PresenceController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(PresenceRequest $request)
@@ -138,8 +135,10 @@ class PresenceController extends Controller
         toast(session('success'), 'success');
         return redirect(route('presenceEmp.index'));
     }
+
     public function saveAll(PresenceRequest $request)
     {
+
         if ($request->select_empl != null) {
             foreach ($request->select_empl as $id_emp) {
                 $employer = Employer::find($id_emp);
@@ -163,9 +162,11 @@ class PresenceController extends Controller
             ]);
         }
     }
+
     public function savePresence(Request $Request, $id)
     {
     }
+
     public function pointerEmployer()
     {
         // return view('employer.presence.historique');
@@ -183,7 +184,7 @@ class PresenceController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -194,7 +195,7 @@ class PresenceController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -204,17 +205,18 @@ class PresenceController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
     }
+
     public function updatePresence(PresenceRequest $request)
     {
-        $presence =  Presence::find($request->id_presence);
+        $presence = Presence::find($request->id_presence);
         $presence->heur_sortit = $request->heur_sortit;
         $presence->heur_entre = $request->heur_entre;
         $presence->note = $request->noteS;
@@ -227,7 +229,7 @@ class PresenceController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

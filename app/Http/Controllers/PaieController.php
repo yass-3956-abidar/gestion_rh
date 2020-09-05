@@ -31,14 +31,6 @@ class PaieController extends Controller
      */
     public function index()
     {
-        Carbon::setLocale('fr');
-        $paies = [];
-        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        // $devise = DB::table('societes')->where('user_id', Auth::user()->id)->value('devise');
-        $employers = DB::table('employers')->where('societe_id', $idsociete)->where('deleted_at', null)->get();
-        foreach ($employers as $employer) {
-            $paies[$employer->id] = Employer::find($employer->id)->bulletinPaies;
-        }
         return view('paie.index');
     }
 
@@ -73,7 +65,6 @@ class PaieController extends Controller
                   <td>' . $BulltnPaie->sbg . '</td>
                   <td>
                   <a href="/admin/paie/showPaie/' . $BulltnPaie->id . '" class="btn btn-sm btn-info">Show</a>
-                  <a href="/admin/paie/edit/' . $BulltnPaie->id . '" class="btn btn-sm btn-warning">Edit</a>
                   <a id="delete_btn" href="/admin/paie/destroy/' . $BulltnPaie->id . '" class="btn btn-sm btn-danger delet-confirm">Supprimer</a>
               </td>
         </tr>';
@@ -95,9 +86,8 @@ class PaieController extends Controller
 
     public function showPaie($id)
     {
-
+        #### id de paie puis je refai les calcule #####
         $bulletinPaie = BulletinPaie::find($id);
-        // $sni = $sbi - $cnss - $icmr - $fp - $amo;
         $employer = Employer::find($bulletinPaie->employer_id);
         $heurSup = Db::table('heur_sups')->where('employer_id', $employer->id)
             ->where('created_at', $bulletinPaie->created_at)->get();
@@ -196,7 +186,7 @@ class PaieController extends Controller
      */
     public function show(Request $request)
     {
-
+//        cree un fiche de paie apres le choix de employer ==> affiche les information concerner
         $employer = Employer::find($request->id);
         $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
         $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
@@ -210,10 +200,6 @@ class PaieController extends Controller
         if (isset($avance)) {
             $montant = $avance->montant;
         }
-        // $date = new DateTime();
-        // $dateDeb = $date->format('01/m/Y');
-        // $dateFin = $date->format('t/m/Y');
-        // return response()->json($employer);
         return response()->json([
             'employer' => $employer,
             'contrat' => $contrat,
@@ -245,7 +231,6 @@ class PaieController extends Controller
             ]);
         } else {
             $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
-            $societe = DB::table('societes')->where('user_id', Auth::user()->id)->first();
             $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
             $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
             $j = $request->nbr_prime_impo; // designImpo //MontantImpo
@@ -365,9 +350,6 @@ class PaieController extends Controller
 
             $salaire_net = $sbg - $irNet - BulletinService::CotisCnss($sbi) - BulletinService::getAMO($sbi) - BulletinService::cotisICmr($request->taux_Icmr, $sbi)
                 - $request->avance;
-            $user = DB::table('employers')
-                ->where('id', $employer->id)
-                ->update(['salaire' => $salaire_net]);
             $tauxCnss = $parametre->tauxCnss;
             $tauxAmo = $parametre->tauxAmo;
             $chargeFamille = $parametre->chargeFamille;
@@ -508,63 +490,7 @@ class PaieController extends Controller
      */
     public function edit($id)
     {
-        $bulletin = BulletinPaie::find($id);
-        $employer = Employer::find($bulletin->employer_id);
-        $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
-        $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
-        $avance = Db::table('avances')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', date('m'))
-            ->whereYear('created_at', date('yy'))->first();
-        $month = date('m');
-        $dateDeb = date('Y-' . $month . '-01'); // hard-coded '01' for first day
-        $dateFin = date('Y-' . $month . '-t');
-        $employers = [];
-        $cotisation = $bulletin->cotisations;
-        $tabCmr = [];
-        foreach ($cotisation as $cotisa) {
-            if ($cotisa->libelle == "ICMR") {
-                $tabCmr["taux"] = $cotisa->taux;
-            }
-        }
-        // get nbrHeurFerier
-        // get nbr heur Ouvrable
-        $heursups = DB::table('heur_sups')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', $bulletin->created_at->month)
-            ->whereDay('created_at', $bulletin->created_at->day)
-            ->whereYear('created_at', $bulletin->created_at->year)->get();
-        $primes = DB::table('primes')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', $bulletin->created_at->month)
-            ->whereDay('created_at', $bulletin->created_at->day)
-            ->whereYear('created_at', $bulletin->created_at->year)->get();
-        $jo = [];
-        $jf = [];
-        foreach ($heursups as $heursup) {
 
-            if ($heursup->type == "JO") {
-                $jo["nombre_heur"] = $heursup->nombre_heur;
-                $jo["interval"] = BulletinService::getIntervalJo($heursup->majoration);
-            }
-            if ($heursup->type == "JF") {
-                $jf["nombre_heur"] = $heursup->nombre_heur;
-                $jf["interval"] = BulletinService::getIntervalJF($heursup->majoration);
-            }
-        }
-
-        return view('paie.create')->with([
-            'employer' => $employer,
-            'bulletin' => $bulletin,
-            'contrat' => $contrat,
-            'post' => $post,
-            'cotisation' => $cotisation,
-            'avance' => $avance,
-            'dateDeb' => $dateDeb,
-            'dateFin' => $dateFin,
-            'employers' => $employers,
-            'icmr' => $tabCmr,
-            'jo' => $jo,
-            'jf' => $jf,
-            'primes' => $primes,
-        ]);
     }
 
     /**

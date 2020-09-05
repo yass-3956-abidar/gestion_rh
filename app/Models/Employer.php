@@ -22,7 +22,7 @@ class Employer extends Model
         return $this->hasMany('App\DemandePaie');
     }
     //employer has many contrat
-    public function contats()
+    public function contrat()
     {
         return $this->hasOne('App\Contrat');
     }

@@ -4,7 +4,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-
 Route::get('/', function () {
     return view('welcome');
 })->name('loginForm');
@@ -51,6 +50,14 @@ Route::group(['prefix' => 'admin'], function () {
     Route::PUT('/conget/status/{id}', 'CongetController@destroyStatus')->name('conget.destroyStatus');
     ################# End route conget
 
+
+    ######## Start route Contrat #############
+    Route::get('contrat/index', 'ContratController@index')->name('contrat.index');
+    Route::get('contrat/show/{id}', 'ContratController@show')->name('contrat.show');
+    Route::get('contrat/imprimer/{id}', 'ContratController@imprimer')->name('contrat.imprimer');
+//
+    ######## End route Contrat   #############
+
     ############# Start Route site  demande  paie ##############
     Route::resource('/admin/paie/demandepaie', 'DemandePaieController');
     Route::GET('/admin/paie/demandepaie/{id_bulletin}/{id_demande}', 'DemandePaieController@envoyerLienPaie')->name('demandepaie.envoyerLienPaie');
@@ -96,7 +103,7 @@ Route::resource('societe', 'SocieteController');
 
 ////////////////////////////////////////////////////////////////////////////
 
-
+Route::get('statistique/', 'HomeController@statistique')->name('admin.statistique');
 Route::get('employer/avance/suppprime/{id}', 'AvanceController@deleteAvance')->name('avance.delete');
 Route::get('employer/avance/restore/{id}', 'AvanceController@restoreAvance')->name('para.avance.restore');
 Route::get('/sendEmail', 'SendEmail@sendEmailForEmployer')->name('mail.sendEmail');

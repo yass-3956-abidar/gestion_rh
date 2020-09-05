@@ -11,10 +11,12 @@ class Contrat extends Model
     {
         return $this->belongsTo('App\Employer');
     }
-    public function Contrattypes()
+
+    public function contrattype()
     {
-        return $this->belongsTo('App\ContratType');
+        return $this->belongsTo('App\ContratType', 'contra_type_id');
     }
+
     protected $fillable = [
         'employer_id', 'date_embauche', 'contra_type_id'
     ];
