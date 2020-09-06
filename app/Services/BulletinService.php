@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\BulletinPaie;
+use App\Employer;
 use App\Societe;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -49,6 +51,11 @@ class BulletinService
         $durre = self::calculDuree($dateEmbauche);
         $taux = self::getTaux($durre);
         return ($salaire + $heureSup) * $taux / 100;
+    }
+
+    public static function calculAnci2($tauxAnciente, $salaireBase, $totalHeurSup)
+    {
+        return ($salaireBase + $totalHeurSup) * $tauxAnciente / 100;
     }
 
     public static function calculDuree($dateEmbauche)
@@ -153,8 +160,7 @@ class BulletinService
 
     public static function getChargeFamille($nbr)
     {
-        $idsociete = DB::table('societes')->where('user_id', Auth::user()->id)->value('id');
-        $societe = Societe::find($idsociete);
+        $societe = Societe::where('user_id', Auth::user()->id)->first();
         $parametre = $societe->parametre;
         $chargFamille = $parametre->chargeFamille;
         $charge = $nbr * $chargFamille;
@@ -190,5 +196,77 @@ class BulletinService
                 break;
         }
         return $interval;
+    }
+
+    public static function getDataShowApercu($id)
+    {
+        $bulletinPaie = BulletinPaie::find($id);
+        // $sni = $sbi - $cnss - $icmr - $fp - $amo;
+        $employer = Employer::find($bulletinPaie->employer_id);
+        $heurSup = Db::table('heur_sups')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', date('m'))
+            ->whereDay('created_at', date('d'))
+            ->whereYear('created_at', date('yy'))->get();
+        $totalHeurSup = 0;
+
+        foreach ($heurSup as $heursup) {
+            $totalHeurSup += $heursup->nombre_heur;
+        }
+//        dd($totalHeurSup);
+        $cotisation = $bulletinPaie->cotisations;
+        $avance = Db::table('avances')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', date('m'))
+            ->whereYear('created_at', date('yy'))->first();
+        $sniteimp = 0;
+        $salireNet = 0;
+        foreach ($cotisation as $coti) {
+            if ($coti->libelle != 'ir') {
+                $sniteimp -= $coti->retenu;
+            }
+            if ($coti->libelle != 'Frais Professionnel') {
+                $salireNet -= $coti->retenu;
+            }
+        }
+        // sni=sbi-element deductible
+        $sniteimp = $sniteimp + $bulletinPaie->sbi;
+        $sniteimp = $sniteimp - $bulletinPaie->interit;
+        $montant = 0;
+        if ($avance != null) {
+            $montant = $avance->montant;
+        }
+        $salireNet = $salireNet + $bulletinPaie->sbg - $montant;
+        $avantage = $bulletinPaie->avantage;
+        $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
+        $societe=Societe::where('user_id', Auth::user()->id)->first();
+        $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
+        $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
+        $durreAnciente = BulletinService::calculDuree($contrat->date_embauche);
+        $tauxAncienter = BulletinService::getTaux($durreAnciente);
+        $Primeancienter = BulletinService::calculAnci2($tauxAncienter, $post->salaire_base, $totalHeurSup);
+        $primes = DB::table('primes')->where('employer_id', $employer->id)
+            ->whereMonth('created_at', date('m'))
+            ->whereDay('created_at', date('d'))
+            ->whereYear('created_at', date('yy'))->get();
+        $data = [
+            'titre' => 'Fiche de paie',
+            'employer' => $employer,
+            'cotisation' => $cotisation,
+            'totalHeurSup' => $totalHeurSup,
+            'heurSup' => $heurSup,
+            'contrat' => $contrat,
+            'societe' => $societe,
+            'departement' => $departement,
+            'post' => $post,
+            'primes' => $primes,
+            'montant' => $montant,
+            'avantage' => $avantage,
+            'tauxAncienter' => $tauxAncienter,
+            'Primeancienter' => $Primeancienter,
+            'salire_net_Impo' => $sniteimp,
+            'bulletinPaie' => $bulletinPaie,
+            'salireNet' => $salireNet,
+            'credit' => $bulletinPaie->interit,
+        ];
+        return $data;
     }
 }

@@ -18,7 +18,7 @@
                     <!-- Card content -->
                     <div class="card-body">
                         <!-- Title -->
-                        <h4 class="card-title" style="font-style: italic;">{{$nombre_employer}} employers dans votre
+                        <h4 class="card-title" style="font-style: italic;">{{$nombre_employer}} employés dans votre
                             entreprise</h4>
                         <!-- Text -->
                         <a href="{{route('employer.index')}}" class="btn btn-outline-warning float-right">Detail</a>
@@ -39,7 +39,8 @@
                     <!-- Card content -->
                     <div class="card-body">
                         <!-- Title -->
-                        <h4 class="card-title" style="font-style: italic;">{{$employer_preson}} Present
+                        <h4 class="card-title" style="font-style: italic;">{{$employer_preson}} Présent
+
                             le {{date('d/m/yy')}}</h4>
                         <!-- Text -->
                         <a href="{{route('presenceEmp.index')}}" class="btn btn-outline-info float-right">Detail</a>
@@ -61,7 +62,7 @@
                     <!-- Card content -->
                     <div class="card-body">
                         <!-- Title -->
-                        <h4 class="card-title" style="font-style: italic;">Le Nombre de departement est {{$nbrdep}}</h4>
+                        <h4 class="card-title" style="font-style: italic;">Le Nombre de département est {{$nbrdep}}</h4>
                         <!-- Text -->
                         <button type="button" class="btn btn-outline-secondary float-right" data-toggle="modal"
                                 data-target="#exampleModal">Detail
@@ -83,7 +84,7 @@
                     <!-- Card content -->
                     <div class="card-body">
                         <!-- Title -->
-                        <h4 class="card-title" style="font-style: italic;">Les post Ocuper sont {{$nbremploi}}</h4>
+                        <h4 class="card-title" style="font-style: italic;">Les post occuper sont {{$nbremploi}}</h4>
                         <!-- Text -->
                         <a data-toggle="modal" data-target="#ModalEmploi" class="btn btn-outline-default float-right">Detail</a>
                     </div>
@@ -104,7 +105,7 @@
                     <!-- Card content -->
                     <div class="card-body">
                         <!-- Title -->
-                        <h4 class="card-title" style="font-style: italic;">{{$nbrFichePaie}} fiche cree
+                        <h4 class="card-title" style="font-style: italic;">{{$nbrFichePaie}} fiche crée
                             le {{date('m/yy')}}</h4>
                         <!-- Text -->
                         <a href="{{route('paie.index')}}" class="btn btn-outline-danger float-right">Detail</a>
@@ -121,9 +122,9 @@
             </div>
 
         </div>
-        <div class="row container">
-            <canvas id="myChart3" width="200" height="200"></canvas>
-        </div>
+{{--        <div class="row container">--}}
+{{--            <canvas id="myChart3" width="200" height="200"></canvas>--}}
+{{--        </div>--}}
     </div>
 @endsection
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -131,7 +132,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Les Employer par departement</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Les Employés par departement</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -182,7 +183,7 @@
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalEmploi">Les Employer par Post</h5>
+                <h5 class="modal-title" id="ModalEmploi">Les Employés par Post</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -337,54 +338,7 @@
                         }
                     }
                 });
-                var ctx3 = document.getElementById('myChart3');
-                var myChart3 = new Chart(ctx3, {
-                    type: 'line',
-                    data: {
-                        labels: data.sexe,
-                        datasets: [{
-                            data: data.sexeNombre,
-                            backgroundColor: [
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)',
-                                'rgba(255, 99, 132, 0.2)',
-                                'rgba(54, 162, 235, 0.2)',
-                                'rgba(255, 206, 86, 0.2)',
-                                'rgba(75, 192, 192, 0.2)',
-                                'rgba(153, 102, 255, 0.2)',
-                                'rgba(255, 159, 64, 0.2)'
-                            ],
-                            borderColor: [
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)',
-                                'rgba(255, 99, 132, 1)',
-                                'rgba(54, 162, 235, 1)',
-                                'rgba(255, 206, 86, 1)',
-                                'rgba(75, 192, 192, 1)',
-                                'rgba(153, 102, 255, 1)',
-                                'rgba(255, 159, 64, 1)'
-                            ],
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        scales: {
-                            yAxes: [{
-                                ticks: {
-                                    beginAtZero: true
-                                }
-                            }]
-                        }
-                    }
-                });
+
             },
             error: function (err) {
                 console.log(err);

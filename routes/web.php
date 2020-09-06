@@ -72,7 +72,7 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('index/', 'PaieController@index')->name('paie.index');
         Route::get('create/', 'PaieController@create')->name('paie.create');
         Route::get('salireNet/', 'PaieController@getsalaireNet')->name('paie.salNet');
-        Route::get('apercu/{id}/{id_user}', 'PaieController@apercu')->name('paie.apercu');
+        Route::get('apercu/{id}', 'PaieController@apercu')->name('paie.apercu');
         Route::get('pdf', 'PaieController@getPdf')->name('paie.getpdf');
         Route::get('cherche', 'PaieController@cherchePaie')->name('paie.cherche');
         Route::get('edit/{id}', 'PaieController@edit')->name('paie.edit');

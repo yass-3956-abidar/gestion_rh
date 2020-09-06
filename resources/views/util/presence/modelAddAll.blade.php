@@ -24,7 +24,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-md-6">
-                            <input id="heur_entreAll" type="text" class="form-control @error('heur_entre') is-invalid @enderror" name="heur_entre" value="{{ old('heur_entre') }}" autocomplete="name" autofocus>
+                            <input id="heur_entreAll" type="time" class="form-control @error('heur_entre') is-invalid @enderror" name="heur_entre" value="{{ old('heur_entre') }}" autocomplete="name" autofocus>
                             @error('heur_entre')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -37,7 +37,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-md-6">
-                            <input id="heur_sortitAll" type="text" class="form-control @error('heur_sortit') is-invalid @enderror" name="heur_sortit" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus>
+                            <input id="heur_sortitAll" type="time" class="form-control @error('heur_sortit') is-invalid @enderror" name="heur_sortit" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus>
                             @error('heur_sortit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

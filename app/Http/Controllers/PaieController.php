@@ -87,66 +87,9 @@ class PaieController extends Controller
     public function showPaie($id)
     {
         #### id de paie puis je refai les calcule #####
-        $bulletinPaie = BulletinPaie::find($id);
-        $employer = Employer::find($bulletinPaie->employer_id);
-        $heurSup = Db::table('heur_sups')->where('employer_id', $employer->id)
-            ->where('created_at', $bulletinPaie->created_at)->get();
-        $totalHeurSup = 0;
-        foreach ($heurSup as $heursup) {
-            $totalHeurSup += $heursup->nombre_heur;
-        }
-        $cotisation = $bulletinPaie->cotisations;
-        $avance = Db::table('avances')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', $bulletinPaie->created_at->month)
-            ->whereYear('created_at', $bulletinPaie->created_at->year)->first();
-        $sniteimp = 0;
-        $salireNet = 0;
-        foreach ($cotisation as $coti) {
-            if ($coti->libelle != 'ir') {
-                $sniteimp -= $coti->retenu;
-            }
-            if ($coti->libelle != 'Frais Professionnel') {
-                $salireNet -= $coti->retenu;
-            }
-        }
-        $montant = 0;
-        if (isset($avance)) {
-            $montant = $avance->montant;
-        }
-        $sniteimp = $sniteimp + $bulletinPaie->sbi;
-        $salireNet = $salireNet + $bulletinPaie->sbg - $montant;
-        $avantage = $bulletinPaie->avantage;
-        $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
-        $societe = DB::table('societes')->where('user_id', Auth::user()->id)->first();
-        $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
-        $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
-        $durreAnciente = BulletinService::calculDuree($contrat->date_embauche);
-        $tauxAncienter = BulletinService::getTaux($durreAnciente);
-        $Primeancienter = BulletinService::calculAncienter($contrat->date_embauche, $post->salaire_base, $totalHeurSup);
-        $primes = DB::table('primes')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', $bulletinPaie->created_at->month)
-            ->whereDay('created_at', $bulletinPaie->created_at->day)
-            ->whereYear('created_at', $bulletinPaie->created_at->year)->get();
-
-        return view('paie.apercu')->with([
-            'titre' => 'Fiche de paie',
-            'employer' => $employer,
-            'cotisation' => $cotisation,
-            'heurSup' => $heurSup,
-            'contrat' => $contrat,
-            'societe' => $societe,
-            'departement' => $departement,
-            'post' => $post,
-            'primes' => $primes,
-            'montant' => $montant,
-            'avantage' => $avantage,
-            'tauxAncienter' => $tauxAncienter,
-            'Primeancienter' => $Primeancienter,
-            'salire_net_Impo' => $sniteimp,
-            'bulletinPaie' => $bulletinPaie,
-            'salireNet' => $salireNet,
-            'credit' => $bulletinPaie->interit,
-        ]);
+        $data = BulletinService::getDataShowApercu($id);
+//        dd($data);
+        return view('paie.show', compact('data'));
     }
 
     /**
@@ -408,76 +351,11 @@ class PaieController extends Controller
         }
     }
 
-    public function apercu($id, $id_user)
+    public function apercu($id)
     {
-        // $bultinPiaId = DB::table('bulletin_paies')->max('id');
-        $bulletinPaie = BulletinPaie::find($id);
-        // $sni = $sbi - $cnss - $icmr - $fp - $amo;
-        $employer = Employer::find($bulletinPaie->employer_id);
-        $heurSup = Db::table('heur_sups')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', date('m'))
-            ->whereDay('created_at', date('d'))
-            ->whereYear('created_at', date('yy'))->get();
-        $totalHeurSup = 0;
-        foreach ($heurSup as $heursup) {
-            $totalHeurSup += $heursup->nombre_heur;
-        }
-        $cotisation = $bulletinPaie->cotisations;
-        $avance = Db::table('avances')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', date('m'))
-            ->whereYear('created_at', date('yy'))->first();
-        $sniteimp = 0;
-        $salireNet = 0;
-        foreach ($cotisation as $coti) {
-            if ($coti->libelle != 'ir') {
-                $sniteimp -= $coti->retenu;
-            }
-            if ($coti->libelle != 'Frais Professionnel') {
-                $salireNet -= $coti->retenu;
-            }
-        }
-        // sni=sbi-element deductible
-        $sniteimp = $sniteimp + $bulletinPaie->sbi;
-        $sniteimp = $sniteimp - $bulletinPaie->interit;
-        $montant = 0;
-        if ($avance != null) {
-            $montant = $avance->montant;
-        }
-        $salireNet = $salireNet + $bulletinPaie->sbg - $montant;
-        $avantage = $bulletinPaie->avantage;
-        $contrat = DB::table('contrats')->where('employer_id', '=', $employer->id)->first();
-        $societe = DB::table('societes')->where('user_id', $id_user)->first();
-        $departement = DB::table('departements')->where('id', $employer->departement_id)->first();
-        $post = DB::table('emplois')->where('id', $employer->emploi_id)->first();
-        $durreAnciente = BulletinService::calculDuree($contrat->date_embauche);
-        $tauxAncienter = BulletinService::getTaux($durreAnciente);
-        $Primeancienter = BulletinService::calculAncienter($contrat->date_embauche, $post->salaire_base, $totalHeurSup);
-        $primes = DB::table('primes')->where('employer_id', $employer->id)
-            ->whereMonth('created_at', date('m'))
-            ->whereDay('created_at', date('d'))
-            ->whereYear('created_at', date('yy'))->get();
-
-        $data = [
-            'titre' => 'Fiche de paie',
-            'employer' => $employer,
-            'cotisation' => $cotisation,
-            'heurSup' => $heurSup,
-            'contrat' => $contrat,
-            'societe' => $societe,
-            'departement' => $departement,
-            'post' => $post,
-            'primes' => $primes,
-            'montant' => $montant,
-            'avantage' => $avantage,
-            'tauxAncienter' => $tauxAncienter,
-            'Primeancienter' => $Primeancienter,
-            'salire_net_Impo' => $sniteimp,
-            'bulletinPaie' => $bulletinPaie,
-            'salireNet' => $salireNet,
-            'credit' => $bulletinPaie->interit,
-        ];
+        $data = BulletinService::getDataShowApercu($id);
         $pdf = PDF::loadView('paie.apercu', $data);
-        $nomPren = $employer->nom_employer . "_" . $employer->prenom;
+        $nomPren = $data["employer"]->nom_employer . "_" . $data["employer"]->prenom;
         return $pdf->download($nomPren . ".pdf");
     }
 

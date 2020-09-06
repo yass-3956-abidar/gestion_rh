@@ -49,7 +49,9 @@ class SocieteController extends Controller
         $societe->code_postall = $request->code_postall;
         $societe->site_internet = $request->site_internet;
         $societe->user_id = Auth::user()->id;
-        $societe->description = $request->description;
+        if ($request->description) {
+            $societe->description = $request->description;
+        }
         $societe->save();
         $societe = Societe::where('email', $request->email)->first();
         Parametre::create([

@@ -22,7 +22,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-md-6">
-                            <input id="heur_entre" type="text" class="form-control @error('heur_entre') is-invalid @enderror" name="heur_entre" value="{{ old('heur_entre') }}" autocomplete="name" autofocus>
+                            <input id="heur_entre" type="time" class="form-control @error('heur_entre') is-invalid @enderror" name="heur_entre" value="{{ old('heur_entre') }}" autocomplete="name" autofocus>
                             @error('heur_entre')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -35,7 +35,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <div class="col-md-6">
-                            <input id="heur_sortit" type="text" class="form-control @error('heur_sortit') is-invalid @enderror" name="heur_sortit" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus>
+                            <input id="heur_sortit" type="time" class="form-control @error('heur_sortit') is-invalid @enderror" name="heur_sortit" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus>
                             @error('heur_sortit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -47,7 +47,7 @@
                         <label for="note" class="col-md-4 col-form-label text-md-right">{{ __('Note') }}
                         </label>
                         <div class="col-md-6">
-                        <textarea rows="4" id="note"type="text" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus></textarea>
+                        <textarea rows="4" id="note"type="time" class="form-control @error('note') is-invalid @enderror" name="note" value="{{ old('heur_sortit') }}" autocomplete="name" autofocus></textarea>
                             @error('heur_sortit')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>

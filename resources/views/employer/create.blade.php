@@ -203,10 +203,6 @@
                         <select name="type" id="type" class="form-control @error('type') is-invalid @enderror" value="{{isset($employer)? $contratType->type:old('type')}}">
                             <option value="CDD">CDD</option>
                             <option value="CDI">CDI</option>
-                            <option value="CTT">CTT</option>
-                            <option value="CUI">CUI</option>
-                            <option value="CAE">CAE</option>
-                            <option value="CIE">CIE</option>
                         </select>
                         @error('type')
                         <span class="invalid-feedback" role="alert">

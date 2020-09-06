@@ -151,7 +151,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    cancelButtonText:'Annulue',
+                    cancelButtonText: 'Annulue',
                     confirmButtonText: 'supprimer'
                 }).then((result) => {
                     if (result.value) {
@@ -186,12 +186,17 @@
             $(document).on('click', '#tableDefaultCheck1', function () {
                 if ($("#tableDefaultCheck1").is(':checked')) {
                     console.log('selection tous');
-                    for (let i = $("#min").val(); i <= $("#max").val(); i++) {
-                        $("#chek" + i).prop('checked', true)
+
+                    let min = parseInt(document.getElementById('min').value);
+                    let max = parseInt(document.getElementById('max').value);
+                    for (let j = min; j <= max; j++) {
+                        $("#chek" + j).prop('checked', true);
                     }
                 } else {
-                    console.log('deselectionne tous');
-                    for (let i = $("#min").val(); i <= $("#max").val(); i++) {
+                    // console.log('deselectionne tous');
+                    let min = parseInt(document.getElementById('min').value);
+                    let max = parseInt(document.getElementById('max').value);
+                    for (let i = min; i <= max; i++) {
                         $("#chek" + i).prop('checked', false)
                     }
                 }
@@ -199,9 +204,12 @@
             $('#addALL').on('show.bs.modal', function (event) {
                 var employer_selectionne = [];
                 console.log($("#nbr_employer").val());
-                for (let i = $("#min").val(); i <= $("#max").val(); i++) {
+                let min = parseInt(document.getElementById('min').value);
+                let max = parseInt(document.getElementById('max').value);
+                for (let i = min; i <= max; i++) {
                     if ($("#chek" + i).is(':checked')) {
                         let option = '<option selected>' + i + '</option>';
+                        // push id employer pour faire la presence
                         employer_selectionne.push(i);
                         $("#select_empl").append(option);
                         // console.log('l\'un des employer sel ' + i);

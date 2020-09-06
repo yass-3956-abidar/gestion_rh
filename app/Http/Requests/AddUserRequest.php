@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class UserRequest extends FormRequest
+class AddUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +24,7 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users',
+            'name' => 'required|unique:users',
             'email' => 'required|email|unique:users',
             'rais_social' => 'required|unique:users',
             'tele' => ["required", "regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"],
@@ -35,16 +34,16 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'username.required' => 'ce champs est obligatoire',
-            'username.unique' => 'nom deja existe',
-            'password.min'=>'le nombre de caractere minumun est 8',
+            'name.required' => 'le champ nom est obligatoire',
+            'name.unique' => 'nom deja existe',
+            'password.min'=>'le nombre de caractere minumun pour le mot de passe est 8',
             'password.confirmed'=>'erreur de confirmation de mot de passe',
-            'email.required' => 'ce champ est obligatoire',
+            'email.required' => 'email est obligatoire',
             'email.unique' => 'email déja existe',
-            'rais_social.required' => 'ce champ est obligatoire',
-            'rais_social.unique' => 'Ce nom deja existe',
-            'tele.required' => 'ce champ est obligatoire',
-            'tele.regex' => 'format incorrect',
+            'rais_social.required' => 'Le champ raison social est obligatoire',
+            'rais_social.unique' => 'Le champ raison social deja existe',
+            'tele.required' => 'Telephone est obligatoire',
+            'tele.regex' => 'format de telephone est  incorrect',
         ];
     }
 }

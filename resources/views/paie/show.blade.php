@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PDF {{$data["employer"]->nom_employer." ".$data["employer"]->prenom}}</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body>
 <center>
-    <h1 class="text-danger">Fiche de Paie</h1>
+    <h1 class="text-danger">{{$data["titre"]}}</h1>
 </center>
 <div class="container">
     <table class="table table-striped table-bordered table-sm" width="50%">
@@ -19,8 +19,8 @@
             <th>Adresse</th>
         </tr>
         <tr>
-            <td>{{$societe->nom_societe}}</td>
-            <td>{{$societe->adresse}}</td>
+            <td>{{$data["societe"]->nom_societe}}</td>
+            <td>{{$data["societe"]->adresse}}</td>
         </tr>
         <tr>
 
@@ -29,8 +29,8 @@
         </tr>
         <tr>
             @if(isset($bulletinPaie))
-                <td>{{$bulletinPaie->created_at->format('F/yy')}}</td>
-                <td>{{$bulletinPaie->created_at->format('yy-m-d')}}</td>
+                <td>{{$data["bulletinPaie"]->created_at->format('F/yy')}}</td>
+                <td>{{$data["bulletinPaie"]->created_at->format('yy-m-d')}}</td>
             @else
                 <td>{{date('F/yy')}}</td>
                 <td>{{date('d/m/yy')}}</td>
@@ -40,35 +40,35 @@
     <table class="table table-bordered table-striped table-sm" width="50%">
         <tr>
             <td>Date Embauche</td>
-            <td id="dateEmbache">{{$contrat->date_embauche}}</td>
+            <td id="dateEmbache">{{$data["contrat"]->date_embauche}}</td>
         </tr>
         <tr>
             <td> Date de Naissance</td>
-            <td id="date_naissance">{{$employer->date_naissance}}</td>
+            <td id="date_naissance">{{$data["employer"]->date_naissance}}</td>
         </tr>
         <tr>
             <td> Matricule</td>
-            <td id="cin">{{$employer->cin}}</td>
+            <td id="cin">{{$data["employer"]->cin}}</td>
         </tr>
         <tr>
             <td>Numero CNSS</td>
-            <td id="cnss">{{$employer->Num_cnss}}</td>
+            <td id="cnss">{{$data["employer"]->Num_cnss}}</td>
         </tr>
         <tr>
             <td>Nom</td>
-            <td id="nom_emp">{{$employer->nom_employer}}</td>
+            <td id="nom_emp">{{$data["employer"]->nom_employer}}</td>
         </tr>
         <tr>
             <td>Prenom</td>
-            <td id="prenom_emp">{{$employer->prenom}}</td>
+            <td id="prenom_emp">{{$data["employer"]->prenom}}</td>
         </tr>
         <tr>
             <td>Emploi</td>
-            <td id="emploi">{{$post->fonction}}</td>
+            <td id="emploi">{{$data["post"]->fonction}}</td>
         </tr>
         <tr>
             <td>Departement</td>
-            <td id="dep">{{$departement->nom_dep}}</td>
+            <td id="dep">{{$data["departement"]->nom_dep}}</td>
         </tr>
     </table>
     <table class="table table-striped table-bordered table-sm">
@@ -83,10 +83,10 @@
             <td>Salaire de base</td>
             <td></td>
             <td></td>
-            <td id="sal_base">{{$post->salaire_base}}</td>
+            <td id="sal_base">{{$data["post"]->salaire_base}}</td>
             <td></td>
         </tr>
-        @foreach($heurSup as $heursup)
+        @foreach($data["heurSup"] as $heursup)
             <tr>
                 <td>Heur supplementaire ({{$heursup->type}}) <span>{{$heursup->majoration}}%</span></td>
                 <td id="nbr_heur_ferire">{{$heursup->nombre_heur}}</td>
@@ -97,12 +97,12 @@
         @endforeach
         <tr>
             <td>Prime d'ancienté</td>
-            <td id="base_anciente">{{$post->salaire_base+$totalHeurSup}}</td>
-            <td id="taux_ancienter">{{$tauxAncienter}}</td>
-            <td id="gainAncinter">{{$Primeancienter}}</td>
+            <td id="base_anciente">{{$data["post"]->salaire_base+$data["totalHeurSup"]}}</td>
+            <td id="taux_ancienter">{{$data["tauxAncienter"]}}</td>
+            <td id="gainAncinter">{{$data["Primeancienter"]}}</td>
             <td></td>
         </tr>
-        @foreach($primes as $prime)
+        @foreach($data["primes"] as $prime)
             <tr>
                 <td>{{$prime->designation}}</td>
                 <td></td>
@@ -115,10 +115,10 @@
             <td>Avantage</td>
             <td></td>
             <td></td>
-            <td id="avantg">{{$avantage}}</td>
+            <td id="avantg">{{$data["avantage"]}}</td>
             <td></td>
         </tr>
-        @foreach($cotisation as $coti)
+        @foreach($data["cotisation"] as $coti)
             <tr>
                 <td> Cotisation {{$coti->libelle}}</td>
                 <td></td>
@@ -132,14 +132,14 @@
             <td></td>
             <td></td>
             <td></td>
-            <td>{{$credit}}</td>
+            <td>{{$data["credit"]}}</td>
         </tr>
         <tr>
             <td>Avance</td>
             <td></td>
             <td></td>
             <td></td>
-            <td id="retenu_avance">{{$montant}}</td>
+            <td id="retenu_avance">{{$data["montant"]}}</td>
         </tr>
     </table>
     <table class="table table-striped table-bordered table-sm">
@@ -150,10 +150,10 @@
             <th>Salaire Net</th>
         </tr>
         <tr>
-            <td id="sbglobal">{{$bulletinPaie->sbg}}</td>
-            <td id="sbImpos">{{$bulletinPaie->sbi}}</td>
-            <td id="netImposable">{{$salire_net_Impo}}</td>
-            <td>{{$salireNet}}</td>
+            <td id="sbglobal">{{$data["bulletinPaie"]->sbg}}</td>
+            <td id="sbImpos">{{$data["bulletinPaie"]->sbi}}</td>
+            <td id="netImposable">{{$data["salire_net_Impo"]}}</td>
+            <td>{{$data["salireNet"]}}</td>
         </tr>
     </table>
 </div>

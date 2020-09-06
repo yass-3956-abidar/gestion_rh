@@ -65,7 +65,7 @@ class CongetController extends Controller
         $employer = DB::table('employers')->where('cin', $request->input('employer_id'))->first();
         $idContraType = 0;
         if ($congetType == null) {
-            $$idContraType = CongetType::insertGetId([
+            $idContraType = CongetType::insertGetId([
                 'type' => $request->input('type'),
             ]);
         } else {

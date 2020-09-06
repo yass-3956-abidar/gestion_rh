@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddUserRequest;
 use App\Societe;
 use Illuminate\Http\Request;
 use App\User;
@@ -16,30 +17,24 @@ use Illuminate\Validation\Rule;
 
 class UserController extends Controller
 {
-    protected function store(Request $request)
+    protected function store(AddUserRequest $request)
     {
-        // dd($request);
-        $request->validate([
-            'name' => ['required', 'string', 'max:20'],
-            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'rais_social' => ['required', 'string'],
-            'tele' => ["required", "regex:/^(0|\+212)[1-9]([-.]?[0-9]{2}){4}$/"]
-        ]);
-        // dd($request);
         $user = new User();
-        // $user = Auth::user();
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->password =  Hash::make($request->password);
+        $user->password = Hash::make($request->password);
         $user->rais_social = $request->rais_social;
         $user->tele = $request->tele;
         $user->save();
         // Auth::make($user);;
         auth()->login($user);
-        return redirect(route('registration'));
+        return response()->json([
+            'status' => true,
+        ]);
+//        return redirect(route('registration'));
         // return view('auth.registration');
     }
+
     public function profile($id)
     {
         $user = User::find($id);
@@ -47,11 +42,13 @@ class UserController extends Controller
         return view('user.index')->with('user', $user)
             ->with('societe', $societer);
     }
+
     public function parametreUser($id)
     {
         $user = User::find($id);
         return view('user.setting')->with('user', $user);
     }
+
     public function updateUser(Request $request)
     {
         $user = Auth::user();
@@ -72,6 +69,7 @@ class UserController extends Controller
         $request->session()->flash('success', " mise à jour faite avec succé");
         return redirect(route('user.profile', $user->id));
     }
+
     public function updateImage(UserImage $request)
     {
         $id = Auth::user()->id;
@@ -90,6 +88,7 @@ class UserController extends Controller
         }
         return redirect(route('user.profile', $id));
     }
+
     public function updateMotPasse(UpdatePassword $request)
     {
         // $user=Auth::user();

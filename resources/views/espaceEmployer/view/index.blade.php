@@ -84,7 +84,7 @@
         @if(count($demande)>0)
         @foreach($demande as $dem)
         <div id="lien_ficeh_paie" class="text-center mt-3">
-            <a class="link font-weight-bold" href="/admin/paie/apercu/{{$dem->id_bulltein}}/{{$user}}">fiche de paie forma pdf</a>
+            <a class="link font-weight-bold" href="/admin/paie/apercu/{{$dem->id_bulltein}}">fiche de paie forma pdf</a>
         </div>
         @endforeach
         @endif

@@ -5,7 +5,7 @@
         <div class="card-body">
             <div class="card card-default" style="box-shadow: none">
                 <div class="card-header bg-info" id="headingOne" style="opacity: 0.6">
-                    <a class=" text-white mt-1" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Retenu a caracter socail</a>
+                    <a class=" text-white mt-1" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Retenu a caractère  socail</a>
                 </div>
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                     <div class="card-body">
@@ -99,7 +99,7 @@
             </div>
             <div class="card card-default" style="box-shadow: none">
                 <div class="card-header bg-info " id="headingToo" style="opacity: 0.6;">
-                    <a class=" text-white mt-1" data-toggle="collapse" data-target="#collapseToo" aria-expanded="true" aria-controls="collapseToo">Retenu A caracter fiscal</a>
+                    <a class=" text-white mt-1" data-toggle="collapse" data-target="#collapseToo" aria-expanded="true" aria-controls="collapseToo">Retenu A caractère  fiscal</a>
                 </div>
 
                 <div id="collapseToo" class="collapse" aria-labelledby="headingToo" data-parent="#accordion">
@@ -178,7 +178,7 @@
 
             <div class="card card-default" style="box-shadow: none">
                 <div class="card-header bg-info" id="headingThree" style="opacity:0.6">
-                    <a class=" text-white mt-1" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">Retenu A caractere Personnel</a>
+                    <a class=" text-white mt-1" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseTwo">Retenu A caractère  Personnel</a>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
                     <div class="card-body">
